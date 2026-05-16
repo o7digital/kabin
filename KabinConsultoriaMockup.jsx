@@ -369,6 +369,79 @@ export default function KabinConsultoriaMockup() {
           </div>
         </section>
       </main>
+
+      <footer className="border-t border-emerald-950/10 bg-slate-950 text-white">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 md:grid-cols-[1.4fr_0.8fr_0.8fr_1fr] lg:px-8">
+          <div>
+            <div className="flex items-center gap-3">
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-base font-black text-emerald-950">
+                K
+              </div>
+              <div>
+                <p className="text-lg font-black tracking-tight">Kabin</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-amber-100">
+                  Consultoría Fiscal y Financiera
+                </p>
+              </div>
+            </div>
+            <p className="mt-5 max-w-sm text-sm leading-7 text-white/70">
+              Despacho contable mexicano enfocado en cumplimiento fiscal, orden financiero y asesoría clara para personas y negocios.
+            </p>
+          </div>
+
+          <div>
+            <p className="text-sm font-black uppercase tracking-[0.18em] text-amber-100">Navegación</p>
+            <nav className="mt-4 grid gap-3 text-sm text-white/70">
+              {navLinks.map((link) => (
+                <a key={link.href} href={link.href} className="transition hover:text-white">
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+
+          <div>
+            <p className="text-sm font-black uppercase tracking-[0.18em] text-amber-100">Servicios</p>
+            <div className="mt-4 grid gap-3 text-sm text-white/70">
+              {services.map((service) => (
+                <a key={service.title} href="#servicios" className="transition hover:text-white">
+                  {service.title}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <p className="text-sm font-black uppercase tracking-[0.18em] text-amber-100">Contacto</p>
+            <div className="mt-4 grid gap-3 text-sm text-white/70">
+              <p>Atención en México</p>
+              <a href="mailto:contacto@kabin.mx" className="transition hover:text-white">
+                contacto@kabin.mx
+              </a>
+              <a
+                href="https://wa.me/"
+                className="mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-3 font-black text-emerald-950 transition hover:-translate-y-0.5"
+              >
+                <MessageCircle size={16} /> WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-white/10 px-5 py-5 lg:px-8">
+          <div className="mx-auto flex max-w-7xl flex-col gap-3 text-xs font-semibold text-white/55 sm:flex-row sm:items-center sm:justify-between">
+            <p>© 2026 Kabin Consultoría Fiscal y Financiera. Todos los derechos reservados.</p>
+            <div className="flex gap-4">
+              <a href="#contacto" className="transition hover:text-white">
+                Aviso de privacidad
+              </a>
+              <a href="#contacto" className="transition hover:text-white">
+                Términos
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
