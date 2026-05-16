@@ -10,6 +10,7 @@ import {
   PiggyBank,
   ShieldCheck,
   Sparkles,
+  X,
 } from "lucide-react";
 
 const services = [
@@ -40,19 +41,19 @@ const heroSlides = [
     eyebrow: "Despacho contable mexicano",
     title: "Soluciones contables, fiscales y financieras para tu tranquilidad.",
     text: "Más de 14 años acompañando a empresas y profesionistas con atención clara y cercana.",
-    image: "/carlos-muza-hpjSkU2UYSU-unsplash.jpg",
+    image: "/carlos-muza-hpjSkU2UYSU-unsplash.webp",
   },
   {
     eyebrow: "Cumplimiento SAT",
     title: "Declaraciones y obligaciones al día, sin complicaciones.",
     text: "Orden documental, seguimiento mensual y respuesta rápida para evitar multas o atrasos.",
-    image: "/jakub-zerdzicki-LNnmSumlwO4-unsplash.jpg",
+    image: "/jakub-zerdzicki-LNnmSumlwO4-unsplash.webp",
   },
   {
     eyebrow: "Planeación financiera",
     title: "Tu operación fiscal y tu dinero deben avanzar juntos.",
     text: "Asesoría profesional para mejorar decisiones, flujo y ahorro con visión de largo plazo.",
-    image: "/blake-wisz-GFrBMipOd_E-unsplash.jpg",
+    image: "/blake-wisz-GFrBMipOd_E-unsplash.webp",
   },
 ];
 
@@ -62,9 +63,18 @@ const badges = [
   "Cumplimiento fiscal",
 ];
 
+const navLinks = [
+  { href: "#inicio", label: "Inicio" },
+  { href: "#servicios", label: "Servicios" },
+  { href: "#nosotros", label: "Nosotros" },
+  { href: "#blog", label: "Blog" },
+  { href: "#contacto", label: "Contacto" },
+];
+
 export default function KabinConsultoriaMockup() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [parallaxOffset, setParallaxOffset] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -93,6 +103,7 @@ export default function KabinConsultoriaMockup() {
     setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
   };
 
+  const closeMenu = () => setIsMenuOpen(false);
   const active = heroSlides[currentSlide];
 
   return (
@@ -110,11 +121,11 @@ export default function KabinConsultoriaMockup() {
           </a>
 
           <nav className="hidden items-center gap-7 text-sm font-semibold text-white/85 lg:flex">
-            <a href="#inicio" className="transition hover:text-white">Inicio</a>
-            <a href="#servicios" className="transition hover:text-white">Servicios</a>
-            <a href="#nosotros" className="transition hover:text-white">Nosotros</a>
-            <a href="#blog" className="transition hover:text-white">Blog</a>
-            <a href="#contacto" className="transition hover:text-white">Contacto</a>
+            {navLinks.map((link) => (
+              <a key={link.href} href={link.href} className="transition hover:text-white">
+                {link.label}
+              </a>
+            ))}
           </nav>
 
           <div className="hidden items-center gap-3 md:flex">
@@ -132,10 +143,56 @@ export default function KabinConsultoriaMockup() {
             </a>
           </div>
 
-          <button className="rounded-xl border border-white/30 bg-white/10 p-2.5 text-white md:hidden" aria-label="Abrir menú">
-            <Menu size={20} />
+          <button
+            onClick={() => setIsMenuOpen((open) => !open)}
+            className="rounded-xl border border-white/30 bg-white/10 p-2.5 text-white md:hidden"
+            aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
+            aria-expanded={isMenuOpen}
+          >
+            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
+
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              className="border-t border-white/15 bg-slate-950/95 px-5 pb-5 pt-3 text-white shadow-2xl md:hidden"
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.22 }}
+            >
+              <nav className="flex flex-col">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={closeMenu}
+                    className="border-b border-white/10 py-3 text-base font-bold text-white/90"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </nav>
+              <div className="mt-4 grid gap-3">
+                <a
+                  href="#contacto"
+                  onClick={closeMenu}
+                  className="inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-black text-emerald-950"
+                >
+                  Agenda una asesoría
+                </a>
+                <a
+                  href="https://wa.me/"
+                  onClick={closeMenu}
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/35 bg-white/10 px-5 py-3 text-sm font-black text-white"
+                >
+                  <MessageCircle size={17} /> Escríbenos por WhatsApp
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
       <main>
