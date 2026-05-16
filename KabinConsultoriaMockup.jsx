@@ -40,22 +40,19 @@ const heroSlides = [
     eyebrow: "Despacho contable mexicano",
     title: "Soluciones contables, fiscales y financieras para tu tranquilidad.",
     text: "Más de 14 años acompañando a empresas y profesionistas con atención clara y cercana.",
-    image:
-      "https://images.unsplash.com/photo-1554224155-1696413565d3?auto=format&fit=crop&w=2400&q=85",
+    image: "/carlos-muza-hpjSkU2UYSU-unsplash.jpg",
   },
   {
     eyebrow: "Cumplimiento SAT",
     title: "Declaraciones y obligaciones al día, sin complicaciones.",
     text: "Orden documental, seguimiento mensual y respuesta rápida para evitar multas o atrasos.",
-    image:
-      "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=2400&q=85",
+    image: "/jakub-zerdzicki-LNnmSumlwO4-unsplash.jpg",
   },
   {
     eyebrow: "Planeación financiera",
     title: "Tu operación fiscal y tu dinero deben avanzar juntos.",
     text: "Asesoría profesional para mejorar decisiones, flujo y ahorro con visión de largo plazo.",
-    image:
-      "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=2400&q=85",
+    image: "/blake-wisz-GFrBMipOd_E-unsplash.jpg",
   },
 ];
 
