@@ -7,9 +7,9 @@ import {
   Facebook,
   FileText,
   Instagram,
-  Mail,
   Menu,
   MessageCircle,
+  Music2,
   PiggyBank,
   ShieldCheck,
   Sparkles,
@@ -123,10 +123,9 @@ export default function KabinConsultoriaMockup() {
             <img
               src="/KABIN LOGO OFICIAL BLANCO-01.png"
               alt="Kabin Consultoría"
-              className="h-12 w-12 object-contain"
+              className="h-24 w-24 object-contain"
             />
             <div>
-              <p className="text-lg font-black tracking-tight text-white">KABIN</p>
               <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-amber-100">Consultoría Fiscal y Financiera</p>
             </div>
           </a>
@@ -389,12 +388,11 @@ export default function KabinConsultoriaMockup() {
               <img
                 src="/KABIN LOGO OFICIAL BLANCO-01.png"
                 alt="Kabin Consultoría"
-                className="h-12 w-12 object-contain"
+                className="h-24 w-24 object-contain"
               />
               <div>
-                <p className="text-lg font-black tracking-tight">Kabin Consultoría Fiscal y Financiera</p>
                 <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-amber-100">
-                  Servicios profesionales desde una perspectiva humana.
+                  Consultoría Fiscal y Financiera
                 </p>
               </div>
             </div>
@@ -429,9 +427,6 @@ export default function KabinConsultoriaMockup() {
             <p className="text-sm font-black uppercase tracking-[0.18em] text-amber-100">Contacto</p>
             <div className="mt-4 grid gap-3 text-sm text-white/70">
               <p>Atención en México</p>
-              <a href="mailto:correo@editable.com" className="inline-flex items-center gap-2 transition hover:text-white">
-                <Mail size={15} /> correo@editable.com
-              </a>
               <a
                 href="https://wa.me/"
                 className="mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-3 font-black text-emerald-950 transition hover:-translate-y-0.5"
@@ -445,18 +440,27 @@ export default function KabinConsultoriaMockup() {
         <div className="border-t border-white/10 px-5 py-6 lg:px-8">
           <div className="mx-auto flex max-w-7xl flex-col gap-4 text-sm text-white/70 sm:flex-row sm:items-center sm:justify-between">
             <p className="font-black uppercase tracking-[0.18em] text-amber-100">Redes sociales</p>
-            <div className="flex flex-wrap gap-4">
-              <a href="https://www.instagram.com/kabin_consultoria" className="inline-flex items-center gap-2 transition hover:text-white">
-                <Instagram size={16} /> @kabin_consultoria
+            <div className="flex flex-wrap gap-5">
+              <a
+                href="https://www.instagram.com/kabin_consultoria"
+                aria-label="Instagram Kabin Consultoría"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 transition hover:border-white hover:text-white"
+              >
+                <Instagram size={20} />
               </a>
-              <a href="https://www.facebook.com/" className="inline-flex items-center gap-2 transition hover:text-white">
-                <Facebook size={16} /> Kabin Consultoría
+              <a
+                href="https://www.facebook.com/"
+                aria-label="Facebook Kabin Consultoría"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 transition hover:border-white hover:text-white"
+              >
+                <Facebook size={20} />
               </a>
-              <a href="https://wa.me/" className="inline-flex items-center gap-2 transition hover:text-white">
-                <MessageCircle size={16} /> WhatsApp editable
-              </a>
-              <a href="mailto:correo@editable.com" className="inline-flex items-center gap-2 transition hover:text-white">
-                <Mail size={16} /> Correo editable
+              <a
+                href="https://www.tiktok.com/"
+                aria-label="TikTok Kabin Consultoría"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 transition hover:border-white hover:text-white"
+              >
+                <Music2 size={20} />
               </a>
             </div>
           </div>
