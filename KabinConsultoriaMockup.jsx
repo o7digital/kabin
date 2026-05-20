@@ -4,7 +4,10 @@ import {
   ArrowLeft,
   ArrowRight,
   Calculator,
+  Facebook,
   FileText,
+  Instagram,
+  Mail,
   Menu,
   MessageCircle,
   PiggyBank,
@@ -16,59 +19,65 @@ import {
 const services = [
   {
     icon: Calculator,
-    title: "Contabilidad mensual",
-    text: "Control contable puntual para personas físicas y negocios en crecimiento.",
+    title: "Servicios contables",
+    text: "Informes, estados financieros y procesos contables para dar claridad a tu operación.",
   },
   {
     icon: FileText,
-    title: "Declaraciones fiscales",
-    text: "Cumplimiento SAT y presentación de obligaciones sin retrasos ni sorpresas.",
+    title: "Servicios fiscales",
+    text: "Estrategia, cumplimiento y acompañamiento fiscal responsable para cuidar tu patrimonio.",
   },
   {
     icon: ShieldCheck,
-    title: "Asesoría financiera",
-    text: "Decisiones estratégicas con respaldo fiscal, contable y financiero.",
+    title: "Servicios financieros",
+    text: "Asesoría para tomar decisiones financieras claras y orientar el crecimiento de tus recursos.",
   },
   {
     icon: PiggyBank,
-    title: "Planes de ahorro garantizado",
-    text: "Estrategias de ahorro para proteger capital y cumplir objetivos reales.",
+    title: "Acompañamiento profesional",
+    text: "Atención cercana, humana y personalizada para personas y empresas.",
   },
 ];
 
 const heroSlides = [
   {
-    eyebrow: "Despacho contable mexicano",
-    title: "Soluciones contables, fiscales y financieras para tu tranquilidad.",
-    text: "Más de 14 años acompañando a empresas y profesionistas con atención clara y cercana.",
+    eyebrow: "Consultoría Estratégica",
+    title: "KABIN Consultoría Fiscal y Financiera",
+    text: "Servicios profesionales desde una perspectiva humana.",
     image: "/carlos-muza-hpjSkU2UYSU-unsplash.webp",
   },
   {
-    eyebrow: "Cumplimiento SAT",
-    title: "Declaraciones y obligaciones al día, sin complicaciones.",
-    text: "Orden documental, seguimiento mensual y respuesta rápida para evitar multas o atrasos.",
+    eyebrow: "Trato humano",
+    title: "Acompañamiento cálido, responsable y profesional.",
+    text: "Brindamos asesorías personalizadas para cuidar el patrimonio de nuestros clientes y hacerlo crecer.",
     image: "/jakub-zerdzicki-LNnmSumlwO4-unsplash.webp",
   },
   {
-    eyebrow: "Planeación financiera",
-    title: "Tu operación fiscal y tu dinero deben avanzar juntos.",
-    text: "Asesoría profesional para mejorar decisiones, flujo y ahorro con visión de largo plazo.",
+    eyebrow: "Consultoría Fiscal y Financiera",
+    title: "Detrás de cada número hay una historia humana.",
+    text: "Integramos claridad contable, visión fiscal y apoyo genuino para personas y empresas.",
     image: "/blake-wisz-GFrBMipOd_E-unsplash.webp",
   },
 ];
 
 const badges = [
-  "14 años de experiencia",
-  "Atención personalizada",
-  "Cumplimiento fiscal",
+  "Responsabilidad",
+  "Honestidad",
+  "Empatía",
+  "Trabajo en equipo",
 ];
 
 const navLinks = [
   { href: "#inicio", label: "Inicio" },
   { href: "#servicios", label: "Servicios" },
   { href: "#nosotros", label: "Nosotros" },
-  { href: "#blog", label: "Blog" },
   { href: "#contacto", label: "Contacto" },
+];
+
+const values = [
+  "Responsabilidad",
+  "Honestidad",
+  "Empatía",
 ];
 
 export default function KabinConsultoriaMockup() {
@@ -111,11 +120,13 @@ export default function KabinConsultoriaMockup() {
       <header className="fixed inset-x-0 top-0 z-50 border-b border-white/20 bg-slate-950/45 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
           <a href="#inicio" className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-base font-black text-emerald-950">
-              K
-            </div>
+            <img
+              src="/KABIN LOGO OFICIAL BLANCO-01.png"
+              alt="Kabin Consultoría"
+              className="h-12 w-12 object-contain"
+            />
             <div>
-              <p className="text-lg font-black tracking-tight text-white">Kabin</p>
+              <p className="text-lg font-black tracking-tight text-white">KABIN</p>
               <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-amber-100">Consultoría Fiscal y Financiera</p>
             </div>
           </a>
@@ -299,7 +310,7 @@ export default function KabinConsultoriaMockup() {
           <div className="mb-10 max-w-3xl">
             <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-900">Servicios</p>
             <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl md:text-5xl">
-              Soluciones claras para ordenar tu operación fiscal y financiera.
+              Servicios contables, fiscales y financieros desde una perspectiva humana.
             </h2>
           </div>
 
@@ -329,22 +340,23 @@ export default function KabinConsultoriaMockup() {
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
             <p className="text-sm font-black uppercase tracking-[0.2em] text-amber-200">Nosotros</p>
             <h2 className="mt-3 max-w-4xl text-3xl font-black tracking-tight sm:text-4xl md:text-5xl">
-              Acompañamiento profesional, cercano y orientado a resultados.
+              Misión y visión con trato humano y responsabilidad profesional.
             </h2>
             <p className="mt-5 max-w-3xl text-base leading-8 text-emerald-50/85 sm:text-lg">
-              En Kabin transformamos procesos fiscales y contables en decisiones claras. Nuestro enfoque combina cumplimiento,
-              estrategia y atención personalizada para que puedas concentrarte en crecer.
+              Nuestra misión es brindar asesorías personalizadas y acompañamiento de una manera cálida, humana, responsable y
+              profesional. Nuestra visión es ser unos de los mejores consultores contables, fiscales y financieros para cuidar el
+              patrimonio de nuestros clientes y hacerlo crecer.
             </p>
           </div>
         </section>
 
-        <section id="blog" className="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+        <section className="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
           <div className="grid gap-4 md:grid-cols-3">
-            {["¿Qué gastos puedo deducir?", "Cómo ordenar tus finanzas del mes", "Errores comunes ante el SAT"].map((post) => (
-              <article key={post} className="rounded-[1.8rem] bg-white p-6 shadow-sm">
+            {values.map((value) => (
+              <article key={value} className="rounded-[1.8rem] bg-white p-6 shadow-sm">
                 <div className="mb-7 h-28 rounded-3xl bg-gradient-to-br from-emerald-100 to-amber-100" />
-                <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-800">Blog fiscal</p>
-                <h3 className="mt-2 text-xl font-black text-slate-900">{post}</h3>
+                <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-800">Valores</p>
+                <h3 className="mt-2 text-xl font-black text-slate-900">{value}</h3>
               </article>
             ))}
           </div>
@@ -353,7 +365,7 @@ export default function KabinConsultoriaMockup() {
         <section id="contacto" className="mx-auto max-w-7xl px-5 pb-20 lg:px-8">
           <div className="rounded-[2.2rem] bg-slate-950 p-8 text-white shadow-2xl md:p-12">
             <h2 className="max-w-3xl text-3xl font-black tracking-tight sm:text-4xl md:text-5xl">
-              Agenda una asesoría y recibe una ruta clara para tu negocio.
+              Agenda una asesoría y recibe acompañamiento profesional.
             </h2>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <a href="#" className="inline-flex items-center justify-center rounded-full bg-white px-7 py-4 font-black text-emerald-950">
@@ -374,18 +386,20 @@ export default function KabinConsultoriaMockup() {
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 md:grid-cols-[1.4fr_0.8fr_0.8fr_1fr] lg:px-8">
           <div>
             <div className="flex items-center gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-base font-black text-emerald-950">
-                K
-              </div>
+              <img
+                src="/KABIN LOGO OFICIAL BLANCO-01.png"
+                alt="Kabin Consultoría"
+                className="h-12 w-12 object-contain"
+              />
               <div>
-                <p className="text-lg font-black tracking-tight">Kabin</p>
+                <p className="text-lg font-black tracking-tight">Kabin Consultoría Fiscal y Financiera</p>
                 <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-amber-100">
-                  Consultoría Fiscal y Financiera
+                  Servicios profesionales desde una perspectiva humana.
                 </p>
               </div>
             </div>
             <p className="mt-5 max-w-sm text-sm leading-7 text-white/70">
-              Despacho contable mexicano enfocado en cumplimiento fiscal, orden financiero y asesoría clara para personas y negocios.
+              Servicios profesionales desde una perspectiva humana.
             </p>
           </div>
 
@@ -415,14 +429,34 @@ export default function KabinConsultoriaMockup() {
             <p className="text-sm font-black uppercase tracking-[0.18em] text-amber-100">Contacto</p>
             <div className="mt-4 grid gap-3 text-sm text-white/70">
               <p>Atención en México</p>
-              <a href="mailto:contacto@kabin.mx" className="transition hover:text-white">
-                contacto@kabin.mx
+              <a href="mailto:correo@editable.com" className="inline-flex items-center gap-2 transition hover:text-white">
+                <Mail size={15} /> correo@editable.com
               </a>
               <a
                 href="https://wa.me/"
                 className="mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-3 font-black text-emerald-950 transition hover:-translate-y-0.5"
               >
                 <MessageCircle size={16} /> WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-white/10 px-5 py-6 lg:px-8">
+          <div className="mx-auto flex max-w-7xl flex-col gap-4 text-sm text-white/70 sm:flex-row sm:items-center sm:justify-between">
+            <p className="font-black uppercase tracking-[0.18em] text-amber-100">Redes sociales</p>
+            <div className="flex flex-wrap gap-4">
+              <a href="https://www.instagram.com/kabin_consultoria" className="inline-flex items-center gap-2 transition hover:text-white">
+                <Instagram size={16} /> @kabin_consultoria
+              </a>
+              <a href="https://www.facebook.com/" className="inline-flex items-center gap-2 transition hover:text-white">
+                <Facebook size={16} /> Kabin Consultoría
+              </a>
+              <a href="https://wa.me/" className="inline-flex items-center gap-2 transition hover:text-white">
+                <MessageCircle size={16} /> WhatsApp editable
+              </a>
+              <a href="mailto:correo@editable.com" className="inline-flex items-center gap-2 transition hover:text-white">
+                <Mail size={16} /> Correo editable
               </a>
             </div>
           </div>
