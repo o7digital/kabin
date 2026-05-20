@@ -84,6 +84,7 @@ export default function KabinConsultoriaMockup() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [parallaxOffset, setParallaxOffset] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isHeaderHidden, setIsHeaderHidden] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -94,9 +95,13 @@ export default function KabinConsultoriaMockup() {
   }, []);
 
   useEffect(() => {
+    let lastY = window.scrollY || 0;
+
     const onScroll = () => {
       const y = window.scrollY || 0;
       setParallaxOffset(Math.min(y * 0.2, 120));
+      setIsHeaderHidden(y > 120 && y > lastY + 8);
+      lastY = y;
     };
 
     onScroll();
@@ -117,7 +122,11 @@ export default function KabinConsultoriaMockup() {
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#f4efe7] text-slate-900">
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/20 bg-slate-950/45 backdrop-blur-xl">
+      <header
+        className={`fixed inset-x-0 top-0 z-50 border-b border-white/20 bg-slate-950/45 backdrop-blur-xl transition-transform duration-300 ease-out ${
+          isHeaderHidden && !isMenuOpen ? "-translate-y-full" : "translate-y-0"
+        }`}
+      >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
           <a href="#inicio" className="flex items-center gap-3">
             <img
