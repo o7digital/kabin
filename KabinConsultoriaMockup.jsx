@@ -21,7 +21,7 @@ import {
   X,
 } from "lucide-react";
 
-const services = [
+const servicesEs = [
   {
     icon: Calculator,
     title: "Contabilidad",
@@ -108,7 +108,30 @@ const services = [
   },
 ];
 
-const heroSlides = [
+const servicesEn = [
+  {
+    icon: Calculator,
+    title: "Accounting",
+    text: "Clear and organized accounting processes to keep your operation reliable.",
+    details:
+      "We organize and track your accounting records so every transaction has support, traceability, and financial logic. This includes data review, closing support, document organization, and useful reporting to understand your operation.",
+  },
+  {
+    icon: FileText,
+    title: "Audits and financial reports",
+    text: "Financial review and reporting for data-driven decisions.",
+    details:
+      "We analyze financial statements, key movements, and supporting documents to detect inconsistencies, improvement opportunities, and control points.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Operational clarity",
+    text: "Visibility over your numbers and processes to improve control.",
+    details: "We turn scattered information into an ordered view of your business: income, costs, obligations, cash flow, and internal processes.",
+  },
+];
+
+const heroSlidesEs = [
   {
     eyebrow: "Consultoría Estratégica",
     title: "KABIN Consultoría Fiscal y Financiera",
@@ -129,21 +152,51 @@ const heroSlides = [
   },
 ];
 
-const badges = [
+const heroSlidesEn = [
+  {
+    eyebrow: "Strategic Consulting",
+    title: "KABIN Tax and Financial Consulting",
+    text: "Professional services from a human perspective.",
+    image: "/carlos-muza-hpjSkU2UYSU-unsplash.webp",
+  },
+  {
+    eyebrow: "Human approach",
+    title: "Warm, responsible, and professional support.",
+    text: "We provide personalized guidance to protect and grow our clients' assets.",
+    image: "/jakub-zerdzicki-LNnmSumlwO4-unsplash.webp",
+  },
+  {
+    eyebrow: "Tax and Financial Consulting",
+    title: "Behind every number there is a human story.",
+    text: "We integrate accounting clarity, tax vision, and genuine support for people and businesses.",
+    image: "/blake-wisz-GFrBMipOd_E-unsplash.webp",
+  },
+];
+
+const badgesEs = [
   "Responsabilidad",
   "Honestidad",
   "Empatía",
   "Trabajo en equipo",
 ];
 
-const navLinks = [
+const badgesEn = ["Responsibility", "Honesty", "Empathy", "Teamwork"];
+
+const navLinksEs = [
   { href: "#inicio", label: "Inicio" },
   { href: "#servicios", label: "Servicios" },
   { href: "#nosotros", label: "Nosotros" },
   { href: "#contacto", label: "Contacto" },
 ];
 
-const values = [
+const navLinksEn = [
+  { href: "#inicio", label: "Home" },
+  { href: "#servicios", label: "Services" },
+  { href: "#nosotros", label: "About" },
+  { href: "#contacto", label: "Contact" },
+];
+
+const valuesEs = [
   {
     icon: ShieldCheck,
     title: "Responsabilidad",
@@ -166,15 +219,30 @@ const values = [
   },
 ];
 
-const journey = [
+const valuesEn = [
+  { icon: ShieldCheck, title: "Responsibility", text: "We manage every process with disciplined follow-up and professional commitment." },
+  { icon: Scale, title: "Honesty", text: "We work transparently so every decision has clear support." },
+  { icon: HeartHandshake, title: "Empathy", text: "We listen to the story behind the numbers and adapt to each client." },
+  { icon: UsersRound, title: "Teamwork", text: "We integrate accounting, tax, financial, and asset perspectives." },
+];
+
+const journeyEs = [
   { year: "2020", title: "Fundación y contabilidad core" },
   { year: "2022", title: "Expansión a estrategia fiscal" },
   { year: "2024", title: "Lanzamiento de gestión patrimonial" },
   { year: "2026", title: "Transformación digital e IA" },
 ];
+const journeyEn = [
+  { year: "2020", title: "Foundation and core accounting" },
+  { year: "2022", title: "Expansion into tax strategy" },
+  { year: "2024", title: "Asset management launch" },
+  { year: "2026", title: "Digital transformation and AI" },
+];
 
 export default function KabinConsultoriaMockup() {
+  const isEnglishPath = typeof window !== "undefined" && window.location.pathname.startsWith("/en");
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [lang, setLang] = useState(isEnglishPath ? "en" : "es");
   const [parallaxOffset, setParallaxOffset] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
@@ -203,6 +271,40 @@ export default function KabinConsultoriaMockup() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const isEn = lang === "en";
+    const base = window.location.origin;
+    const esUrl = `${base}/`;
+    const enUrl = `${base}/en/`;
+
+    document.documentElement.lang = isEn ? "en" : "es";
+    document.title = isEn ? "Kabin Tax and Financial Consulting" : "Kabin Consultoría Fiscal y Financiera";
+
+    const setLink = (rel, href, hreflang) => {
+      const key = hreflang ? `${rel}-${hreflang}` : rel;
+      let el = document.head.querySelector(`link[data-seo='${key}']`);
+      if (!el) {
+        el = document.createElement("link");
+        el.setAttribute("data-seo", key);
+        document.head.appendChild(el);
+      }
+      el.setAttribute("rel", rel);
+      el.setAttribute("href", href);
+      if (hreflang) el.setAttribute("hreflang", hreflang);
+    };
+
+    setLink("canonical", isEn ? enUrl : esUrl);
+    setLink("alternate", esUrl, "es-MX");
+    setLink("alternate", enUrl, "en");
+    setLink("alternate", esUrl, "x-default");
+  }, [lang]);
+
+  const switchLanguage = (nextLang) => {
+    setLang(nextLang);
+    const target = nextLang === "en" ? "/en/" : "/";
+    if (window.location.pathname !== target) window.history.replaceState({}, "", target);
+  };
+
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
   };
@@ -212,7 +314,36 @@ export default function KabinConsultoriaMockup() {
   };
 
   const closeMenu = () => setIsMenuOpen(false);
-  const active = heroSlides[currentSlide];
+  const t = lang === "es"
+    ? {
+        navLinks: navLinksEs, badges: badgesEs, heroSlides: heroSlidesEs, services: servicesEs, values: valuesEs, journey: journeyEs,
+        consult: "Consultoría Fiscal y Financiera", book: "Agenda una asesoría", menuOpen: "Abrir menú", menuClose: "Cerrar menú",
+        servicesTitle: "Servicios", servicesHeading: "Servicios contables, fiscales y financieros desde una perspectiva humana.", readMore: "Ver más",
+        about: "Nosotros", pillars: "Cimientos de nuestro éxito.", concept: "KABIN Consultores nació de un concepto claro: brindar servicios profesionales desde una perspectiva humana.",
+        aboutText: "Creemos que detrás de cada número hay una historia, una familia, una empresa y una decisión importante. Por eso acompañamos a nuestros clientes con claridad contable, estrategia fiscal, visión financiera y una conversación cercana que permite cuidar su patrimonio y hacerlo crecer.",
+        mission: "Nuestra misión", missionTitle: "Acompañamiento cálido y responsable.", missionText: "Brindar asesorías personalizadas y acompañamiento de una manera cálida, humana, responsable y profesional, para que cada cliente entienda su situación y pueda tomar decisiones con tranquilidad.",
+        vision: "Nuestra visión", visionTitle: "Proteger y hacer crecer su legado.", visionText: "Ser uno de los consultores contables, fiscales y financieros de referencia para cuidar el patrimonio de nuestros clientes, fortalecer sus operaciones y acompañar su crecimiento con visión de largo plazo.",
+        valuesTitle: "Nuestros valores", path: "Nuestro camino",
+        contactTitle: "Agenda una asesoría y recibe acompañamiento profesional.", contactText: "Completa el formulario y te contactaremos para entender tu situación y proponerte una ruta de trabajo.",
+        fullname: "Nombre completo", email: "Correo electrónico", phone: "Teléfono", interest: "Servicio de interés", message: "Mensaje", send: "Enviar solicitud",
+        privacy: "Aviso de Privacidad", footerNav: "Navegación", footerContact: "Contacto", mexico: "Atención en México", social: "Redes sociales",
+        rights: "© 2026 Kabin Consultoría Fiscal y Financiera. Todos los derechos reservados.", terms: "Términos", serviceDetail: "Detalle del servicio", request: "Solicitar asesoría",
+      }
+    : {
+        navLinks: navLinksEn, badges: badgesEn, heroSlides: heroSlidesEn, services: servicesEn, values: valuesEn, journey: journeyEn,
+        consult: "Tax and Financial Consulting", book: "Book a consultation", menuOpen: "Open menu", menuClose: "Close menu",
+        servicesTitle: "Services", servicesHeading: "Accounting, tax, and financial services from a human perspective.", readMore: "Read more",
+        about: "About", pillars: "Foundations of our success.", concept: "KABIN Consultores was born from a clear concept: delivering professional services from a human perspective.",
+        aboutText: "We believe that behind every number there is a story, a family, a company, and an important decision.",
+        mission: "Our mission", missionTitle: "Warm and responsible support.", missionText: "Provide personalized advisory and support in a warm, human, responsible, and professional way.",
+        vision: "Our vision", visionTitle: "Protect and grow your legacy.", visionText: "To become a leading accounting, tax, and financial consulting firm focused on protecting and growing client assets.",
+        valuesTitle: "Our values", path: "Our journey",
+        contactTitle: "Book a consultation and receive professional support.", contactText: "Complete the form and we will contact you to understand your needs and propose a work plan.",
+        fullname: "Full name", email: "Email", phone: "Phone", interest: "Service of interest", message: "Message", send: "Send request",
+        privacy: "Privacy Notice", footerNav: "Navigation", footerContact: "Contact", mexico: "Service in Mexico", social: "Social media",
+        rights: "© 2026 Kabin Tax and Financial Consulting. All rights reserved.", terms: "Terms", serviceDetail: "Service details", request: "Request consultation",
+      };
+  const active = t.heroSlides[currentSlide];
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#f4efe7] text-slate-900">
@@ -229,12 +360,12 @@ export default function KabinConsultoriaMockup() {
               className="h-24 w-24 object-contain"
             />
             <div>
-              <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-amber-100">Consultoría Fiscal y Financiera</p>
+              <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-amber-100">{t.consult}</p>
             </div>
           </a>
 
           <nav className="hidden items-center gap-7 text-[16.8px] font-semibold text-white/85 lg:flex">
-            {navLinks.map((link) => (
+            {t.navLinks.map((link) => (
               <a key={link.href} href={link.href} className="transition hover:text-white">
                 {link.label}
               </a>
@@ -242,11 +373,15 @@ export default function KabinConsultoriaMockup() {
           </nav>
 
           <div className="hidden items-center gap-3 md:flex">
+            <div className="inline-flex rounded-full border border-white/30 bg-white/10 p-1 text-xs font-bold text-white">
+              <button type="button" onClick={() => switchLanguage("es")} className={`rounded-full px-3 py-1 ${lang==="es"?"bg-white text-slate-900":""}`}>ES</button>
+              <button type="button" onClick={() => switchLanguage("en")} className={`rounded-full px-3 py-1 ${lang==="en"?"bg-white text-slate-900":""}`}>EN</button>
+            </div>
             <a
               href="#contacto"
               className="rounded-full bg-white px-5 py-2.5 text-sm font-bold text-emerald-950 transition hover:-translate-y-0.5"
             >
-              Agenda una asesoría
+              {t.book}
             </a>
             <a
               href="https://wa.me/"
@@ -259,7 +394,7 @@ export default function KabinConsultoriaMockup() {
           <button
             onClick={() => setIsMenuOpen((open) => !open)}
             className="rounded-xl border border-white/30 bg-white/10 p-2.5 text-white md:hidden"
-            aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
+            aria-label={isMenuOpen ? t.menuClose : t.menuOpen}
             aria-expanded={isMenuOpen}
           >
             {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -276,7 +411,7 @@ export default function KabinConsultoriaMockup() {
               transition={{ duration: 0.22 }}
             >
               <nav className="flex flex-col">
-                {navLinks.map((link) => (
+                {t.navLinks.map((link) => (
                   <a
                     key={link.href}
                     href={link.href}
@@ -293,7 +428,7 @@ export default function KabinConsultoriaMockup() {
                   onClick={closeMenu}
                   className="inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-black text-emerald-950"
                 >
-                  Agenda una asesoría
+                  {t.book}
                 </a>
                 <a
                   href="https://wa.me/"
@@ -362,7 +497,7 @@ export default function KabinConsultoriaMockup() {
                 </div>
 
                 <div className="mt-9 flex flex-wrap gap-3">
-                  {badges.map((item) => (
+                  {t.badges.map((item) => (
                     <span
                       key={item}
                       className="rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-wide text-white/90 backdrop-blur-md sm:text-sm"
@@ -391,7 +526,7 @@ export default function KabinConsultoriaMockup() {
           </button>
 
           <div className="absolute bottom-7 left-1/2 z-20 flex -translate-x-1/2 gap-2 rounded-full border border-white/20 bg-black/20 p-2 backdrop-blur-lg">
-            {heroSlides.map((_, index) => (
+            {t.heroSlides.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
@@ -404,14 +539,14 @@ export default function KabinConsultoriaMockup() {
 
         <section id="servicios" className="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
           <div className="mb-10 max-w-3xl">
-            <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-900">Servicios</p>
+            <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-900">{t.servicesTitle}</p>
             <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl md:text-5xl">
-              Servicios contables, fiscales y financieros desde una perspectiva humana.
+              {t.servicesHeading}
             </h2>
           </div>
 
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {services.map((service) => {
+            {t.services.map((service) => {
               const Icon = service.icon;
               return (
                 <article
@@ -428,7 +563,7 @@ export default function KabinConsultoriaMockup() {
                     onClick={() => setSelectedService(service)}
                     className="mt-auto inline-flex w-fit items-center gap-2 pt-5 text-left text-sm font-bold text-emerald-900"
                   >
-                    Ver más <ArrowRight size={15} />
+                    {t.readMore} <ArrowRight size={15} />
                   </button>
                 </article>
               );
@@ -441,18 +576,16 @@ export default function KabinConsultoriaMockup() {
             <div className="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
               <div>
                 <p className="border-l-4 border-[#d9ad58] pl-5 text-sm font-black uppercase tracking-[0.24em] text-[#d9ad58]">
-                  Nosotros
+                  {t.about}
                 </p>
                 <h2 className="mt-6 max-w-4xl text-4xl font-black leading-[1.02] tracking-tight sm:text-5xl md:text-6xl">
-                  Cimientos de nuestro éxito.
+                  {t.pillars}
                 </h2>
                 <p className="mt-6 text-xl font-semibold leading-9 text-white sm:text-2xl">
-                  KABIN Consultores nació de un concepto claro: brindar servicios profesionales desde una perspectiva humana.
+                  {t.concept}
                 </p>
                 <p className="mt-5 max-w-2xl text-base leading-8 text-slate-200 sm:text-lg">
-                  Creemos que detrás de cada número hay una historia, una familia, una empresa y una decisión importante.
-                  Por eso acompañamos a nuestros clientes con claridad contable, estrategia fiscal, visión financiera y una
-                  conversación cercana que permite cuidar su patrimonio y hacerlo crecer.
+                  {t.aboutText}
                 </p>
               </div>
 
@@ -468,30 +601,28 @@ export default function KabinConsultoriaMockup() {
 
             <div className="mt-14 grid gap-5 lg:grid-cols-2">
               <article className="rounded-[1.4rem] border border-[#d9ad58]/30 bg-white/5 p-7 md:p-9">
-                <p className="text-sm font-black uppercase tracking-[0.18em] text-[#d9ad58]">Nuestra misión</p>
-                <h3 className="mt-4 text-2xl font-black text-[#d9ad58]">Acompañamiento cálido y responsable.</h3>
+                <p className="text-sm font-black uppercase tracking-[0.18em] text-[#d9ad58]">{t.mission}</p>
+                <h3 className="mt-4 text-2xl font-black text-[#d9ad58]">{t.missionTitle}</h3>
                 <p className="mt-4 text-base leading-8 text-slate-200">
-                  Brindar asesorías personalizadas y acompañamiento de una manera cálida, humana, responsable y
-                  profesional, para que cada cliente entienda su situación y pueda tomar decisiones con tranquilidad.
+                  {t.missionText}
                 </p>
               </article>
 
               <article className="rounded-[1.4rem] border border-[#d9ad58]/30 bg-white/5 p-7 md:p-9">
-                <p className="text-sm font-black uppercase tracking-[0.18em] text-[#d9ad58]">Nuestra visión</p>
-                <h3 className="mt-4 text-2xl font-black text-[#d9ad58]">Proteger y hacer crecer su legado.</h3>
+                <p className="text-sm font-black uppercase tracking-[0.18em] text-[#d9ad58]">{t.vision}</p>
+                <h3 className="mt-4 text-2xl font-black text-[#d9ad58]">{t.visionTitle}</h3>
                 <p className="mt-4 text-base leading-8 text-slate-200">
-                  Ser uno de los consultores contables, fiscales y financieros de referencia para cuidar el patrimonio
-                  de nuestros clientes, fortalecer sus operaciones y acompañar su crecimiento con visión de largo plazo.
+                  {t.visionText}
                 </p>
               </article>
             </div>
 
             <div className="mt-14">
               <p className="border-l-4 border-[#d9ad58] pl-5 text-sm font-black uppercase tracking-[0.24em] text-[#d9ad58]">
-                Nuestros valores
+                {t.valuesTitle}
               </p>
               <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-                {values.map((value) => {
+                {t.values.map((value) => {
                   const Icon = value.icon;
                   return (
                     <article key={value.title} className="rounded-[1.2rem] bg-white/[0.07] p-6 text-center shadow-sm">
@@ -506,10 +637,10 @@ export default function KabinConsultoriaMockup() {
 
             <div className="mt-14">
               <p className="border-l-4 border-[#d9ad58] pl-5 text-sm font-black uppercase tracking-[0.24em] text-[#d9ad58]">
-                Nuestro camino
+                {t.path}
               </p>
               <div className="mt-8 grid gap-4 border-t border-[#d9ad58] pt-6 md:grid-cols-4">
-                {journey.map((item) => (
+                {t.journey.map((item) => (
                   <div key={item.year} className="relative">
                     <span className="absolute -top-[34px] left-0 h-4 w-4 rounded-full border-4 border-white bg-[#d9ad58]" />
                     <p className="text-lg font-black text-[#d9ad58]">{item.year}</p>
@@ -524,10 +655,10 @@ export default function KabinConsultoriaMockup() {
         <section id="contacto" className="mx-auto max-w-7xl px-5 pb-20 lg:px-8">
           <div className="rounded-[2.2rem] bg-slate-950 p-8 text-white shadow-2xl md:p-12">
             <h2 className="max-w-3xl text-3xl font-black tracking-tight sm:text-4xl md:text-5xl">
-              Agenda una asesoría y recibe acompañamiento profesional.
+              {t.contactTitle}
             </h2>
             <p className="mt-4 max-w-2xl text-sm leading-7 text-white/75 sm:text-base">
-              Completa el formulario y te contactaremos para entender tu situación y proponerte una ruta de trabajo.
+              {t.contactText}
             </p>
             <form
               action="https://formspree.io/f/mpqndjbl"
@@ -535,7 +666,7 @@ export default function KabinConsultoriaMockup() {
               className="mt-8 grid gap-4 md:grid-cols-2"
             >
               <label className="grid gap-2">
-                <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">Nombre completo</span>
+                <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">{t.fullname}</span>
                 <input
                   type="text"
                   name="nombre"
@@ -545,7 +676,7 @@ export default function KabinConsultoriaMockup() {
                 />
               </label>
               <label className="grid gap-2">
-                <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">Correo electrónico</span>
+                <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">{t.email}</span>
                 <input
                   type="email"
                   name="email"
@@ -555,7 +686,7 @@ export default function KabinConsultoriaMockup() {
                 />
               </label>
               <label className="grid gap-2">
-                <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">Teléfono</span>
+                <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">{t.phone}</span>
                 <input
                   type="tel"
                   name="telefono"
@@ -564,7 +695,7 @@ export default function KabinConsultoriaMockup() {
                 />
               </label>
               <label className="grid gap-2">
-                <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">Servicio de interés</span>
+                <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">{t.interest}</span>
                 <input
                   type="text"
                   name="servicio"
@@ -573,7 +704,7 @@ export default function KabinConsultoriaMockup() {
                 />
               </label>
               <label className="grid gap-2 md:col-span-2">
-                <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">Mensaje</span>
+                <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">{t.message}</span>
                 <textarea
                   name="mensaje"
                   required
@@ -587,7 +718,7 @@ export default function KabinConsultoriaMockup() {
                   type="submit"
                   className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3.5 text-sm font-black text-emerald-950 transition hover:-translate-y-0.5"
                 >
-                  Enviar solicitud
+                  {t.send}
                 </button>
               </div>
             </form>
@@ -606,7 +737,7 @@ export default function KabinConsultoriaMockup() {
         href="/aviso-privacidad.html"
         className="fixed bottom-4 right-4 z-[60] inline-flex items-center gap-2 rounded-full bg-blue-600 px-4 py-3 text-sm font-black text-white shadow-xl shadow-blue-950/40 transition hover:-translate-y-0.5 hover:bg-blue-500"
       >
-        <ShieldCheck size={16} /> Aviso de Privacidad
+        <ShieldCheck size={16} /> {t.privacy}
       </a>
 
       <AnimatePresence>
@@ -631,7 +762,7 @@ export default function KabinConsultoriaMockup() {
             >
               <div className="flex items-start justify-between gap-5">
                 <div>
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-emerald-800">Detalle del servicio</p>
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-emerald-800">{t.serviceDetail}</p>
                   <h3 id="service-modal-title" className="mt-3 text-2xl font-black tracking-tight text-slate-950 md:text-3xl">
                     {selectedService.title}
                   </h3>
@@ -651,7 +782,7 @@ export default function KabinConsultoriaMockup() {
                 onClick={() => setSelectedService(null)}
                 className="mt-7 inline-flex items-center justify-center rounded-full bg-emerald-950 px-6 py-3 text-sm font-black text-white transition hover:-translate-y-0.5"
               >
-                Solicitar asesoría
+                {t.request}
               </a>
             </motion.div>
           </motion.div>
@@ -669,19 +800,19 @@ export default function KabinConsultoriaMockup() {
               />
               <div>
                 <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-amber-100">
-                  Consultoría Fiscal y Financiera
+                  {t.consult}
                 </p>
               </div>
             </div>
             <p className="mt-5 max-w-sm text-sm leading-7 text-white/70">
-              Servicios profesionales desde una perspectiva humana.
+              {lang === "es" ? "Servicios profesionales desde una perspectiva humana." : "Professional services from a human perspective."}
             </p>
           </div>
 
           <div>
-            <p className="text-sm font-black uppercase tracking-[0.18em] text-amber-100">Navegación</p>
+            <p className="text-sm font-black uppercase tracking-[0.18em] text-amber-100">{t.footerNav}</p>
             <nav className="mt-4 grid gap-3 text-sm text-white/70">
-              {navLinks.map((link) => (
+              {t.navLinks.map((link) => (
                 <a key={link.href} href={link.href} className="transition hover:text-white">
                   {link.label}
                 </a>
@@ -690,9 +821,9 @@ export default function KabinConsultoriaMockup() {
           </div>
 
           <div>
-            <p className="text-sm font-black uppercase tracking-[0.18em] text-amber-100">Contacto</p>
+            <p className="text-sm font-black uppercase tracking-[0.18em] text-amber-100">{t.footerContact}</p>
             <div className="mt-4 grid gap-3 text-sm text-white/70">
-              <p>Atención en México</p>
+              <p>{t.mexico}</p>
               <a
                 href="https://wa.me/"
                 className="mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-3 font-black text-emerald-950 transition hover:-translate-y-0.5"
@@ -705,7 +836,7 @@ export default function KabinConsultoriaMockup() {
 
         <div className="border-t border-white/10 px-5 py-6 lg:px-8">
           <div className="mx-auto flex max-w-7xl flex-col gap-4 text-sm text-white/70 sm:flex-row sm:items-center sm:justify-between">
-            <p className="font-black uppercase tracking-[0.18em] text-amber-100">Redes sociales</p>
+            <p className="font-black uppercase tracking-[0.18em] text-amber-100">{t.social}</p>
             <div className="flex flex-wrap gap-5">
               <a
                 href="https://www.instagram.com/kabin_consultoria"
@@ -734,13 +865,13 @@ export default function KabinConsultoriaMockup() {
 
         <div className="border-t border-white/10 px-5 py-5 lg:px-8">
           <div className="mx-auto flex max-w-7xl flex-col gap-3 text-xs font-semibold text-white/55 sm:flex-row sm:items-center sm:justify-between">
-            <p>© 2026 Kabin Consultoría Fiscal y Financiera. Todos los derechos reservados.</p>
+            <p>{t.rights}</p>
             <div className="flex gap-4">
               <a href="/aviso-privacidad.html" className="transition hover:text-white">
-                Aviso de privacidad
+                {t.privacy}
               </a>
               <a href="#contacto" className="transition hover:text-white">
-                Términos
+                {t.terms}
               </a>
             </div>
           </div>
