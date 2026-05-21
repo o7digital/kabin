@@ -250,11 +250,10 @@ export default function KabinConsultoriaMockup() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+      setCurrentSlide((prev) => (prev + 1) % t.heroSlides.length);
     }, 4500);
-
     return () => clearInterval(timer);
-  }, []);
+  }, [t.heroSlides.length]);
 
   useEffect(() => {
     let lastY = window.scrollY || 0;
@@ -306,11 +305,11 @@ export default function KabinConsultoriaMockup() {
   };
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    setCurrentSlide((prev) => (prev + 1) % t.heroSlides.length);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
+    setCurrentSlide((prev) => (prev - 1 + t.heroSlides.length) % t.heroSlides.length);
   };
 
   const closeMenu = () => setIsMenuOpen(false);
