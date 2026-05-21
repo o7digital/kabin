@@ -359,12 +359,6 @@ export default function KabinConsultoriaMockup() {
                   >
                     Agendar asesoría <ArrowRight size={18} />
                   </a>
-                  <a
-                    href="https://wa.me/"
-                    className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 bg-white/10 px-7 py-4 text-sm font-black text-white backdrop-blur-md transition hover:-translate-y-1 hover:bg-white/20"
-                  >
-                    <MessageCircle size={18} /> Escríbenos por WhatsApp
-                  </a>
                 </div>
 
                 <div className="mt-9 flex flex-wrap gap-3">
@@ -606,96 +600,14 @@ export default function KabinConsultoriaMockup() {
           </div>
         </section>
 
-        <section id="aviso-privacidad" className="mx-auto max-w-7xl px-5 pb-20 lg:px-8">
-          <div className="rounded-[2rem] border border-slate-200 bg-white p-7 text-slate-800 shadow-sm md:p-10">
-            <h2 className="text-3xl font-black tracking-tight text-slate-950 md:text-4xl">Aviso de Privacidad</h2>
-            <p className="mt-4 text-sm leading-7 text-slate-600">
-              En cumplimiento con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares y su
-              Reglamento, se emite el presente aviso de privacidad.
-            </p>
-
-            <div className="mt-8 grid gap-8 text-sm leading-7 text-slate-700">
-              <div>
-                <h3 className="text-base font-black uppercase tracking-wide text-slate-950">Responsable de datos personales</h3>
-                <p className="mt-2">
-                  Kabin Consultores (en lo sucesivo, “Kabin”), con RFC <span className="font-bold">DAJE771103E87</span>, es
-                  responsable del tratamiento de sus datos personales para los fines señalados en el presente aviso.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-base font-black uppercase tracking-wide text-slate-950">Datos que se recaban</h3>
-                <p className="mt-2">
-                  Podemos recabar de manera directa o por medios electrónicos datos como: nombre, teléfono, correo electrónico,
-                  datos fiscales para facturación, datos de identificación y la información necesaria para la prestación de
-                  servicios contables, fiscales, financieros y patrimoniales.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-base font-black uppercase tracking-wide text-slate-950">Finalidades del tratamiento</h3>
-                <p className="mt-2">Sus datos personales serán utilizados para las siguientes finalidades primarias:</p>
-                <ul className="mt-2 list-disc space-y-1 pl-6">
-                  <li>Brindar asesoría y servicios profesionales solicitados.</li>
-                  <li>Dar seguimiento a solicitudes de contacto, cotizaciones y contratación.</li>
-                  <li>Integrar expedientes de clientes y cumplir obligaciones legales y fiscales aplicables.</li>
-                  <li>Emitir comprobantes fiscales y gestionar procesos administrativos relacionados con el servicio.</li>
-                </ul>
-                <p className="mt-3">
-                  De forma adicional, podremos utilizar su información para fines de contacto comercial sobre servicios de Kabin.
-                  Usted puede oponerse a dichas finalidades secundarias enviando un correo a{" "}
-                  <a className="font-bold text-emerald-900" href="mailto:contacto@kabinconsultores.com">
-                    contacto@kabinconsultores.com
-                  </a>
-                  .
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-base font-black uppercase tracking-wide text-slate-950">Transferencias de datos</h3>
-                <p className="mt-2">
-                  Sus datos personales no serán transferidos a terceros sin su consentimiento, salvo las excepciones previstas en
-                  la legislación aplicable o cuando sea necesario para el cumplimiento de obligaciones legales ante autoridades
-                  competentes.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-base font-black uppercase tracking-wide text-slate-950">Derechos ARCO</h3>
-                <p className="mt-2">
-                  Usted tiene derecho a acceder, rectificar y cancelar sus datos personales, así como a oponerse al tratamiento
-                  de los mismos o revocar el consentimiento que haya otorgado. Para ejercer sus derechos ARCO deberá enviar su
-                  solicitud al correo{" "}
-                  <a className="font-bold text-emerald-900" href="mailto:contacto@kabinconsultores.com">
-                    contacto@kabinconsultores.com
-                  </a>
-                  , indicando nombre del titular, derecho que desea ejercer y datos de contacto para dar seguimiento.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-base font-black uppercase tracking-wide text-slate-950">Uso de cookies y tecnologías</h3>
-                <p className="mt-2">
-                  Este sitio puede utilizar cookies u otras tecnologías para mejorar su experiencia de navegación. Usted puede
-                  deshabilitarlas desde la configuración de su navegador.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-base font-black uppercase tracking-wide text-slate-950">Cambios al aviso</h3>
-                <p className="mt-2">
-                  Kabin se reserva el derecho de modificar o actualizar este aviso de privacidad en cualquier momento. Cualquier
-                  cambio será publicado en este mismo sitio web.
-                </p>
-              </div>
-
-              <p className="border-t border-slate-200 pt-4 text-xs font-semibold uppercase tracking-wide text-slate-500">
-                Última actualización: 21 de mayo de 2026
-              </p>
-            </div>
-          </div>
-        </section>
       </main>
+
+      <a
+        href="/aviso-privacidad.html"
+        className="fixed bottom-4 right-4 z-[60] inline-flex items-center gap-2 rounded-full bg-blue-600 px-4 py-3 text-sm font-black text-white shadow-xl shadow-blue-950/40 transition hover:-translate-y-0.5 hover:bg-blue-500"
+      >
+        <ShieldCheck size={16} /> Aviso de Privacidad
+      </a>
 
       <AnimatePresence>
         {selectedService && (
@@ -824,7 +736,7 @@ export default function KabinConsultoriaMockup() {
           <div className="mx-auto flex max-w-7xl flex-col gap-3 text-xs font-semibold text-white/55 sm:flex-row sm:items-center sm:justify-between">
             <p>© 2026 Kabin Consultoría Fiscal y Financiera. Todos los derechos reservados.</p>
             <div className="flex gap-4">
-              <a href="#aviso-privacidad" className="transition hover:text-white">
+              <a href="/aviso-privacidad.html" className="transition hover:text-white">
                 Aviso de privacidad
               </a>
               <a href="#contacto" className="transition hover:text-white">
