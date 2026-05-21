@@ -248,6 +248,36 @@ export default function KabinConsultoriaMockup() {
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
 
+  const t = lang === "es"
+    ? {
+        navLinks: navLinksEs, badges: badgesEs, heroSlides: heroSlidesEs, services: servicesEs, values: valuesEs, journey: journeyEs,
+        consult: "Consultoría Fiscal y Financiera", book: "Agenda una asesoría", menuOpen: "Abrir menú", menuClose: "Cerrar menú",
+        servicesTitle: "Servicios", servicesHeading: "Servicios contables, fiscales y financieros desde una perspectiva humana.", readMore: "Ver más",
+        about: "Nosotros", pillars: "Cimientos de nuestro éxito.", concept: "KABIN Consultores nació de un concepto claro: brindar servicios profesionales desde una perspectiva humana.",
+        aboutText: "Creemos que detrás de cada número hay una historia, una familia, una empresa y una decisión importante. Por eso acompañamos a nuestros clientes con claridad contable, estrategia fiscal, visión financiera y una conversación cercana que permite cuidar su patrimonio y hacerlo crecer.",
+        mission: "Nuestra misión", missionTitle: "Acompañamiento cálido y responsable.", missionText: "Brindar asesorías personalizadas y acompañamiento de una manera cálida, humana, responsable y profesional, para que cada cliente entienda su situación y pueda tomar decisiones con tranquilidad.",
+        vision: "Nuestra visión", visionTitle: "Proteger y hacer crecer su legado.", visionText: "Ser uno de los consultores contables, fiscales y financieros de referencia para cuidar el patrimonio de nuestros clientes, fortalecer sus operaciones y acompañar su crecimiento con visión de largo plazo.",
+        valuesTitle: "Nuestros valores", path: "Nuestro camino",
+        contactTitle: "Agenda una asesoría y recibe acompañamiento profesional.", contactText: "Completa el formulario y te contactaremos para entender tu situación y proponerte una ruta de trabajo.",
+        fullname: "Nombre completo", email: "Correo electrónico", phone: "Teléfono", interest: "Servicio de interés", message: "Mensaje", send: "Enviar solicitud",
+        privacy: "Aviso de Privacidad", footerNav: "Navegación", footerContact: "Contacto", mexico: "Atención en México", social: "Redes sociales",
+        rights: "© 2026 Kabin Consultoría Fiscal y Financiera. Todos los derechos reservados.", terms: "Términos", serviceDetail: "Detalle del servicio", request: "Solicitar asesoría",
+      }
+    : {
+        navLinks: navLinksEn, badges: badgesEn, heroSlides: heroSlidesEn, services: servicesEn, values: valuesEn, journey: journeyEn,
+        consult: "Tax and Financial Consulting", book: "Book a consultation", menuOpen: "Open menu", menuClose: "Close menu",
+        servicesTitle: "Services", servicesHeading: "Accounting, tax, and financial services from a human perspective.", readMore: "Read more",
+        about: "About", pillars: "Foundations of our success.", concept: "KABIN Consultores was born from a clear concept: delivering professional services from a human perspective.",
+        aboutText: "We believe that behind every number there is a story, a family, a company, and an important decision.",
+        mission: "Our mission", missionTitle: "Warm and responsible support.", missionText: "Provide personalized advisory and support in a warm, human, responsible, and professional way.",
+        vision: "Our vision", visionTitle: "Protect and grow your legacy.", visionText: "To become a leading accounting, tax, and financial consulting firm focused on protecting and growing client assets.",
+        valuesTitle: "Our values", path: "Our journey",
+        contactTitle: "Book a consultation and receive professional support.", contactText: "Complete the form and we will contact you to understand your needs and propose a work plan.",
+        fullname: "Full name", email: "Email", phone: "Phone", interest: "Service of interest", message: "Message", send: "Send request",
+        privacy: "Privacy Notice", footerNav: "Navigation", footerContact: "Contact", mexico: "Service in Mexico", social: "Social media",
+        rights: "© 2026 Kabin Tax and Financial Consulting. All rights reserved.", terms: "Terms", serviceDetail: "Service details", request: "Request consultation",
+      };
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % t.heroSlides.length);
@@ -313,35 +343,6 @@ export default function KabinConsultoriaMockup() {
   };
 
   const closeMenu = () => setIsMenuOpen(false);
-  const t = lang === "es"
-    ? {
-        navLinks: navLinksEs, badges: badgesEs, heroSlides: heroSlidesEs, services: servicesEs, values: valuesEs, journey: journeyEs,
-        consult: "Consultoría Fiscal y Financiera", book: "Agenda una asesoría", menuOpen: "Abrir menú", menuClose: "Cerrar menú",
-        servicesTitle: "Servicios", servicesHeading: "Servicios contables, fiscales y financieros desde una perspectiva humana.", readMore: "Ver más",
-        about: "Nosotros", pillars: "Cimientos de nuestro éxito.", concept: "KABIN Consultores nació de un concepto claro: brindar servicios profesionales desde una perspectiva humana.",
-        aboutText: "Creemos que detrás de cada número hay una historia, una familia, una empresa y una decisión importante. Por eso acompañamos a nuestros clientes con claridad contable, estrategia fiscal, visión financiera y una conversación cercana que permite cuidar su patrimonio y hacerlo crecer.",
-        mission: "Nuestra misión", missionTitle: "Acompañamiento cálido y responsable.", missionText: "Brindar asesorías personalizadas y acompañamiento de una manera cálida, humana, responsable y profesional, para que cada cliente entienda su situación y pueda tomar decisiones con tranquilidad.",
-        vision: "Nuestra visión", visionTitle: "Proteger y hacer crecer su legado.", visionText: "Ser uno de los consultores contables, fiscales y financieros de referencia para cuidar el patrimonio de nuestros clientes, fortalecer sus operaciones y acompañar su crecimiento con visión de largo plazo.",
-        valuesTitle: "Nuestros valores", path: "Nuestro camino",
-        contactTitle: "Agenda una asesoría y recibe acompañamiento profesional.", contactText: "Completa el formulario y te contactaremos para entender tu situación y proponerte una ruta de trabajo.",
-        fullname: "Nombre completo", email: "Correo electrónico", phone: "Teléfono", interest: "Servicio de interés", message: "Mensaje", send: "Enviar solicitud",
-        privacy: "Aviso de Privacidad", footerNav: "Navegación", footerContact: "Contacto", mexico: "Atención en México", social: "Redes sociales",
-        rights: "© 2026 Kabin Consultoría Fiscal y Financiera. Todos los derechos reservados.", terms: "Términos", serviceDetail: "Detalle del servicio", request: "Solicitar asesoría",
-      }
-    : {
-        navLinks: navLinksEn, badges: badgesEn, heroSlides: heroSlidesEn, services: servicesEn, values: valuesEn, journey: journeyEn,
-        consult: "Tax and Financial Consulting", book: "Book a consultation", menuOpen: "Open menu", menuClose: "Close menu",
-        servicesTitle: "Services", servicesHeading: "Accounting, tax, and financial services from a human perspective.", readMore: "Read more",
-        about: "About", pillars: "Foundations of our success.", concept: "KABIN Consultores was born from a clear concept: delivering professional services from a human perspective.",
-        aboutText: "We believe that behind every number there is a story, a family, a company, and an important decision.",
-        mission: "Our mission", missionTitle: "Warm and responsible support.", missionText: "Provide personalized advisory and support in a warm, human, responsible, and professional way.",
-        vision: "Our vision", visionTitle: "Protect and grow your legacy.", visionText: "To become a leading accounting, tax, and financial consulting firm focused on protecting and growing client assets.",
-        valuesTitle: "Our values", path: "Our journey",
-        contactTitle: "Book a consultation and receive professional support.", contactText: "Complete the form and we will contact you to understand your needs and propose a work plan.",
-        fullname: "Full name", email: "Email", phone: "Phone", interest: "Service of interest", message: "Message", send: "Send request",
-        privacy: "Privacy Notice", footerNav: "Navigation", footerContact: "Contact", mexico: "Service in Mexico", social: "Social media",
-        rights: "© 2026 Kabin Tax and Financial Consulting. All rights reserved.", terms: "Terms", serviceDetail: "Service details", request: "Request consultation",
-      };
   const active = t.heroSlides[currentSlide];
 
   return (
