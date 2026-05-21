@@ -23,61 +23,85 @@ const services = [
     icon: Calculator,
     title: "Contabilidad",
     text: "Procesos contables claros y ordenados para mantener una operación confiable.",
+    details:
+      "Ordenamos y damos seguimiento a tus registros contables para que cada movimiento tenga respaldo, trazabilidad y sentido financiero. Incluye revisión de información, apoyo en cierres, organización documental y reportes útiles para entender cómo se comporta tu operación.",
   },
   {
     icon: FileText,
     title: "Auditorías e informes financieros",
     text: "Revisión e información financiera para tomar decisiones con datos sólidos.",
+    details:
+      "Analizamos estados financieros, movimientos clave y documentación soporte para detectar inconsistencias, oportunidades de mejora y puntos de control. El objetivo es entregar información clara, explicada y accionable para socios, dirección o administración.",
   },
   {
     icon: ShieldCheck,
     title: "Claridad operativa",
     text: "Visibilidad sobre tus números y procesos para mejorar el control del negocio.",
+    details:
+      "Convertimos información dispersa en una lectura ordenada de tu negocio: ingresos, costos, obligaciones, flujos y procesos internos. Esto ayuda a identificar cuellos de botella, decisiones pendientes y áreas donde conviene mejorar el control.",
   },
   {
     icon: FileText,
     title: "Fiscal / impuestos",
     text: "Acompañamiento fiscal responsable para cumplir obligaciones y cuidar tu patrimonio.",
+    details:
+      "Te acompañamos en el cumplimiento de obligaciones fiscales, revisión de declaraciones, seguimiento de criterios aplicables y organización de información para reducir errores. La intención es cumplir correctamente sin perder de vista el impacto patrimonial.",
   },
   {
     icon: ShieldCheck,
     title: "Estrategia y cumplimiento",
     text: "Planeación fiscal y seguimiento normativo para operar con mayor certidumbre.",
+    details:
+      "Diseñamos una ruta fiscal alineada con tu actividad, tus objetivos y tu nivel de riesgo. Revisamos escenarios, obligaciones recurrentes, fechas clave y medidas preventivas para que la operación avance con mayor certidumbre.",
   },
   {
     icon: ShieldCheck,
     title: "Mitigación de riesgos",
     text: "Identificación y prevención de riesgos fiscales, financieros y operativos.",
+    details:
+      "Detectamos riesgos antes de que se vuelvan problemas: omisiones, documentación incompleta, procesos frágiles, exposición fiscal o decisiones financieras sin respaldo. Proponemos acciones concretas para disminuir contingencias y proteger la operación.",
   },
   {
     icon: Landmark,
     title: "Gestión patrimonial",
     text: "Organización integral del patrimonio para proteger tus activos y objetivos.",
+    details:
+      "Acompañamos la organización de activos, obligaciones, estructuras y objetivos familiares o empresariales. Buscamos que el patrimonio tenga orden, lectura clara y una estrategia coherente con el presente y el futuro.",
   },
   {
     icon: PiggyBank,
     title: "Protección y crecimiento de activos",
     text: "Estrategias para resguardar recursos y orientar su crecimiento sostenible.",
+    details:
+      "Revisamos la composición de tus recursos, su exposición y las oportunidades para fortalecerlos. La asesoría combina protección, liquidez, planeación y crecimiento sostenible según el perfil y las metas del cliente.",
   },
   {
     icon: PiggyBank,
     title: "Seguridad del legado",
     text: "Planeación patrimonial para cuidar lo construido y dar continuidad al futuro.",
+    details:
+      "Trabajamos en la continuidad de lo construido mediante orden patrimonial, prevención de conflictos y claridad sobre objetivos de largo plazo. Es un acompañamiento pensado para proteger decisiones familiares, empresariales y sucesorias.",
   },
   {
     icon: Building2,
     title: "Legal / corporativo",
     text: "Estructura legal y corporativa para dar solidez a personas y empresas.",
+    details:
+      "Apoyamos en la revisión y organización de estructuras societarias, documentos corporativos, acuerdos y obligaciones formales. El objetivo es que la empresa tenga una base legal congruente con su operación y etapa de crecimiento.",
   },
   {
     icon: Building2,
     title: "Gobierno corporativo",
     text: "Orden, reglas y procesos para fortalecer la toma de decisiones empresariales.",
+    details:
+      "Definimos prácticas de gobierno, roles, reglas de decisión, documentación de acuerdos y mecanismos de control. Esto permite que la empresa funcione con mayor transparencia, continuidad y responsabilidad entre socios o directivos.",
   },
   {
     icon: Building2,
     title: "Integridad estructural",
     text: "Base corporativa sólida para operar con transparencia, control y continuidad.",
+    details:
+      "Revisamos si la estructura fiscal, financiera, operativa y corporativa está alineada. Cuando hay piezas desconectadas, proponemos ajustes para que la empresa opere con más coherencia, control interno y estabilidad.",
   },
 ];
 
@@ -127,6 +151,7 @@ export default function KabinConsultoriaMockup() {
   const [parallaxOffset, setParallaxOffset] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
+  const [selectedService, setSelectedService] = useState(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -370,16 +395,20 @@ export default function KabinConsultoriaMockup() {
               return (
                 <article
                   key={service.title}
-                  className="group rounded-[1.8rem] border border-emerald-900/10 bg-white p-6 shadow-sm transition hover:-translate-y-1.5 hover:shadow-xl"
+                  className="group flex h-full flex-col rounded-[1.8rem] border border-emerald-900/10 bg-white p-6 shadow-sm transition hover:-translate-y-1.5 hover:shadow-xl"
                 >
                   <div className="mb-5 inline-flex rounded-2xl bg-emerald-50 p-3.5 text-emerald-950 transition group-hover:bg-emerald-950 group-hover:text-white">
                     <Icon size={24} />
                   </div>
                   <h3 className="text-xl font-black text-slate-900">{service.title}</h3>
                   <p className="mt-3 text-sm leading-7 text-slate-600">{service.text}</p>
-                  <a href="#contacto" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-emerald-900">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedService(service)}
+                    className="mt-auto inline-flex w-fit items-center gap-2 pt-5 text-left text-sm font-bold text-emerald-900"
+                  >
                     Ver más <ArrowRight size={15} />
-                  </a>
+                  </button>
                 </article>
               );
             })}
@@ -431,6 +460,55 @@ export default function KabinConsultoriaMockup() {
           </div>
         </section>
       </main>
+
+      <AnimatePresence>
+        {selectedService && (
+          <motion.div
+            className="fixed inset-0 z-[80] flex items-center justify-center bg-slate-950/65 px-5 py-8 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedService(null)}
+          >
+            <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="service-modal-title"
+              className="w-full max-w-2xl rounded-[1.8rem] bg-white p-7 text-slate-900 shadow-2xl md:p-9"
+              initial={{ opacity: 0, y: 24, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 16, scale: 0.98 }}
+              transition={{ duration: 0.22 }}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="flex items-start justify-between gap-5">
+                <div>
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-emerald-800">Detalle del servicio</p>
+                  <h3 id="service-modal-title" className="mt-3 text-2xl font-black tracking-tight text-slate-950 md:text-3xl">
+                    {selectedService.title}
+                  </h3>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setSelectedService(null)}
+                  className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-50 text-emerald-950 transition hover:bg-emerald-950 hover:text-white"
+                  aria-label="Cerrar detalle del servicio"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+              <p className="mt-5 text-base leading-8 text-slate-600">{selectedService.details}</p>
+              <a
+                href="#contacto"
+                onClick={() => setSelectedService(null)}
+                className="mt-7 inline-flex items-center justify-center rounded-full bg-emerald-950 px-6 py-3 text-sm font-black text-white transition hover:-translate-y-0.5"
+              >
+                Solicitar asesoría
+              </a>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <footer className="border-t border-emerald-950/10 bg-slate-950 text-white">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 md:grid-cols-[1.4fr_0.8fr_0.8fr_1fr] lg:px-8">
