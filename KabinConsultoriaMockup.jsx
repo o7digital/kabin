@@ -3,10 +3,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowLeft,
   ArrowRight,
+  Building2,
   Calculator,
   Facebook,
   FileText,
   Instagram,
+  Landmark,
   Menu,
   MessageCircle,
   Music2,
@@ -31,6 +33,16 @@ const services = [
     icon: ShieldCheck,
     title: "Servicios financieros",
     text: "Asesoría para tomar decisiones financieras claras y orientar el crecimiento de tus recursos.",
+  },
+  {
+    icon: Landmark,
+    title: "Gestión patrimonial",
+    text: "Protección, organización y crecimiento de activos para fortalecer la seguridad de tu legado.",
+  },
+  {
+    icon: Building2,
+    title: "Legal / corporativo",
+    text: "Gobierno corporativo y estructura legal para dar integridad y solidez a tu empresa.",
   },
   {
     icon: PiggyBank,
@@ -139,7 +151,7 @@ export default function KabinConsultoriaMockup() {
             </div>
           </a>
 
-          <nav className="hidden items-center gap-7 text-sm font-semibold text-white/85 lg:flex">
+          <nav className="hidden items-center gap-7 text-[16.8px] font-semibold text-white/85 lg:flex">
             {navLinks.map((link) => (
               <a key={link.href} href={link.href} className="transition hover:text-white">
                 {link.label}
@@ -322,7 +334,7 @@ export default function KabinConsultoriaMockup() {
             </h2>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => {
               const Icon = service.icon;
               return (
