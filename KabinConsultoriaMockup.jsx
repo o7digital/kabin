@@ -21,33 +21,63 @@ import {
 const services = [
   {
     icon: Calculator,
-    title: "Servicios contables",
-    text: "Informes, estados financieros y procesos contables para dar claridad a tu operación.",
+    title: "Contabilidad",
+    text: "Procesos contables claros y ordenados para mantener una operación confiable.",
   },
   {
     icon: FileText,
-    title: "Servicios fiscales",
-    text: "Estrategia, cumplimiento y acompañamiento fiscal responsable para cuidar tu patrimonio.",
+    title: "Auditorías e informes financieros",
+    text: "Revisión e información financiera para tomar decisiones con datos sólidos.",
   },
   {
     icon: ShieldCheck,
-    title: "Servicios financieros",
-    text: "Asesoría para tomar decisiones financieras claras y orientar el crecimiento de tus recursos.",
+    title: "Claridad operativa",
+    text: "Visibilidad sobre tus números y procesos para mejorar el control del negocio.",
+  },
+  {
+    icon: FileText,
+    title: "Fiscal / impuestos",
+    text: "Acompañamiento fiscal responsable para cumplir obligaciones y cuidar tu patrimonio.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Estrategia y cumplimiento",
+    text: "Planeación fiscal y seguimiento normativo para operar con mayor certidumbre.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Mitigación de riesgos",
+    text: "Identificación y prevención de riesgos fiscales, financieros y operativos.",
   },
   {
     icon: Landmark,
     title: "Gestión patrimonial",
-    text: "Protección, organización y crecimiento de activos para fortalecer la seguridad de tu legado.",
+    text: "Organización integral del patrimonio para proteger tus activos y objetivos.",
+  },
+  {
+    icon: PiggyBank,
+    title: "Protección y crecimiento de activos",
+    text: "Estrategias para resguardar recursos y orientar su crecimiento sostenible.",
+  },
+  {
+    icon: PiggyBank,
+    title: "Seguridad del legado",
+    text: "Planeación patrimonial para cuidar lo construido y dar continuidad al futuro.",
   },
   {
     icon: Building2,
     title: "Legal / corporativo",
-    text: "Gobierno corporativo y estructura legal para dar integridad y solidez a tu empresa.",
+    text: "Estructura legal y corporativa para dar solidez a personas y empresas.",
   },
   {
-    icon: PiggyBank,
-    title: "Acompañamiento profesional",
-    text: "Atención cercana, humana y personalizada para personas y empresas.",
+    icon: Building2,
+    title: "Gobierno corporativo",
+    text: "Orden, reglas y procesos para fortalecer la toma de decisiones empresariales.",
+  },
+  {
+    icon: Building2,
+    title: "Integridad estructural",
+    text: "Base corporativa sólida para operar con transparencia, control y continuidad.",
   },
 ];
 
