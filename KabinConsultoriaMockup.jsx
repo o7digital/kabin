@@ -532,16 +532,166 @@ export default function KabinConsultoriaMockup() {
             <h2 className="max-w-3xl text-3xl font-black tracking-tight sm:text-4xl md:text-5xl">
               Agenda una asesoría y recibe acompañamiento profesional.
             </h2>
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <a href="#" className="inline-flex items-center justify-center rounded-full bg-white px-7 py-4 font-black text-emerald-950">
-                Agenda una asesoría
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-white/75 sm:text-base">
+              Completa el formulario y te contactaremos para entender tu situación y proponerte una ruta de trabajo.
+            </p>
+            <form
+              action="https://formspree.io/f/mpqndjbl"
+              method="POST"
+              className="mt-8 grid gap-4 md:grid-cols-2"
+            >
+              <label className="grid gap-2">
+                <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">Nombre completo</span>
+                <input
+                  type="text"
+                  name="nombre"
+                  required
+                  className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
+                  placeholder="Tu nombre"
+                />
+              </label>
+              <label className="grid gap-2">
+                <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">Correo electrónico</span>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
+                  placeholder="tu@correo.com"
+                />
+              </label>
+              <label className="grid gap-2">
+                <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">Teléfono</span>
+                <input
+                  type="tel"
+                  name="telefono"
+                  className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
+                  placeholder="Tu teléfono"
+                />
+              </label>
+              <label className="grid gap-2">
+                <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">Servicio de interés</span>
+                <input
+                  type="text"
+                  name="servicio"
+                  className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
+                  placeholder="Contabilidad, fiscal, patrimonial..."
+                />
+              </label>
+              <label className="grid gap-2 md:col-span-2">
+                <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">Mensaje</span>
+                <textarea
+                  name="mensaje"
+                  required
+                  rows={5}
+                  className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
+                  placeholder="Cuéntanos brevemente tu necesidad."
+                />
+              </label>
+              <div className="md:col-span-2">
+                <button
+                  type="submit"
+                  className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3.5 text-sm font-black text-emerald-950 transition hover:-translate-y-0.5"
+                >
+                  Enviar solicitud
+                </button>
+              </div>
+            </form>
+            <div className="mt-4 text-xs text-white/55">
+              También puedes escribir a{" "}
+              <a href="mailto:contacto@kabinconsultores.com" className="font-semibold text-white/80 hover:text-white">
+                contacto@kabinconsultores.com
               </a>
-              <a
-                href="https://wa.me/"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/35 bg-white/10 px-7 py-4 font-black text-white"
-              >
-                <MessageCircle size={18} /> Escríbenos por WhatsApp
-              </a>
+            </div>
+          </div>
+        </section>
+
+        <section id="aviso-privacidad" className="mx-auto max-w-7xl px-5 pb-20 lg:px-8">
+          <div className="rounded-[2rem] border border-slate-200 bg-white p-7 text-slate-800 shadow-sm md:p-10">
+            <h2 className="text-3xl font-black tracking-tight text-slate-950 md:text-4xl">Aviso de Privacidad</h2>
+            <p className="mt-4 text-sm leading-7 text-slate-600">
+              En cumplimiento con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares y su
+              Reglamento, se emite el presente aviso de privacidad.
+            </p>
+
+            <div className="mt-8 grid gap-8 text-sm leading-7 text-slate-700">
+              <div>
+                <h3 className="text-base font-black uppercase tracking-wide text-slate-950">Responsable de datos personales</h3>
+                <p className="mt-2">
+                  Kabin Consultores (en lo sucesivo, “Kabin”), con RFC <span className="font-bold">DAJE771103E87</span>, es
+                  responsable del tratamiento de sus datos personales para los fines señalados en el presente aviso.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-base font-black uppercase tracking-wide text-slate-950">Datos que se recaban</h3>
+                <p className="mt-2">
+                  Podemos recabar de manera directa o por medios electrónicos datos como: nombre, teléfono, correo electrónico,
+                  datos fiscales para facturación, datos de identificación y la información necesaria para la prestación de
+                  servicios contables, fiscales, financieros y patrimoniales.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-base font-black uppercase tracking-wide text-slate-950">Finalidades del tratamiento</h3>
+                <p className="mt-2">Sus datos personales serán utilizados para las siguientes finalidades primarias:</p>
+                <ul className="mt-2 list-disc space-y-1 pl-6">
+                  <li>Brindar asesoría y servicios profesionales solicitados.</li>
+                  <li>Dar seguimiento a solicitudes de contacto, cotizaciones y contratación.</li>
+                  <li>Integrar expedientes de clientes y cumplir obligaciones legales y fiscales aplicables.</li>
+                  <li>Emitir comprobantes fiscales y gestionar procesos administrativos relacionados con el servicio.</li>
+                </ul>
+                <p className="mt-3">
+                  De forma adicional, podremos utilizar su información para fines de contacto comercial sobre servicios de Kabin.
+                  Usted puede oponerse a dichas finalidades secundarias enviando un correo a{" "}
+                  <a className="font-bold text-emerald-900" href="mailto:contacto@kabinconsultores.com">
+                    contacto@kabinconsultores.com
+                  </a>
+                  .
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-base font-black uppercase tracking-wide text-slate-950">Transferencias de datos</h3>
+                <p className="mt-2">
+                  Sus datos personales no serán transferidos a terceros sin su consentimiento, salvo las excepciones previstas en
+                  la legislación aplicable o cuando sea necesario para el cumplimiento de obligaciones legales ante autoridades
+                  competentes.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-base font-black uppercase tracking-wide text-slate-950">Derechos ARCO</h3>
+                <p className="mt-2">
+                  Usted tiene derecho a acceder, rectificar y cancelar sus datos personales, así como a oponerse al tratamiento
+                  de los mismos o revocar el consentimiento que haya otorgado. Para ejercer sus derechos ARCO deberá enviar su
+                  solicitud al correo{" "}
+                  <a className="font-bold text-emerald-900" href="mailto:contacto@kabinconsultores.com">
+                    contacto@kabinconsultores.com
+                  </a>
+                  , indicando nombre del titular, derecho que desea ejercer y datos de contacto para dar seguimiento.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-base font-black uppercase tracking-wide text-slate-950">Uso de cookies y tecnologías</h3>
+                <p className="mt-2">
+                  Este sitio puede utilizar cookies u otras tecnologías para mejorar su experiencia de navegación. Usted puede
+                  deshabilitarlas desde la configuración de su navegador.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-base font-black uppercase tracking-wide text-slate-950">Cambios al aviso</h3>
+                <p className="mt-2">
+                  Kabin se reserva el derecho de modificar o actualizar este aviso de privacidad en cualquier momento. Cualquier
+                  cambio será publicado en este mismo sitio web.
+                </p>
+              </div>
+
+              <p className="border-t border-slate-200 pt-4 text-xs font-semibold uppercase tracking-wide text-slate-500">
+                Última actualización: 21 de mayo de 2026
+              </p>
             </div>
           </div>
         </section>
@@ -597,7 +747,7 @@ export default function KabinConsultoriaMockup() {
       </AnimatePresence>
 
       <footer className="border-t border-emerald-950/10 bg-slate-950 text-white">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 md:grid-cols-[1.4fr_0.8fr_0.8fr_1fr] lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 md:grid-cols-[1.4fr_0.9fr_1fr] lg:px-8">
           <div>
             <div className="flex items-center gap-3">
               <img
@@ -625,17 +775,6 @@ export default function KabinConsultoriaMockup() {
                 </a>
               ))}
             </nav>
-          </div>
-
-          <div>
-            <p className="text-sm font-black uppercase tracking-[0.18em] text-amber-100">Servicios</p>
-            <div className="mt-4 grid gap-3 text-sm text-white/70">
-              {services.map((service) => (
-                <a key={service.title} href="#servicios" className="transition hover:text-white">
-                  {service.title}
-                </a>
-              ))}
-            </div>
           </div>
 
           <div>
@@ -685,7 +824,7 @@ export default function KabinConsultoriaMockup() {
           <div className="mx-auto flex max-w-7xl flex-col gap-3 text-xs font-semibold text-white/55 sm:flex-row sm:items-center sm:justify-between">
             <p>© 2026 Kabin Consultoría Fiscal y Financiera. Todos los derechos reservados.</p>
             <div className="flex gap-4">
-              <a href="#contacto" className="transition hover:text-white">
+              <a href="#aviso-privacidad" className="transition hover:text-white">
                 Aviso de privacidad
               </a>
               <a href="#contacto" className="transition hover:text-white">
