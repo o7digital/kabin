@@ -7,14 +7,17 @@ import {
   Calculator,
   Facebook,
   FileText,
+  HeartHandshake,
   Instagram,
   Landmark,
   Menu,
   MessageCircle,
   Music2,
   PiggyBank,
+  Scale,
   ShieldCheck,
   Sparkles,
+  UsersRound,
   X,
 } from "lucide-react";
 
@@ -141,9 +144,33 @@ const navLinks = [
 ];
 
 const values = [
-  "Responsabilidad",
-  "Honestidad",
-  "Empatía",
+  {
+    icon: ShieldCheck,
+    title: "Responsabilidad",
+    text: "Cuidamos cada proceso con seguimiento, orden y compromiso profesional.",
+  },
+  {
+    icon: Scale,
+    title: "Honestidad",
+    text: "Trabajamos con transparencia para que cada decisión tenga sustento claro.",
+  },
+  {
+    icon: HeartHandshake,
+    title: "Empatía",
+    text: "Escuchamos la historia detrás de los números y adaptamos la asesoría a cada cliente.",
+  },
+  {
+    icon: UsersRound,
+    title: "Trabajo en equipo",
+    text: "Integramos visión contable, fiscal, financiera y patrimonial para avanzar con coherencia.",
+  },
+];
+
+const journey = [
+  { year: "2020", title: "Fundación y contabilidad core" },
+  { year: "2022", title: "Expansión a estrategia fiscal" },
+  { year: "2024", title: "Lanzamiento de gestión patrimonial" },
+  { year: "2026", title: "Transformación digital e IA" },
 ];
 
 export default function KabinConsultoriaMockup() {
@@ -415,29 +442,88 @@ export default function KabinConsultoriaMockup() {
           </div>
         </section>
 
-        <section id="nosotros" className="bg-emerald-950 py-16 text-white lg:py-20">
+        <section id="nosotros" className="bg-[#0d2340] py-16 text-white lg:py-24">
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
-            <p className="text-sm font-black uppercase tracking-[0.2em] text-amber-200">Nosotros</p>
-            <h2 className="mt-3 max-w-4xl text-3xl font-black tracking-tight sm:text-4xl md:text-5xl">
-              Misión y visión con trato humano y responsabilidad profesional.
-            </h2>
-            <p className="mt-5 max-w-3xl text-base leading-8 text-emerald-50/85 sm:text-lg">
-              Nuestra misión es brindar asesorías personalizadas y acompañamiento de una manera cálida, humana, responsable y
-              profesional. Nuestra visión es ser unos de los mejores consultores contables, fiscales y financieros para cuidar el
-              patrimonio de nuestros clientes y hacerlo crecer.
-            </p>
-          </div>
-        </section>
+            <div className="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
+              <div>
+                <p className="border-l-4 border-[#d9ad58] pl-5 text-sm font-black uppercase tracking-[0.24em] text-[#d9ad58]">
+                  Nosotros
+                </p>
+                <h2 className="mt-6 max-w-4xl text-4xl font-black leading-[1.02] tracking-tight sm:text-5xl md:text-6xl">
+                  Cimientos de nuestro éxito.
+                </h2>
+                <p className="mt-6 text-xl font-semibold leading-9 text-white sm:text-2xl">
+                  KABIN Consultores nació de un concepto claro: brindar servicios profesionales desde una perspectiva humana.
+                </p>
+                <p className="mt-5 max-w-2xl text-base leading-8 text-slate-200 sm:text-lg">
+                  Creemos que detrás de cada número hay una historia, una familia, una empresa y una decisión importante.
+                  Por eso acompañamos a nuestros clientes con claridad contable, estrategia fiscal, visión financiera y una
+                  conversación cercana que permite cuidar su patrimonio y hacerlo crecer.
+                </p>
+              </div>
 
-        <section className="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
-          <div className="grid gap-4 md:grid-cols-3">
-            {values.map((value) => (
-              <article key={value} className="rounded-[1.8rem] bg-white p-6 shadow-sm">
-                <div className="mb-7 h-28 rounded-3xl bg-gradient-to-br from-emerald-100 to-amber-100" />
-                <p className="text-xs font-black uppercase tracking-[0.14em] text-emerald-800">Valores</p>
-                <h3 className="mt-2 text-xl font-black text-slate-900">{value}</h3>
+              <div className="relative">
+                <div className="absolute -inset-4 rounded-[2rem] border border-[#d9ad58]/35" />
+                <img
+                  src="/kabin.png"
+                  alt="Equipo de consultoría trabajando en una mesa de oficina"
+                  className="relative aspect-[4/3] w-full rounded-[1.6rem] object-cover shadow-2xl shadow-black/35"
+                />
+              </div>
+            </div>
+
+            <div className="mt-14 grid gap-5 lg:grid-cols-2">
+              <article className="rounded-[1.4rem] border border-[#d9ad58]/30 bg-white/5 p-7 md:p-9">
+                <p className="text-sm font-black uppercase tracking-[0.18em] text-[#d9ad58]">Nuestra misión</p>
+                <h3 className="mt-4 text-2xl font-black text-[#d9ad58]">Acompañamiento cálido y responsable.</h3>
+                <p className="mt-4 text-base leading-8 text-slate-200">
+                  Brindar asesorías personalizadas y acompañamiento de una manera cálida, humana, responsable y
+                  profesional, para que cada cliente entienda su situación y pueda tomar decisiones con tranquilidad.
+                </p>
               </article>
-            ))}
+
+              <article className="rounded-[1.4rem] border border-[#d9ad58]/30 bg-white/5 p-7 md:p-9">
+                <p className="text-sm font-black uppercase tracking-[0.18em] text-[#d9ad58]">Nuestra visión</p>
+                <h3 className="mt-4 text-2xl font-black text-[#d9ad58]">Proteger y hacer crecer su legado.</h3>
+                <p className="mt-4 text-base leading-8 text-slate-200">
+                  Ser uno de los consultores contables, fiscales y financieros de referencia para cuidar el patrimonio
+                  de nuestros clientes, fortalecer sus operaciones y acompañar su crecimiento con visión de largo plazo.
+                </p>
+              </article>
+            </div>
+
+            <div className="mt-14">
+              <p className="border-l-4 border-[#d9ad58] pl-5 text-sm font-black uppercase tracking-[0.24em] text-[#d9ad58]">
+                Nuestros valores
+              </p>
+              <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                {values.map((value) => {
+                  const Icon = value.icon;
+                  return (
+                    <article key={value.title} className="rounded-[1.2rem] bg-white/[0.07] p-6 text-center shadow-sm">
+                      <Icon className="mx-auto text-[#d9ad58]" size={42} />
+                      <h3 className="mt-6 text-xl font-black text-white">{value.title}</h3>
+                      <p className="mt-3 text-sm leading-7 text-slate-200">{value.text}</p>
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="mt-14">
+              <p className="border-l-4 border-[#d9ad58] pl-5 text-sm font-black uppercase tracking-[0.24em] text-[#d9ad58]">
+                Nuestro camino
+              </p>
+              <div className="mt-8 grid gap-4 border-t border-[#d9ad58] pt-6 md:grid-cols-4">
+                {journey.map((item) => (
+                  <div key={item.year} className="relative">
+                    <span className="absolute -top-[34px] left-0 h-4 w-4 rounded-full border-4 border-white bg-[#d9ad58]" />
+                    <p className="text-lg font-black text-[#d9ad58]">{item.year}</p>
+                    <p className="mt-2 text-sm font-semibold leading-6 text-slate-200">{item.title}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
