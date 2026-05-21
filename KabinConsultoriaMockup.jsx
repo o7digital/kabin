@@ -404,6 +404,28 @@ export default function KabinConsultoriaMockup() {
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.22 }}
             >
+              <div className="mb-3 inline-flex rounded-full border border-white/30 bg-white/10 p-1 text-xs font-bold text-white">
+                <button
+                  type="button"
+                  onClick={() => {
+                    switchLanguage("es");
+                    closeMenu();
+                  }}
+                  className={`rounded-full px-4 py-2 ${lang === "es" ? "bg-white text-slate-900" : ""}`}
+                >
+                  ES
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    switchLanguage("en");
+                    closeMenu();
+                  }}
+                  className={`rounded-full px-4 py-2 ${lang === "en" ? "bg-white text-slate-900" : ""}`}
+                >
+                  EN
+                </button>
+              </div>
               <nav className="flex flex-col">
                 {t.navLinks.map((link) => (
                   <a
