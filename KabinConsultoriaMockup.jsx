@@ -378,12 +378,6 @@ export default function KabinConsultoriaMockup() {
               <button type="button" onClick={() => switchLanguage("en")} className={`rounded-full px-3 py-1 ${lang==="en"?"bg-white text-slate-900":""}`}>EN</button>
             </div>
             <a
-              href="#contacto"
-              className="rounded-full bg-white px-5 py-2.5 text-sm font-bold text-emerald-950 transition hover:-translate-y-0.5"
-            >
-              {t.book}
-            </a>
-            <a
               href="https://wa.me/"
               className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-5 py-2.5 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-white/20"
             >
@@ -423,13 +417,6 @@ export default function KabinConsultoriaMockup() {
                 ))}
               </nav>
               <div className="mt-4 grid gap-3">
-                <a
-                  href="#contacto"
-                  onClick={closeMenu}
-                  className="inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-black text-emerald-950"
-                >
-                  {t.book}
-                </a>
                 <a
                   href="https://wa.me/"
                   onClick={closeMenu}
