@@ -22,6 +22,7 @@ export default function SofiaChat({ lang = "es" }) {
             phone: "Phone",
             sendLead: "Send my details",
             sent: "Thank you. Your details were sent and a Kabin advisor will contact you soon.",
+            handoff: "Of course. I will gladly connect you with an advisor, who will contact you soon.",
             input: "Write your question...",
             error: "I could not send the message. You can contact Kabin at contacto@kabinconsultores.com.",
           }
@@ -37,6 +38,7 @@ export default function SofiaChat({ lang = "es" }) {
             phone: "Teléfono",
             sendLead: "Enviar datos",
             sent: "Gracias. Tus datos fueron enviados y un asesor de Kabin te contactará pronto.",
+            handoff: "Claro, con gusto te canalizo con un agente, que te contactará pronto.",
             input: "Escribe tu pregunta...",
             error: "No pude enviar el mensaje. Puedes contactar a Kabin en contacto@kabinconsultores.com.",
           },
@@ -55,20 +57,24 @@ export default function SofiaChat({ lang = "es" }) {
     setMessages((current) => [...current, { role, text }]);
   };
 
+  const sendLeadToEmail = async (items = messages) => {
+    await fetch(LEAD_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        siteCode: CLIENT_ID,
+        assistantName: "Sofia",
+        lead,
+        message: items.map((item) => `${item.role}: ${item.text}`).join("\n"),
+      }),
+    });
+  };
+
   const sendLead = async () => {
     if (isLeadSending || isLeadSubmitted) return;
     setIsLeadSending(true);
     try {
-      await fetch(LEAD_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          siteCode: CLIENT_ID,
-          assistantName: "Sofia",
-          lead,
-          message: messages.map((item) => `${item.role}: ${item.text}`).join("\n"),
-        }),
-      });
+      await sendLeadToEmail();
     } catch {
       // The chat remains useful even if lead delivery is temporarily unavailable.
     } finally {
@@ -76,6 +82,20 @@ export default function SofiaChat({ lang = "es" }) {
     }
     setIsLeadSubmitted(true);
     addMessage("bot", copy.sent);
+  };
+
+  const shouldHandoff = (text) => {
+    const normalized = text
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+    const isAffirmative = /^(si|s|yes|y|oui|ok|claro|dale|va|por favor|please)[.!? ]*$/.test(normalized);
+    const lastBotMessage = [...messages].reverse().find((item) => item.role === "bot")?.text || "";
+    const botAskedForFollowUp =
+      /gustaria|quieres|canalizo|contactar|asesor|agente|informacion|would you like|advisor|contact/i.test(
+        lastBotMessage,
+      );
+    return isAffirmative && (botAskedForFollowUp || isLeadSubmitted);
   };
 
   const sendMessage = async (event) => {
@@ -88,6 +108,13 @@ export default function SofiaChat({ lang = "es" }) {
     addMessage("user", cleanMessage);
 
     try {
+      if (shouldHandoff(cleanMessage)) {
+        const nextMessages = [...messages, { role: "user", text: cleanMessage }, { role: "bot", text: copy.handoff }];
+        addMessage("bot", copy.handoff);
+        await sendLeadToEmail(nextMessages);
+        return;
+      }
+
       const response = await fetch(CHAT_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
