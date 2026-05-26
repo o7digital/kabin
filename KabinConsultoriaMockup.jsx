@@ -20,6 +20,7 @@ import {
   UsersRound,
   X,
 } from "lucide-react";
+import SofiaChat from "./src/SofiaChat.jsx";
 
 const servicesEs = [
   {
@@ -877,6 +878,7 @@ export default function KabinConsultoriaMockup() {
           </div>
         </div>
       </footer>
+      <SofiaChat lang={lang} />
     </div>
   );
 }
