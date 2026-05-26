@@ -48,12 +48,16 @@ export default function SofiaChat({ lang = "es" }) {
   const [message, setMessage] = useState("");
   const [lead, setLead] = useState({ firstName: "", lastName: "", email: "", phone: "" });
   const [isSending, setIsSending] = useState(false);
+  const [isLeadSending, setIsLeadSending] = useState(false);
+  const [isLeadSubmitted, setIsLeadSubmitted] = useState(false);
 
   const addMessage = (role, text) => {
     setMessages((current) => [...current, { role, text }]);
   };
 
   const sendLead = async () => {
+    if (isLeadSending || isLeadSubmitted) return;
+    setIsLeadSending(true);
     try {
       await fetch(LEAD_ENDPOINT, {
         method: "POST",
@@ -67,7 +71,10 @@ export default function SofiaChat({ lang = "es" }) {
       });
     } catch {
       // The chat remains useful even if lead delivery is temporarily unavailable.
+    } finally {
+      setIsLeadSending(false);
     }
+    setIsLeadSubmitted(true);
     addMessage("bot", copy.sent);
   };
 
@@ -138,27 +145,30 @@ export default function SofiaChat({ lang = "es" }) {
             ))}
           </div>
 
-          <div className="border-t border-white/10 bg-slate-950 px-4 py-4">
-            <p className="mb-3 text-sm leading-5 text-white/65">{copy.lead}</p>
-            <div className="grid grid-cols-2 gap-2">
-              {["firstName", "lastName", "email", "phone"].map((field) => (
-                <input
-                  key={field}
-                  value={lead[field]}
-                  onChange={(event) => setLead((current) => ({ ...current, [field]: event.target.value }))}
-                  placeholder={copy[field]}
-                  className="min-w-0 rounded-xl border border-white/15 bg-white/10 px-3 py-2.5 text-sm text-white outline-none placeholder:text-white/45 focus:border-[#d9ad58]"
-                />
-              ))}
+          {!isLeadSubmitted && (
+            <div className="border-t border-white/10 bg-slate-950 px-4 py-4">
+              <p className="mb-3 text-sm leading-5 text-white/65">{copy.lead}</p>
+              <div className="grid grid-cols-2 gap-2">
+                {["firstName", "lastName", "email", "phone"].map((field) => (
+                  <input
+                    key={field}
+                    value={lead[field]}
+                    onChange={(event) => setLead((current) => ({ ...current, [field]: event.target.value }))}
+                    placeholder={copy[field]}
+                    className="min-w-0 rounded-xl border border-white/15 bg-white/10 px-3 py-2.5 text-sm text-white outline-none placeholder:text-white/45 focus:border-[#d9ad58]"
+                  />
+                ))}
+              </div>
+              <button
+                type="button"
+                onClick={sendLead}
+                disabled={isLeadSending}
+                className="mt-3 w-full rounded-xl bg-[#d9ad58] px-4 py-3 text-sm font-black text-slate-950 transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {copy.sendLead}
+              </button>
             </div>
-            <button
-              type="button"
-              onClick={sendLead}
-              className="mt-3 w-full rounded-xl bg-[#d9ad58] px-4 py-3 text-sm font-black text-slate-950 transition hover:-translate-y-0.5"
-            >
-              {copy.sendLead}
-            </button>
-          </div>
+          )}
 
           <form onSubmit={sendMessage} className="grid grid-cols-[1fr_54px] gap-2 border-t border-white/10 bg-slate-950 p-4">
             <input
