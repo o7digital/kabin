@@ -57,6 +57,12 @@ export default function OliviaChat({ lang = "es" }) {
     setMessages((current) => [...current, { role, text }]);
   };
 
+  const normalizeAssistantName = (text) =>
+    String(text || "")
+      .replace(/\bSOFIA\b/g, "OLIVIA")
+      .replace(/\bSofia\b/g, "Olivia")
+      .replace(/\bsofia\b/g, "olivia");
+
   const sendLeadToEmail = async (items = messages) => {
     await fetch(LEAD_ENDPOINT, {
       method: "POST",
@@ -130,7 +136,7 @@ export default function OliviaChat({ lang = "es" }) {
       });
       if (!response.ok) throw new Error(`Chat failed: ${response.status}`);
       const data = await response.json();
-      addMessage("bot", data.reply || copy.error);
+      addMessage("bot", normalizeAssistantName(data.reply || copy.error));
     } catch {
       addMessage("bot", copy.error);
     } finally {
