@@ -227,7 +227,7 @@ export default function OliviaChat({ lang = "es" }) {
           className="flex items-center gap-3 rounded-full border border-[#d9ad58]/45 bg-slate-950 px-4 py-3 text-left text-white shadow-2xl shadow-black/25 transition hover:-translate-y-1"
           aria-label="Abrir chat Olivia"
         >
-          <span className="grid h-12 w-12 place-items-center rounded-full bg-[#d9ad58] text-2xl font-black text-slate-950">S</span>
+          <span className="grid h-12 w-12 place-items-center rounded-full bg-[#d9ad58] text-2xl font-black text-slate-950">O</span>
           <span className="text-sm font-black leading-tight">
             {copy.launcher}
             <br />
