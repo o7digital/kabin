@@ -87,6 +87,27 @@ const servicesEs = [
       "Trabajamos en la continuidad de lo construido mediante orden patrimonial, prevención de conflictos y claridad sobre objetivos de largo plazo. Es un acompañamiento pensado para proteger decisiones familiares, empresariales y sucesorias.",
   },
   {
+    icon: ShieldCheck,
+    title: "Protección financiera y patrimonial",
+    text: "Soluciones individuales y colectivas para proteger personas, activos y patrimonio.",
+    details:
+      "Integramos estrategias de protección financiera y patrimonial mediante seguros de invalidez y fallecimiento, gastos médicos mayores, auto y daños. El objetivo es reducir exposición ante imprevistos y dar mayor estabilidad a familias, socios, colaboradores o empresas.",
+  },
+  {
+    icon: PiggyBank,
+    title: "Ahorro e inversión",
+    text: "Planes para acumular capital, cumplir metas y fortalecer decisiones financieras.",
+    details:
+      "Diseñamos estrategias de ahorro e inversión para metas específicas, planes privados de ahorro para el retiro (PPR), educación privada de los hijos, inversión en mercado de valores y mecanismos de ahorro e inversión con visión fiscal para empresas.",
+  },
+  {
+    icon: Landmark,
+    title: "Trascendencia y continuidad",
+    text: "Planeación para herencias, continuidad de negocios y protección del legado.",
+    details:
+      "Acompañamos la planeación de herencias con flujo de efectivo inmediato, protocolos para la continuidad de negocios y planeación patrimonial. Buscamos que el patrimonio y la empresa tengan orden, liquidez y continuidad ante escenarios clave.",
+  },
+  {
     icon: Building2,
     title: "Legal / corporativo",
     text: "Estructura legal y corporativa para dar solidez a personas y empresas.",
@@ -129,6 +150,27 @@ const servicesEn = [
     title: "Operational clarity",
     text: "Visibility over your numbers and processes to improve control.",
     details: "We turn scattered information into an ordered view of your business: income, costs, obligations, cash flow, and internal processes.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Financial and asset protection",
+    text: "Individual and collective solutions to protect people, assets, and wealth.",
+    details:
+      "We structure protection strategies through disability and life insurance, major medical expenses, auto, and damage coverage. The goal is to reduce exposure to unexpected events and give more stability to families, partners, key employees, or companies.",
+  },
+  {
+    icon: PiggyBank,
+    title: "Savings and investment strategies",
+    text: "Plans to build capital, reach specific goals, and support financial decisions.",
+    details:
+      "We design savings and investment strategies for specific goals, private retirement savings plans, private education funding, stock market investment, and tax-aware savings and investment mechanisms for companies.",
+  },
+  {
+    icon: Landmark,
+    title: "Legacy and continuity",
+    text: "Planning for inheritance, business continuity, and long-term asset protection.",
+    details:
+      "We support inheritance planning with immediate cash flow, business continuity protocols, and asset planning so families and companies can preserve order, liquidity, and continuity in key scenarios.",
   },
 ];
 
@@ -253,7 +295,7 @@ export default function KabinConsultoriaMockup() {
     ? {
         navLinks: navLinksEs, badges: badgesEs, heroSlides: heroSlidesEs, services: servicesEs, values: valuesEs, journey: journeyEs,
         consult: "Consultoría Fiscal y Financiera", menuOpen: "Abrir menú", menuClose: "Cerrar menú",
-        servicesTitle: "Servicios", servicesHeading: "Servicios contables, fiscales y financieros desde una perspectiva humana.", readMore: "Ver más",
+        servicesTitle: "Servicios", servicesHeading: "Servicios contables, fiscales, financieros y patrimoniales desde una perspectiva humana.", readMore: "Ver más",
         about: "Nosotros", pillars: "Cimientos de nuestro éxito.", concept: "KABIN Consultores nació de un concepto claro: brindar servicios profesionales desde una perspectiva humana.",
         aboutText: "Creemos que detrás de cada número hay una historia, una familia, una empresa y una decisión importante. Por eso acompañamos a nuestros clientes con claridad contable, estrategia fiscal, visión financiera y una conversación cercana que permite cuidar su patrimonio y hacerlo crecer.",
         mission: "Nuestra misión", missionTitle: "Acompañamiento cálido y responsable.", missionText: "Brindar asesorías personalizadas y acompañamiento de una manera cálida, humana, responsable y profesional, para que cada cliente entienda su situación y pueda tomar decisiones con tranquilidad.",
@@ -267,7 +309,7 @@ export default function KabinConsultoriaMockup() {
     : {
         navLinks: navLinksEn, badges: badgesEn, heroSlides: heroSlidesEn, services: servicesEn, values: valuesEn, journey: journeyEn,
         consult: "Tax and Financial Consulting", menuOpen: "Open menu", menuClose: "Close menu",
-        servicesTitle: "Services", servicesHeading: "Accounting, tax, and financial services from a human perspective.", readMore: "Read more",
+        servicesTitle: "Services", servicesHeading: "Accounting, tax, financial, and asset-planning services from a human perspective.", readMore: "Read more",
         about: "About", pillars: "Foundations of our success.", concept: "KABIN Consultores was born from a clear concept: delivering professional services from a human perspective.",
         aboutText: "We believe that behind every number there is a story, a family, a company, and an important decision.",
         mission: "Our mission", missionTitle: "Warm and responsible support.", missionText: "Provide personalized advisory and support in a warm, human, responsible, and professional way.",
