@@ -5,16 +5,16 @@ const CHAT_ENDPOINT = "https://ai-concierge-production-4e92.up.railway.app/chat"
 const LEAD_ENDPOINT = "https://www.o7digital.com/api/o7-lead";
 const CLIENT_ID = "kabin";
 
-export default function SofiaChat({ lang = "es" }) {
+export default function OliviaChat({ lang = "es" }) {
   const isEnglish = lang === "en";
   const copy = useMemo(
     () =>
       isEnglish
         ? {
             launcher: "Need guidance?",
-            title: "SOFIA",
+            title: "OLIVIA",
             subtitle: "Kabin assistant · Online",
-            hello: "Hello, I am Sofia. How can I help you with your accounting, tax, or financial consulting needs?",
+            hello: "Hello, I am Olivia. How can I help you with your accounting, tax, or financial consulting needs?",
             lead: "Leave your details so a Kabin advisor can contact you.",
             firstName: "First name",
             lastName: "Last name",
@@ -28,9 +28,9 @@ export default function SofiaChat({ lang = "es" }) {
           }
         : {
             launcher: "¿Necesitas ayuda?",
-            title: "SOFIA",
+            title: "OLIVIA",
             subtitle: "Asistente Kabin · En línea",
-            hello: "Hola, soy Sofia. ¿En qué puedo ayudarte sobre consultoría contable, fiscal o financiera?",
+            hello: "Hola, soy Olivia. ¿En qué puedo ayudarte sobre consultoría contable, fiscal o financiera?",
             lead: "Deja tus datos para que un asesor de Kabin pueda contactarte.",
             firstName: "Nombre",
             lastName: "Apellido",
@@ -63,7 +63,7 @@ export default function SofiaChat({ lang = "es" }) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         siteCode: CLIENT_ID,
-        assistantName: "Sofia",
+        assistantName: "Olivia",
         lead,
         message: items.map((item) => `${item.role}: ${item.text}`).join("\n"),
       }),
@@ -219,13 +219,13 @@ export default function SofiaChat({ lang = "es" }) {
           type="button"
           onClick={() => setIsOpen(true)}
           className="flex items-center gap-3 rounded-full border border-[#d9ad58]/45 bg-slate-950 px-4 py-3 text-left text-white shadow-2xl shadow-black/25 transition hover:-translate-y-1"
-          aria-label="Abrir chat Sofia"
+          aria-label="Abrir chat Olivia"
         >
           <span className="grid h-12 w-12 place-items-center rounded-full bg-[#d9ad58] text-2xl font-black text-slate-950">S</span>
           <span className="text-sm font-black leading-tight">
             {copy.launcher}
             <br />
-            Sofia
+            Olivia
           </span>
           <MessageCircle size={20} className="text-[#d9ad58]" />
         </button>
