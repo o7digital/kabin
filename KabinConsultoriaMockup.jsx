@@ -270,13 +270,13 @@ const valuesEn = [
 ];
 
 const journeyEs = [
-  { year: "2020", title: "Fundación y contabilidad core" },
+  { year: "1980", title: "Fundación y contabilidad core" },
   { year: "2022", title: "Expansión a estrategia fiscal" },
   { year: "2024", title: "Lanzamiento de gestión patrimonial" },
   { year: "2026", title: "Transformación digital e IA" },
 ];
 const journeyEn = [
-  { year: "2020", title: "Foundation and core accounting" },
+  { year: "1980", title: "Foundation and core accounting" },
   { year: "2022", title: "Expansion into tax strategy" },
   { year: "2024", title: "Asset management launch" },
   { year: "2026", title: "Digital transformation and AI" },
