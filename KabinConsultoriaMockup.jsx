@@ -744,7 +744,7 @@ export default function KabinConsultoriaMockup() {
                   {t.pillars}
                 </h2>
                 <p className="mt-6 text-xl font-semibold leading-9 text-white sm:text-2xl">
-                  {t.tableConcept}
+                  {t.concept}
                 </p>
                 <p className="mt-5 max-w-2xl text-base leading-8 text-slate-200 sm:text-lg">
                   {t.aboutText}
