@@ -227,15 +227,17 @@ const badgesEn = ["Responsibility", "Honesty", "Empathy", "Teamwork"];
 
 const navLinksEs = [
   { href: "#inicio", label: "Inicio" },
-  { href: "#servicios", label: "Servicios" },
   { href: "#nosotros", label: "Nosotros" },
+  { href: "#seguros", label: "Seguros" },
+  { href: "#servicios", label: "Servicios" },
   { href: "#contacto", label: "Contacto" },
 ];
 
 const navLinksEn = [
   { href: "#inicio", label: "Home" },
-  { href: "#servicios", label: "Services" },
   { href: "#nosotros", label: "About" },
+  { href: "#seguros", label: "Insurance" },
+  { href: "#servicios", label: "Services" },
   { href: "#contacto", label: "Contact" },
 ];
 
@@ -282,6 +284,73 @@ const journeyEn = [
   { year: "2026", title: "Digital transformation and AI" },
 ];
 
+const insuranceHighlightsEs = [
+  {
+    icon: ShieldCheck,
+    title: "Protección financiera",
+    text: "Seguros de vida, invalidez, gastos médicos mayores, auto y daños para reducir exposición ante imprevistos.",
+  },
+  {
+    icon: PiggyBank,
+    title: "Retiro con visión fiscal",
+    text: "Planes personales de retiro y estrategias de ahorro que pueden aprovechar beneficios de los artículos 151 y 185 de la LISR.",
+  },
+  {
+    icon: Landmark,
+    title: "Continuidad patrimonial",
+    text: "Liquidez para herencias, continuidad de negocios y protección del legado familiar o empresarial.",
+  },
+];
+
+const insuranceHighlightsEn = [
+  {
+    icon: ShieldCheck,
+    title: "Financial protection",
+    text: "Life, disability, major medical, auto, and damage coverage to reduce exposure to unexpected events.",
+  },
+  {
+    icon: PiggyBank,
+    title: "Tax-aware retirement",
+    text: "Private retirement plans and savings strategies that may use Mexican LISR articles 151 and 185 benefits.",
+  },
+  {
+    icon: Landmark,
+    title: "Legacy continuity",
+    text: "Liquidity for inheritance, business continuity, and family or company asset protection.",
+  },
+];
+
+const isrBrackets2024 = [
+  { min: 0.01, max: 7735, fixed: 0, rate: 0.0192 },
+  { min: 7735.01, max: 65651.07, fixed: 148.51, rate: 0.064 },
+  { min: 65651.08, max: 115375.9, fixed: 3855.14, rate: 0.1088 },
+  { min: 115375.91, max: 134119.41, fixed: 9265.2, rate: 0.16 },
+  { min: 134119.42, max: 160577.65, fixed: 12264.16, rate: 0.1792 },
+  { min: 160577.66, max: 323862, fixed: 17005.47, rate: 0.2136 },
+  { min: 323862.01, max: 510451, fixed: 51883.01, rate: 0.2352 },
+  { min: 510451.01, max: 974535.03, fixed: 95768.74, rate: 0.3 },
+  { min: 974535.04, max: 1299380.04, fixed: 234993.95, rate: 0.32 },
+  { min: 1299380.05, max: 3898140.12, fixed: 338944.34, rate: 0.34 },
+  { min: 3898140.13, max: Infinity, fixed: 1222522.76, rate: 0.35 },
+];
+
+const umaAnnual2024 = 39606.36;
+const art185Cap = 152000;
+
+const calculateAnnualIsr = (base) => {
+  const taxable = Math.max(Number(base) || 0, 0);
+  if (taxable <= 0) return 0;
+  const bracket = isrBrackets2024.find((item) => taxable >= item.min && taxable <= item.max) || isrBrackets2024[isrBrackets2024.length - 1];
+  return Math.max((taxable - bracket.min) * bracket.rate + bracket.fixed, 0);
+};
+
+const formatMxn = (value) =>
+  new Intl.NumberFormat("es-MX", {
+    style: "currency",
+    currency: "MXN",
+    maximumFractionDigits: 0,
+  }).format(Number.isFinite(value) ? value : 0);
+
 export default function KabinConsultoriaMockup() {
   const isEnglishPath = typeof window !== "undefined" && window.location.pathname.startsWith("/en");
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -290,10 +359,16 @@ export default function KabinConsultoriaMockup() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
+  const [insuranceInputs, setInsuranceInputs] = useState({
+    income: "850000",
+    personal: "45000",
+    art151: "65000",
+    art185: "40000",
+  });
 
   const t = lang === "es"
     ? {
-        navLinks: navLinksEs, badges: badgesEs, heroSlides: heroSlidesEs, services: servicesEs, values: valuesEs, journey: journeyEs,
+        navLinks: navLinksEs, badges: badgesEs, heroSlides: heroSlidesEs, services: servicesEs, values: valuesEs, journey: journeyEs, insuranceHighlights: insuranceHighlightsEs,
         consult: "Consultoría Fiscal y Financiera", menuOpen: "Abrir menú", menuClose: "Cerrar menú",
         servicesTitle: "Servicios", servicesHeading: "Servicios contables, fiscales, financieros y patrimoniales desde una perspectiva humana.", readMore: "Ver más",
         about: "Nosotros", pillars: "Cimientos de nuestro éxito.", concept: "KABIN Consultores nació de un concepto claro: brindar servicios profesionales desde una perspectiva humana.",
@@ -301,13 +376,16 @@ export default function KabinConsultoriaMockup() {
         mission: "Nuestra misión", missionTitle: "Acompañamiento cálido y responsable.", missionText: "Brindar asesorías personalizadas y acompañamiento de una manera cálida, humana, responsable y profesional, para que cada cliente entienda su situación y pueda tomar decisiones con tranquilidad.",
         vision: "Nuestra visión", visionTitle: "Proteger y hacer crecer su legado.", visionText: "Ser uno de los consultores contables, fiscales y financieros de referencia para cuidar el patrimonio de nuestros clientes, fortalecer sus operaciones y acompañar su crecimiento con visión de largo plazo.",
         valuesTitle: "Nuestros valores", path: "Nuestro camino",
+        insuranceTitle: "Seguros", insuranceHeading: "Protección, ahorro y retiro con estrategia fiscal.", insuranceText: "Integramos seguros y planes de retiro dentro de una conversación patrimonial: qué proteger, cuánto ahorrar y qué beneficio fiscal podría existir según ingresos y deducciones.",
+        calculatorTitle: "Simulador fiscal 2024", calculatorText: "Estimación para personas físicas en sueldos y salarios. Usa tarifa ISR anual 2024, UMA anual 2024, tope Art. 185 de $152,000 y topes Art. 151.",
+        income: "Ingreso anual bruto", personalDeductions: "Deducciones personales", art151: "Aportación Art. 151 / PPR", art185: "Aportación Art. 185", withoutDeductions: "ISR sin deducciones", withPersonal: "Beneficio con deducciones", withRetirement: "Beneficio con retiro", deductibleApplied: "Deducible aplicado", disclaimer: "Resultado aproximado; no sustituye asesoría fiscal ni representa criterio de autoridad.",
         contactTitle: "Recibe acompañamiento profesional.", contactText: "Completa el formulario y te contactaremos para entender tu situación y proponerte una ruta de trabajo.",
         fullname: "Nombre completo", email: "Correo electrónico", phone: "Teléfono", interest: "Servicio de interés", message: "Mensaje", send: "Enviar solicitud",
         privacy: "Aviso de Privacidad", footerNav: "Navegación", footerContact: "Contacto", mexico: "Atención en México", social: "Redes sociales",
         rights: "© 2026 Kabin Consultoría Fiscal y Financiera. Todos los derechos reservados.", terms: "Términos", serviceDetail: "Detalle del servicio", request: "Solicitar asesoría",
       }
     : {
-        navLinks: navLinksEn, badges: badgesEn, heroSlides: heroSlidesEn, services: servicesEn, values: valuesEn, journey: journeyEn,
+        navLinks: navLinksEn, badges: badgesEn, heroSlides: heroSlidesEn, services: servicesEn, values: valuesEn, journey: journeyEn, insuranceHighlights: insuranceHighlightsEn,
         consult: "Tax and Financial Consulting", menuOpen: "Open menu", menuClose: "Close menu",
         servicesTitle: "Services", servicesHeading: "Accounting, tax, financial, and asset-planning services from a human perspective.", readMore: "Read more",
         about: "About", pillars: "Foundations of our success.", concept: "KABIN Consultores was born from a clear concept: delivering professional services from a human perspective.",
@@ -315,6 +393,9 @@ export default function KabinConsultoriaMockup() {
         mission: "Our mission", missionTitle: "Warm and responsible support.", missionText: "Provide personalized advisory and support in a warm, human, responsible, and professional way.",
         vision: "Our vision", visionTitle: "Protect and grow your legacy.", visionText: "To become a leading accounting, tax, and financial consulting firm focused on protecting and growing client assets.",
         valuesTitle: "Our values", path: "Our journey",
+        insuranceTitle: "Insurance", insuranceHeading: "Protection, savings, and retirement with tax strategy.", insuranceText: "We integrate insurance and retirement plans into an asset-planning conversation: what to protect, how much to save, and which tax benefit may apply.",
+        calculatorTitle: "2024 tax simulator", calculatorText: "Estimate for individuals under salaries and wages in Mexico. Uses the 2024 annual ISR table, 2024 annual UMA, $152,000 Art. 185 cap, and Art. 151 caps.",
+        income: "Annual gross income", personalDeductions: "Personal deductions", art151: "Art. 151 / retirement plan", art185: "Art. 185 contribution", withoutDeductions: "ISR without deductions", withPersonal: "Benefit with deductions", withRetirement: "Benefit with retirement", deductibleApplied: "Applied deductible", disclaimer: "Approximate result; it does not replace tax advice or represent an authority criterion.",
         contactTitle: "Receive professional support.", contactText: "Complete the form and we will contact you to understand your needs and propose a work plan.",
         fullname: "Full name", email: "Email", phone: "Phone", interest: "Service of interest", message: "Message", send: "Send request",
         privacy: "Privacy Notice", footerNav: "Navigation", footerContact: "Contact", mexico: "Service in Mexico", social: "Social media",
@@ -387,6 +468,29 @@ export default function KabinConsultoriaMockup() {
 
   const closeMenu = () => setIsMenuOpen(false);
   const active = t.heroSlides[currentSlide];
+  const parsedInsurance = {
+    income: Number(insuranceInputs.income) || 0,
+    personal: Number(insuranceInputs.personal) || 0,
+    art151: Number(insuranceInputs.art151) || 0,
+    art185: Number(insuranceInputs.art185) || 0,
+  };
+  const personalCap = Math.min(parsedInsurance.income * 0.15, umaAnnual2024 * 5);
+  const art151Cap = Math.min(parsedInsurance.income * 0.1, umaAnnual2024 * 5);
+  const appliedPersonal = Math.min(parsedInsurance.personal, personalCap);
+  const appliedArt151 = Math.min(parsedInsurance.art151, art151Cap);
+  const appliedArt185 = Math.min(parsedInsurance.art185, art185Cap);
+  const isrWithoutDeductions = calculateAnnualIsr(parsedInsurance.income);
+  const isrWithPersonal = calculateAnnualIsr(parsedInsurance.income - appliedPersonal);
+  const isrWithRetirement = calculateAnnualIsr(parsedInsurance.income - appliedPersonal - appliedArt151 - appliedArt185);
+  const personalBenefit = Math.max(isrWithoutDeductions - isrWithPersonal, 0);
+  const retirementBenefit = Math.max(isrWithoutDeductions - isrWithRetirement, 0);
+  const totalAppliedDeductible = appliedPersonal + appliedArt151 + appliedArt185;
+  const updateInsuranceInput = (field, value) => {
+    setInsuranceInputs((current) => ({
+      ...current,
+      [field]: value.replace(/[^\d.]/g, ""),
+    }));
+  };
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#f4efe7] text-slate-900">
@@ -580,40 +684,6 @@ export default function KabinConsultoriaMockup() {
           </div>
         </section>
 
-        <section id="servicios" className="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
-          <div className="mb-10 max-w-3xl">
-            <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-900">{t.servicesTitle}</p>
-            <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl md:text-5xl">
-              {t.servicesHeading}
-            </h2>
-          </div>
-
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {t.services.map((service) => {
-              const Icon = service.icon;
-              return (
-                <article
-                  key={service.title}
-                  className="group flex h-full flex-col rounded-[1.8rem] border border-emerald-900/10 bg-white p-6 shadow-sm transition hover:-translate-y-1.5 hover:shadow-xl"
-                >
-                  <div className="mb-5 inline-flex rounded-2xl bg-emerald-50 p-3.5 text-emerald-950 transition group-hover:bg-emerald-950 group-hover:text-white">
-                    <Icon size={24} />
-                  </div>
-                  <h3 className="text-xl font-black text-slate-900">{service.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-slate-600">{service.text}</p>
-                  <button
-                    type="button"
-                    onClick={() => setSelectedService(service)}
-                    className="mt-auto inline-flex w-fit items-center gap-2 pt-5 text-left text-sm font-bold text-emerald-900"
-                  >
-                    {t.readMore} <ArrowRight size={15} />
-                  </button>
-                </article>
-              );
-            })}
-          </div>
-        </section>
-
         <section id="nosotros" className="bg-[#0d2340] py-16 text-white lg:py-24">
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
             <div className="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
@@ -692,6 +762,124 @@ export default function KabinConsultoriaMockup() {
                 ))}
               </div>
             </div>
+          </div>
+        </section>
+
+        <section id="seguros" className="bg-[#f9f6ef] py-16 lg:py-24">
+          <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+            <div>
+              <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-900">{t.insuranceTitle}</p>
+              <h2 className="mt-4 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl md:text-5xl">
+                {t.insuranceHeading}
+              </h2>
+              <p className="mt-5 text-base leading-8 text-slate-600 sm:text-lg">
+                {t.insuranceText}
+              </p>
+
+              <div className="mt-8 grid gap-4">
+                {t.insuranceHighlights.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <article key={item.title} className="flex gap-4 rounded-2xl border border-emerald-950/10 bg-white p-5 shadow-sm">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#0d2340] text-[#d9ad58]">
+                        <Icon size={23} />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-black text-slate-950">{item.title}</h3>
+                        <p className="mt-2 text-sm leading-7 text-slate-600">{item.text}</p>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="rounded-[1.8rem] border border-emerald-950/10 bg-white p-6 shadow-xl shadow-slate-900/10 md:p-8">
+              <div className="flex items-start gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-950 text-white">
+                  <Calculator size={24} />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-black tracking-tight text-slate-950">{t.calculatorTitle}</h3>
+                  <p className="mt-2 text-sm leading-7 text-slate-600">{t.calculatorText}</p>
+                </div>
+              </div>
+
+              <div className="mt-7 grid gap-4 sm:grid-cols-2">
+                {[
+                  ["income", t.income],
+                  ["personal", t.personalDeductions],
+                  ["art151", t.art151],
+                  ["art185", t.art185],
+                ].map(([field, label]) => (
+                  <label key={field} className="grid gap-2">
+                    <span className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">{label}</span>
+                    <input
+                      type="text"
+                      inputMode="decimal"
+                      value={insuranceInputs[field]}
+                      onChange={(event) => updateInsuranceInput(field, event.target.value)}
+                      className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-base font-bold text-slate-950 outline-none transition focus:border-emerald-800 focus:bg-white"
+                    />
+                  </label>
+                ))}
+              </div>
+
+              <div className="mt-7 grid gap-4 sm:grid-cols-3">
+                <div className="rounded-2xl bg-slate-950 p-5 text-white">
+                  <p className="text-xs font-black uppercase tracking-[0.14em] text-white/55">{t.withoutDeductions}</p>
+                  <p className="mt-3 text-2xl font-black">{formatMxn(isrWithoutDeductions)}</p>
+                </div>
+                <div className="rounded-2xl bg-emerald-900 p-5 text-white">
+                  <p className="text-xs font-black uppercase tracking-[0.14em] text-white/60">{t.withPersonal}</p>
+                  <p className="mt-3 text-2xl font-black">{formatMxn(personalBenefit)}</p>
+                </div>
+                <div className="rounded-2xl bg-[#d9ad58] p-5 text-slate-950">
+                  <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-950/65">{t.withRetirement}</p>
+                  <p className="mt-3 text-2xl font-black">{formatMxn(retirementBenefit)}</p>
+                </div>
+              </div>
+
+              <div className="mt-5 flex flex-col gap-3 rounded-2xl bg-slate-50 p-5 text-sm font-semibold text-slate-700 sm:flex-row sm:items-center sm:justify-between">
+                <span>{t.deductibleApplied}</span>
+                <span className="text-lg font-black text-emerald-950">{formatMxn(totalAppliedDeductible)}</span>
+              </div>
+              <p className="mt-4 text-xs leading-6 text-slate-500">{t.disclaimer}</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="servicios" className="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+          <div className="mb-10 max-w-3xl">
+            <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-900">{t.servicesTitle}</p>
+            <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl md:text-5xl">
+              {t.servicesHeading}
+            </h2>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {t.services.map((service) => {
+              const Icon = service.icon;
+              return (
+                <article
+                  key={service.title}
+                  className="group flex h-full flex-col rounded-[1.8rem] border border-emerald-900/10 bg-white p-6 shadow-sm transition hover:-translate-y-1.5 hover:shadow-xl"
+                >
+                  <div className="mb-5 inline-flex rounded-2xl bg-emerald-50 p-3.5 text-emerald-950 transition group-hover:bg-emerald-950 group-hover:text-white">
+                    <Icon size={24} />
+                  </div>
+                  <h3 className="text-xl font-black text-slate-900">{service.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-600">{service.text}</p>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedService(service)}
+                    className="mt-auto inline-flex w-fit items-center gap-2 pt-5 text-left text-sm font-bold text-emerald-900"
+                  >
+                    {t.readMore} <ArrowRight size={15} />
+                  </button>
+                </article>
+              );
+            })}
           </div>
         </section>
 
