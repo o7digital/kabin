@@ -361,7 +361,14 @@ export default function KabinConsultoriaMockup() {
   const [selectedService, setSelectedService] = useState(null);
   const [insuranceInputs, setInsuranceInputs] = useState({
     income: "850000",
-    personal: "45000",
+    otherIncome: "0",
+    medical: "18000",
+    funeral: "0",
+    donations: "5000",
+    gmm: "22000",
+    mortgage: "0",
+    transport: "0",
+    tuition: "0",
     art151: "65000",
     art185: "40000",
   });
@@ -377,8 +384,11 @@ export default function KabinConsultoriaMockup() {
         vision: "Nuestra visión", visionTitle: "Proteger y hacer crecer su legado.", visionText: "Ser uno de los consultores contables, fiscales y financieros de referencia para cuidar el patrimonio de nuestros clientes, fortalecer sus operaciones y acompañar su crecimiento con visión de largo plazo.",
         valuesTitle: "Nuestros valores", path: "Nuestro camino",
         insuranceTitle: "Seguros", insuranceHeading: "Protección, ahorro y retiro con estrategia fiscal.", insuranceText: "Integramos seguros y planes de retiro dentro de una conversación patrimonial: qué proteger, cuánto ahorrar y qué beneficio fiscal podría existir según ingresos y deducciones.",
-        calculatorTitle: "Simulador fiscal 2024", calculatorText: "Estimación para personas físicas en sueldos y salarios. Usa tarifa ISR anual 2024, UMA anual 2024, tope Art. 185 de $152,000 y topes Art. 151.",
-        income: "Ingreso anual bruto", personalDeductions: "Deducciones personales", art151: "Aportación Art. 151 / PPR", art185: "Aportación Art. 185", withoutDeductions: "ISR sin deducciones", withPersonal: "Beneficio con deducciones", withRetirement: "Beneficio con retiro", deductibleApplied: "Deducible aplicado", disclaimer: "Resultado aproximado; no sustituye asesoría fiscal ni representa criterio de autoridad.",
+        calculatorTitle: "Calculadora de impuestos 2024", calculatorText: "Herramienta indicativa para personas físicas en sueldos y salarios. Captura los datos del cliente y compara tres escenarios.",
+        incomeSection: "① Ingresos", deductionsSection: "② Deducciones personales", retirementSection: "③ Deducciones enfocadas al retiro", resultsSection: "④ Resultados",
+        tableConcept: "Concepto", annualAmount: "Monto anual", deductibleAmount: "Monto a deducir", income: "Ingreso anual bruto", otherIncome: "Otros ingresos anuales", totalIncome: "Total de ingresos",
+        medical: "Honorarios médicos y dentales", funeral: "Gastos funerarios", donations: "Donativos", gmm: "Primas de gastos médicos mayores", mortgage: "Intereses reales hipotecarios", transport: "Transporte escolar", tuition: "Colegiaturas",
+        art151: "Plan Personal de Retiro Art. 151", art185: "Estímulo fiscal Art. 185", withoutDeductions: "Sin deducciones", withPersonal: "Con deducciones personales", withRetirement: "Con deducciones y retiro", isrToPay: "ISR estimado", taxBenefit: "Beneficio fiscal", deductibleApplied: "Deducible aplicado", disclaimer: "Resultado aproximado; no sustituye asesoría fiscal ni representa criterio de autoridad.",
         contactTitle: "Recibe acompañamiento profesional.", contactText: "Completa el formulario y te contactaremos para entender tu situación y proponerte una ruta de trabajo.",
         fullname: "Nombre completo", email: "Correo electrónico", phone: "Teléfono", interest: "Servicio de interés", message: "Mensaje", send: "Enviar solicitud",
         privacy: "Aviso de Privacidad", footerNav: "Navegación", footerContact: "Contacto", mexico: "Atención en México", social: "Redes sociales",
@@ -394,8 +404,11 @@ export default function KabinConsultoriaMockup() {
         vision: "Our vision", visionTitle: "Protect and grow your legacy.", visionText: "To become a leading accounting, tax, and financial consulting firm focused on protecting and growing client assets.",
         valuesTitle: "Our values", path: "Our journey",
         insuranceTitle: "Insurance", insuranceHeading: "Protection, savings, and retirement with tax strategy.", insuranceText: "We integrate insurance and retirement plans into an asset-planning conversation: what to protect, how much to save, and which tax benefit may apply.",
-        calculatorTitle: "2024 tax simulator", calculatorText: "Estimate for individuals under salaries and wages in Mexico. Uses the 2024 annual ISR table, 2024 annual UMA, $152,000 Art. 185 cap, and Art. 151 caps.",
-        income: "Annual gross income", personalDeductions: "Personal deductions", art151: "Art. 151 / retirement plan", art185: "Art. 185 contribution", withoutDeductions: "ISR without deductions", withPersonal: "Benefit with deductions", withRetirement: "Benefit with retirement", deductibleApplied: "Applied deductible", disclaimer: "Approximate result; it does not replace tax advice or represent an authority criterion.",
+        calculatorTitle: "2024 tax calculator", calculatorText: "Indicative tool for individuals under salaries and wages in Mexico. Enter client data and compare three scenarios.",
+        incomeSection: "① Income", deductionsSection: "② Personal deductions", retirementSection: "③ Retirement-focused deductions", resultsSection: "④ Results",
+        tableConcept: "Concept", annualAmount: "Annual amount", deductibleAmount: "Deductible amount", income: "Annual gross income", otherIncome: "Other annual income", totalIncome: "Total income",
+        medical: "Medical and dental fees", funeral: "Funeral expenses", donations: "Donations", gmm: "Major medical insurance premiums", mortgage: "Mortgage real interest", transport: "School transportation", tuition: "Tuition",
+        art151: "Private Retirement Plan Art. 151", art185: "Tax incentive Art. 185", withoutDeductions: "No deductions", withPersonal: "With personal deductions", withRetirement: "With deductions and retirement", isrToPay: "Estimated ISR", taxBenefit: "Tax benefit", deductibleApplied: "Applied deductible", disclaimer: "Approximate result; it does not replace tax advice or represent an authority criterion.",
         contactTitle: "Receive professional support.", contactText: "Complete the form and we will contact you to understand your needs and propose a work plan.",
         fullname: "Full name", email: "Email", phone: "Phone", interest: "Service of interest", message: "Message", send: "Send request",
         privacy: "Privacy Notice", footerNav: "Navigation", footerContact: "Contact", mexico: "Service in Mexico", social: "Social media",
@@ -470,21 +483,57 @@ export default function KabinConsultoriaMockup() {
   const active = t.heroSlides[currentSlide];
   const parsedInsurance = {
     income: Number(insuranceInputs.income) || 0,
-    personal: Number(insuranceInputs.personal) || 0,
+    otherIncome: Number(insuranceInputs.otherIncome) || 0,
+    medical: Number(insuranceInputs.medical) || 0,
+    funeral: Number(insuranceInputs.funeral) || 0,
+    donations: Number(insuranceInputs.donations) || 0,
+    gmm: Number(insuranceInputs.gmm) || 0,
+    mortgage: Number(insuranceInputs.mortgage) || 0,
+    transport: Number(insuranceInputs.transport) || 0,
+    tuition: Number(insuranceInputs.tuition) || 0,
     art151: Number(insuranceInputs.art151) || 0,
     art185: Number(insuranceInputs.art185) || 0,
   };
-  const personalCap = Math.min(parsedInsurance.income * 0.15, umaAnnual2024 * 5);
-  const art151Cap = Math.min(parsedInsurance.income * 0.1, umaAnnual2024 * 5);
-  const appliedPersonal = Math.min(parsedInsurance.personal, personalCap);
+  const totalIncome = parsedInsurance.income + parsedInsurance.otherIncome;
+  const personalCap = Math.min(totalIncome * 0.15, umaAnnual2024 * 5);
+  const donationCap = totalIncome * 0.07;
+  const funeralCap = umaAnnual2024;
+  const mortgageCap = 750000 * 7.646804;
+  const art151Cap = Math.min(totalIncome * 0.1, umaAnnual2024 * 5);
+  const personalRows = [
+    { field: "medical", label: t.medical, cap: Infinity },
+    { field: "funeral", label: t.funeral, cap: funeralCap },
+    { field: "donations", label: t.donations, cap: donationCap },
+    { field: "gmm", label: t.gmm, cap: Infinity },
+    { field: "mortgage", label: t.mortgage, cap: mortgageCap },
+    { field: "transport", label: t.transport, cap: Infinity },
+    { field: "tuition", label: t.tuition, cap: 24500 },
+  ].map((row) => ({
+    ...row,
+    amount: parsedInsurance[row.field],
+    deductible: Math.min(parsedInsurance[row.field], row.cap),
+  }));
+  const appliedPersonal = Math.min(
+    personalRows.reduce((sum, row) => sum + row.deductible, 0),
+    personalCap,
+  );
   const appliedArt151 = Math.min(parsedInsurance.art151, art151Cap);
   const appliedArt185 = Math.min(parsedInsurance.art185, art185Cap);
-  const isrWithoutDeductions = calculateAnnualIsr(parsedInsurance.income);
-  const isrWithPersonal = calculateAnnualIsr(parsedInsurance.income - appliedPersonal);
-  const isrWithRetirement = calculateAnnualIsr(parsedInsurance.income - appliedPersonal - appliedArt151 - appliedArt185);
+  const isrWithoutDeductions = calculateAnnualIsr(totalIncome);
+  const isrWithPersonal = calculateAnnualIsr(totalIncome - appliedPersonal);
+  const isrWithRetirement = calculateAnnualIsr(totalIncome - appliedPersonal - appliedArt151 - appliedArt185);
   const personalBenefit = Math.max(isrWithoutDeductions - isrWithPersonal, 0);
   const retirementBenefit = Math.max(isrWithoutDeductions - isrWithRetirement, 0);
   const totalAppliedDeductible = appliedPersonal + appliedArt151 + appliedArt185;
+  const retirementRows = [
+    { field: "art185", label: t.art185, amount: parsedInsurance.art185, deductible: appliedArt185, cap: art185Cap },
+    { field: "art151", label: t.art151, amount: parsedInsurance.art151, deductible: appliedArt151, cap: art151Cap },
+  ];
+  const scenarioRows = [
+    { label: t.withoutDeductions, isr: isrWithoutDeductions, benefit: 0, deductible: 0 },
+    { label: t.withPersonal, isr: isrWithPersonal, benefit: personalBenefit, deductible: appliedPersonal },
+    { label: t.withRetirement, isr: isrWithRetirement, benefit: retirementBenefit, deductible: totalAppliedDeductible },
+  ];
   const updateInsuranceInput = (field, value) => {
     setInsuranceInputs((current) => ({
       ...current,
@@ -695,7 +744,7 @@ export default function KabinConsultoriaMockup() {
                   {t.pillars}
                 </h2>
                 <p className="mt-6 text-xl font-semibold leading-9 text-white sm:text-2xl">
-                  {t.concept}
+                  {t.tableConcept}
                 </p>
                 <p className="mt-5 max-w-2xl text-base leading-8 text-slate-200 sm:text-lg">
                   {t.aboutText}
@@ -794,57 +843,129 @@ export default function KabinConsultoriaMockup() {
               </div>
             </div>
 
-            <div className="rounded-[1.8rem] border border-emerald-950/10 bg-white p-6 shadow-xl shadow-slate-900/10 md:p-8">
-              <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-950 text-white">
-                  <Calculator size={24} />
+            <div className="overflow-hidden rounded-[1.4rem] border border-slate-300 bg-white shadow-xl shadow-slate-900/10">
+              <div className="flex items-center gap-4 border-b border-slate-300 bg-[#17385f] px-5 py-4 text-white">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/12">
+                  <Calculator size={23} />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-black tracking-tight text-slate-950">{t.calculatorTitle}</h3>
-                  <p className="mt-2 text-sm leading-7 text-slate-600">{t.calculatorText}</p>
+                  <h3 className="text-2xl font-black tracking-tight">{t.calculatorTitle}</h3>
+                  <p className="mt-1 text-sm leading-6 text-white/75">{t.calculatorText}</p>
                 </div>
               </div>
 
-              <div className="mt-7 grid gap-4 sm:grid-cols-2">
-                {[
-                  ["income", t.income],
-                  ["personal", t.personalDeductions],
-                  ["art151", t.art151],
-                  ["art185", t.art185],
-                ].map(([field, label]) => (
-                  <label key={field} className="grid gap-2">
-                    <span className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">{label}</span>
-                    <input
-                      type="text"
-                      inputMode="decimal"
-                      value={insuranceInputs[field]}
-                      onChange={(event) => updateInsuranceInput(field, event.target.value)}
-                      className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-base font-bold text-slate-950 outline-none transition focus:border-emerald-800 focus:bg-white"
-                    />
-                  </label>
-                ))}
-              </div>
+              <div className="bg-[#eef2f6] p-4 md:p-5">
+                <div className="grid gap-4">
+                  <div className="overflow-hidden rounded-xl border border-slate-300 bg-white">
+                    <div className="bg-[#d9ad58] px-4 py-2 text-sm font-black uppercase tracking-[0.16em] text-slate-950">
+                      {t.incomeSection}
+                    </div>
+                    <div className="grid grid-cols-[1fr_150px_150px] bg-[#17385f] text-xs font-black uppercase tracking-[0.12em] text-white max-sm:hidden">
+                      <div className="px-4 py-2">{t.tableConcept}</div>
+                      <div className="px-4 py-2 text-right">{t.annualAmount}</div>
+                      <div className="px-4 py-2 text-right">{t.deductibleAmount}</div>
+                    </div>
+                    {[
+                      ["income", t.income, parsedInsurance.income],
+                      ["otherIncome", t.otherIncome, parsedInsurance.otherIncome],
+                    ].map(([field, label, value]) => (
+                      <div key={field} className="grid items-center gap-2 border-t border-slate-200 px-4 py-3 sm:grid-cols-[1fr_150px_150px]">
+                        <label htmlFor={`insurance-${field}`} className="text-sm font-bold text-slate-700">{label}</label>
+                        <input
+                          id={`insurance-${field}`}
+                          type="text"
+                          inputMode="decimal"
+                          value={insuranceInputs[field]}
+                          onChange={(event) => updateInsuranceInput(field, event.target.value)}
+                          className="w-full border border-slate-300 bg-[#fff7d7] px-3 py-2 text-right text-sm font-black text-slate-950 outline-none focus:border-emerald-800"
+                        />
+                        <div className="border border-slate-200 bg-slate-100 px-3 py-2 text-right text-sm font-black text-slate-500">
+                          {formatMxn(value)}
+                        </div>
+                      </div>
+                    ))}
+                    <div className="grid items-center gap-2 border-t border-slate-300 bg-slate-100 px-4 py-3 sm:grid-cols-[1fr_150px_150px]">
+                      <div className="text-sm font-black uppercase tracking-[0.12em] text-slate-700">{t.totalIncome}</div>
+                      <div className="sm:col-span-2 text-right text-lg font-black text-emerald-950">{formatMxn(totalIncome)}</div>
+                    </div>
+                  </div>
 
-              <div className="mt-7 grid gap-4 sm:grid-cols-3">
-                <div className="rounded-2xl bg-slate-950 p-5 text-white">
-                  <p className="text-xs font-black uppercase tracking-[0.14em] text-white/55">{t.withoutDeductions}</p>
-                  <p className="mt-3 text-2xl font-black">{formatMxn(isrWithoutDeductions)}</p>
-                </div>
-                <div className="rounded-2xl bg-emerald-900 p-5 text-white">
-                  <p className="text-xs font-black uppercase tracking-[0.14em] text-white/60">{t.withPersonal}</p>
-                  <p className="mt-3 text-2xl font-black">{formatMxn(personalBenefit)}</p>
-                </div>
-                <div className="rounded-2xl bg-[#d9ad58] p-5 text-slate-950">
-                  <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-950/65">{t.withRetirement}</p>
-                  <p className="mt-3 text-2xl font-black">{formatMxn(retirementBenefit)}</p>
-                </div>
-              </div>
+                  <div className="overflow-hidden rounded-xl border border-slate-300 bg-white">
+                    <div className="bg-[#d9ad58] px-4 py-2 text-sm font-black uppercase tracking-[0.16em] text-slate-950">
+                      {t.deductionsSection}
+                    </div>
+                    <div className="grid grid-cols-[1fr_150px_150px] bg-[#17385f] text-xs font-black uppercase tracking-[0.12em] text-white max-sm:hidden">
+                      <div className="px-4 py-2">{t.tableConcept}</div>
+                      <div className="px-4 py-2 text-right">{t.annualAmount}</div>
+                      <div className="px-4 py-2 text-right">{t.deductibleAmount}</div>
+                    </div>
+                    {personalRows.map((row) => (
+                      <div key={row.field} className="grid items-center gap-2 border-t border-slate-200 px-4 py-3 sm:grid-cols-[1fr_150px_150px]">
+                        <label htmlFor={`insurance-${row.field}`} className="text-sm font-bold text-slate-700">{row.label}</label>
+                        <input
+                          id={`insurance-${row.field}`}
+                          type="text"
+                          inputMode="decimal"
+                          value={insuranceInputs[row.field]}
+                          onChange={(event) => updateInsuranceInput(row.field, event.target.value)}
+                          className="w-full border border-slate-300 bg-[#fff7d7] px-3 py-2 text-right text-sm font-black text-slate-950 outline-none focus:border-emerald-800"
+                        />
+                        <div className="border border-slate-200 bg-slate-100 px-3 py-2 text-right text-sm font-black text-slate-600">
+                          {formatMxn(row.deductible)}
+                        </div>
+                      </div>
+                    ))}
+                    <div className="grid items-center gap-2 border-t border-slate-300 bg-slate-100 px-4 py-3 sm:grid-cols-[1fr_150px_150px]">
+                      <div className="text-sm font-black uppercase tracking-[0.12em] text-slate-700">{t.deductibleApplied}</div>
+                      <div className="sm:col-span-2 text-right text-lg font-black text-emerald-950">{formatMxn(appliedPersonal)}</div>
+                    </div>
+                  </div>
 
-              <div className="mt-5 flex flex-col gap-3 rounded-2xl bg-slate-50 p-5 text-sm font-semibold text-slate-700 sm:flex-row sm:items-center sm:justify-between">
-                <span>{t.deductibleApplied}</span>
-                <span className="text-lg font-black text-emerald-950">{formatMxn(totalAppliedDeductible)}</span>
+                  <div className="overflow-hidden rounded-xl border border-slate-300 bg-white">
+                    <div className="bg-[#d9ad58] px-4 py-2 text-sm font-black uppercase tracking-[0.16em] text-slate-950">
+                      {t.retirementSection}
+                    </div>
+                    {retirementRows.map((row) => (
+                      <div key={row.field} className="grid items-center gap-2 border-t border-slate-200 px-4 py-3 sm:grid-cols-[1fr_150px_150px]">
+                        <label htmlFor={`insurance-${row.field}`} className="text-sm font-bold text-slate-700">{row.label}</label>
+                        <input
+                          id={`insurance-${row.field}`}
+                          type="text"
+                          inputMode="decimal"
+                          value={insuranceInputs[row.field]}
+                          onChange={(event) => updateInsuranceInput(row.field, event.target.value)}
+                          className="w-full border border-slate-300 bg-[#fff7d7] px-3 py-2 text-right text-sm font-black text-slate-950 outline-none focus:border-emerald-800"
+                        />
+                        <div className="border border-slate-200 bg-slate-100 px-3 py-2 text-right text-sm font-black text-slate-600">
+                          {formatMxn(row.deductible)}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="overflow-hidden rounded-xl border border-slate-300 bg-white">
+                    <div className="bg-[#17385f] px-4 py-2 text-sm font-black uppercase tracking-[0.16em] text-white">
+                      {t.resultsSection}
+                    </div>
+                    <div className="grid grid-cols-[1fr_145px_145px_145px] bg-slate-100 text-xs font-black uppercase tracking-[0.1em] text-slate-600 max-md:hidden">
+                      <div className="px-4 py-2">{t.tableConcept}</div>
+                      <div className="px-4 py-2 text-right">{t.isrToPay}</div>
+                      <div className="px-4 py-2 text-right">{t.taxBenefit}</div>
+                      <div className="px-4 py-2 text-right">{t.deductibleApplied}</div>
+                    </div>
+                    {scenarioRows.map((row) => (
+                      <div key={row.label} className="grid gap-2 border-t border-slate-200 px-4 py-3 md:grid-cols-[1fr_145px_145px_145px]">
+                        <div className="text-sm font-black text-slate-800">{row.label}</div>
+                        <div className="text-right text-sm font-black text-slate-950">{formatMxn(row.isr)}</div>
+                        <div className="text-right text-sm font-black text-emerald-800">{formatMxn(row.benefit)}</div>
+                        <div className="text-right text-sm font-black text-slate-600">{formatMxn(row.deductible)}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <p className="mt-4 text-xs leading-6 text-slate-500">{t.disclaimer}</p>
               </div>
-              <p className="mt-4 text-xs leading-6 text-slate-500">{t.disclaimer}</p>
             </div>
           </div>
         </section>
