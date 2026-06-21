@@ -5,6 +5,8 @@ import {
   ArrowRight,
   Building2,
   Calculator,
+  CheckCircle2,
+  CreditCard,
   Facebook,
   FileText,
   HeartHandshake,
@@ -13,9 +15,11 @@ import {
   Menu,
   MessageCircle,
   Music2,
+  PackageCheck,
   PiggyBank,
   Scale,
   ShieldCheck,
+  ShoppingCart,
   Sparkles,
   UsersRound,
   X,
@@ -229,6 +233,7 @@ const navLinksEs = [
   { href: "#inicio", label: "Inicio" },
   { href: "#nosotros", label: "Nosotros" },
   { href: "#seguros", label: "Seguros" },
+  { href: "#ecommerce", label: "Ecommerce" },
   { href: "#servicios", label: "Servicios" },
   { href: "#contacto", label: "Contacto" },
 ];
@@ -237,6 +242,7 @@ const navLinksEn = [
   { href: "#inicio", label: "Home" },
   { href: "#nosotros", label: "About" },
   { href: "#seguros", label: "Insurance" },
+  { href: "#ecommerce", label: "Ecommerce" },
   { href: "#servicios", label: "Services" },
   { href: "#contacto", label: "Contact" },
 ];
@@ -320,6 +326,92 @@ const insuranceHighlightsEn = [
   },
 ];
 
+const ecommercePackagesEs = [
+  {
+    icon: Calculator,
+    title: "Diagnóstico fiscal express",
+    price: 2900,
+    cadence: "pago único",
+    tag: "Entrada",
+    description: "Revisión inicial para detectar obligaciones, riesgos y oportunidades fiscales.",
+    includes: ["Cuestionario guiado", "Revisión de documentos clave", "Resumen ejecutivo", "Ruta de acción inicial"],
+    delivery: "Entrega estimada: 3 días hábiles",
+  },
+  {
+    icon: FileText,
+    title: "Declaración anual asistida",
+    price: 5200,
+    cadence: "por ejercicio",
+    tag: "Alta demanda",
+    description: "Acompañamiento para preparar información, deducciones y soporte de declaración anual.",
+    includes: ["Checklist documental", "Carga de deducciones", "Revisión de constancias", "Reporte de resultado"],
+    delivery: "Entrega estimada: 5 a 7 días hábiles",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Plan seguros y retiro",
+    price: 3900,
+    cadence: "diagnóstico",
+    tag: "Nuevo",
+    description: "Simulación patrimonial y fiscal para seguros, PPR, Art. 151 y Art. 185.",
+    includes: ["Captura fiscal", "Simulación de beneficios", "Perfil de protección", "Recomendación de siguiente paso"],
+    delivery: "Entrega estimada: 48 horas",
+  },
+  {
+    icon: Building2,
+    title: "Paquete empresa ordenada",
+    price: 12500,
+    cadence: "mensual",
+    tag: "PyME",
+    description: "Soporte recurrente para contabilidad, cumplimiento, reportes y seguimiento operativo.",
+    includes: ["Contabilidad mensual", "Calendario fiscal", "Reporte directivo", "Sesión mensual"],
+    delivery: "Inicio en 2 días hábiles",
+  },
+];
+
+const ecommercePackagesEn = [
+  {
+    icon: Calculator,
+    title: "Express tax diagnosis",
+    price: 2900,
+    cadence: "one-time",
+    tag: "Entry",
+    description: "Initial review to identify obligations, risks, and tax opportunities.",
+    includes: ["Guided questionnaire", "Key document review", "Executive summary", "Initial action plan"],
+    delivery: "Estimated delivery: 3 business days",
+  },
+  {
+    icon: FileText,
+    title: "Assisted annual filing",
+    price: 5200,
+    cadence: "per tax year",
+    tag: "Popular",
+    description: "Support to prepare information, deductions, and annual filing documentation.",
+    includes: ["Document checklist", "Deduction review", "Certificate review", "Result report"],
+    delivery: "Estimated delivery: 5 to 7 business days",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Insurance and retirement plan",
+    price: 3900,
+    cadence: "diagnosis",
+    tag: "New",
+    description: "Asset and tax simulation for insurance, PPR, Art. 151, and Art. 185.",
+    includes: ["Tax intake", "Benefit simulation", "Protection profile", "Recommended next step"],
+    delivery: "Estimated delivery: 48 hours",
+  },
+  {
+    icon: Building2,
+    title: "Organized company package",
+    price: 12500,
+    cadence: "monthly",
+    tag: "SMB",
+    description: "Recurring support for accounting, compliance, reporting, and operating follow-up.",
+    includes: ["Monthly accounting", "Tax calendar", "Management report", "Monthly session"],
+    delivery: "Start in 2 business days",
+  },
+];
+
 const isrBrackets2024 = [
   { min: 0.01, max: 7735, fixed: 0, rate: 0.0192 },
   { min: 7735.01, max: 65651.07, fixed: 148.51, rate: 0.064 },
@@ -359,6 +451,7 @@ export default function KabinConsultoriaMockup() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
+  const [selectedPackageIndex, setSelectedPackageIndex] = useState(2);
   const [insuranceInputs, setInsuranceInputs] = useState({
     income: "850000",
     otherIncome: "0",
@@ -375,7 +468,7 @@ export default function KabinConsultoriaMockup() {
 
   const t = lang === "es"
     ? {
-        navLinks: navLinksEs, badges: badgesEs, heroSlides: heroSlidesEs, services: servicesEs, values: valuesEs, journey: journeyEs, insuranceHighlights: insuranceHighlightsEs,
+        navLinks: navLinksEs, badges: badgesEs, heroSlides: heroSlidesEs, services: servicesEs, values: valuesEs, journey: journeyEs, insuranceHighlights: insuranceHighlightsEs, ecommercePackages: ecommercePackagesEs,
         consult: "Consultoría Fiscal y Financiera", menuOpen: "Abrir menú", menuClose: "Cerrar menú",
         servicesTitle: "Servicios", servicesHeading: "Servicios contables, fiscales, financieros y patrimoniales desde una perspectiva humana.", readMore: "Ver más",
         about: "Nosotros", pillars: "Cimientos de nuestro éxito.", concept: "KABIN Consultores nació de un concepto claro: brindar servicios profesionales desde una perspectiva humana.",
@@ -389,13 +482,15 @@ export default function KabinConsultoriaMockup() {
         tableConcept: "Concepto", annualAmount: "Monto anual", deductibleAmount: "Monto a deducir", income: "Ingreso anual bruto", otherIncome: "Otros ingresos anuales", totalIncome: "Total de ingresos",
         medical: "Honorarios médicos y dentales", funeral: "Gastos funerarios", donations: "Donativos", gmm: "Primas de gastos médicos mayores", mortgage: "Intereses reales hipotecarios", transport: "Transporte escolar", tuition: "Colegiaturas",
         art151: "Plan Personal de Retiro Art. 151", art185: "Estímulo fiscal Art. 185", withoutDeductions: "Sin deducciones", withPersonal: "Con deducciones personales", withRetirement: "Con deducciones y retiro", isrToPay: "ISR estimado", taxBenefit: "Beneficio fiscal", deductibleApplied: "Deducible aplicado", disclaimer: "Resultado aproximado; no sustituye asesoría fiscal ni representa criterio de autoridad.",
+        ecommerceTitle: "Ecommerce", ecommerceHeading: "Forfaits listos para comprar, cotizar y convertir en clientes dentro del CRM.", ecommerceText: "Esta sección simula cómo Kabin podría vender servicios cerrados sin fricción: el cliente elige un paquete, deja sus datos, paga o solicita cotización, y el CRM recibe la oportunidad con todo el contexto.",
+        choosePackage: "Elegir forfait", selectedPackage: "Forfait seleccionado", checkoutDemo: "Checkout simulado", subtotal: "Subtotal", vat: "IVA estimado", total: "Total", payNow: "Simular compra", quoteNow: "Solicitar cotización", crmReady: "Listo para backend + CRM", crmFlow: "Orden web → pago/lead → contacto CRM → tarea comercial → expediente del cliente",
         contactTitle: "Recibe acompañamiento profesional.", contactText: "Completa el formulario y te contactaremos para entender tu situación y proponerte una ruta de trabajo.",
         fullname: "Nombre completo", email: "Correo electrónico", phone: "Teléfono", interest: "Servicio de interés", message: "Mensaje", send: "Enviar solicitud",
         privacy: "Aviso de Privacidad", footerNav: "Navegación", footerContact: "Contacto", mexico: "Atención en México", social: "Redes sociales",
         rights: "© 2026 Kabin Consultoría Fiscal y Financiera. Todos los derechos reservados.", terms: "Términos", serviceDetail: "Detalle del servicio", request: "Solicitar asesoría",
       }
     : {
-        navLinks: navLinksEn, badges: badgesEn, heroSlides: heroSlidesEn, services: servicesEn, values: valuesEn, journey: journeyEn, insuranceHighlights: insuranceHighlightsEn,
+        navLinks: navLinksEn, badges: badgesEn, heroSlides: heroSlidesEn, services: servicesEn, values: valuesEn, journey: journeyEn, insuranceHighlights: insuranceHighlightsEn, ecommercePackages: ecommercePackagesEn,
         consult: "Tax and Financial Consulting", menuOpen: "Open menu", menuClose: "Close menu",
         servicesTitle: "Services", servicesHeading: "Accounting, tax, financial, and asset-planning services from a human perspective.", readMore: "Read more",
         about: "About", pillars: "Foundations of our success.", concept: "KABIN Consultores was born from a clear concept: delivering professional services from a human perspective.",
@@ -409,6 +504,8 @@ export default function KabinConsultoriaMockup() {
         tableConcept: "Concept", annualAmount: "Annual amount", deductibleAmount: "Deductible amount", income: "Annual gross income", otherIncome: "Other annual income", totalIncome: "Total income",
         medical: "Medical and dental fees", funeral: "Funeral expenses", donations: "Donations", gmm: "Major medical insurance premiums", mortgage: "Mortgage real interest", transport: "School transportation", tuition: "Tuition",
         art151: "Private Retirement Plan Art. 151", art185: "Tax incentive Art. 185", withoutDeductions: "No deductions", withPersonal: "With personal deductions", withRetirement: "With deductions and retirement", isrToPay: "Estimated ISR", taxBenefit: "Tax benefit", deductibleApplied: "Applied deductible", disclaimer: "Approximate result; it does not replace tax advice or represent an authority criterion.",
+        ecommerceTitle: "Ecommerce", ecommerceHeading: "Packaged services ready to buy, quote, and convert into CRM clients.", ecommerceText: "This section simulates how Kabin could sell fixed-scope services with less friction: the client picks a package, shares details, pays or requests a quote, and the CRM receives the opportunity with context.",
+        choosePackage: "Choose package", selectedPackage: "Selected package", checkoutDemo: "Simulated checkout", subtotal: "Subtotal", vat: "Estimated VAT", total: "Total", payNow: "Simulate purchase", quoteNow: "Request quote", crmReady: "Backend + CRM ready", crmFlow: "Web order → payment/lead → CRM contact → sales task → client file",
         contactTitle: "Receive professional support.", contactText: "Complete the form and we will contact you to understand your needs and propose a work plan.",
         fullname: "Full name", email: "Email", phone: "Phone", interest: "Service of interest", message: "Message", send: "Send request",
         privacy: "Privacy Notice", footerNav: "Navigation", footerContact: "Contact", mexico: "Service in Mexico", social: "Social media",
@@ -534,6 +631,10 @@ export default function KabinConsultoriaMockup() {
     { label: t.withPersonal, isr: isrWithPersonal, benefit: personalBenefit, deductible: appliedPersonal },
     { label: t.withRetirement, isr: isrWithRetirement, benefit: retirementBenefit, deductible: totalAppliedDeductible },
   ];
+  const selectedPackage = t.ecommercePackages[selectedPackageIndex] || t.ecommercePackages[0];
+  const packageSubtotal = selectedPackage.price;
+  const packageVat = packageSubtotal * 0.16;
+  const packageTotal = packageSubtotal + packageVat;
   const updateInsuranceInput = (field, value) => {
     setInsuranceInputs((current) => ({
       ...current,
@@ -966,6 +1067,132 @@ export default function KabinConsultoriaMockup() {
 
                 <p className="mt-4 text-xs leading-6 text-slate-500">{t.disclaimer}</p>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="ecommerce" className="bg-white py-16 lg:py-24">
+          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+            <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+              <div>
+                <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-900">{t.ecommerceTitle}</p>
+                <h2 className="mt-4 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl md:text-5xl">
+                  {t.ecommerceHeading}
+                </h2>
+                <p className="mt-5 text-base leading-8 text-slate-600 sm:text-lg">
+                  {t.ecommerceText}
+                </p>
+              </div>
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#0d2340] text-[#d9ad58]">
+                    <PackageCheck size={23} />
+                  </div>
+                  <div>
+                    <p className="text-sm font-black uppercase tracking-[0.16em] text-emerald-900">{t.crmReady}</p>
+                    <p className="mt-1 text-sm leading-6 text-slate-600">{t.crmFlow}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_360px]">
+              <div className="grid gap-5 md:grid-cols-2">
+                {t.ecommercePackages.map((item, index) => {
+                  const Icon = item.icon;
+                  const isSelected = index === selectedPackageIndex;
+                  return (
+                    <article
+                      key={item.title}
+                      className={`flex h-full flex-col rounded-2xl border bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl ${
+                        isSelected ? "border-emerald-900 ring-2 ring-emerald-900/15" : "border-slate-200"
+                      }`}
+                    >
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-950">
+                          <Icon size={24} />
+                        </div>
+                        <span className="rounded-full bg-[#d9ad58] px-3 py-1 text-xs font-black uppercase tracking-[0.12em] text-slate-950">
+                          {item.tag}
+                        </span>
+                      </div>
+                      <h3 className="mt-5 text-xl font-black text-slate-950">{item.title}</h3>
+                      <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
+                      <div className="mt-5 flex items-end gap-2">
+                        <span className="text-3xl font-black tracking-tight text-slate-950">{formatMxn(item.price)}</span>
+                        <span className="pb-1 text-sm font-bold text-slate-500">{item.cadence}</span>
+                      </div>
+                      <div className="mt-5 grid gap-2">
+                        {item.includes.map((feature) => (
+                          <div key={feature} className="flex items-start gap-2 text-sm font-semibold leading-6 text-slate-700">
+                            <CheckCircle2 className="mt-0.5 shrink-0 text-emerald-800" size={16} />
+                            <span>{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <p className="mt-5 text-xs font-bold uppercase tracking-[0.12em] text-slate-500">{item.delivery}</p>
+                      <button
+                        type="button"
+                        onClick={() => setSelectedPackageIndex(index)}
+                        className={`mt-auto inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-black transition ${
+                          isSelected
+                            ? "bg-emerald-950 text-white"
+                            : "border border-emerald-950/20 text-emerald-950 hover:bg-emerald-950 hover:text-white"
+                        }`}
+                      >
+                        <ShoppingCart size={17} /> {t.choosePackage}
+                      </button>
+                    </article>
+                  );
+                })}
+              </div>
+
+              <aside className="h-fit rounded-2xl border border-slate-200 bg-slate-950 p-6 text-white shadow-2xl shadow-slate-900/20 lg:sticky lg:top-28">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-emerald-950">
+                    <CreditCard size={22} />
+                  </div>
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-[0.16em] text-[#d9ad58]">{t.checkoutDemo}</p>
+                    <h3 className="text-xl font-black">{t.selectedPackage}</h3>
+                  </div>
+                </div>
+
+                <div className="mt-6 rounded-xl border border-white/10 bg-white/5 p-4">
+                  <p className="text-lg font-black">{selectedPackage.title}</p>
+                  <p className="mt-2 text-sm leading-6 text-white/65">{selectedPackage.description}</p>
+                </div>
+
+                <div className="mt-6 grid gap-3 text-sm">
+                  <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                    <span className="text-white/65">{t.subtotal}</span>
+                    <span className="font-black">{formatMxn(packageSubtotal)}</span>
+                  </div>
+                  <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                    <span className="text-white/65">{t.vat}</span>
+                    <span className="font-black">{formatMxn(packageVat)}</span>
+                  </div>
+                  <div className="flex items-center justify-between pt-1">
+                    <span className="text-base font-black">{t.total}</span>
+                    <span className="text-2xl font-black text-[#d9ad58]">{formatMxn(packageTotal)}</span>
+                  </div>
+                </div>
+
+                <div className="mt-6 grid gap-3">
+                  <a
+                    href="#contacto"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-[#d9ad58] px-5 py-3 text-sm font-black text-slate-950 transition hover:-translate-y-0.5"
+                  >
+                    <CreditCard size={17} /> {t.payNow}
+                  </a>
+                  <a
+                    href="#contacto"
+                    className="inline-flex items-center justify-center rounded-full border border-white/25 px-5 py-3 text-sm font-black text-white transition hover:bg-white hover:text-slate-950"
+                  >
+                    {t.quoteNow}
+                  </a>
+                </div>
+              </aside>
             </div>
           </div>
         </section>
