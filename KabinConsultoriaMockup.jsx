@@ -443,6 +443,20 @@ const formatMxn = (value) =>
     maximumFractionDigits: 0,
   }).format(Number.isFinite(value) ? value : 0);
 
+const defaultInsuranceInputs = {
+  income: "850000",
+  otherIncome: "0",
+  medical: "18000",
+  funeral: "0",
+  donations: "5000",
+  gmm: "22000",
+  mortgage: "0",
+  transport: "0",
+  tuition: "0",
+  art151: "65000",
+  art185: "40000",
+};
+
 export default function KabinConsultoriaMockup() {
   const isEnglishPath = typeof window !== "undefined" && window.location.pathname.startsWith("/en");
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -452,19 +466,9 @@ export default function KabinConsultoriaMockup() {
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
   const [selectedPackageIndex, setSelectedPackageIndex] = useState(2);
-  const [insuranceInputs, setInsuranceInputs] = useState({
-    income: "850000",
-    otherIncome: "0",
-    medical: "18000",
-    funeral: "0",
-    donations: "5000",
-    gmm: "22000",
-    mortgage: "0",
-    transport: "0",
-    tuition: "0",
-    art151: "65000",
-    art185: "40000",
-  });
+  const [insuranceInputs, setInsuranceInputs] = useState(defaultInsuranceInputs);
+  const [calculatedInsuranceInputs, setCalculatedInsuranceInputs] = useState(defaultInsuranceInputs);
+  const [hasCalculatedInsurance, setHasCalculatedInsurance] = useState(true);
 
   const t = lang === "es"
     ? {
@@ -482,6 +486,7 @@ export default function KabinConsultoriaMockup() {
         tableConcept: "Concepto", annualAmount: "Monto anual", deductibleAmount: "Monto a deducir", income: "Ingreso anual bruto", otherIncome: "Otros ingresos anuales", totalIncome: "Total de ingresos",
         medical: "Honorarios médicos y dentales", funeral: "Gastos funerarios", donations: "Donativos", gmm: "Primas de gastos médicos mayores", mortgage: "Intereses reales hipotecarios", transport: "Transporte escolar", tuition: "Colegiaturas",
         art151: "Plan Personal de Retiro Art. 151", art185: "Estímulo fiscal Art. 185", withoutDeductions: "Sin deducciones", withPersonal: "Con deducciones personales", withRetirement: "Con deducciones y retiro", isrToPay: "ISR estimado", taxBenefit: "Beneficio fiscal", deductibleApplied: "Deducible aplicado", disclaimer: "Resultado aproximado; no sustituye asesoría fiscal ni representa criterio de autoridad.",
+        calculateSimulation: "Calcular simulación", calculationReady: "Resultados actualizados", calculationPending: "Hay cambios sin calcular", mainBenefit: "Beneficio estimado con retiro",
         ecommerceTitle: "Ecommerce", ecommerceHeading: "Forfaits listos para comprar, cotizar y convertir en clientes dentro del CRM.", ecommerceText: "Esta sección simula cómo Kabin podría vender servicios cerrados sin fricción: el cliente elige un paquete, deja sus datos, paga o solicita cotización, y el CRM recibe la oportunidad con todo el contexto.",
         choosePackage: "Elegir forfait", selectedPackage: "Forfait seleccionado", checkoutDemo: "Checkout simulado", subtotal: "Subtotal", vat: "IVA estimado", total: "Total", payNow: "Simular compra", quoteNow: "Solicitar cotización", crmReady: "Listo para backend + CRM", crmFlow: "Orden web → pago/lead → contacto CRM → tarea comercial → expediente del cliente",
         contactTitle: "Recibe acompañamiento profesional.", contactText: "Completa el formulario y te contactaremos para entender tu situación y proponerte una ruta de trabajo.",
@@ -504,6 +509,7 @@ export default function KabinConsultoriaMockup() {
         tableConcept: "Concept", annualAmount: "Annual amount", deductibleAmount: "Deductible amount", income: "Annual gross income", otherIncome: "Other annual income", totalIncome: "Total income",
         medical: "Medical and dental fees", funeral: "Funeral expenses", donations: "Donations", gmm: "Major medical insurance premiums", mortgage: "Mortgage real interest", transport: "School transportation", tuition: "Tuition",
         art151: "Private Retirement Plan Art. 151", art185: "Tax incentive Art. 185", withoutDeductions: "No deductions", withPersonal: "With personal deductions", withRetirement: "With deductions and retirement", isrToPay: "Estimated ISR", taxBenefit: "Tax benefit", deductibleApplied: "Applied deductible", disclaimer: "Approximate result; it does not replace tax advice or represent an authority criterion.",
+        calculateSimulation: "Calculate simulation", calculationReady: "Results updated", calculationPending: "Changes not calculated", mainBenefit: "Estimated benefit with retirement",
         ecommerceTitle: "Ecommerce", ecommerceHeading: "Packaged services ready to buy, quote, and convert into CRM clients.", ecommerceText: "This section simulates how Kabin could sell fixed-scope services with less friction: the client picks a package, shares details, pays or requests a quote, and the CRM receives the opportunity with context.",
         choosePackage: "Choose package", selectedPackage: "Selected package", checkoutDemo: "Simulated checkout", subtotal: "Subtotal", vat: "Estimated VAT", total: "Total", payNow: "Simulate purchase", quoteNow: "Request quote", crmReady: "Backend + CRM ready", crmFlow: "Web order → payment/lead → CRM contact → sales task → client file",
         contactTitle: "Receive professional support.", contactText: "Complete the form and we will contact you to understand your needs and propose a work plan.",
@@ -579,17 +585,17 @@ export default function KabinConsultoriaMockup() {
   const closeMenu = () => setIsMenuOpen(false);
   const active = t.heroSlides[currentSlide];
   const parsedInsurance = {
-    income: Number(insuranceInputs.income) || 0,
-    otherIncome: Number(insuranceInputs.otherIncome) || 0,
-    medical: Number(insuranceInputs.medical) || 0,
-    funeral: Number(insuranceInputs.funeral) || 0,
-    donations: Number(insuranceInputs.donations) || 0,
-    gmm: Number(insuranceInputs.gmm) || 0,
-    mortgage: Number(insuranceInputs.mortgage) || 0,
-    transport: Number(insuranceInputs.transport) || 0,
-    tuition: Number(insuranceInputs.tuition) || 0,
-    art151: Number(insuranceInputs.art151) || 0,
-    art185: Number(insuranceInputs.art185) || 0,
+    income: Number(calculatedInsuranceInputs.income) || 0,
+    otherIncome: Number(calculatedInsuranceInputs.otherIncome) || 0,
+    medical: Number(calculatedInsuranceInputs.medical) || 0,
+    funeral: Number(calculatedInsuranceInputs.funeral) || 0,
+    donations: Number(calculatedInsuranceInputs.donations) || 0,
+    gmm: Number(calculatedInsuranceInputs.gmm) || 0,
+    mortgage: Number(calculatedInsuranceInputs.mortgage) || 0,
+    transport: Number(calculatedInsuranceInputs.transport) || 0,
+    tuition: Number(calculatedInsuranceInputs.tuition) || 0,
+    art151: Number(calculatedInsuranceInputs.art151) || 0,
+    art185: Number(calculatedInsuranceInputs.art185) || 0,
   };
   const totalIncome = parsedInsurance.income + parsedInsurance.otherIncome;
   const personalCap = Math.min(totalIncome * 0.15, umaAnnual2024 * 5);
@@ -640,6 +646,11 @@ export default function KabinConsultoriaMockup() {
       ...current,
       [field]: value.replace(/[^\d.]/g, ""),
     }));
+    setHasCalculatedInsurance(false);
+  };
+  const calculateInsuranceSimulation = () => {
+    setCalculatedInsuranceInputs(insuranceInputs);
+    setHasCalculatedInsurance(true);
   };
 
   return (
@@ -991,6 +1002,26 @@ export default function KabinConsultoriaMockup() {
                     </div>
                   </div>
 
+                  <div className="grid gap-4 rounded-xl border border-emerald-900/15 bg-white p-4 md:grid-cols-[1fr_auto] md:items-center">
+                    <div>
+                      <p className="text-xs font-black uppercase tracking-[0.16em] text-emerald-900">
+                        {hasCalculatedInsurance ? t.calculationReady : t.calculationPending}
+                      </p>
+                      <p className="mt-2 text-sm leading-6 text-slate-600">
+                        {lang === "es"
+                          ? "Modifica los montos amarillos y presiona calcular para actualizar deducciones, ISR y beneficio estimado."
+                          : "Edit the yellow fields and press calculate to update deductions, ISR, and estimated benefit."}
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={calculateInsuranceSimulation}
+                      className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-950 px-6 py-3 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-emerald-900"
+                    >
+                      <Calculator size={17} /> {t.calculateSimulation}
+                    </button>
+                  </div>
+
                   <div className="overflow-hidden rounded-xl border border-slate-300 bg-white">
                     <div className="bg-[#d9ad58] px-4 py-2 text-sm font-black uppercase tracking-[0.16em] text-slate-950">
                       {t.deductionsSection}
@@ -1044,9 +1075,38 @@ export default function KabinConsultoriaMockup() {
                     ))}
                   </div>
 
+                  <div className="flex flex-col gap-3 rounded-xl border border-emerald-900/15 bg-emerald-950 p-4 text-white sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                      <p className="text-sm font-black uppercase tracking-[0.16em] text-[#d9ad58]">
+                        {hasCalculatedInsurance ? t.calculationReady : t.calculationPending}
+                      </p>
+                      <p className="mt-1 text-sm leading-6 text-white/70">
+                        {lang === "es" ? "Presiona calcular para refrescar el resultado final." : "Press calculate to refresh the final result."}
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={calculateInsuranceSimulation}
+                      className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-black text-emerald-950 transition hover:-translate-y-0.5"
+                    >
+                      <Calculator size={17} /> {t.calculateSimulation}
+                    </button>
+                  </div>
+
                   <div className="overflow-hidden rounded-xl border border-slate-300 bg-white">
                     <div className="bg-[#17385f] px-4 py-2 text-sm font-black uppercase tracking-[0.16em] text-white">
                       {t.resultsSection}
+                    </div>
+                    <div className="grid gap-4 border-t border-slate-200 bg-[#fff7d7] p-4 md:grid-cols-[1fr_auto] md:items-center">
+                      <div>
+                        <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-600">{t.mainBenefit}</p>
+                        <p className="mt-1 text-sm font-semibold leading-6 text-slate-700">
+                          {lang === "es"
+                            ? "Comparado contra un escenario sin deducciones."
+                            : "Compared against a scenario with no deductions."}
+                        </p>
+                      </div>
+                      <p className="text-3xl font-black tracking-tight text-emerald-950">{formatMxn(retirementBenefit)}</p>
                     </div>
                     <div className="grid grid-cols-[1fr_145px_145px_145px] bg-slate-100 text-xs font-black uppercase tracking-[0.1em] text-slate-600 max-md:hidden">
                       <div className="px-4 py-2">{t.tableConcept}</div>
