@@ -23,7 +23,6 @@ import {
   UsersRound,
   X,
 } from "lucide-react";
-import OliviaChat from "./src/OliviaChat.jsx";
 
 const servicesEs = [
   {
@@ -1695,7 +1694,6 @@ export default function KabinConsultoriaMockup() {
           </div>
         </div>
       </footer>
-      <OliviaChat lang={lang} />
     </div>
   );
 }
