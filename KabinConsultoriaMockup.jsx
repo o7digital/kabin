@@ -5,7 +5,9 @@ import {
   ArrowRight,
   Building2,
   Calculator,
+  CalendarDays,
   CheckCircle2,
+  Clock3,
   CreditCard,
   Facebook,
   FileText,
@@ -15,6 +17,7 @@ import {
   Menu,
   MessageCircle,
   Music2,
+  Newspaper,
   PackageCheck,
   PiggyBank,
   Scale,
@@ -233,6 +236,7 @@ const navLinksEs = [
   { href: "#seguros", label: "Seguros" },
   { href: "#ecommerce", label: "Ecommerce" },
   { href: "#servicios", label: "Servicios" },
+  { href: "#blog", label: "Blog" },
   { href: "#contacto", label: "Contacto" },
 ];
 
@@ -242,6 +246,7 @@ const navLinksEn = [
   { href: "#seguros", label: "Insurance" },
   { href: "#ecommerce", label: "Ecommerce" },
   { href: "#servicios", label: "Services" },
+  { href: "#blog", label: "Blog" },
   { href: "#contacto", label: "Contact" },
 ];
 
@@ -390,6 +395,32 @@ const ecommercePackagesEn = [
   },
 ];
 
+const blogEventsEs = [
+  { day: "25", month: "Mayo", title: "Dia del contador", type: "Efemeride", text: "Reconocimiento al orden, criterio y responsabilidad contable." },
+  { day: "15", month: "Mayo", title: "Dia del maestro", type: "Comunidad", text: "Conversacion sobre educacion financiera para familias y docentes." },
+  { day: "18", month: "Jun", title: "Webinario fiscal PyME", type: "Webinario", text: "Checklist para cierres mensuales, deducciones y obligaciones clave." },
+  { day: "09", month: "Jul", title: "Patrimonio y retiro", type: "Taller", text: "Planeacion de ahorro, proteccion y continuidad familiar." },
+];
+
+const blogPostsEs = [
+  { category: "Fiscal", date: "18 Jun 2026", read: "4 min", title: "Que revisar antes de cerrar el mes fiscal", text: "Una guia practica para ordenar facturas, pagos, deducciones y pendientes antes de presentar informacion contable." },
+  { category: "Finanzas", date: "05 Jun 2026", read: "3 min", title: "Indicadores simples para entender la salud de tu empresa", text: "Margen, flujo, obligaciones y reservas: cuatro lecturas que ayudan a tomar mejores decisiones." },
+  { category: "Patrimonio", date: "22 May 2026", read: "5 min", title: "Retiro, seguros y patrimonio: por donde empezar", text: "Como integrar proteccion financiera y ahorro sin perder de vista el impacto fiscal." },
+];
+
+const blogEventsEn = [
+  { day: "25", month: "May", title: "Accountant's Day", type: "Date", text: "A recognition of accounting discipline, judgment, and responsibility." },
+  { day: "15", month: "May", title: "Teacher's Day", type: "Community", text: "A conversation about financial education for families and teachers." },
+  { day: "18", month: "Jun", title: "SMB tax webinar", type: "Webinar", text: "A checklist for monthly closings, deductions, and key obligations." },
+  { day: "09", month: "Jul", title: "Wealth and retirement", type: "Workshop", text: "Savings, protection, and family continuity planning." },
+];
+
+const blogPostsEn = [
+  { category: "Tax", date: "Jun 18, 2026", read: "4 min", title: "What to review before monthly tax closing", text: "A practical guide to organize invoices, payments, deductions, and accounting pending items." },
+  { category: "Finance", date: "Jun 5, 2026", read: "3 min", title: "Simple indicators to understand business health", text: "Margin, cash flow, obligations, and reserves: four readings that support better decisions." },
+  { category: "Wealth", date: "May 22, 2026", read: "5 min", title: "Retirement, insurance, and wealth: where to start", text: "How to integrate financial protection and savings while keeping tax impact in view." },
+];
+
 const isrBrackets2024 = [
   { min: 0.01, max: 7735, fixed: 0, rate: 0.0192 },
   { min: 7735.01, max: 65651.07, fixed: 148.51, rate: 0.064 },
@@ -459,10 +490,11 @@ export default function KabinConsultoriaMockup() {
   const [insuranceInputs, setInsuranceInputs] = useState(defaultInsuranceInputs);
   const [calculatedInsuranceInputs, setCalculatedInsuranceInputs] = useState(defaultInsuranceInputs);
   const [hasCalculatedInsurance, setHasCalculatedInsurance] = useState(true);
+  const [selectedEventIndex, setSelectedEventIndex] = useState(0);
 
   const t = lang === "es"
     ? {
-        navLinks: navLinksEs, badges: badgesEs, heroSlides: heroSlidesEs, services: servicesEs, values: valuesEs, journey: journeyEs, insuranceHighlights: insuranceHighlightsEs, ecommercePackages: ecommercePackagesEs,
+        navLinks: navLinksEs, badges: badgesEs, heroSlides: heroSlidesEs, services: servicesEs, values: valuesEs, journey: journeyEs, insuranceHighlights: insuranceHighlightsEs, ecommercePackages: ecommercePackagesEs, blogEvents: blogEventsEs, blogPosts: blogPostsEs,
         consult: "Consultoría Fiscal y Financiera", menuOpen: "Abrir menú", menuClose: "Cerrar menú",
         servicesTitle: "Servicios", servicesHeading: "Servicios contables, fiscales, financieros y patrimoniales desde una perspectiva humana.", readMore: "Ver más",
         about: "Nosotros", pillars: "Cimientos de nuestro éxito.", concept: "KABIN Consultores nació de un concepto claro: brindar servicios profesionales desde una perspectiva humana.",
@@ -479,13 +511,14 @@ export default function KabinConsultoriaMockup() {
         calculateSimulation: "Calcular simulación", calculationReady: "Resultados actualizados", calculationPending: "Hay cambios sin calcular", mainBenefit: "Beneficio estimado con retiro",
         ecommerceTitle: "Ecommerce", ecommerceHeading: "Forfaits listos para comprar, cotizar y convertir en clientes dentro del CRM.", ecommerceText: "Esta sección simula cómo Kabin podría vender servicios cerrados sin fricción: el cliente elige un paquete, deja sus datos, paga o solicita cotización, y el CRM recibe la oportunidad con todo el contexto.",
         choosePackage: "Cotizar", selectedPackage: "Forfait seleccionado", checkoutDemo: "Cotización", subtotal: "Subtotal", vat: "IVA estimado", total: "Total", payNow: "Cotizar", quoteNow: "Cotizar", crmReady: "Listo para backend + CRM", crmFlow: "Orden web → pago/lead → contacto CRM → tarea comercial → expediente del cliente",
+        blogTitle: "Blog, eventos y noticias", blogHeading: "Agenda fiscal y financiera para tomar decisiones con contexto.", blogText: "Selecciona una fecha del calendario para destacar efemerides, webinarios y sesiones utiles para clientes y empresas.", calendarTitle: "Calendario editorial", newsTitle: "Ultimas noticias",
         contactTitle: "Recibe acompañamiento profesional.", contactText: "Completa el formulario y te contactaremos para entender tu situación y proponerte una ruta de trabajo.",
         fullname: "Nombre", lastname: "Apellido", email: "Correo electrónico", phone: "Teléfono", industry: "Tipo de industria", interest: "Servicio de interés", message: "Mensaje", send: "Enviar solicitud", sending: "Enviando...", quoteSent: "Solicitud enviada. Kabin recibirá el lead en su CRM y por correo.", quoteError: "No se pudo enviar la solicitud. Inténtalo de nuevo o escríbenos por WhatsApp.",
         privacy: "Aviso de Privacidad", footerNav: "Navegación", footerContact: "Contacto", mexico: "Atención en México", social: "Redes sociales",
         rights: "© 2026 Kabin Consultoría Fiscal y Financiera. Todos los derechos reservados.", terms: "Términos", serviceDetail: "Detalle del servicio", request: "Solicitar asesoría",
       }
     : {
-        navLinks: navLinksEn, badges: badgesEn, heroSlides: heroSlidesEn, services: servicesEn, values: valuesEn, journey: journeyEn, insuranceHighlights: insuranceHighlightsEn, ecommercePackages: ecommercePackagesEn,
+        navLinks: navLinksEn, badges: badgesEn, heroSlides: heroSlidesEn, services: servicesEn, values: valuesEn, journey: journeyEn, insuranceHighlights: insuranceHighlightsEn, ecommercePackages: ecommercePackagesEn, blogEvents: blogEventsEn, blogPosts: blogPostsEn,
         consult: "Tax and Financial Consulting", menuOpen: "Open menu", menuClose: "Close menu",
         servicesTitle: "Services", servicesHeading: "Accounting, tax, financial, and asset-planning services from a human perspective.", readMore: "Read more",
         about: "About", pillars: "Foundations of our success.", concept: "KABIN Consultores was born from a clear concept: delivering professional services from a human perspective.",
@@ -502,6 +535,7 @@ export default function KabinConsultoriaMockup() {
         calculateSimulation: "Calculate simulation", calculationReady: "Results updated", calculationPending: "Changes not calculated", mainBenefit: "Estimated benefit with retirement",
         ecommerceTitle: "Ecommerce", ecommerceHeading: "Packaged services ready to buy, quote, and convert into CRM clients.", ecommerceText: "This section simulates how Kabin could sell fixed-scope services with less friction: the client picks a package, shares details, pays or requests a quote, and the CRM receives the opportunity with context.",
         choosePackage: "Quote", selectedPackage: "Selected package", checkoutDemo: "Quote", subtotal: "Subtotal", vat: "Estimated VAT", total: "Total", payNow: "Quote", quoteNow: "Quote", crmReady: "Backend + CRM ready", crmFlow: "Web order → payment/lead → CRM contact → sales task → client file",
+        blogTitle: "Blog, events and news", blogHeading: "Tax and financial agenda for decisions with context.", blogText: "Select a calendar date to highlight observances, webinars, and useful sessions for clients and companies.", calendarTitle: "Editorial calendar", newsTitle: "Latest news",
         contactTitle: "Receive professional support.", contactText: "Complete the form and we will contact you to understand your needs and propose a work plan.",
         fullname: "First name", lastname: "Last name", email: "Email", phone: "Phone", industry: "Industry type", interest: "Service of interest", message: "Message", send: "Send request", sending: "Sending...", quoteSent: "Request sent. Kabin will receive the lead in its CRM and by email.", quoteError: "The request could not be sent. Please try again or contact us on WhatsApp.",
         privacy: "Privacy Notice", footerNav: "Navigation", footerContact: "Contact", mexico: "Service in Mexico", social: "Social media",
@@ -1304,6 +1338,66 @@ export default function KabinConsultoriaMockup() {
                 </article>
               );
             })}
+          </div>
+        </section>
+
+        <section id="blog" className="bg-[#f4efe7] px-5 py-16 lg:px-8 lg:py-24">
+          <div className="mx-auto max-w-7xl">
+            <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+              <div>
+                <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-900">{t.blogTitle}</p>
+                <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl md:text-5xl">{t.blogHeading}</h2>
+                <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600">{t.blogText}</p>
+              </div>
+              <div className="rounded-2xl bg-slate-950 p-5 text-white shadow-2xl shadow-slate-900/20">
+                <div className="mb-4 flex items-center gap-2 text-sm font-black uppercase tracking-[0.16em] text-[#d9ad58]">
+                  <CalendarDays size={18} /> {t.calendarTitle}
+                </div>
+                <div className="grid gap-3 sm:grid-cols-4">
+                  {t.blogEvents.map((event, index) => (
+                    <button
+                      key={`${event.day}-${event.title}`}
+                      type="button"
+                      onClick={() => setSelectedEventIndex(index)}
+                      className={`rounded-xl border p-4 text-left transition ${
+                        selectedEventIndex === index ? "border-[#d9ad58] bg-[#d9ad58] text-slate-950" : "border-white/10 bg-white/5 hover:bg-white/10"
+                      }`}
+                    >
+                      <span className="block text-xs font-black uppercase tracking-[0.16em] opacity-75">{event.month}</span>
+                      <span className="mt-1 block text-3xl font-black">{event.day}</span>
+                      <span className="mt-3 block text-sm font-black leading-5">{event.title}</span>
+                    </button>
+                  ))}
+                </div>
+                <div className="mt-5 rounded-xl border border-white/10 bg-white/5 p-5">
+                  <p className="text-xs font-black uppercase tracking-[0.16em] text-[#d9ad58]">{t.blogEvents[selectedEventIndex].type}</p>
+                  <h3 className="mt-2 text-2xl font-black">{t.blogEvents[selectedEventIndex].title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-white/70">{t.blogEvents[selectedEventIndex].text}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-10">
+              <div className="mb-5 flex items-center gap-2 text-sm font-black uppercase tracking-[0.18em] text-emerald-900">
+                <Newspaper size={18} /> {t.newsTitle}
+              </div>
+              <div className="grid gap-5 md:grid-cols-3">
+                {t.blogPosts.map((post) => (
+                  <article key={post.title} className="rounded-2xl border border-emerald-950/10 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+                    <div className="flex flex-wrap items-center gap-3 text-xs font-black uppercase tracking-[0.12em] text-emerald-900">
+                      <span>{post.category}</span>
+                      <span className="text-slate-300">/</span>
+                      <span>{post.date}</span>
+                    </div>
+                    <h3 className="mt-4 text-xl font-black leading-tight text-slate-950">{post.title}</h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">{post.text}</p>
+                    <div className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-slate-500">
+                      <Clock3 size={15} /> {post.read}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
