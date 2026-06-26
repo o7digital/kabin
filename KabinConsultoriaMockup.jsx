@@ -349,9 +349,7 @@ const ecommercePackagesEs = [
     icon: Building2,
     title: "Paquete empresa ordenada",
     price: 12500,
-    pricePrefix: "Desde",
-    priceFractionDigits: 2,
-    cadence: "Mensual",
+    cadence: "mensual",
     tag: "PyME",
     description: "Soporte recurrente para contabilidad, cumplimiento, reportes y seguimiento operativo.",
     includes: ["Contabilidad mensual", "Calendario fiscal", "Reporte directivo", "Sesión mensual"],
@@ -1200,12 +1198,7 @@ export default function KabinConsultoriaMockup() {
                       <h3 className="mt-5 text-xl font-black text-slate-950">{item.title}</h3>
                       <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
                       <div className="mt-5 flex items-end gap-2">
-                        {item.pricePrefix && (
-                          <span className="pb-1 text-sm font-bold text-slate-500">{item.pricePrefix}</span>
-                        )}
-                        <span className="text-3xl font-black tracking-tight text-slate-950">
-                          {formatMxnWithDecimals(item.price, item.priceFractionDigits || 0)}
-                        </span>
+                        <span className="text-3xl font-black tracking-tight text-slate-950">{formatMxn(item.price)}</span>
                         <span className="pb-1 text-sm font-bold text-slate-500">{item.cadence}</span>
                       </div>
                       <div className="mt-5 grid gap-2">
