@@ -429,7 +429,7 @@ const formatMxnWithDecimals = (value, fractionDigits = 0) =>
     maximumFractionDigits: fractionDigits,
   }).format(Number.isFinite(value) ? value : 0);
 
-const whatsappUrl = "https://wa.me/524422371769";
+const whatsappUrl = "https://wa.me/5214422371769";
 
 const defaultInsuranceInputs = {
   income: "850000",
