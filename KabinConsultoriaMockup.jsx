@@ -429,6 +429,8 @@ const formatMxnWithDecimals = (value, fractionDigits = 0) =>
     maximumFractionDigits: fractionDigits,
   }).format(Number.isFinite(value) ? value : 0);
 
+const whatsappUrl = "https://wa.me/524422371769";
+
 const defaultInsuranceInputs = {
   income: "850000",
   otherIncome: "0",
@@ -705,7 +707,7 @@ export default function KabinConsultoriaMockup() {
               <button type="button" onClick={() => switchLanguage("en")} className={`rounded-full px-3 py-1 ${lang==="en"?"bg-white text-slate-900":""}`}>EN</button>
             </div>
             <a
-              href="https://wa.me/"
+              href={whatsappUrl}
               className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-5 py-2.5 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-white/20"
             >
               <MessageCircle size={16} /> Escríbenos por WhatsApp
@@ -767,7 +769,7 @@ export default function KabinConsultoriaMockup() {
               </nav>
               <div className="mt-4 grid gap-3">
                 <a
-                  href="https://wa.me/"
+                  href={whatsappUrl}
                   onClick={closeMenu}
                   className="inline-flex items-center justify-center gap-2 rounded-full border border-white/35 bg-white/10 px-5 py-3 text-sm font-black text-white"
                 >
@@ -1650,7 +1652,7 @@ export default function KabinConsultoriaMockup() {
             <div className="mt-4 grid gap-3 text-sm text-white/70">
               <p>{t.mexico}</p>
               <a
-                href="https://wa.me/"
+                href={whatsappUrl}
                 className="mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-3 font-black text-emerald-950 transition hover:-translate-y-0.5"
               >
                 <MessageCircle size={16} /> WhatsApp
