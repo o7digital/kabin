@@ -2,6 +2,6 @@
   "rewrites": [
     { "source": "/en", "destination": "/" },
     { "source": "/en/:path*", "destination": "/" },
-    { "source": "/((?!assets|.*\\..*).*)", "destination": "/" }
+    { "source": "/((?!api|assets|.*\\..*).*)", "destination": "/" }
   ]
 }

@@ -445,6 +445,8 @@ export default function KabinConsultoriaMockup() {
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
   const [selectedPackageIndex, setSelectedPackageIndex] = useState(0);
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+  const [quoteSubmitState, setQuoteSubmitState] = useState("idle");
   const [insuranceInputs, setInsuranceInputs] = useState(defaultInsuranceInputs);
   const [calculatedInsuranceInputs, setCalculatedInsuranceInputs] = useState(defaultInsuranceInputs);
   const [hasCalculatedInsurance, setHasCalculatedInsurance] = useState(true);
@@ -469,7 +471,7 @@ export default function KabinConsultoriaMockup() {
         ecommerceTitle: "Ecommerce", ecommerceHeading: "Forfaits listos para comprar, cotizar y convertir en clientes dentro del CRM.", ecommerceText: "Esta sección simula cómo Kabin podría vender servicios cerrados sin fricción: el cliente elige un paquete, deja sus datos, paga o solicita cotización, y el CRM recibe la oportunidad con todo el contexto.",
         choosePackage: "Cotizar", selectedPackage: "Forfait seleccionado", checkoutDemo: "Cotización", subtotal: "Subtotal", vat: "IVA estimado", total: "Total", payNow: "Cotizar", quoteNow: "Cotizar", crmReady: "Listo para backend + CRM", crmFlow: "Orden web → pago/lead → contacto CRM → tarea comercial → expediente del cliente",
         contactTitle: "Recibe acompañamiento profesional.", contactText: "Completa el formulario y te contactaremos para entender tu situación y proponerte una ruta de trabajo.",
-        fullname: "Nombre", lastname: "Apellido", email: "Correo electrónico", phone: "Teléfono", industry: "Tipo de industria", interest: "Servicio de interés", message: "Mensaje", send: "Enviar solicitud",
+        fullname: "Nombre", lastname: "Apellido", email: "Correo electrónico", phone: "Teléfono", industry: "Tipo de industria", interest: "Servicio de interés", message: "Mensaje", send: "Enviar solicitud", sending: "Enviando...", quoteSent: "Solicitud enviada. Kabin recibirá el lead en su CRM y por correo.", quoteError: "No se pudo enviar la solicitud. Inténtalo de nuevo o escríbenos por WhatsApp.",
         privacy: "Aviso de Privacidad", footerNav: "Navegación", footerContact: "Contacto", mexico: "Atención en México", social: "Redes sociales",
         rights: "© 2026 Kabin Consultoría Fiscal y Financiera. Todos los derechos reservados.", terms: "Términos", serviceDetail: "Detalle del servicio", request: "Solicitar asesoría",
       }
@@ -492,7 +494,7 @@ export default function KabinConsultoriaMockup() {
         ecommerceTitle: "Ecommerce", ecommerceHeading: "Packaged services ready to buy, quote, and convert into CRM clients.", ecommerceText: "This section simulates how Kabin could sell fixed-scope services with less friction: the client picks a package, shares details, pays or requests a quote, and the CRM receives the opportunity with context.",
         choosePackage: "Quote", selectedPackage: "Selected package", checkoutDemo: "Quote", subtotal: "Subtotal", vat: "Estimated VAT", total: "Total", payNow: "Quote", quoteNow: "Quote", crmReady: "Backend + CRM ready", crmFlow: "Web order → payment/lead → CRM contact → sales task → client file",
         contactTitle: "Receive professional support.", contactText: "Complete the form and we will contact you to understand your needs and propose a work plan.",
-        fullname: "First name", lastname: "Last name", email: "Email", phone: "Phone", industry: "Industry type", interest: "Service of interest", message: "Message", send: "Send request",
+        fullname: "First name", lastname: "Last name", email: "Email", phone: "Phone", industry: "Industry type", interest: "Service of interest", message: "Message", send: "Send request", sending: "Sending...", quoteSent: "Request sent. Kabin will receive the lead in its CRM and by email.", quoteError: "The request could not be sent. Please try again or contact us on WhatsApp.",
         privacy: "Privacy Notice", footerNav: "Navigation", footerContact: "Contact", mexico: "Service in Mexico", social: "Social media",
         rights: "© 2026 Kabin Tax and Financial Consulting. All rights reserved.", terms: "Terms", serviceDetail: "Service details", request: "Request consultation",
       };
@@ -564,9 +566,8 @@ export default function KabinConsultoriaMockup() {
   const closeMenu = () => setIsMenuOpen(false);
   const quotePackage = (index) => {
     setSelectedPackageIndex(index);
-    window.requestAnimationFrame(() => {
-      document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
+    setQuoteSubmitState("idle");
+    setIsQuoteModalOpen(true);
   };
   const active = t.heroSlides[currentSlide];
   const parsedInsurance = {
@@ -626,6 +627,32 @@ export default function KabinConsultoriaMockup() {
   const packageSubtotal = selectedPackage.price;
   const packageVat = packageSubtotal * 0.16;
   const packageTotal = packageSubtotal + packageVat;
+  const submitQuote = async (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData.entries());
+
+    setQuoteSubmitState("submitting");
+    try {
+      const response = await fetch("/api/kabin-quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...payload,
+          forfait_seleccionado: selectedPackage.title,
+          precio_forfait: packageSubtotal,
+          total_forfait: packageTotal,
+          idioma: lang,
+        }),
+      });
+      if (!response.ok) throw new Error("Quote request failed");
+      setQuoteSubmitState("success");
+      form.reset();
+    } catch (error) {
+      setQuoteSubmitState("error");
+    }
+  };
   const updateInsuranceInput = (field, value) => {
     setInsuranceInputs((current) => ({
       ...current,
@@ -1287,8 +1314,7 @@ export default function KabinConsultoriaMockup() {
               {t.contactText}
             </p>
             <form
-              action="https://formspree.io/f/mpqndjbl"
-              method="POST"
+              onSubmit={submitQuote}
               className="mt-8 grid gap-4 md:grid-cols-2"
             >
               <input type="hidden" name="_subject" value={`Nueva cotización Kabin: ${selectedPackage.title}`} />
@@ -1366,12 +1392,19 @@ export default function KabinConsultoriaMockup() {
               <div className="md:col-span-2">
                 <button
                   type="submit"
+                  disabled={quoteSubmitState === "submitting"}
                   className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3.5 text-sm font-black text-emerald-950 transition hover:-translate-y-0.5"
                 >
-                  {t.send}
+                  {quoteSubmitState === "submitting" ? t.sending : t.send}
                 </button>
               </div>
             </form>
+            {quoteSubmitState === "success" && (
+              <p className="mt-4 text-sm font-semibold text-emerald-100">{t.quoteSent}</p>
+            )}
+            {quoteSubmitState === "error" && (
+              <p className="mt-4 text-sm font-semibold text-red-200">{t.quoteError}</p>
+            )}
             <div className="mt-4 text-xs text-white/55">
               También puedes escribir a{" "}
               <a href="mailto:contacto@kabinconsultores.com" className="font-semibold text-white/80 hover:text-white">
@@ -1391,6 +1424,148 @@ export default function KabinConsultoriaMockup() {
       </a>
 
       <AnimatePresence>
+        {isQuoteModalOpen && (
+          <motion.div
+            className="fixed inset-0 z-[90] flex items-center justify-center bg-slate-950/70 px-4 py-6 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsQuoteModalOpen(false)}
+          >
+            <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="quote-modal-title"
+              className="max-h-[92vh] w-full max-w-4xl overflow-y-auto rounded-[1.8rem] bg-slate-950 p-6 text-white shadow-2xl md:p-8"
+              initial={{ opacity: 0, y: 24, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 16, scale: 0.98 }}
+              transition={{ duration: 0.22 }}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="flex items-start justify-between gap-5">
+                <div>
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#d9ad58]">{t.checkoutDemo}</p>
+                  <h3 id="quote-modal-title" className="mt-2 text-2xl font-black tracking-tight md:text-3xl">
+                    {selectedPackage.title}
+                  </h3>
+                  <p className="mt-2 max-w-2xl text-sm leading-6 text-white/65">{selectedPackage.description}</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setIsQuoteModalOpen(false)}
+                  className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white hover:text-slate-950"
+                  aria-label="Cerrar cotización"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              <div className="mt-5 grid gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm md:grid-cols-3">
+                <div>
+                  <span className="block text-white/55">{t.subtotal}</span>
+                  <strong className="mt-1 block text-lg">{formatMxn(packageSubtotal)}</strong>
+                </div>
+                <div>
+                  <span className="block text-white/55">{t.vat}</span>
+                  <strong className="mt-1 block text-lg">{formatMxn(packageVat)}</strong>
+                </div>
+                <div>
+                  <span className="block text-white/55">{t.total}</span>
+                  <strong className="mt-1 block text-lg text-[#d9ad58]">{formatMxn(packageTotal)}</strong>
+                </div>
+              </div>
+
+              <form onSubmit={submitQuote} className="mt-6 grid gap-4 md:grid-cols-2">
+                <label className="grid gap-2">
+                  <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">{t.fullname}</span>
+                  <input
+                    type="text"
+                    name="nombre"
+                    required
+                    className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
+                    placeholder="Tu nombre"
+                  />
+                </label>
+                <label className="grid gap-2">
+                  <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">{t.lastname}</span>
+                  <input
+                    type="text"
+                    name="apellido"
+                    required
+                    className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
+                    placeholder="Tu apellido"
+                  />
+                </label>
+                <label className="grid gap-2">
+                  <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">{t.email}</span>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
+                    placeholder="tu@correo.com"
+                  />
+                </label>
+                <label className="grid gap-2">
+                  <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">{t.phone}</span>
+                  <input
+                    type="tel"
+                    name="telefono"
+                    required
+                    className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
+                    placeholder="Tu teléfono"
+                  />
+                </label>
+                <label className="grid gap-2 md:col-span-2">
+                  <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">{t.industry}</span>
+                  <select
+                    name="tipo_industria"
+                    required
+                    className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white focus:border-white/45 focus:outline-none"
+                    defaultValue=""
+                  >
+                    <option value="" disabled className="text-slate-950">Selecciona una industria</option>
+                    <option value="Comercio" className="text-slate-950">Comercio</option>
+                    <option value="Servicios profesionales" className="text-slate-950">Servicios profesionales</option>
+                    <option value="Construcción / inmobiliario" className="text-slate-950">Construcción / inmobiliario</option>
+                    <option value="Restaurantes / alimentos" className="text-slate-950">Restaurantes / alimentos</option>
+                    <option value="Tecnología" className="text-slate-950">Tecnología</option>
+                    <option value="Salud" className="text-slate-950">Salud</option>
+                    <option value="Manufactura" className="text-slate-950">Manufactura</option>
+                    <option value="Otro" className="text-slate-950">Otro</option>
+                  </select>
+                </label>
+                <label className="grid gap-2 md:col-span-2">
+                  <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">{t.message}</span>
+                  <textarea
+                    name="mensaje"
+                    required
+                    rows={4}
+                    className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
+                    placeholder="Cuéntanos brevemente tu necesidad."
+                  />
+                </label>
+                <div className="flex flex-col gap-3 md:col-span-2 md:flex-row md:items-center">
+                  <button
+                    type="submit"
+                    disabled={quoteSubmitState === "submitting"}
+                    className="inline-flex items-center justify-center rounded-full bg-[#d9ad58] px-7 py-3.5 text-sm font-black text-slate-950 transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
+                  >
+                    {quoteSubmitState === "submitting" ? t.sending : t.send}
+                  </button>
+                  {quoteSubmitState === "success" && (
+                    <p className="text-sm font-semibold text-emerald-100">{t.quoteSent}</p>
+                  )}
+                  {quoteSubmitState === "error" && (
+                    <p className="text-sm font-semibold text-red-200">{t.quoteError}</p>
+                  )}
+                </div>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+
         {selectedService && (
           <motion.div
             className="fixed inset-0 z-[80] flex items-center justify-center bg-slate-950/65 px-5 py-8 backdrop-blur-sm"
