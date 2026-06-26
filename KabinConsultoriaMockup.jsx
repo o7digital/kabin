@@ -5,6 +5,8 @@ import {
   ArrowRight,
   Building2,
   Calculator,
+  CheckCircle2,
+  CreditCard,
   Facebook,
   FileText,
   HeartHandshake,
@@ -13,6 +15,7 @@ import {
   Menu,
   MessageCircle,
   Music2,
+  PackageCheck,
   PiggyBank,
   Scale,
   ShieldCheck,
@@ -226,15 +229,19 @@ const badgesEn = ["Responsibility", "Honesty", "Empathy", "Teamwork"];
 
 const navLinksEs = [
   { href: "#inicio", label: "Inicio" },
-  { href: "#servicios", label: "Servicios" },
   { href: "#nosotros", label: "Nosotros" },
+  { href: "#seguros", label: "Seguros" },
+  { href: "#ecommerce", label: "Ecommerce" },
+  { href: "#servicios", label: "Servicios" },
   { href: "#contacto", label: "Contacto" },
 ];
 
 const navLinksEn = [
   { href: "#inicio", label: "Home" },
-  { href: "#servicios", label: "Services" },
   { href: "#nosotros", label: "About" },
+  { href: "#seguros", label: "Insurance" },
+  { href: "#ecommerce", label: "Ecommerce" },
+  { href: "#servicios", label: "Services" },
   { href: "#contacto", label: "Contact" },
 ];
 
@@ -281,6 +288,161 @@ const journeyEn = [
   { year: "2026", title: "Digital transformation and AI" },
 ];
 
+const insuranceHighlightsEs = [
+  {
+    icon: ShieldCheck,
+    title: "Protección financiera",
+    text: "Seguros de vida, invalidez, gastos médicos mayores, auto y daños para reducir exposición ante imprevistos.",
+  },
+  {
+    icon: PiggyBank,
+    title: "Retiro con visión fiscal",
+    text: "Planes personales de retiro y estrategias de ahorro que pueden aprovechar beneficios de los artículos 151 y 185 de la LISR.",
+  },
+  {
+    icon: Landmark,
+    title: "Continuidad patrimonial",
+    text: "Liquidez para herencias, continuidad de negocios y protección del legado familiar o empresarial.",
+  },
+];
+
+const insuranceHighlightsEn = [
+  {
+    icon: ShieldCheck,
+    title: "Financial protection",
+    text: "Life, disability, major medical, auto, and damage coverage to reduce exposure to unexpected events.",
+  },
+  {
+    icon: PiggyBank,
+    title: "Tax-aware retirement",
+    text: "Private retirement plans and savings strategies that may use Mexican LISR articles 151 and 185 benefits.",
+  },
+  {
+    icon: Landmark,
+    title: "Legacy continuity",
+    text: "Liquidity for inheritance, business continuity, and family or company asset protection.",
+  },
+];
+
+const ecommercePackagesEs = [
+  {
+    icon: Calculator,
+    title: "Diagnóstico fiscal express",
+    price: 2900,
+    cadence: "Desde",
+    tag: "Entrada",
+    description: "Revisión inicial para detectar obligaciones, riesgos y oportunidades fiscales.",
+    includes: ["Cuestionario guiado", "Revisión de documentos clave", "Resumen ejecutivo", "Ruta de acción inicial"],
+    delivery: "Entrega estimada: 3 días hábiles",
+  },
+  {
+    icon: FileText,
+    title: "Declaración anual asistida",
+    price: 5200,
+    cadence: "por ejercicio",
+    tag: "Alta demanda",
+    description: "Acompañamiento para preparar información, deducciones y soporte de declaración anual.",
+    includes: ["Checklist documental", "Carga de deducciones", "Revisión de constancias", "Reporte de resultado"],
+    delivery: "Entrega estimada: 5 a 7 días hábiles",
+  },
+  {
+    icon: Building2,
+    title: "Paquete empresa ordenada",
+    price: 12500,
+    cadence: "desde",
+    tag: "PyME",
+    description: "Soporte recurrente para contabilidad, cumplimiento, reportes y seguimiento operativo.",
+    includes: ["Contabilidad mensual", "Calendario fiscal", "Reporte directivo", "Sesión mensual"],
+    delivery: "Inicio en 2 días hábiles",
+  },
+];
+
+const ecommercePackagesEn = [
+  {
+    icon: Calculator,
+    title: "Express tax diagnosis",
+    price: 2900,
+    cadence: "one-time",
+    tag: "Entry",
+    description: "Initial review to identify obligations, risks, and tax opportunities.",
+    includes: ["Guided questionnaire", "Key document review", "Executive summary", "Initial action plan"],
+    delivery: "Estimated delivery: 3 business days",
+  },
+  {
+    icon: FileText,
+    title: "Assisted annual filing",
+    price: 5200,
+    cadence: "per tax year",
+    tag: "Popular",
+    description: "Support to prepare information, deductions, and annual filing documentation.",
+    includes: ["Document checklist", "Deduction review", "Certificate review", "Result report"],
+    delivery: "Estimated delivery: 5 to 7 business days",
+  },
+  {
+    icon: Building2,
+    title: "Organized company package",
+    price: 12500,
+    cadence: "monthly",
+    tag: "SMB",
+    description: "Recurring support for accounting, compliance, reporting, and operating follow-up.",
+    includes: ["Monthly accounting", "Tax calendar", "Management report", "Monthly session"],
+    delivery: "Start in 2 business days",
+  },
+];
+
+const isrBrackets2024 = [
+  { min: 0.01, max: 7735, fixed: 0, rate: 0.0192 },
+  { min: 7735.01, max: 65651.07, fixed: 148.51, rate: 0.064 },
+  { min: 65651.08, max: 115375.9, fixed: 3855.14, rate: 0.1088 },
+  { min: 115375.91, max: 134119.41, fixed: 9265.2, rate: 0.16 },
+  { min: 134119.42, max: 160577.65, fixed: 12264.16, rate: 0.1792 },
+  { min: 160577.66, max: 323862, fixed: 17005.47, rate: 0.2136 },
+  { min: 323862.01, max: 510451, fixed: 51883.01, rate: 0.2352 },
+  { min: 510451.01, max: 974535.03, fixed: 95768.74, rate: 0.3 },
+  { min: 974535.04, max: 1299380.04, fixed: 234993.95, rate: 0.32 },
+  { min: 1299380.05, max: 3898140.12, fixed: 338944.34, rate: 0.34 },
+  { min: 3898140.13, max: Infinity, fixed: 1222522.76, rate: 0.35 },
+];
+
+const umaAnnual2024 = 39606.36;
+const art185Cap = 152000;
+
+const calculateAnnualIsr = (base) => {
+  const taxable = Math.max(Number(base) || 0, 0);
+  if (taxable <= 0) return 0;
+  const bracket = isrBrackets2024.find((item) => taxable >= item.min && taxable <= item.max) || isrBrackets2024[isrBrackets2024.length - 1];
+  return Math.max((taxable - bracket.min) * bracket.rate + bracket.fixed, 0);
+};
+
+const formatMxn = (value) =>
+  new Intl.NumberFormat("es-MX", {
+    style: "currency",
+    currency: "MXN",
+    maximumFractionDigits: 0,
+  }).format(Number.isFinite(value) ? value : 0);
+
+const formatMxnWithDecimals = (value, fractionDigits = 0) =>
+  new Intl.NumberFormat("es-MX", {
+    style: "currency",
+    currency: "MXN",
+    minimumFractionDigits: fractionDigits,
+    maximumFractionDigits: fractionDigits,
+  }).format(Number.isFinite(value) ? value : 0);
+
+const defaultInsuranceInputs = {
+  income: "850000",
+  otherIncome: "0",
+  medical: "18000",
+  funeral: "0",
+  donations: "5000",
+  gmm: "22000",
+  mortgage: "0",
+  transport: "0",
+  tuition: "0",
+  art151: "65000",
+  art185: "40000",
+};
+
 export default function KabinConsultoriaMockup() {
   const isEnglishPath = typeof window !== "undefined" && window.location.pathname.startsWith("/en");
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -289,10 +451,16 @@ export default function KabinConsultoriaMockup() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
+  const [selectedPackageIndex, setSelectedPackageIndex] = useState(0);
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+  const [quoteSubmitState, setQuoteSubmitState] = useState("idle");
+  const [insuranceInputs, setInsuranceInputs] = useState(defaultInsuranceInputs);
+  const [calculatedInsuranceInputs, setCalculatedInsuranceInputs] = useState(defaultInsuranceInputs);
+  const [hasCalculatedInsurance, setHasCalculatedInsurance] = useState(true);
 
   const t = lang === "es"
     ? {
-        navLinks: navLinksEs, badges: badgesEs, heroSlides: heroSlidesEs, services: servicesEs, values: valuesEs, journey: journeyEs,
+        navLinks: navLinksEs, badges: badgesEs, heroSlides: heroSlidesEs, services: servicesEs, values: valuesEs, journey: journeyEs, insuranceHighlights: insuranceHighlightsEs, ecommercePackages: ecommercePackagesEs,
         consult: "Consultoría Fiscal y Financiera", menuOpen: "Abrir menú", menuClose: "Cerrar menú",
         servicesTitle: "Servicios", servicesHeading: "Servicios contables, fiscales, financieros y patrimoniales desde una perspectiva humana.", readMore: "Ver más",
         about: "Nosotros", pillars: "Cimientos de nuestro éxito.", concept: "KABIN Consultores nació de un concepto claro: brindar servicios profesionales desde una perspectiva humana.",
@@ -300,13 +468,22 @@ export default function KabinConsultoriaMockup() {
         mission: "Nuestra misión", missionTitle: "Acompañamiento cálido y responsable.", missionText: "Brindar asesorías personalizadas y acompañamiento de una manera cálida, humana, responsable y profesional, para que cada cliente entienda su situación y pueda tomar decisiones con tranquilidad.",
         vision: "Nuestra visión", visionTitle: "Proteger y hacer crecer su legado.", visionText: "Ser uno de los consultores contables, fiscales y financieros de referencia para cuidar el patrimonio de nuestros clientes, fortalecer sus operaciones y acompañar su crecimiento con visión de largo plazo.",
         valuesTitle: "Nuestros valores", path: "Nuestro camino",
+        insuranceTitle: "Seguros", insuranceHeading: "Protección, ahorro y retiro con estrategia fiscal.", insuranceText: "Integramos seguros y planes de retiro dentro de una conversación patrimonial: qué proteger, cuánto ahorrar y qué beneficio fiscal podría existir según ingresos y deducciones.",
+        calculatorTitle: "Calculadora de impuestos 2024", calculatorText: "Herramienta indicativa para personas físicas en sueldos y salarios. Captura los datos del cliente y compara tres escenarios.",
+        incomeSection: "① Ingresos", deductionsSection: "② Deducciones personales", retirementSection: "③ Deducciones enfocadas al retiro", resultsSection: "④ Resultados",
+        tableConcept: "Concepto", annualAmount: "Monto anual", deductibleAmount: "Monto a deducir", income: "Ingreso anual bruto", otherIncome: "Otros ingresos anuales", totalIncome: "Total de ingresos",
+        medical: "Honorarios médicos y dentales", funeral: "Gastos funerarios", donations: "Donativos", gmm: "Primas de gastos médicos mayores", mortgage: "Intereses reales hipotecarios", transport: "Transporte escolar", tuition: "Colegiaturas",
+        art151: "Plan Personal de Retiro Art. 151", art185: "Estímulo fiscal Art. 185", withoutDeductions: "Sin deducciones", withPersonal: "Con deducciones personales", withRetirement: "Con deducciones y retiro", isrToPay: "ISR estimado", taxBenefit: "Beneficio fiscal", deductibleApplied: "Deducible aplicado", disclaimer: "Resultado aproximado; no sustituye asesoría fiscal ni representa criterio de autoridad.",
+        calculateSimulation: "Calcular simulación", calculationReady: "Resultados actualizados", calculationPending: "Hay cambios sin calcular", mainBenefit: "Beneficio estimado con retiro",
+        ecommerceTitle: "Ecommerce", ecommerceHeading: "Forfaits listos para comprar, cotizar y convertir en clientes dentro del CRM.", ecommerceText: "Esta sección simula cómo Kabin podría vender servicios cerrados sin fricción: el cliente elige un paquete, deja sus datos, paga o solicita cotización, y el CRM recibe la oportunidad con todo el contexto.",
+        choosePackage: "Cotizar", selectedPackage: "Forfait seleccionado", checkoutDemo: "Cotización", subtotal: "Subtotal", vat: "IVA estimado", total: "Total", payNow: "Cotizar", quoteNow: "Cotizar", crmReady: "Listo para backend + CRM", crmFlow: "Orden web → pago/lead → contacto CRM → tarea comercial → expediente del cliente",
         contactTitle: "Recibe acompañamiento profesional.", contactText: "Completa el formulario y te contactaremos para entender tu situación y proponerte una ruta de trabajo.",
-        fullname: "Nombre completo", email: "Correo electrónico", phone: "Teléfono", interest: "Servicio de interés", message: "Mensaje", send: "Enviar solicitud",
+        fullname: "Nombre", lastname: "Apellido", email: "Correo electrónico", phone: "Teléfono", industry: "Tipo de industria", interest: "Servicio de interés", message: "Mensaje", send: "Enviar solicitud", sending: "Enviando...", quoteSent: "Solicitud enviada. Kabin recibirá el lead en su CRM y por correo.", quoteError: "No se pudo enviar la solicitud. Inténtalo de nuevo o escríbenos por WhatsApp.",
         privacy: "Aviso de Privacidad", footerNav: "Navegación", footerContact: "Contacto", mexico: "Atención en México", social: "Redes sociales",
         rights: "© 2026 Kabin Consultoría Fiscal y Financiera. Todos los derechos reservados.", terms: "Términos", serviceDetail: "Detalle del servicio", request: "Solicitar asesoría",
       }
     : {
-        navLinks: navLinksEn, badges: badgesEn, heroSlides: heroSlidesEn, services: servicesEn, values: valuesEn, journey: journeyEn,
+        navLinks: navLinksEn, badges: badgesEn, heroSlides: heroSlidesEn, services: servicesEn, values: valuesEn, journey: journeyEn, insuranceHighlights: insuranceHighlightsEn, ecommercePackages: ecommercePackagesEn,
         consult: "Tax and Financial Consulting", menuOpen: "Open menu", menuClose: "Close menu",
         servicesTitle: "Services", servicesHeading: "Accounting, tax, financial, and asset-planning services from a human perspective.", readMore: "Read more",
         about: "About", pillars: "Foundations of our success.", concept: "KABIN Consultores was born from a clear concept: delivering professional services from a human perspective.",
@@ -314,8 +491,17 @@ export default function KabinConsultoriaMockup() {
         mission: "Our mission", missionTitle: "Warm and responsible support.", missionText: "Provide personalized advisory and support in a warm, human, responsible, and professional way.",
         vision: "Our vision", visionTitle: "Protect and grow your legacy.", visionText: "To become a leading accounting, tax, and financial consulting firm focused on protecting and growing client assets.",
         valuesTitle: "Our values", path: "Our journey",
+        insuranceTitle: "Insurance", insuranceHeading: "Protection, savings, and retirement with tax strategy.", insuranceText: "We integrate insurance and retirement plans into an asset-planning conversation: what to protect, how much to save, and which tax benefit may apply.",
+        calculatorTitle: "2024 tax calculator", calculatorText: "Indicative tool for individuals under salaries and wages in Mexico. Enter client data and compare three scenarios.",
+        incomeSection: "① Income", deductionsSection: "② Personal deductions", retirementSection: "③ Retirement-focused deductions", resultsSection: "④ Results",
+        tableConcept: "Concept", annualAmount: "Annual amount", deductibleAmount: "Deductible amount", income: "Annual gross income", otherIncome: "Other annual income", totalIncome: "Total income",
+        medical: "Medical and dental fees", funeral: "Funeral expenses", donations: "Donations", gmm: "Major medical insurance premiums", mortgage: "Mortgage real interest", transport: "School transportation", tuition: "Tuition",
+        art151: "Private Retirement Plan Art. 151", art185: "Tax incentive Art. 185", withoutDeductions: "No deductions", withPersonal: "With personal deductions", withRetirement: "With deductions and retirement", isrToPay: "Estimated ISR", taxBenefit: "Tax benefit", deductibleApplied: "Applied deductible", disclaimer: "Approximate result; it does not replace tax advice or represent an authority criterion.",
+        calculateSimulation: "Calculate simulation", calculationReady: "Results updated", calculationPending: "Changes not calculated", mainBenefit: "Estimated benefit with retirement",
+        ecommerceTitle: "Ecommerce", ecommerceHeading: "Packaged services ready to buy, quote, and convert into CRM clients.", ecommerceText: "This section simulates how Kabin could sell fixed-scope services with less friction: the client picks a package, shares details, pays or requests a quote, and the CRM receives the opportunity with context.",
+        choosePackage: "Quote", selectedPackage: "Selected package", checkoutDemo: "Quote", subtotal: "Subtotal", vat: "Estimated VAT", total: "Total", payNow: "Quote", quoteNow: "Quote", crmReady: "Backend + CRM ready", crmFlow: "Web order → payment/lead → CRM contact → sales task → client file",
         contactTitle: "Receive professional support.", contactText: "Complete the form and we will contact you to understand your needs and propose a work plan.",
-        fullname: "Full name", email: "Email", phone: "Phone", interest: "Service of interest", message: "Message", send: "Send request",
+        fullname: "First name", lastname: "Last name", email: "Email", phone: "Phone", industry: "Industry type", interest: "Service of interest", message: "Message", send: "Send request", sending: "Sending...", quoteSent: "Request sent. Kabin will receive the lead in its CRM and by email.", quoteError: "The request could not be sent. Please try again or contact us on WhatsApp.",
         privacy: "Privacy Notice", footerNav: "Navigation", footerContact: "Contact", mexico: "Service in Mexico", social: "Social media",
         rights: "© 2026 Kabin Tax and Financial Consulting. All rights reserved.", terms: "Terms", serviceDetail: "Service details", request: "Request consultation",
       };
@@ -385,7 +571,106 @@ export default function KabinConsultoriaMockup() {
   };
 
   const closeMenu = () => setIsMenuOpen(false);
+  const quotePackage = (index) => {
+    setSelectedPackageIndex(index);
+    setQuoteSubmitState("idle");
+    setIsQuoteModalOpen(true);
+  };
   const active = t.heroSlides[currentSlide];
+  const parsedInsurance = {
+    income: Number(calculatedInsuranceInputs.income) || 0,
+    otherIncome: Number(calculatedInsuranceInputs.otherIncome) || 0,
+    medical: Number(calculatedInsuranceInputs.medical) || 0,
+    funeral: Number(calculatedInsuranceInputs.funeral) || 0,
+    donations: Number(calculatedInsuranceInputs.donations) || 0,
+    gmm: Number(calculatedInsuranceInputs.gmm) || 0,
+    mortgage: Number(calculatedInsuranceInputs.mortgage) || 0,
+    transport: Number(calculatedInsuranceInputs.transport) || 0,
+    tuition: Number(calculatedInsuranceInputs.tuition) || 0,
+    art151: Number(calculatedInsuranceInputs.art151) || 0,
+    art185: Number(calculatedInsuranceInputs.art185) || 0,
+  };
+  const totalIncome = parsedInsurance.income + parsedInsurance.otherIncome;
+  const personalCap = Math.min(totalIncome * 0.15, umaAnnual2024 * 5);
+  const donationCap = totalIncome * 0.07;
+  const funeralCap = umaAnnual2024;
+  const mortgageCap = 750000 * 7.646804;
+  const art151Cap = Math.min(totalIncome * 0.1, umaAnnual2024 * 5);
+  const personalRows = [
+    { field: "medical", label: t.medical, cap: Infinity },
+    { field: "funeral", label: t.funeral, cap: funeralCap },
+    { field: "donations", label: t.donations, cap: donationCap },
+    { field: "gmm", label: t.gmm, cap: Infinity },
+    { field: "mortgage", label: t.mortgage, cap: mortgageCap },
+    { field: "transport", label: t.transport, cap: Infinity },
+    { field: "tuition", label: t.tuition, cap: 24500 },
+  ].map((row) => ({
+    ...row,
+    amount: parsedInsurance[row.field],
+    deductible: Math.min(parsedInsurance[row.field], row.cap),
+  }));
+  const appliedPersonal = Math.min(
+    personalRows.reduce((sum, row) => sum + row.deductible, 0),
+    personalCap,
+  );
+  const appliedArt151 = Math.min(parsedInsurance.art151, art151Cap);
+  const appliedArt185 = Math.min(parsedInsurance.art185, art185Cap);
+  const isrWithoutDeductions = calculateAnnualIsr(totalIncome);
+  const isrWithPersonal = calculateAnnualIsr(totalIncome - appliedPersonal);
+  const isrWithRetirement = calculateAnnualIsr(totalIncome - appliedPersonal - appliedArt151 - appliedArt185);
+  const personalBenefit = Math.max(isrWithoutDeductions - isrWithPersonal, 0);
+  const retirementBenefit = Math.max(isrWithoutDeductions - isrWithRetirement, 0);
+  const totalAppliedDeductible = appliedPersonal + appliedArt151 + appliedArt185;
+  const retirementRows = [
+    { field: "art185", label: t.art185, amount: parsedInsurance.art185, deductible: appliedArt185, cap: art185Cap },
+    { field: "art151", label: t.art151, amount: parsedInsurance.art151, deductible: appliedArt151, cap: art151Cap },
+  ];
+  const scenarioRows = [
+    { label: t.withoutDeductions, isr: isrWithoutDeductions, benefit: 0, deductible: 0 },
+    { label: t.withPersonal, isr: isrWithPersonal, benefit: personalBenefit, deductible: appliedPersonal },
+    { label: t.withRetirement, isr: isrWithRetirement, benefit: retirementBenefit, deductible: totalAppliedDeductible },
+  ];
+  const selectedPackage = t.ecommercePackages[selectedPackageIndex] || t.ecommercePackages[0];
+  const packageSubtotal = selectedPackage.price;
+  const packageVat = packageSubtotal * 0.16;
+  const packageTotal = packageSubtotal + packageVat;
+  const submitQuote = async (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData.entries());
+
+    setQuoteSubmitState("submitting");
+    try {
+      const response = await fetch("/api/kabin-quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...payload,
+          forfait_seleccionado: selectedPackage.title,
+          precio_forfait: packageSubtotal,
+          total_forfait: packageTotal,
+          idioma: lang,
+        }),
+      });
+      if (!response.ok) throw new Error("Quote request failed");
+      setQuoteSubmitState("success");
+      form.reset();
+    } catch (error) {
+      setQuoteSubmitState("error");
+    }
+  };
+  const updateInsuranceInput = (field, value) => {
+    setInsuranceInputs((current) => ({
+      ...current,
+      [field]: value.replace(/[^\d.]/g, ""),
+    }));
+    setHasCalculatedInsurance(false);
+  };
+  const calculateInsuranceSimulation = () => {
+    setCalculatedInsuranceInputs(insuranceInputs);
+    setHasCalculatedInsurance(true);
+  };
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#f4efe7] text-slate-900">
@@ -579,40 +864,6 @@ export default function KabinConsultoriaMockup() {
           </div>
         </section>
 
-        <section id="servicios" className="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
-          <div className="mb-10 max-w-3xl">
-            <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-900">{t.servicesTitle}</p>
-            <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl md:text-5xl">
-              {t.servicesHeading}
-            </h2>
-          </div>
-
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {t.services.map((service) => {
-              const Icon = service.icon;
-              return (
-                <article
-                  key={service.title}
-                  className="group flex h-full flex-col rounded-[1.8rem] border border-emerald-900/10 bg-white p-6 shadow-sm transition hover:-translate-y-1.5 hover:shadow-xl"
-                >
-                  <div className="mb-5 inline-flex rounded-2xl bg-emerald-50 p-3.5 text-emerald-950 transition group-hover:bg-emerald-950 group-hover:text-white">
-                    <Icon size={24} />
-                  </div>
-                  <h3 className="text-xl font-black text-slate-900">{service.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-slate-600">{service.text}</p>
-                  <button
-                    type="button"
-                    onClick={() => setSelectedService(service)}
-                    className="mt-auto inline-flex w-fit items-center gap-2 pt-5 text-left text-sm font-bold text-emerald-900"
-                  >
-                    {t.readMore} <ArrowRight size={15} />
-                  </button>
-                </article>
-              );
-            })}
-          </div>
-        </section>
-
         <section id="nosotros" className="bg-[#0d2340] py-16 text-white lg:py-24">
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
             <div className="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
@@ -694,6 +945,366 @@ export default function KabinConsultoriaMockup() {
           </div>
         </section>
 
+        <section id="seguros" className="bg-[#f9f6ef] py-16 lg:py-24">
+          <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+            <div>
+              <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-900">{t.insuranceTitle}</p>
+              <h2 className="mt-4 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl md:text-5xl">
+                {t.insuranceHeading}
+              </h2>
+              <p className="mt-5 text-base leading-8 text-slate-600 sm:text-lg">
+                {t.insuranceText}
+              </p>
+
+              <div className="mt-8 grid gap-4">
+                {t.insuranceHighlights.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <article key={item.title} className="flex gap-4 rounded-2xl border border-emerald-950/10 bg-white p-5 shadow-sm">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#0d2340] text-[#d9ad58]">
+                        <Icon size={23} />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-black text-slate-950">{item.title}</h3>
+                        <p className="mt-2 text-sm leading-7 text-slate-600">{item.text}</p>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="overflow-hidden rounded-[1.4rem] border border-slate-300 bg-white shadow-xl shadow-slate-900/10">
+              <div className="flex items-center gap-4 border-b border-slate-300 bg-[#17385f] px-5 py-4 text-white">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/12">
+                  <Calculator size={23} />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-black tracking-tight">{t.calculatorTitle}</h3>
+                  <p className="mt-1 text-sm leading-6 text-white/75">{t.calculatorText}</p>
+                </div>
+              </div>
+
+              <div className="bg-[#eef2f6] p-4 md:p-5">
+                <div className="grid gap-4">
+                  <div className="overflow-hidden rounded-xl border border-slate-300 bg-white">
+                    <div className="bg-[#d9ad58] px-4 py-2 text-sm font-black uppercase tracking-[0.16em] text-slate-950">
+                      {t.incomeSection}
+                    </div>
+                    <div className="grid grid-cols-[1fr_150px_150px] bg-[#17385f] text-xs font-black uppercase tracking-[0.12em] text-white max-sm:hidden">
+                      <div className="px-4 py-2">{t.tableConcept}</div>
+                      <div className="px-4 py-2 text-right">{t.annualAmount}</div>
+                      <div className="px-4 py-2 text-right">{t.deductibleAmount}</div>
+                    </div>
+                    {[
+                      ["income", t.income, parsedInsurance.income],
+                      ["otherIncome", t.otherIncome, parsedInsurance.otherIncome],
+                    ].map(([field, label, value]) => (
+                      <div key={field} className="grid items-center gap-2 border-t border-slate-200 px-4 py-3 sm:grid-cols-[1fr_150px_150px]">
+                        <label htmlFor={`insurance-${field}`} className="text-sm font-bold text-slate-700">{label}</label>
+                        <input
+                          id={`insurance-${field}`}
+                          type="text"
+                          inputMode="decimal"
+                          value={insuranceInputs[field]}
+                          onChange={(event) => updateInsuranceInput(field, event.target.value)}
+                          className="w-full border border-slate-300 bg-[#fff7d7] px-3 py-2 text-right text-sm font-black text-slate-950 outline-none focus:border-emerald-800"
+                        />
+                        <div className="border border-slate-200 bg-slate-100 px-3 py-2 text-right text-sm font-black text-slate-500">
+                          {formatMxn(value)}
+                        </div>
+                      </div>
+                    ))}
+                    <div className="grid items-center gap-2 border-t border-slate-300 bg-slate-100 px-4 py-3 sm:grid-cols-[1fr_150px_150px]">
+                      <div className="text-sm font-black uppercase tracking-[0.12em] text-slate-700">{t.totalIncome}</div>
+                      <div className="sm:col-span-2 text-right text-lg font-black text-emerald-950">{formatMxn(totalIncome)}</div>
+                    </div>
+                  </div>
+
+                  <div className="grid gap-4 rounded-xl border border-emerald-900/15 bg-white p-4 md:grid-cols-[1fr_auto] md:items-center">
+                    <div>
+                      <p className="text-xs font-black uppercase tracking-[0.16em] text-emerald-900">
+                        {hasCalculatedInsurance ? t.calculationReady : t.calculationPending}
+                      </p>
+                      <p className="mt-2 text-sm leading-6 text-slate-600">
+                        {lang === "es"
+                          ? "Modifica los montos amarillos y presiona calcular para actualizar deducciones, ISR y beneficio estimado."
+                          : "Edit the yellow fields and press calculate to update deductions, ISR, and estimated benefit."}
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={calculateInsuranceSimulation}
+                      className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-950 px-6 py-3 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-emerald-900"
+                    >
+                      <Calculator size={17} /> {t.calculateSimulation}
+                    </button>
+                  </div>
+
+                  <div className="overflow-hidden rounded-xl border border-slate-300 bg-white">
+                    <div className="bg-[#d9ad58] px-4 py-2 text-sm font-black uppercase tracking-[0.16em] text-slate-950">
+                      {t.deductionsSection}
+                    </div>
+                    <div className="grid grid-cols-[1fr_150px_150px] bg-[#17385f] text-xs font-black uppercase tracking-[0.12em] text-white max-sm:hidden">
+                      <div className="px-4 py-2">{t.tableConcept}</div>
+                      <div className="px-4 py-2 text-right">{t.annualAmount}</div>
+                      <div className="px-4 py-2 text-right">{t.deductibleAmount}</div>
+                    </div>
+                    {personalRows.map((row) => (
+                      <div key={row.field} className="grid items-center gap-2 border-t border-slate-200 px-4 py-3 sm:grid-cols-[1fr_150px_150px]">
+                        <label htmlFor={`insurance-${row.field}`} className="text-sm font-bold text-slate-700">{row.label}</label>
+                        <input
+                          id={`insurance-${row.field}`}
+                          type="text"
+                          inputMode="decimal"
+                          value={insuranceInputs[row.field]}
+                          onChange={(event) => updateInsuranceInput(row.field, event.target.value)}
+                          className="w-full border border-slate-300 bg-[#fff7d7] px-3 py-2 text-right text-sm font-black text-slate-950 outline-none focus:border-emerald-800"
+                        />
+                        <div className="border border-slate-200 bg-slate-100 px-3 py-2 text-right text-sm font-black text-slate-600">
+                          {formatMxn(row.deductible)}
+                        </div>
+                      </div>
+                    ))}
+                    <div className="grid items-center gap-2 border-t border-slate-300 bg-slate-100 px-4 py-3 sm:grid-cols-[1fr_150px_150px]">
+                      <div className="text-sm font-black uppercase tracking-[0.12em] text-slate-700">{t.deductibleApplied}</div>
+                      <div className="sm:col-span-2 text-right text-lg font-black text-emerald-950">{formatMxn(appliedPersonal)}</div>
+                    </div>
+                  </div>
+
+                  <div className="overflow-hidden rounded-xl border border-slate-300 bg-white">
+                    <div className="bg-[#d9ad58] px-4 py-2 text-sm font-black uppercase tracking-[0.16em] text-slate-950">
+                      {t.retirementSection}
+                    </div>
+                    {retirementRows.map((row) => (
+                      <div key={row.field} className="grid items-center gap-2 border-t border-slate-200 px-4 py-3 sm:grid-cols-[1fr_150px_150px]">
+                        <label htmlFor={`insurance-${row.field}`} className="text-sm font-bold text-slate-700">{row.label}</label>
+                        <input
+                          id={`insurance-${row.field}`}
+                          type="text"
+                          inputMode="decimal"
+                          value={insuranceInputs[row.field]}
+                          onChange={(event) => updateInsuranceInput(row.field, event.target.value)}
+                          className="w-full border border-slate-300 bg-[#fff7d7] px-3 py-2 text-right text-sm font-black text-slate-950 outline-none focus:border-emerald-800"
+                        />
+                        <div className="border border-slate-200 bg-slate-100 px-3 py-2 text-right text-sm font-black text-slate-600">
+                          {formatMxn(row.deductible)}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-col gap-3 rounded-xl border border-emerald-900/15 bg-emerald-950 p-4 text-white sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                      <p className="text-sm font-black uppercase tracking-[0.16em] text-[#d9ad58]">
+                        {hasCalculatedInsurance ? t.calculationReady : t.calculationPending}
+                      </p>
+                      <p className="mt-1 text-sm leading-6 text-white/70">
+                        {lang === "es" ? "Presiona calcular para refrescar el resultado final." : "Press calculate to refresh the final result."}
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={calculateInsuranceSimulation}
+                      className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-black text-emerald-950 transition hover:-translate-y-0.5"
+                    >
+                      <Calculator size={17} /> {t.calculateSimulation}
+                    </button>
+                  </div>
+
+                  <div className="overflow-hidden rounded-xl border border-slate-300 bg-white">
+                    <div className="bg-[#17385f] px-4 py-2 text-sm font-black uppercase tracking-[0.16em] text-white">
+                      {t.resultsSection}
+                    </div>
+                    <div className="grid gap-4 border-t border-slate-200 bg-[#fff7d7] p-4 md:grid-cols-[1fr_auto] md:items-center">
+                      <div>
+                        <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-600">{t.mainBenefit}</p>
+                        <p className="mt-1 text-sm font-semibold leading-6 text-slate-700">
+                          {lang === "es"
+                            ? "Comparado contra un escenario sin deducciones."
+                            : "Compared against a scenario with no deductions."}
+                        </p>
+                      </div>
+                      <p className="text-3xl font-black tracking-tight text-emerald-950">{formatMxn(retirementBenefit)}</p>
+                    </div>
+                    <div className="grid grid-cols-[1fr_145px_145px_145px] bg-slate-100 text-xs font-black uppercase tracking-[0.1em] text-slate-600 max-md:hidden">
+                      <div className="px-4 py-2">{t.tableConcept}</div>
+                      <div className="px-4 py-2 text-right">{t.isrToPay}</div>
+                      <div className="px-4 py-2 text-right">{t.taxBenefit}</div>
+                      <div className="px-4 py-2 text-right">{t.deductibleApplied}</div>
+                    </div>
+                    {scenarioRows.map((row) => (
+                      <div key={row.label} className="grid gap-2 border-t border-slate-200 px-4 py-3 md:grid-cols-[1fr_145px_145px_145px]">
+                        <div className="text-sm font-black text-slate-800">{row.label}</div>
+                        <div className="text-right text-sm font-black text-slate-950">{formatMxn(row.isr)}</div>
+                        <div className="text-right text-sm font-black text-emerald-800">{formatMxn(row.benefit)}</div>
+                        <div className="text-right text-sm font-black text-slate-600">{formatMxn(row.deductible)}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <p className="mt-4 text-xs leading-6 text-slate-500">{t.disclaimer}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="ecommerce" className="bg-white py-16 lg:py-24">
+          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+            <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+              <div>
+                <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-900">{t.ecommerceTitle}</p>
+                <h2 className="mt-4 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl md:text-5xl">
+                  {t.ecommerceHeading}
+                </h2>
+                <p className="mt-5 text-base leading-8 text-slate-600 sm:text-lg">
+                  {t.ecommerceText}
+                </p>
+              </div>
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#0d2340] text-[#d9ad58]">
+                    <PackageCheck size={23} />
+                  </div>
+                  <div>
+                    <p className="text-sm font-black uppercase tracking-[0.16em] text-emerald-900">{t.crmReady}</p>
+                    <p className="mt-1 text-sm leading-6 text-slate-600">{t.crmFlow}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_360px]">
+              <div className="grid gap-5 md:grid-cols-2">
+                {t.ecommercePackages.map((item, index) => {
+                  const Icon = item.icon;
+                  const isSelected = index === selectedPackageIndex;
+                  return (
+                    <article
+                      key={item.title}
+                      className={`flex h-full flex-col rounded-2xl border bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl ${
+                        isSelected ? "border-emerald-900 ring-2 ring-emerald-900/15" : "border-slate-200"
+                      }`}
+                    >
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-950">
+                          <Icon size={24} />
+                        </div>
+                        <span className="rounded-full bg-[#d9ad58] px-3 py-1 text-xs font-black uppercase tracking-[0.12em] text-slate-950">
+                          {item.tag}
+                        </span>
+                      </div>
+                      <h3 className="mt-5 text-xl font-black text-slate-950">{item.title}</h3>
+                      <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
+                      <div className="mt-5 flex items-end gap-2">
+                        <span className="text-3xl font-black tracking-tight text-slate-950">{formatMxn(item.price)}</span>
+                        <span className="pb-1 text-sm font-bold text-slate-500">{item.cadence}</span>
+                      </div>
+                      <div className="mt-5 grid gap-2">
+                        {item.includes.map((feature) => (
+                          <div key={feature} className="flex items-start gap-2 text-sm font-semibold leading-6 text-slate-700">
+                            <CheckCircle2 className="mt-0.5 shrink-0 text-emerald-800" size={16} />
+                            <span>{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <p className="mt-5 text-xs font-bold uppercase tracking-[0.12em] text-slate-500">{item.delivery}</p>
+                      <button
+                        type="button"
+                        onClick={() => quotePackage(index)}
+                        className={`mt-auto inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-black transition ${
+                          isSelected
+                            ? "bg-emerald-950 text-white"
+                            : "border border-emerald-950/20 text-emerald-950 hover:bg-emerald-950 hover:text-white"
+                        }`}
+                      >
+                        <FileText size={17} /> {t.choosePackage}
+                      </button>
+                    </article>
+                  );
+                })}
+              </div>
+
+              <aside className="h-fit rounded-2xl border border-slate-200 bg-slate-950 p-6 text-white shadow-2xl shadow-slate-900/20 lg:sticky lg:top-28">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-emerald-950">
+                    <CreditCard size={22} />
+                  </div>
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-[0.16em] text-[#d9ad58]">{t.checkoutDemo}</p>
+                    <h3 className="text-xl font-black">{t.selectedPackage}</h3>
+                  </div>
+                </div>
+
+                <div className="mt-6 rounded-xl border border-white/10 bg-white/5 p-4">
+                  <p className="text-lg font-black">{selectedPackage.title}</p>
+                  <p className="mt-2 text-sm leading-6 text-white/65">{selectedPackage.description}</p>
+                </div>
+
+                <div className="mt-6 grid gap-3 text-sm">
+                  <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                    <span className="text-white/65">{t.subtotal}</span>
+                    <span className="font-black">{formatMxn(packageSubtotal)}</span>
+                  </div>
+                  <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                    <span className="text-white/65">{t.vat}</span>
+                    <span className="font-black">{formatMxn(packageVat)}</span>
+                  </div>
+                  <div className="flex items-center justify-between pt-1">
+                    <span className="text-base font-black">{t.total}</span>
+                    <span className="text-2xl font-black text-[#d9ad58]">{formatMxn(packageTotal)}</span>
+                  </div>
+                </div>
+
+                <div className="mt-6 grid gap-3">
+                  <button
+                    type="button"
+                    onClick={() => quotePackage(selectedPackageIndex)}
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-[#d9ad58] px-5 py-3 text-sm font-black text-slate-950 transition hover:-translate-y-0.5"
+                  >
+                    <FileText size={17} /> {t.payNow}
+                  </button>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <section id="servicios" className="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+          <div className="mb-10 max-w-3xl">
+            <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-900">{t.servicesTitle}</p>
+            <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl md:text-5xl">
+              {t.servicesHeading}
+            </h2>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {t.services.map((service) => {
+              const Icon = service.icon;
+              return (
+                <article
+                  key={service.title}
+                  className="group flex h-full flex-col rounded-[1.8rem] border border-emerald-900/10 bg-white p-6 shadow-sm transition hover:-translate-y-1.5 hover:shadow-xl"
+                >
+                  <div className="mb-5 inline-flex rounded-2xl bg-emerald-50 p-3.5 text-emerald-950 transition group-hover:bg-emerald-950 group-hover:text-white">
+                    <Icon size={24} />
+                  </div>
+                  <h3 className="text-xl font-black text-slate-900">{service.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-600">{service.text}</p>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedService(service)}
+                    className="mt-auto inline-flex w-fit items-center gap-2 pt-5 text-left text-sm font-bold text-emerald-900"
+                  >
+                    {t.readMore} <ArrowRight size={15} />
+                  </button>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+
         <section id="contacto" className="mx-auto max-w-7xl px-5 pb-20 lg:px-8">
           <div className="rounded-[2.2rem] bg-slate-950 p-8 text-white shadow-2xl md:p-12">
             <h2 className="max-w-3xl text-3xl font-black tracking-tight sm:text-4xl md:text-5xl">
@@ -703,10 +1314,12 @@ export default function KabinConsultoriaMockup() {
               {t.contactText}
             </p>
             <form
-              action="https://formspree.io/f/mpqndjbl"
-              method="POST"
+              onSubmit={submitQuote}
               className="mt-8 grid gap-4 md:grid-cols-2"
             >
+              <input type="hidden" name="_subject" value={`Nueva cotización Kabin: ${selectedPackage.title}`} />
+              <input type="hidden" name="forfait_seleccionado" value={selectedPackage.title} />
+              <input type="hidden" name="precio_forfait" value={formatMxn(packageSubtotal)} />
               <label className="grid gap-2">
                 <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">{t.fullname}</span>
                 <input
@@ -715,6 +1328,16 @@ export default function KabinConsultoriaMockup() {
                   required
                   className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
                   placeholder="Tu nombre"
+                />
+              </label>
+              <label className="grid gap-2">
+                <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">{t.lastname}</span>
+                <input
+                  type="text"
+                  name="apellido"
+                  required
+                  className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
+                  placeholder="Tu apellido"
                 />
               </label>
               <label className="grid gap-2">
@@ -732,18 +1355,29 @@ export default function KabinConsultoriaMockup() {
                 <input
                   type="tel"
                   name="telefono"
+                  required
                   className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
                   placeholder="Tu teléfono"
                 />
               </label>
               <label className="grid gap-2">
-                <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">{t.interest}</span>
-                <input
-                  type="text"
-                  name="servicio"
+                <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">{t.industry}</span>
+                <select
+                  name="tipo_industria"
+                  required
                   className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
-                  placeholder="Contabilidad, fiscal, patrimonial..."
-                />
+                  defaultValue=""
+                >
+                  <option value="" disabled className="text-slate-950">Selecciona una industria</option>
+                  <option value="Comercio" className="text-slate-950">Comercio</option>
+                  <option value="Servicios profesionales" className="text-slate-950">Servicios profesionales</option>
+                  <option value="Construcción / inmobiliario" className="text-slate-950">Construcción / inmobiliario</option>
+                  <option value="Restaurantes / alimentos" className="text-slate-950">Restaurantes / alimentos</option>
+                  <option value="Tecnología" className="text-slate-950">Tecnología</option>
+                  <option value="Salud" className="text-slate-950">Salud</option>
+                  <option value="Manufactura" className="text-slate-950">Manufactura</option>
+                  <option value="Otro" className="text-slate-950">Otro</option>
+                </select>
               </label>
               <label className="grid gap-2 md:col-span-2">
                 <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">{t.message}</span>
@@ -758,12 +1392,19 @@ export default function KabinConsultoriaMockup() {
               <div className="md:col-span-2">
                 <button
                   type="submit"
+                  disabled={quoteSubmitState === "submitting"}
                   className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3.5 text-sm font-black text-emerald-950 transition hover:-translate-y-0.5"
                 >
-                  {t.send}
+                  {quoteSubmitState === "submitting" ? t.sending : t.send}
                 </button>
               </div>
             </form>
+            {quoteSubmitState === "success" && (
+              <p className="mt-4 text-sm font-semibold text-emerald-100">{t.quoteSent}</p>
+            )}
+            {quoteSubmitState === "error" && (
+              <p className="mt-4 text-sm font-semibold text-red-200">{t.quoteError}</p>
+            )}
             <div className="mt-4 text-xs text-white/55">
               También puedes escribir a{" "}
               <a href="mailto:contacto@kabinconsultores.com" className="font-semibold text-white/80 hover:text-white">
@@ -783,6 +1424,148 @@ export default function KabinConsultoriaMockup() {
       </a>
 
       <AnimatePresence>
+        {isQuoteModalOpen && (
+          <motion.div
+            className="fixed inset-0 z-[90] flex items-center justify-center bg-slate-950/70 px-4 py-6 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsQuoteModalOpen(false)}
+          >
+            <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="quote-modal-title"
+              className="max-h-[92vh] w-full max-w-4xl overflow-y-auto rounded-[1.8rem] bg-slate-950 p-6 text-white shadow-2xl md:p-8"
+              initial={{ opacity: 0, y: 24, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 16, scale: 0.98 }}
+              transition={{ duration: 0.22 }}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="flex items-start justify-between gap-5">
+                <div>
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#d9ad58]">{t.checkoutDemo}</p>
+                  <h3 id="quote-modal-title" className="mt-2 text-2xl font-black tracking-tight md:text-3xl">
+                    {selectedPackage.title}
+                  </h3>
+                  <p className="mt-2 max-w-2xl text-sm leading-6 text-white/65">{selectedPackage.description}</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setIsQuoteModalOpen(false)}
+                  className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white hover:text-slate-950"
+                  aria-label="Cerrar cotización"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              <div className="mt-5 grid gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm md:grid-cols-3">
+                <div>
+                  <span className="block text-white/55">{t.subtotal}</span>
+                  <strong className="mt-1 block text-lg">{formatMxn(packageSubtotal)}</strong>
+                </div>
+                <div>
+                  <span className="block text-white/55">{t.vat}</span>
+                  <strong className="mt-1 block text-lg">{formatMxn(packageVat)}</strong>
+                </div>
+                <div>
+                  <span className="block text-white/55">{t.total}</span>
+                  <strong className="mt-1 block text-lg text-[#d9ad58]">{formatMxn(packageTotal)}</strong>
+                </div>
+              </div>
+
+              <form onSubmit={submitQuote} className="mt-6 grid gap-4 md:grid-cols-2">
+                <label className="grid gap-2">
+                  <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">{t.fullname}</span>
+                  <input
+                    type="text"
+                    name="nombre"
+                    required
+                    className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
+                    placeholder="Tu nombre"
+                  />
+                </label>
+                <label className="grid gap-2">
+                  <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">{t.lastname}</span>
+                  <input
+                    type="text"
+                    name="apellido"
+                    required
+                    className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
+                    placeholder="Tu apellido"
+                  />
+                </label>
+                <label className="grid gap-2">
+                  <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">{t.email}</span>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
+                    placeholder="tu@correo.com"
+                  />
+                </label>
+                <label className="grid gap-2">
+                  <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">{t.phone}</span>
+                  <input
+                    type="tel"
+                    name="telefono"
+                    required
+                    className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
+                    placeholder="Tu teléfono"
+                  />
+                </label>
+                <label className="grid gap-2 md:col-span-2">
+                  <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">{t.industry}</span>
+                  <select
+                    name="tipo_industria"
+                    required
+                    className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white focus:border-white/45 focus:outline-none"
+                    defaultValue=""
+                  >
+                    <option value="" disabled className="text-slate-950">Selecciona una industria</option>
+                    <option value="Comercio" className="text-slate-950">Comercio</option>
+                    <option value="Servicios profesionales" className="text-slate-950">Servicios profesionales</option>
+                    <option value="Construcción / inmobiliario" className="text-slate-950">Construcción / inmobiliario</option>
+                    <option value="Restaurantes / alimentos" className="text-slate-950">Restaurantes / alimentos</option>
+                    <option value="Tecnología" className="text-slate-950">Tecnología</option>
+                    <option value="Salud" className="text-slate-950">Salud</option>
+                    <option value="Manufactura" className="text-slate-950">Manufactura</option>
+                    <option value="Otro" className="text-slate-950">Otro</option>
+                  </select>
+                </label>
+                <label className="grid gap-2 md:col-span-2">
+                  <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">{t.message}</span>
+                  <textarea
+                    name="mensaje"
+                    required
+                    rows={4}
+                    className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
+                    placeholder="Cuéntanos brevemente tu necesidad."
+                  />
+                </label>
+                <div className="flex flex-col gap-3 md:col-span-2 md:flex-row md:items-center">
+                  <button
+                    type="submit"
+                    disabled={quoteSubmitState === "submitting"}
+                    className="inline-flex items-center justify-center rounded-full bg-[#d9ad58] px-7 py-3.5 text-sm font-black text-slate-950 transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
+                  >
+                    {quoteSubmitState === "submitting" ? t.sending : t.send}
+                  </button>
+                  {quoteSubmitState === "success" && (
+                    <p className="text-sm font-semibold text-emerald-100">{t.quoteSent}</p>
+                  )}
+                  {quoteSubmitState === "error" && (
+                    <p className="text-sm font-semibold text-red-200">{t.quoteError}</p>
+                  )}
+                </div>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+
         {selectedService && (
           <motion.div
             className="fixed inset-0 z-[80] flex items-center justify-center bg-slate-950/65 px-5 py-8 backdrop-blur-sm"
