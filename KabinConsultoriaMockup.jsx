@@ -349,7 +349,7 @@ const ecommercePackagesEs = [
     icon: Building2,
     title: "Paquete empresa ordenada",
     price: 12500,
-    cadence: "mensual",
+    cadence: "desde",
     tag: "PyME",
     description: "Soporte recurrente para contabilidad, cumplimiento, reportes y seguimiento operativo.",
     includes: ["Contabilidad mensual", "Calendario fiscal", "Reporte directivo", "Sesión mensual"],
