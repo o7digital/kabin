@@ -19,7 +19,6 @@ import {
   PiggyBank,
   Scale,
   ShieldCheck,
-  ShoppingCart,
   Sparkles,
   UsersRound,
   X,
@@ -331,7 +330,7 @@ const ecommercePackagesEs = [
     icon: Calculator,
     title: "Diagnóstico fiscal express",
     price: 2900,
-    cadence: "pago único",
+    cadence: "Desde",
     tag: "Entrada",
     description: "Revisión inicial para detectar obligaciones, riesgos y oportunidades fiscales.",
     includes: ["Cuestionario guiado", "Revisión de documentos clave", "Resumen ejecutivo", "Ruta de acción inicial"],
@@ -346,16 +345,6 @@ const ecommercePackagesEs = [
     description: "Acompañamiento para preparar información, deducciones y soporte de declaración anual.",
     includes: ["Checklist documental", "Carga de deducciones", "Revisión de constancias", "Reporte de resultado"],
     delivery: "Entrega estimada: 5 a 7 días hábiles",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Plan seguros y retiro",
-    price: 3900,
-    cadence: "diagnóstico",
-    tag: "Nuevo",
-    description: "Simulación patrimonial y fiscal para seguros, PPR, Art. 151 y Art. 185.",
-    includes: ["Captura fiscal", "Simulación de beneficios", "Perfil de protección", "Recomendación de siguiente paso"],
-    delivery: "Entrega estimada: 48 horas",
   },
   {
     icon: Building2,
@@ -389,16 +378,6 @@ const ecommercePackagesEn = [
     description: "Support to prepare information, deductions, and annual filing documentation.",
     includes: ["Document checklist", "Deduction review", "Certificate review", "Result report"],
     delivery: "Estimated delivery: 5 to 7 business days",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Insurance and retirement plan",
-    price: 3900,
-    cadence: "diagnosis",
-    tag: "New",
-    description: "Asset and tax simulation for insurance, PPR, Art. 151, and Art. 185.",
-    includes: ["Tax intake", "Benefit simulation", "Protection profile", "Recommended next step"],
-    delivery: "Estimated delivery: 48 hours",
   },
   {
     icon: Building2,
@@ -465,7 +444,7 @@ export default function KabinConsultoriaMockup() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
-  const [selectedPackageIndex, setSelectedPackageIndex] = useState(2);
+  const [selectedPackageIndex, setSelectedPackageIndex] = useState(0);
   const [insuranceInputs, setInsuranceInputs] = useState(defaultInsuranceInputs);
   const [calculatedInsuranceInputs, setCalculatedInsuranceInputs] = useState(defaultInsuranceInputs);
   const [hasCalculatedInsurance, setHasCalculatedInsurance] = useState(true);
@@ -488,9 +467,9 @@ export default function KabinConsultoriaMockup() {
         art151: "Plan Personal de Retiro Art. 151", art185: "Estímulo fiscal Art. 185", withoutDeductions: "Sin deducciones", withPersonal: "Con deducciones personales", withRetirement: "Con deducciones y retiro", isrToPay: "ISR estimado", taxBenefit: "Beneficio fiscal", deductibleApplied: "Deducible aplicado", disclaimer: "Resultado aproximado; no sustituye asesoría fiscal ni representa criterio de autoridad.",
         calculateSimulation: "Calcular simulación", calculationReady: "Resultados actualizados", calculationPending: "Hay cambios sin calcular", mainBenefit: "Beneficio estimado con retiro",
         ecommerceTitle: "Ecommerce", ecommerceHeading: "Forfaits listos para comprar, cotizar y convertir en clientes dentro del CRM.", ecommerceText: "Esta sección simula cómo Kabin podría vender servicios cerrados sin fricción: el cliente elige un paquete, deja sus datos, paga o solicita cotización, y el CRM recibe la oportunidad con todo el contexto.",
-        choosePackage: "Elegir forfait", selectedPackage: "Forfait seleccionado", checkoutDemo: "Checkout simulado", subtotal: "Subtotal", vat: "IVA estimado", total: "Total", payNow: "Simular compra", quoteNow: "Solicitar cotización", crmReady: "Listo para backend + CRM", crmFlow: "Orden web → pago/lead → contacto CRM → tarea comercial → expediente del cliente",
+        choosePackage: "Cotizar", selectedPackage: "Forfait seleccionado", checkoutDemo: "Cotización", subtotal: "Subtotal", vat: "IVA estimado", total: "Total", payNow: "Cotizar", quoteNow: "Cotizar", crmReady: "Listo para backend + CRM", crmFlow: "Orden web → pago/lead → contacto CRM → tarea comercial → expediente del cliente",
         contactTitle: "Recibe acompañamiento profesional.", contactText: "Completa el formulario y te contactaremos para entender tu situación y proponerte una ruta de trabajo.",
-        fullname: "Nombre completo", email: "Correo electrónico", phone: "Teléfono", interest: "Servicio de interés", message: "Mensaje", send: "Enviar solicitud",
+        fullname: "Nombre", lastname: "Apellido", email: "Correo electrónico", phone: "Teléfono", industry: "Tipo de industria", interest: "Servicio de interés", message: "Mensaje", send: "Enviar solicitud",
         privacy: "Aviso de Privacidad", footerNav: "Navegación", footerContact: "Contacto", mexico: "Atención en México", social: "Redes sociales",
         rights: "© 2026 Kabin Consultoría Fiscal y Financiera. Todos los derechos reservados.", terms: "Términos", serviceDetail: "Detalle del servicio", request: "Solicitar asesoría",
       }
@@ -511,9 +490,9 @@ export default function KabinConsultoriaMockup() {
         art151: "Private Retirement Plan Art. 151", art185: "Tax incentive Art. 185", withoutDeductions: "No deductions", withPersonal: "With personal deductions", withRetirement: "With deductions and retirement", isrToPay: "Estimated ISR", taxBenefit: "Tax benefit", deductibleApplied: "Applied deductible", disclaimer: "Approximate result; it does not replace tax advice or represent an authority criterion.",
         calculateSimulation: "Calculate simulation", calculationReady: "Results updated", calculationPending: "Changes not calculated", mainBenefit: "Estimated benefit with retirement",
         ecommerceTitle: "Ecommerce", ecommerceHeading: "Packaged services ready to buy, quote, and convert into CRM clients.", ecommerceText: "This section simulates how Kabin could sell fixed-scope services with less friction: the client picks a package, shares details, pays or requests a quote, and the CRM receives the opportunity with context.",
-        choosePackage: "Choose package", selectedPackage: "Selected package", checkoutDemo: "Simulated checkout", subtotal: "Subtotal", vat: "Estimated VAT", total: "Total", payNow: "Simulate purchase", quoteNow: "Request quote", crmReady: "Backend + CRM ready", crmFlow: "Web order → payment/lead → CRM contact → sales task → client file",
+        choosePackage: "Quote", selectedPackage: "Selected package", checkoutDemo: "Quote", subtotal: "Subtotal", vat: "Estimated VAT", total: "Total", payNow: "Quote", quoteNow: "Quote", crmReady: "Backend + CRM ready", crmFlow: "Web order → payment/lead → CRM contact → sales task → client file",
         contactTitle: "Receive professional support.", contactText: "Complete the form and we will contact you to understand your needs and propose a work plan.",
-        fullname: "Full name", email: "Email", phone: "Phone", interest: "Service of interest", message: "Message", send: "Send request",
+        fullname: "First name", lastname: "Last name", email: "Email", phone: "Phone", industry: "Industry type", interest: "Service of interest", message: "Message", send: "Send request",
         privacy: "Privacy Notice", footerNav: "Navigation", footerContact: "Contact", mexico: "Service in Mexico", social: "Social media",
         rights: "© 2026 Kabin Tax and Financial Consulting. All rights reserved.", terms: "Terms", serviceDetail: "Service details", request: "Request consultation",
       };
@@ -583,6 +562,12 @@ export default function KabinConsultoriaMockup() {
   };
 
   const closeMenu = () => setIsMenuOpen(false);
+  const quotePackage = (index) => {
+    setSelectedPackageIndex(index);
+    window.requestAnimationFrame(() => {
+      document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  };
   const active = t.heroSlides[currentSlide];
   const parsedInsurance = {
     income: Number(calculatedInsuranceInputs.income) || 0,
@@ -1193,14 +1178,14 @@ export default function KabinConsultoriaMockup() {
                       <p className="mt-5 text-xs font-bold uppercase tracking-[0.12em] text-slate-500">{item.delivery}</p>
                       <button
                         type="button"
-                        onClick={() => setSelectedPackageIndex(index)}
+                        onClick={() => quotePackage(index)}
                         className={`mt-auto inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-black transition ${
                           isSelected
                             ? "bg-emerald-950 text-white"
                             : "border border-emerald-950/20 text-emerald-950 hover:bg-emerald-950 hover:text-white"
                         }`}
                       >
-                        <ShoppingCart size={17} /> {t.choosePackage}
+                        <FileText size={17} /> {t.choosePackage}
                       </button>
                     </article>
                   );
@@ -1239,18 +1224,20 @@ export default function KabinConsultoriaMockup() {
                 </div>
 
                 <div className="mt-6 grid gap-3">
-                  <a
-                    href="#contacto"
+                  <button
+                    type="button"
+                    onClick={() => quotePackage(selectedPackageIndex)}
                     className="inline-flex items-center justify-center gap-2 rounded-full bg-[#d9ad58] px-5 py-3 text-sm font-black text-slate-950 transition hover:-translate-y-0.5"
                   >
-                    <CreditCard size={17} /> {t.payNow}
-                  </a>
-                  <a
-                    href="#contacto"
+                    <FileText size={17} /> {t.payNow}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => quotePackage(selectedPackageIndex)}
                     className="inline-flex items-center justify-center rounded-full border border-white/25 px-5 py-3 text-sm font-black text-white transition hover:bg-white hover:text-slate-950"
                   >
                     {t.quoteNow}
-                  </a>
+                  </button>
                 </div>
               </aside>
             </div>
@@ -1304,6 +1291,9 @@ export default function KabinConsultoriaMockup() {
               method="POST"
               className="mt-8 grid gap-4 md:grid-cols-2"
             >
+              <input type="hidden" name="_subject" value={`Nueva cotización Kabin: ${selectedPackage.title}`} />
+              <input type="hidden" name="forfait_seleccionado" value={selectedPackage.title} />
+              <input type="hidden" name="precio_forfait" value={formatMxn(packageSubtotal)} />
               <label className="grid gap-2">
                 <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">{t.fullname}</span>
                 <input
@@ -1312,6 +1302,16 @@ export default function KabinConsultoriaMockup() {
                   required
                   className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
                   placeholder="Tu nombre"
+                />
+              </label>
+              <label className="grid gap-2">
+                <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">{t.lastname}</span>
+                <input
+                  type="text"
+                  name="apellido"
+                  required
+                  className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
+                  placeholder="Tu apellido"
                 />
               </label>
               <label className="grid gap-2">
@@ -1329,18 +1329,29 @@ export default function KabinConsultoriaMockup() {
                 <input
                   type="tel"
                   name="telefono"
+                  required
                   className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
                   placeholder="Tu teléfono"
                 />
               </label>
               <label className="grid gap-2">
-                <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">{t.interest}</span>
-                <input
-                  type="text"
-                  name="servicio"
+                <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">{t.industry}</span>
+                <select
+                  name="tipo_industria"
+                  required
                   className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
-                  placeholder="Contabilidad, fiscal, patrimonial..."
-                />
+                  defaultValue=""
+                >
+                  <option value="" disabled className="text-slate-950">Selecciona una industria</option>
+                  <option value="Comercio" className="text-slate-950">Comercio</option>
+                  <option value="Servicios profesionales" className="text-slate-950">Servicios profesionales</option>
+                  <option value="Construcción / inmobiliario" className="text-slate-950">Construcción / inmobiliario</option>
+                  <option value="Restaurantes / alimentos" className="text-slate-950">Restaurantes / alimentos</option>
+                  <option value="Tecnología" className="text-slate-950">Tecnología</option>
+                  <option value="Salud" className="text-slate-950">Salud</option>
+                  <option value="Manufactura" className="text-slate-950">Manufactura</option>
+                  <option value="Otro" className="text-slate-950">Otro</option>
+                </select>
               </label>
               <label className="grid gap-2 md:col-span-2">
                 <span className="text-xs font-bold uppercase tracking-[0.14em] text-amber-100">{t.message}</span>
