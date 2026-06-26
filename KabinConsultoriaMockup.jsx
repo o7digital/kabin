@@ -1258,13 +1258,6 @@ export default function KabinConsultoriaMockup() {
                   >
                     <FileText size={17} /> {t.payNow}
                   </button>
-                  <button
-                    type="button"
-                    onClick={() => quotePackage(selectedPackageIndex)}
-                    className="inline-flex items-center justify-center rounded-full border border-white/25 px-5 py-3 text-sm font-black text-white transition hover:bg-white hover:text-slate-950"
-                  >
-                    {t.quoteNow}
-                  </button>
                 </div>
               </aside>
             </div>
