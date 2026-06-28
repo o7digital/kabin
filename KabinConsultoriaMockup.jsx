@@ -566,30 +566,52 @@ export default function KabinConsultoriaMockup() {
 
   useEffect(() => {
     const isEn = lang === "en";
-    const base = window.location.origin;
+    const base = "https://www.kabinconsultores.com";
     const esUrl = `${base}/`;
     const enUrl = `${base}/en/`;
+    const title = isEn
+      ? "Kabin | Tax, Accounting and Financial Consulting"
+      : "Kabin | Consultoría Fiscal, Contable y Financiera";
+    const description = isEn
+      ? "Accounting, tax, financial and wealth consulting in Mexico for individuals and businesses."
+      : "Consultoría contable, fiscal, financiera y patrimonial en México para personas y empresas. Asesoría profesional, humana y personalizada.";
+    const pageUrl = isEn ? enUrl : esUrl;
 
     document.documentElement.lang = isEn ? "en" : "es";
-    document.title = isEn ? "Kabin Tax and Financial Consulting" : "Kabin Consultoría Fiscal y Financiera";
+    document.title = title;
 
     const setLink = (rel, href, hreflang) => {
       const key = hreflang ? `${rel}-${hreflang}` : rel;
-      let el = document.head.querySelector(`link[data-seo='${key}']`);
+      const selector = hreflang
+        ? `link[rel='${rel}'][hreflang='${hreflang}']`
+        : `link[rel='${rel}']:not([hreflang])`;
+      let el = document.head.querySelector(selector);
       if (!el) {
         el = document.createElement("link");
-        el.setAttribute("data-seo", key);
         document.head.appendChild(el);
       }
+      el.setAttribute("data-seo", key);
       el.setAttribute("rel", rel);
       el.setAttribute("href", href);
       if (hreflang) el.setAttribute("hreflang", hreflang);
     };
 
-    setLink("canonical", isEn ? enUrl : esUrl);
+    const setMeta = (selector, attribute, value) => {
+      const el = document.head.querySelector(selector);
+      if (el) el.setAttribute(attribute, value);
+    };
+
+    setLink("canonical", pageUrl);
     setLink("alternate", esUrl, "es-MX");
     setLink("alternate", enUrl, "en");
     setLink("alternate", esUrl, "x-default");
+    setMeta("meta[name='description']", "content", description);
+    setMeta("meta[property='og:locale']", "content", isEn ? "en_US" : "es_MX");
+    setMeta("meta[property='og:title']", "content", title);
+    setMeta("meta[property='og:description']", "content", description);
+    setMeta("meta[property='og:url']", "content", pageUrl);
+    setMeta("meta[name='twitter:title']", "content", title);
+    setMeta("meta[name='twitter:description']", "content", description);
   }, [lang]);
 
   const switchLanguage = (nextLang) => {

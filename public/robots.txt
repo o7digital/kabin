@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /shim.html
+
+Sitemap: https://www.kabinconsultores.com/sitemap.xml

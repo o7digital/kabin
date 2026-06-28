@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://www.kabinconsultores.com/</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.kabinconsultores.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kabinconsultores.com/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kabinconsultores.com/" />
+  </url>
+  <url>
+    <loc>https://www.kabinconsultores.com/en/</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.kabinconsultores.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kabinconsultores.com/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kabinconsultores.com/" />
+  </url>
+  <url>
+    <loc>https://www.kabinconsultores.com/aviso-privacidad.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+</urlset>
