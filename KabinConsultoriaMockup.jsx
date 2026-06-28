@@ -197,6 +197,24 @@ const seoKeywordsEs = [
   "gobierno corporativo México Querétaro",
 ];
 
+const seoKeywordsEn = [
+  "tax consulting Mexico Queretaro",
+  "tax advisory for businesses Mexico Queretaro",
+  "accounting consulting Mexico Queretaro",
+  "accounting services for businesses Mexico Queretaro",
+  "accountant for small businesses Mexico Queretaro",
+  "corporate tax strategy Mexico Queretaro",
+  "tax planning Mexico Queretaro",
+  "financial audit Mexico Queretaro",
+  "corporate tax compliance Mexico Queretaro",
+  "financial consulting for businesses Mexico Queretaro",
+  "wealth management Mexico Queretaro",
+  "asset protection Mexico Queretaro",
+  "personal financial planning Mexico Queretaro",
+  "private retirement plan Mexico Queretaro",
+  "corporate governance Mexico Queretaro",
+];
+
 const heroSlidesEs = [
   {
     eyebrow: "Consultoría Estratégica",
@@ -1838,9 +1856,13 @@ export default function KabinConsultoriaMockup() {
           </div>
           <p
             className="mx-auto mt-6 max-w-7xl text-center text-[10px] font-medium leading-6 text-white/35"
-            aria-label="Servicios de Kabin en México y Querétaro"
+            aria-label={
+              lang === "es"
+                ? "Servicios de Kabin en México y Querétaro"
+                : "Kabin services in Mexico and Queretaro"
+            }
           >
-            {seoKeywordsEs.map((keyword, index) => (
+            {(lang === "es" ? seoKeywordsEs : seoKeywordsEn).map((keyword, index) => (
               <React.Fragment key={keyword}>
                 {index > 0 && <span aria-hidden="true"> · </span>}
                 <span>{keyword}</span>
