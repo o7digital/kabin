@@ -179,6 +179,24 @@ const servicesEn = [
   },
 ];
 
+const seoKeywordsEs = [
+  "consultoría fiscal México Querétaro",
+  "asesoría fiscal para empresas México Querétaro",
+  "consultoría contable México Querétaro",
+  "servicios contables para empresas México Querétaro",
+  "contador para PyME México Querétaro",
+  "estrategia fiscal para empresas México Querétaro",
+  "planeación fiscal México Querétaro",
+  "auditoría financiera México Querétaro",
+  "cumplimiento fiscal empresarial México Querétaro",
+  "consultoría financiera para empresas México Querétaro",
+  "gestión patrimonial México Querétaro",
+  "protección patrimonial México Querétaro",
+  "planeación financiera personal México Querétaro",
+  "plan privado de retiro PPR México Querétaro",
+  "gobierno corporativo México Querétaro",
+];
+
 const heroSlidesEs = [
   {
     eyebrow: "Consultoría Estratégica",
@@ -1818,6 +1836,17 @@ export default function KabinConsultoriaMockup() {
               </a>
             </div>
           </div>
+          <p
+            className="mx-auto mt-6 max-w-7xl text-center text-[10px] font-medium leading-6 text-white/35"
+            aria-label="Servicios de Kabin en México y Querétaro"
+          >
+            {seoKeywordsEs.map((keyword, index) => (
+              <React.Fragment key={keyword}>
+                {index > 0 && <span aria-hidden="true"> · </span>}
+                <span>{keyword}</span>
+              </React.Fragment>
+            ))}
+          </p>
         </div>
       </footer>
     </div>
