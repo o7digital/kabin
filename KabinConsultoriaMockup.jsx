@@ -778,6 +778,8 @@ export default function KabinConsultoriaMockup() {
             <img
               src="/KABIN LOGO OFICIAL BLANCO-01.png"
               alt="Kabin Consultoría"
+              width="2360"
+              height="2488"
               className="h-24 w-24 object-contain"
             />
             <div>
@@ -979,8 +981,12 @@ export default function KabinConsultoriaMockup() {
               <div className="relative">
                 <div className="absolute -inset-4 rounded-[2rem] border border-[#d9ad58]/35" />
                 <img
-                  src="/kabin.png"
+                  src="/kabin-equipo.webp"
                   alt="Equipo de consultoría trabajando en una mesa de oficina"
+                  width="641"
+                  height="721"
+                  loading="lazy"
+                  decoding="async"
                   className="relative aspect-[4/3] w-full rounded-[1.6rem] object-cover shadow-2xl shadow-black/35"
                 />
               </div>
@@ -1775,6 +1781,10 @@ export default function KabinConsultoriaMockup() {
               <img
                 src="/KABIN LOGO OFICIAL BLANCO-01.png"
                 alt="Kabin Consultoría"
+                width="2360"
+                height="2488"
+                loading="lazy"
+                decoding="async"
                 className="h-24 w-24 object-contain"
               />
               <div>
