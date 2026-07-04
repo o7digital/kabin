@@ -266,6 +266,25 @@ const badgesEs = [
 
 const badgesEn = ["Responsibility", "Honesty", "Empathy", "Teamwork"];
 
+function OfflineOliviaChat() {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="fixed bottom-5 right-5 z-[9999] font-sans">
+      {open && (
+        <section className="mb-3 w-[min(390px,calc(100vw-28px))] overflow-hidden rounded-2xl border border-amber-300/60 bg-emerald-950 text-white shadow-2xl">
+          <header className="flex items-center justify-between px-5 py-4">
+            <div><strong className="block text-xl text-amber-200">Olivia AI</strong><small className="font-bold text-red-300">Offline · Add more credit</small></div>
+            <button type="button" onClick={() => setOpen(false)} className="text-3xl">×</button>
+          </header>
+          <div className="min-h-48 space-y-3 bg-emerald-50 p-5 text-emerald-950"><p className="w-fit rounded-xl bg-white px-4 py-3 shadow">Offline</p><p className="w-fit rounded-xl bg-white px-4 py-3 shadow">Add more credit</p></div>
+          <div className="flex gap-2 p-3"><input disabled placeholder="Offline — Add more credit" className="min-w-0 flex-1 rounded-xl bg-white px-4 py-3 text-emerald-950 opacity-60"/><button disabled className="rounded-xl bg-amber-200 px-4 font-black text-emerald-950 opacity-60">Send</button></div>
+        </section>
+      )}
+      <button type="button" onClick={() => setOpen(true)} className="ml-auto flex items-center gap-2 rounded-full border border-amber-300/60 bg-emerald-950 px-4 py-3 text-white shadow-xl"><b className="grid h-8 w-8 place-items-center rounded-full bg-amber-200 text-emerald-950">O</b>Offline — Add more credit</button>
+    </div>
+  );
+}
+
 const navLinksEs = [
   { href: "#inicio", label: "Inicio" },
   { href: "#nosotros", label: "Nosotros" },
@@ -1774,6 +1793,7 @@ export default function KabinConsultoriaMockup() {
         )}
       </AnimatePresence>
 
+      <OfflineOliviaChat />
       <footer className="border-t border-emerald-950/10 bg-slate-950 text-white">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 md:grid-cols-[1.4fr_0.9fr_1fr] lg:px-8">
           <div>
