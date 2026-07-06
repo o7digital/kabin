@@ -435,9 +435,9 @@ const blogEventsEs = [
 ];
 
 const blogPostsEs = [
-  { category: "Fiscal", date: "18 Jun 2026", read: "4 min", title: "Que revisar antes de cerrar el mes fiscal", text: "Una guia practica para ordenar facturas, pagos, deducciones y pendientes antes de presentar informacion contable." },
-  { category: "Finanzas", date: "05 Jun 2026", read: "3 min", title: "Indicadores simples para entender la salud de tu empresa", text: "Margen, flujo, obligaciones y reservas: cuatro lecturas que ayudan a tomar mejores decisiones." },
-  { category: "Patrimonio", date: "22 May 2026", read: "5 min", title: "Retiro, seguros y patrimonio: por donde empezar", text: "Como integrar proteccion financiera y ahorro sin perder de vista el impacto fiscal." },
+  { category: "Fiscal", date: "18 Jun 2026", read: "4 min", image: "/carlos-muza-hpjSkU2UYSU-unsplash.webp", title: "Que revisar antes de cerrar el mes fiscal", text: "Una guia practica para ordenar facturas, pagos, deducciones y pendientes antes de presentar informacion contable." },
+  { category: "Finanzas", date: "05 Jun 2026", read: "3 min", image: "/kabin-equipo.webp", title: "Indicadores simples para entender la salud de tu empresa", text: "Margen, flujo, obligaciones y reservas: cuatro lecturas que ayudan a tomar mejores decisiones." },
+  { category: "Patrimonio", date: "22 May 2026", read: "5 min", image: "/jakub-zerdzicki-LNnmSumlwO4-unsplash.webp", title: "Retiro, seguros y patrimonio: por donde empezar", text: "Como integrar proteccion financiera y ahorro sin perder de vista el impacto fiscal." },
 ];
 
 const blogEventsEn = [
@@ -448,9 +448,9 @@ const blogEventsEn = [
 ];
 
 const blogPostsEn = [
-  { category: "Tax", date: "Jun 18, 2026", read: "4 min", title: "What to review before monthly tax closing", text: "A practical guide to organize invoices, payments, deductions, and accounting pending items." },
-  { category: "Finance", date: "Jun 5, 2026", read: "3 min", title: "Simple indicators to understand business health", text: "Margin, cash flow, obligations, and reserves: four readings that support better decisions." },
-  { category: "Wealth", date: "May 22, 2026", read: "5 min", title: "Retirement, insurance, and wealth: where to start", text: "How to integrate financial protection and savings while keeping tax impact in view." },
+  { category: "Tax", date: "Jun 18, 2026", read: "4 min", image: "/carlos-muza-hpjSkU2UYSU-unsplash.webp", title: "What to review before monthly tax closing", text: "A practical guide to organize invoices, payments, deductions, and accounting pending items." },
+  { category: "Finance", date: "Jun 5, 2026", read: "3 min", image: "/kabin-equipo.webp", title: "Simple indicators to understand business health", text: "Margin, cash flow, obligations, and reserves: four readings that support better decisions." },
+  { category: "Wealth", date: "May 22, 2026", read: "5 min", image: "/jakub-zerdzicki-LNnmSumlwO4-unsplash.webp", title: "Retirement, insurance, and wealth: where to start", text: "How to integrate financial protection and savings while keeping tax impact in view." },
 ];
 
 const isrBrackets2024 = [
@@ -1461,18 +1461,26 @@ export default function KabinConsultoriaMockup() {
               <div className="mb-5 flex items-center gap-2 text-sm font-black uppercase tracking-[0.18em] text-emerald-900">
                 <Newspaper size={18} /> {t.newsTitle}
               </div>
-              <div className="grid gap-5 md:grid-cols-3">
+              <div className="grid gap-6 md:grid-cols-3">
                 {t.blogPosts.map((post) => (
-                  <article key={post.title} className="rounded-2xl border border-emerald-950/10 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
-                    <div className="flex flex-wrap items-center gap-3 text-xs font-black uppercase tracking-[0.12em] text-emerald-900">
-                      <span>{post.category}</span>
-                      <span className="text-slate-300">/</span>
-                      <span>{post.date}</span>
+                  <article key={post.title} className="group overflow-hidden rounded-[1.5rem] border border-emerald-950/10 bg-white shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-emerald-950/15">
+                    <div className="relative h-56 overflow-hidden">
+                      <img src={post.image} alt="" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/5 to-transparent" />
+                      <span className="absolute left-5 top-5 rounded-full bg-[#d9ad58] px-4 py-2 text-[11px] font-black uppercase tracking-[0.14em] text-slate-950">
+                        {post.category}
+                      </span>
+                      <div className="absolute bottom-5 left-5 flex items-center gap-4 text-xs font-bold text-white/90">
+                        <span>{post.date}</span>
+                        <span className="inline-flex items-center gap-1.5"><Clock3 size={14} /> {post.read}</span>
+                      </div>
                     </div>
-                    <h3 className="mt-4 text-xl font-black leading-tight text-slate-950">{post.title}</h3>
-                    <p className="mt-3 text-sm leading-7 text-slate-600">{post.text}</p>
-                    <div className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-slate-500">
-                      <Clock3 size={15} /> {post.read}
+                    <div className="flex min-h-[250px] flex-col p-6">
+                      <h3 className="text-2xl font-black leading-tight tracking-tight text-slate-950">{post.title}</h3>
+                      <p className="mt-4 text-sm leading-7 text-slate-600">{post.text}</p>
+                      <button type="button" className="mt-auto inline-flex w-fit items-center gap-2 pt-6 text-sm font-black text-emerald-900 transition group-hover:gap-3">
+                        {lang === "es" ? "Leer artículo" : "Read article"} <ArrowRight size={16} />
+                      </button>
                     </div>
                   </article>
                 ))}
