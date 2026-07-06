@@ -2122,7 +2122,7 @@ export default function KabinConsultoriaMockup() {
             </div>
           </div>
           <p
-            className="mx-auto mt-6 max-w-7xl text-center text-[10px] font-medium leading-6 text-white/35"
+            className="mx-auto mt-6 max-w-7xl text-center text-sm font-semibold leading-7 text-white/70"
             aria-label={
               lang === "es"
                 ? "Servicios de Kabin en México y Querétaro"
