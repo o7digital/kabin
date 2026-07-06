@@ -531,6 +531,7 @@ export default function KabinConsultoriaMockup() {
   const [calculatedInsuranceInputs, setCalculatedInsuranceInputs] = useState(defaultInsuranceInputs);
   const [hasCalculatedInsurance, setHasCalculatedInsurance] = useState(true);
   const [selectedEventIndex, setSelectedEventIndex] = useState(0);
+  const [selectedPost, setSelectedPost] = useState(null);
 
   const t = lang === "es"
     ? {
@@ -1478,7 +1479,7 @@ export default function KabinConsultoriaMockup() {
                     <div className="flex min-h-[250px] flex-col p-6">
                       <h3 className="text-2xl font-black leading-tight tracking-tight text-slate-950">{post.title}</h3>
                       <p className="mt-4 text-sm leading-7 text-slate-600">{post.text}</p>
-                      <button type="button" className="mt-auto inline-flex w-fit items-center gap-2 pt-6 text-sm font-black text-emerald-900 transition group-hover:gap-3">
+                      <button type="button" onClick={() => setSelectedPost(post)} className="mt-auto inline-flex w-fit items-center gap-2 pt-6 text-sm font-black text-emerald-900 transition group-hover:gap-3">
                         {lang === "es" ? "Leer artículo" : "Read article"} <ArrowRight size={16} />
                       </button>
                     </div>
@@ -1611,6 +1612,59 @@ export default function KabinConsultoriaMockup() {
       </a>
 
       <AnimatePresence>
+        {selectedPost && (
+          <motion.div
+            className="fixed inset-0 z-[95] flex items-center justify-center bg-slate-950/75 px-4 py-6 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedPost(null)}
+          >
+            <motion.article
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="article-modal-title"
+              className="max-h-[92vh] w-full max-w-4xl overflow-y-auto rounded-[1.8rem] bg-[#f4efe7] shadow-2xl"
+              initial={{ opacity: 0, y: 28, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 18, scale: 0.98 }}
+              transition={{ duration: 0.22 }}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="relative h-64 overflow-hidden sm:h-80">
+                <img src={selectedPost.image} alt="" className="h-full w-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/15 to-transparent" />
+                <button
+                  type="button"
+                  onClick={() => setSelectedPost(null)}
+                  className="absolute right-5 top-5 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-slate-950 shadow-lg transition hover:scale-105"
+                  aria-label={lang === "es" ? "Cerrar artículo" : "Close article"}
+                >
+                  <X size={20} />
+                </button>
+                <div className="absolute bottom-6 left-6 right-6 text-white sm:bottom-8 sm:left-8">
+                  <span className="rounded-full bg-[#d9ad58] px-4 py-2 text-[11px] font-black uppercase tracking-[0.14em] text-slate-950">{selectedPost.category}</span>
+                  <div className="mt-4 flex items-center gap-4 text-sm font-bold text-white/85">
+                    <span>{selectedPost.date}</span>
+                    <span className="inline-flex items-center gap-1.5"><Clock3 size={15} /> {selectedPost.read}</span>
+                  </div>
+                </div>
+              </div>
+              <div className="p-7 sm:p-10">
+                <h2 id="article-modal-title" className="text-3xl font-black leading-tight tracking-tight text-slate-950 sm:text-5xl">{selectedPost.title}</h2>
+                <p className="mt-6 text-lg font-semibold leading-8 text-slate-700">{selectedPost.text}</p>
+                <div className="mt-7 space-y-5 text-base leading-8 text-slate-600">
+                  <p>{lang === "es" ? "Tomar decisiones financieras y fiscales con anticipación permite reducir errores, ordenar prioridades y mantener una lectura clara de la situación actual." : "Making financial and tax decisions in advance helps reduce errors, organize priorities, and maintain a clear view of the current situation."}</p>
+                  <p>{lang === "es" ? "En Kabin revisamos cada caso de forma integral: documentación, obligaciones, flujo, riesgos y objetivos. El resultado es una ruta práctica, entendible y alineada con las necesidades reales de cada persona o empresa." : "At Kabin, we review each case comprehensively: documentation, obligations, cash flow, risks, and goals. The result is a practical, understandable path aligned with each person or company's actual needs."}</p>
+                </div>
+                <a href="#contacto" onClick={() => setSelectedPost(null)} className="mt-8 inline-flex items-center gap-2 rounded-full bg-emerald-950 px-6 py-3 text-sm font-black text-white">
+                  {t.request} <ArrowRight size={16} />
+                </a>
+              </div>
+            </motion.article>
+          </motion.div>
+        )}
+
         {isQuoteModalOpen && (
           <motion.div
             className="fixed inset-0 z-[90] flex items-center justify-center bg-slate-950/70 px-4 py-6 backdrop-blur-sm"
