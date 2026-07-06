@@ -1849,7 +1849,7 @@ export default function KabinConsultoriaMockup() {
         <div className="border-t border-white/10 px-5 py-6 lg:px-8">
           <div className="mx-auto flex max-w-7xl flex-col gap-4 text-sm text-white/70 sm:flex-row sm:items-center sm:justify-between">
             <p className="font-black uppercase tracking-[0.18em] text-amber-100">{t.social}</p>
-            <div className="flex flex-wrap gap-5">
+            <div className="flex flex-wrap items-center gap-5">
               <a
                 href="https://www.instagram.com/kabin_consultoria"
                 aria-label="Instagram Kabin Consultoría"
@@ -1871,6 +1871,15 @@ export default function KabinConsultoriaMockup() {
               >
                 <Music2 size={20} />
               </a>
+              <button
+                type="button"
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                className="ml-1 inline-flex items-center gap-2 rounded-full border border-[#d9ad58]/60 px-5 py-2.5 text-sm font-black text-[#d9ad58] transition hover:-translate-y-0.5 hover:border-[#d9ad58] hover:bg-[#d9ad58] hover:text-slate-950"
+                aria-label={lang === "es" ? "Volver arriba" : "Back to top"}
+              >
+                {lang === "es" ? "Volver arriba" : "Back to top"}
+                <ArrowRight className="-rotate-90" size={16} />
+              </button>
             </div>
           </div>
         </div>
