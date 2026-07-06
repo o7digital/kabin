@@ -894,6 +894,7 @@ export default function KabinConsultoriaMockup() {
 
       <main>
         {activePage === "inicio" && (
+        <>
         <section id="inicio" className="relative min-h-screen overflow-hidden text-white">
           <AnimatePresence mode="wait">
             <motion.div
@@ -977,6 +978,79 @@ export default function KabinConsultoriaMockup() {
             ))}
           </div>
         </section>
+        <section className="bg-[#0d2340] py-16 text-white lg:py-24">
+          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+            <div className="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
+              <div>
+                <p className="border-l-4 border-[#d9ad58] pl-5 text-sm font-black uppercase tracking-[0.24em] text-[#d9ad58]">{t.about}</p>
+                <h2 className="mt-6 text-4xl font-black leading-[1.02] tracking-tight sm:text-5xl">{t.pillars}</h2>
+                <p className="mt-6 text-xl font-semibold leading-9">{t.concept}</p>
+                <p className="mt-5 max-w-2xl text-base leading-8 text-slate-200">{t.aboutText}</p>
+                <a href="#nosotros" className="mt-7 inline-flex items-center gap-2 rounded-full bg-[#d9ad58] px-6 py-3 text-sm font-black text-slate-950 transition hover:-translate-y-0.5">
+                  {t.readMore} <ArrowRight size={16} />
+                </a>
+              </div>
+              <div className="relative">
+                <div className="absolute -inset-4 rounded-[2rem] border border-[#d9ad58]/35" />
+                <img src="/kabin.png" alt="Equipo de consultoría Kabin" className="relative aspect-[4/3] w-full rounded-[1.6rem] object-cover shadow-2xl shadow-black/35" />
+              </div>
+            </div>
+            <div className="mt-14 grid gap-5 lg:grid-cols-2">
+              {[
+                [t.mission, t.missionTitle, t.missionText],
+                [t.vision, t.visionTitle, t.visionText],
+              ].map(([label, title, text]) => (
+                <article key={label} className="rounded-[1.4rem] border border-[#d9ad58]/30 bg-white/5 p-7 md:p-9">
+                  <p className="text-sm font-black uppercase tracking-[0.18em] text-[#d9ad58]">{label}</p>
+                  <h3 className="mt-4 text-2xl font-black text-[#d9ad58]">{title}</h3>
+                  <p className="mt-4 text-base leading-8 text-slate-200">{text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-[#f4efe7] py-16 lg:py-24">
+          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+              <div className="max-w-3xl">
+                <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-900">{t.servicesTitle}</p>
+                <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl md:text-5xl">{t.servicesHeading}</h2>
+              </div>
+              <a href="#servicios" className="inline-flex shrink-0 items-center gap-2 text-sm font-black text-emerald-900">{t.readMore} <ArrowRight size={16} /></a>
+            </div>
+            <div className="mt-10 grid gap-5 md:grid-cols-3">
+              {t.services.slice(0, 3).map((service) => {
+                const Icon = service.icon;
+                return (
+                  <a key={service.title} href="#servicios" className="rounded-[1.6rem] border border-emerald-900/10 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+                    <span className="inline-flex rounded-2xl bg-emerald-50 p-3.5 text-emerald-950"><Icon size={24} /></span>
+                    <h3 className="mt-5 text-xl font-black text-slate-950">{service.title}</h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">{service.text}</p>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-white py-16 lg:py-20">
+          <div className="mx-auto grid max-w-7xl gap-6 px-5 lg:grid-cols-2 lg:px-8">
+            <a href="#seguros" className="group rounded-[1.8rem] bg-emerald-950 p-8 text-white md:p-10">
+              <ShieldCheck className="text-[#d9ad58]" size={34} />
+              <h2 className="mt-5 text-3xl font-black tracking-tight">{t.insuranceHeading}</h2>
+              <p className="mt-4 leading-7 text-white/75">{t.insuranceText}</p>
+              <span className="mt-6 inline-flex items-center gap-2 font-black text-[#d9ad58]">{t.readMore} <ArrowRight size={16} /></span>
+            </a>
+            <a href="#contacto" className="group rounded-[1.8rem] bg-slate-950 p-8 text-white md:p-10">
+              <MessageCircle className="text-[#d9ad58]" size={34} />
+              <h2 className="mt-5 text-3xl font-black tracking-tight">{t.contactTitle}</h2>
+              <p className="mt-4 leading-7 text-white/75">{t.contactText}</p>
+              <span className="mt-6 inline-flex items-center gap-2 font-black text-[#d9ad58]">{t.request} <ArrowRight size={16} /></span>
+            </a>
+          </div>
+        </section>
+        </>
         )}
 
         {activePage === "nosotros" && (
