@@ -20,6 +20,16 @@ const seoPages = [
   ["en/events-news/retirement-insurance-wealth", "en", "Retirement, insurance, and wealth: where to start | Kabin", "How to integrate financial protection and savings while keeping tax impact in view."],
 ];
 
+const alternatePairs = {
+  seguros: "en/insurance",
+  ecommerce: "en/ecommerce",
+  "eventos-noticias": "en/events-news",
+  contacto: "en/contact",
+  "eventos-noticias/cierre-mes-fiscal": "en/events-news/monthly-tax-closing",
+  "eventos-noticias/indicadores-salud-empresa": "en/events-news/business-health-indicators",
+  "eventos-noticias/retiro-seguros-patrimonio": "en/events-news/retirement-insurance-wealth",
+};
+
 function seoPagesPlugin() {
   return {
     name: "generate-seo-pages",
@@ -32,16 +42,30 @@ function seoPagesPlugin() {
       for (const [route, lang, title, description] of seoPages) {
         const url = `https://www.kabinconsultores.com/${route}/`;
         const article = route.includes("events-news/") || route.includes("eventos-noticias/");
+        const service = ["seguros", "ecommerce", "en/insurance", "en/ecommerce"].includes(route);
+        const esRoute = lang === "es" ? route : Object.entries(alternatePairs).find(([, enRoute]) => enRoute === route)?.[0];
+        const enRoute = lang === "en" ? route : alternatePairs[route];
+        const esUrl = `https://www.kabinconsultores.com/${esRoute}/`;
+        const enUrl = `https://www.kabinconsultores.com/${enRoute}/`;
+        const structuredData = article
+          ? { "@context": "https://schema.org", "@type": "Article", headline: title.replace(/ \| Kabin$/, ""), description, url, inLanguage: lang === "es" ? "es-MX" : "en", publisher: { "@type": "Organization", name: "Kabin Consultoría Fiscal y Financiera", url: "https://www.kabinconsultores.com/" } }
+          : service
+            ? { "@context": "https://schema.org", "@type": "Service", name: title.replace(/ \| Kabin$/, ""), description, url, areaServed: "México", provider: { "@type": "ProfessionalService", name: "Kabin Consultoría Fiscal y Financiera", url: "https://www.kabinconsultores.com/" } }
+            : { "@context": "https://schema.org", "@type": "WebPage", name: title.replace(/ \| Kabin$/, ""), description, url, inLanguage: lang === "es" ? "es-MX" : "en" };
         const html = templates[lang]
           .replace(/<title>.*?<\/title>/, `<title>${title}</title>`)
           .replace(/<meta name="description" content="[^"]*"\s*\/?>/, `<meta name="description" content="${description}" />`)
           .replace(/<link rel="canonical" href="[^"]*"\s*\/?>/, `<link rel="canonical" href="${url}" />`)
+          .replace(/<link rel="alternate" hreflang="es-MX" href="[^"]*"\s*\/?>/, `<link rel="alternate" hreflang="es-MX" href="${esUrl}" />`)
+          .replace(/<link rel="alternate" hreflang="en" href="[^"]*"\s*\/?>/, `<link rel="alternate" hreflang="en" href="${enUrl}" />`)
+          .replace(/<link rel="alternate" hreflang="x-default" href="[^"]*"\s*\/?>/, `<link rel="alternate" hreflang="x-default" href="${esUrl}" />`)
           .replace(/<meta property="og:type" content="[^"]*"\s*\/?>/, `<meta property="og:type" content="${article ? "article" : "website"}" />`)
           .replace(/<meta property="og:title" content="[^"]*"\s*\/?>/, `<meta property="og:title" content="${title}" />`)
           .replace(/<meta property="og:description" content="[^"]*"\s*\/?>/, `<meta property="og:description" content="${description}" />`)
           .replace(/<meta property="og:url" content="[^"]*"\s*\/?>/, `<meta property="og:url" content="${url}" />`)
           .replace(/<meta name="twitter:title" content="[^"]*"\s*\/?>/, `<meta name="twitter:title" content="${title}" />`)
           .replace(/<meta name="twitter:description" content="[^"]*"\s*\/?>/, `<meta name="twitter:description" content="${description}" />`)
+          .replace("</head>", `<script type="application/ld+json">${JSON.stringify(structuredData)}</script></head>`)
           .replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root"><main><h1>${title.replace(/ \| Kabin$/, "")}</h1><p>${description}</p></main></div>`);
         const outputDir = resolve(import.meta.dirname, "dist", route);
         await mkdir(outputDir, { recursive: true });
