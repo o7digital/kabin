@@ -1890,12 +1890,6 @@ export default function KabinConsultoriaMockup() {
             <p className="text-sm font-black uppercase tracking-[0.18em] text-amber-100">{t.footerContact}</p>
             <div className="mt-4 grid gap-3 text-sm text-white/70">
               <p>{t.mexico}</p>
-              <a
-                href={whatsappUrl}
-                className="mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-3 font-black text-emerald-950 transition hover:-translate-y-0.5"
-              >
-                <MessageCircle size={16} /> WhatsApp
-              </a>
             </div>
           </div>
         </div>
