@@ -542,7 +542,7 @@ export default function KabinConsultoriaMockup() {
         mission: "Nuestra misión", missionTitle: "Acompañamiento cálido y responsable.", missionText: "Brindar asesorías personalizadas y acompañamiento de una manera cálida, humana, responsable y profesional, para que cada cliente entienda su situación y pueda tomar decisiones con tranquilidad.",
         vision: "Nuestra visión", visionTitle: "Proteger y hacer crecer su legado.", visionText: "Ser uno de los consultores contables, fiscales y financieros de referencia para cuidar el patrimonio de nuestros clientes, fortalecer sus operaciones y acompañar su crecimiento con visión de largo plazo.",
         valuesTitle: "Nuestros valores", path: "Nuestro camino",
-        insuranceTitle: "Seguros", insuranceHeading: "Protección, ahorro y retiro con estrategia fiscal.", insuranceText: "Integramos seguros y planes de retiro dentro de una conversación patrimonial: qué proteger, cuánto ahorrar y qué beneficio fiscal podría existir según ingresos y deducciones.",
+        insuranceTitle: "Seguros", insuranceHeading: "Protección integral para personas, familias y empresas.", insuranceText: "Diseñamos soluciones de protección según tus riesgos reales, responsabilidades, patrimonio y etapa de vida. Comparamos alternativas y te acompañamos desde el diagnóstico hasta la atención de un siniestro.",
         calculatorTitle: "Calculadora de impuestos 2024", calculatorText: "Herramienta indicativa para personas físicas en sueldos y salarios. Captura los datos del cliente y compara tres escenarios.",
         incomeSection: "① Ingresos", deductionsSection: "② Deducciones personales", retirementSection: "③ Deducciones enfocadas al retiro", resultsSection: "④ Resultados",
         tableConcept: "Concepto", annualAmount: "Monto anual", deductibleAmount: "Monto a deducir", income: "Ingreso anual bruto", otherIncome: "Otros ingresos anuales", totalIncome: "Total de ingresos",
@@ -566,7 +566,7 @@ export default function KabinConsultoriaMockup() {
         mission: "Our mission", missionTitle: "Warm and responsible support.", missionText: "Provide personalized advisory and support in a warm, human, responsible, and professional way.",
         vision: "Our vision", visionTitle: "Protect and grow your legacy.", visionText: "To become a leading accounting, tax, and financial consulting firm focused on protecting and growing client assets.",
         valuesTitle: "Our values", path: "Our journey",
-        insuranceTitle: "Insurance", insuranceHeading: "Protection, savings, and retirement with tax strategy.", insuranceText: "We integrate insurance and retirement plans into an asset-planning conversation: what to protect, how much to save, and which tax benefit may apply.",
+        insuranceTitle: "Insurance", insuranceHeading: "Comprehensive protection for individuals, families, and businesses.", insuranceText: "We design protection solutions around your actual risks, responsibilities, assets, and life stage. We compare alternatives and support you from assessment through claims.",
         calculatorTitle: "2024 tax calculator", calculatorText: "Indicative tool for individuals under salaries and wages in Mexico. Enter client data and compare three scenarios.",
         incomeSection: "① Income", deductionsSection: "② Personal deductions", retirementSection: "③ Retirement-focused deductions", resultsSection: "④ Results",
         tableConcept: "Concept", annualAmount: "Annual amount", deductibleAmount: "Deductible amount", income: "Annual gross income", otherIncome: "Other annual income", totalIncome: "Total income",
@@ -1048,10 +1048,11 @@ export default function KabinConsultoriaMockup() {
         </>
         )}
 
-        {activePage === "seguros" && (
+        {(activePage === "seguros" || activePage === "inicio") && (
         <section id="seguros" className="min-h-screen bg-[#f9f6ef] pb-16 pt-40 lg:pb-24 lg:pt-44">
-          <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
-            <div>
+          <div className={`mx-auto max-w-7xl gap-10 px-5 lg:px-8 ${activePage === "seguros" ? "grid" : ""}`}>
+            {activePage === "seguros" && (
+            <div className="w-full">
               <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-900">{t.insuranceTitle}</p>
               <h2 className="mt-4 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl md:text-5xl">
                 {t.insuranceHeading}
@@ -1076,8 +1077,48 @@ export default function KabinConsultoriaMockup() {
                   );
                 })}
               </div>
-            </div>
 
+              <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                {[
+                  ["Vida e invalidez", "Protección de ingresos y estabilidad familiar ante fallecimiento, incapacidad o invalidez."],
+                  ["Gastos médicos mayores", "Cobertura hospitalaria y médica con análisis de red, deducible, coaseguro y suma asegurada."],
+                  ["Auto y daños", "Protección para vehículos, hogar, oficinas, inventario, responsabilidad civil y activos esenciales."],
+                  ["Socios y personas clave", "Soluciones para continuidad empresarial, compra de acciones y pérdida de talento estratégico."],
+                  ["Ahorro y retiro", "Planes de largo plazo adaptados a metas, horizonte, liquidez y capacidad real de aportación."],
+                  ["Beneficios colectivos", "Esquemas para colaboradores que fortalecen retención, bienestar y protección del equipo."],
+                ].map(([title, text]) => (
+                  <article key={title} className="rounded-2xl border border-emerald-950/10 bg-white p-6 shadow-sm">
+                    <CheckCircle2 className="text-emerald-800" size={22} />
+                    <h3 className="mt-4 text-lg font-black text-slate-950">{title}</h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">{text}</p>
+                  </article>
+                ))}
+              </div>
+
+              <div className="mt-12 rounded-[1.8rem] bg-[#0d2340] p-7 text-white md:p-10">
+                <p className="text-sm font-black uppercase tracking-[0.18em] text-[#d9ad58]">Cómo trabajamos</p>
+                <div className="mt-7 grid gap-6 md:grid-cols-4">
+                  {[
+                    ["01", "Diagnóstico", "Identificamos riesgos, prioridades, dependientes y coberturas actuales."],
+                    ["02", "Comparación", "Revisamos condiciones, exclusiones, costos y alternativas de distintas soluciones."],
+                    ["03", "Implementación", "Te ayudamos con solicitud, documentación, contratación y puesta en marcha."],
+                    ["04", "Acompañamiento", "Damos seguimiento a renovaciones, cambios de vida y atención de siniestros."],
+                  ].map(([number, title, text]) => (
+                    <div key={number}>
+                      <span className="text-3xl font-black text-[#d9ad58]">{number}</span>
+                      <h3 className="mt-3 text-lg font-black">{title}</h3>
+                      <p className="mt-2 text-sm leading-6 text-white/70">{text}</p>
+                    </div>
+                  ))}
+                </div>
+                <a href="#contacto" className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#d9ad58] px-6 py-3 text-sm font-black text-slate-950">
+                  Solicitar análisis de protección <ArrowRight size={16} />
+                </a>
+              </div>
+            </div>
+            )}
+
+            {activePage === "inicio" && (
             <div className="overflow-hidden rounded-[1.4rem] border border-slate-300 bg-white shadow-xl shadow-slate-900/10">
               <div className="flex items-center gap-4 border-b border-slate-300 bg-[#17385f] px-5 py-4 text-white">
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/12">
@@ -1251,6 +1292,7 @@ export default function KabinConsultoriaMockup() {
                 <p className="mt-4 text-xs leading-6 text-slate-500">{t.disclaimer}</p>
               </div>
             </div>
+            )}
           </div>
         </section>
         )}
