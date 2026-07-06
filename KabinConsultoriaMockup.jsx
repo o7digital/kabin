@@ -800,9 +800,9 @@ export default function KabinConsultoriaMockup() {
             </div>
           </a>
 
-          <nav className="hidden items-center gap-7 text-[16.8px] font-semibold text-white/85 lg:flex">
+          <nav className="hidden items-center gap-5 text-[15px] font-semibold text-white/85 xl:gap-6 xl:text-base lg:flex">
             {t.navLinks.map((link) => (
-              <a key={link.href} href={link.href} className="transition hover:text-white">
+              <a key={link.href} href={link.href} className="whitespace-nowrap transition hover:text-white">
                 {link.label}
               </a>
             ))}
