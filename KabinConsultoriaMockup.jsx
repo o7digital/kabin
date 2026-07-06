@@ -1718,7 +1718,7 @@ export default function KabinConsultoriaMockup() {
 
       <a
         href="/aviso-privacidad.html"
-        className="fixed bottom-4 right-4 z-[60] inline-flex items-center gap-2 rounded-full bg-blue-600 px-4 py-3 text-sm font-black text-white shadow-xl shadow-blue-950/40 transition hover:-translate-y-0.5 hover:bg-blue-500"
+        className="fixed bottom-4 left-4 z-[60] inline-flex items-center gap-2 rounded-full bg-blue-600 px-4 py-3 text-sm font-black text-white shadow-xl shadow-blue-950/40 transition hover:-translate-y-0.5 hover:bg-blue-500"
       >
         <ShieldCheck size={16} /> {t.privacy}
       </a>
