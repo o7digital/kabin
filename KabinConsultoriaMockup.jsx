@@ -1030,22 +1030,6 @@ export default function KabinConsultoriaMockup() {
           </div>
         </section>
 
-        <section className="bg-white py-16 lg:py-20">
-          <div className="mx-auto grid max-w-7xl gap-6 px-5 lg:grid-cols-2 lg:px-8">
-            <a href="#seguros" className="group rounded-[1.8rem] bg-emerald-950 p-8 text-white md:p-10">
-              <ShieldCheck className="text-[#d9ad58]" size={34} />
-              <h2 className="mt-5 text-3xl font-black tracking-tight">{t.insuranceHeading}</h2>
-              <p className="mt-4 leading-7 text-white/75">{t.insuranceText}</p>
-              <span className="mt-6 inline-flex items-center gap-2 font-black text-[#d9ad58]">{t.readMore} <ArrowRight size={16} /></span>
-            </a>
-            <a href="#contacto" className="group rounded-[1.8rem] bg-slate-950 p-8 text-white md:p-10">
-              <MessageCircle className="text-[#d9ad58]" size={34} />
-              <h2 className="mt-5 text-3xl font-black tracking-tight">{t.contactTitle}</h2>
-              <p className="mt-4 leading-7 text-white/75">{t.contactText}</p>
-              <span className="mt-6 inline-flex items-center gap-2 font-black text-[#d9ad58]">{t.request} <ArrowRight size={16} /></span>
-            </a>
-          </div>
-        </section>
         </>
         )}
 
