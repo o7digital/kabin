@@ -270,7 +270,7 @@ const navLinksEs = [
   { href: "#inicio", label: "Inicio" },
   { href: "#seguros", label: "Seguros" },
   { href: "#ecommerce", label: "Ecommerce" },
-  { href: "#noticias", label: "Noticias" },
+  { href: "#noticias", label: "Eventos y Noticias" },
   { href: "#contacto", label: "Contacto" },
 ];
 
@@ -278,7 +278,7 @@ const navLinksEn = [
   { href: "#inicio", label: "Home" },
   { href: "#seguros", label: "Insurance" },
   { href: "#ecommerce", label: "Ecommerce" },
-  { href: "#noticias", label: "News" },
+  { href: "#noticias", label: "Events & News" },
   { href: "#contacto", label: "Contact" },
 ];
 
@@ -551,7 +551,7 @@ export default function KabinConsultoriaMockup() {
         calculateSimulation: "Calcular simulación", calculationReady: "Resultados actualizados", calculationPending: "Hay cambios sin calcular", mainBenefit: "Beneficio estimado con retiro",
         ecommerceTitle: "Ecommerce", ecommerceHeading: "Forfaits listos para comprar, cotizar y convertir en clientes dentro del CRM.", ecommerceText: "Esta sección simula cómo Kabin podría vender servicios cerrados sin fricción: el cliente elige un paquete, deja sus datos, paga o solicita cotización, y el CRM recibe la oportunidad con todo el contexto.",
         choosePackage: "Cotizar", selectedPackage: "Forfait seleccionado", checkoutDemo: "Cotización", subtotal: "Subtotal", vat: "IVA estimado", total: "Total", payNow: "Cotizar", quoteNow: "Cotizar", crmReady: "Listo para backend + CRM", crmFlow: "Orden web → pago/lead → contacto CRM → tarea comercial → expediente del cliente",
-        blogTitle: "Blog, eventos y noticias", blogHeading: "Agenda fiscal y financiera para tomar decisiones con contexto.", blogText: "Selecciona una fecha del calendario para destacar efemerides, webinarios y sesiones utiles para clientes y empresas.", calendarTitle: "Calendario editorial", newsTitle: "Ultimas noticias",
+        blogTitle: "Eventos y noticias", blogHeading: "Agenda fiscal y financiera para tomar decisiones con contexto.", blogText: "Selecciona una fecha del calendario para destacar efemerides, webinarios y sesiones utiles para clientes y empresas.", calendarTitle: "Calendario editorial", newsTitle: "Ultimas noticias",
         contactTitle: "Recibe acompañamiento profesional.", contactText: "Completa el formulario y te contactaremos para entender tu situación y proponerte una ruta de trabajo.",
         fullname: "Nombre", lastname: "Apellido", email: "Correo electrónico", phone: "Teléfono", industry: "Tipo de industria", interest: "Servicio de interés", message: "Mensaje", send: "Enviar solicitud", sending: "Enviando...", quoteSent: "Solicitud enviada. Kabin recibirá el lead en su CRM y por correo.", quoteError: "No se pudo enviar la solicitud. Inténtalo de nuevo o escríbenos por WhatsApp.",
         privacy: "Aviso de Privacidad", footerNav: "Navegación", footerContact: "Contacto", mexico: "Atención en México", social: "Redes sociales",
@@ -575,7 +575,7 @@ export default function KabinConsultoriaMockup() {
         calculateSimulation: "Calculate simulation", calculationReady: "Results updated", calculationPending: "Changes not calculated", mainBenefit: "Estimated benefit with retirement",
         ecommerceTitle: "Ecommerce", ecommerceHeading: "Packaged services ready to buy, quote, and convert into CRM clients.", ecommerceText: "This section simulates how Kabin could sell fixed-scope services with less friction: the client picks a package, shares details, pays or requests a quote, and the CRM receives the opportunity with context.",
         choosePackage: "Quote", selectedPackage: "Selected package", checkoutDemo: "Quote", subtotal: "Subtotal", vat: "Estimated VAT", total: "Total", payNow: "Quote", quoteNow: "Quote", crmReady: "Backend + CRM ready", crmFlow: "Web order → payment/lead → CRM contact → sales task → client file",
-        blogTitle: "Blog, events and news", blogHeading: "Tax and financial agenda for decisions with context.", blogText: "Select a calendar date to highlight observances, webinars, and useful sessions for clients and companies.", calendarTitle: "Editorial calendar", newsTitle: "Latest news",
+        blogTitle: "Events and news", blogHeading: "Tax and financial agenda for decisions with context.", blogText: "Select a calendar date to highlight observances, webinars, and useful sessions for clients and companies.", calendarTitle: "Editorial calendar", newsTitle: "Latest news",
         contactTitle: "Receive professional support.", contactText: "Complete the form and we will contact you to understand your needs and propose a work plan.",
         fullname: "First name", lastname: "Last name", email: "Email", phone: "Phone", industry: "Industry type", interest: "Service of interest", message: "Message", send: "Send request", sending: "Sending...", quoteSent: "Request sent. Kabin will receive the lead in its CRM and by email.", quoteError: "The request could not be sent. Please try again or contact us on WhatsApp.",
         privacy: "Privacy Notice", footerNav: "Navigation", footerContact: "Contact", mexico: "Service in Mexico", social: "Social media",
