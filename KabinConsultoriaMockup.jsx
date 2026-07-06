@@ -513,7 +513,7 @@ export default function KabinConsultoriaMockup() {
   const getPageFromHash = () => {
     const page = window.location.hash.replace("#", "") || "inicio";
     if (page === "blog") return "noticias";
-    return ["inicio", "seguros", "ecommerce", "noticias", "contacto"].includes(page)
+    return ["inicio", "seguros", "ecommerce", "noticias", "article", "contacto"].includes(page)
       ? page
       : "inicio";
   };
@@ -1463,7 +1463,7 @@ export default function KabinConsultoriaMockup() {
                     <div className="flex min-h-[250px] flex-col p-6">
                       <h3 className="text-2xl font-black leading-tight tracking-tight text-slate-950">{post.title}</h3>
                       <p className="mt-4 text-sm leading-7 text-slate-600">{post.text}</p>
-                      <button type="button" onClick={() => setSelectedPost(post)} className="mt-auto inline-flex w-fit items-center gap-2 pt-6 text-sm font-black text-emerald-900 transition group-hover:gap-3">
+                      <button type="button" onClick={() => { setSelectedPost(post); window.location.hash = "article"; }} className="mt-auto inline-flex w-fit items-center gap-2 pt-6 text-sm font-black text-emerald-900 transition group-hover:gap-3">
                         {lang === "es" ? "Leer artículo" : "Read article"} <ArrowRight size={16} />
                       </button>
                     </div>
@@ -1474,6 +1474,36 @@ export default function KabinConsultoriaMockup() {
           </div>
         </section>
         )}
+
+        {activePage === "article" && (() => {
+          const post = selectedPost || t.blogPosts[0];
+          return (
+            <article className="min-h-screen bg-[#f4efe7] pb-20 pt-36 lg:pt-40">
+              <div className="mx-auto max-w-5xl px-5 lg:px-8">
+                <a href="#noticias" className="mb-7 inline-flex items-center gap-2 text-sm font-black text-emerald-900"><ArrowLeft size={16} /> {lang === "es" ? "Volver a Eventos y Noticias" : "Back to Events & News"}</a>
+                <div className="overflow-hidden rounded-[2rem] bg-white shadow-2xl shadow-slate-900/10">
+                  <div className="relative h-72 overflow-hidden sm:h-[430px]">
+                    <img src={post.image} alt="" className="h-full w-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/10 to-transparent" />
+                    <div className="absolute bottom-7 left-7 right-7 text-white sm:bottom-10 sm:left-10">
+                      <span className="rounded-full bg-[#d9ad58] px-4 py-2 text-[11px] font-black uppercase tracking-[0.14em] text-slate-950">{post.category}</span>
+                      <div className="mt-5 flex items-center gap-4 text-sm font-bold text-white/90"><span>{post.date}</span><span className="inline-flex items-center gap-1.5"><Clock3 size={15} /> {post.read}</span></div>
+                    </div>
+                  </div>
+                  <div className="p-7 sm:p-12 lg:p-16">
+                    <h1 className="text-4xl font-black leading-[1.05] tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">{post.title}</h1>
+                    <p className="mt-7 text-xl font-semibold leading-9 text-slate-700">{post.text}</p>
+                    <div className="mt-9 space-y-6 text-lg leading-9 text-slate-600">
+                      <p>{lang === "es" ? "Tomar decisiones financieras y fiscales con anticipación permite reducir errores, ordenar prioridades y mantener una lectura clara de la situación actual." : "Making financial and tax decisions in advance helps reduce errors, organize priorities, and maintain a clear view of the current situation."}</p>
+                      <p>{lang === "es" ? "En Kabin revisamos cada caso de forma integral: documentación, obligaciones, flujo, riesgos y objetivos. El resultado es una ruta práctica, entendible y alineada con las necesidades reales de cada persona o empresa." : "At Kabin, we review each case comprehensively: documentation, obligations, cash flow, risks, and goals. The result is a practical, understandable path aligned with each person or company's actual needs."}</p>
+                    </div>
+                    <a href="#contacto" className="mt-10 inline-flex items-center gap-2 rounded-full bg-emerald-950 px-7 py-3.5 text-sm font-black text-white">{t.request} <ArrowRight size={16} /></a>
+                  </div>
+                </div>
+              </div>
+            </article>
+          );
+        })()}
 
         {(activePage === "contacto" || activePage === "inicio") && (
         <section id="contacto" className={`mx-auto min-h-screen max-w-7xl px-5 pb-20 lg:px-8 ${activePage === "inicio" ? "pt-16 lg:pt-24" : "pt-40 lg:pt-44"}`}>
@@ -1596,7 +1626,7 @@ export default function KabinConsultoriaMockup() {
       </a>
 
       <AnimatePresence>
-        {selectedPost && (
+        {false && selectedPost && (
           <motion.div
             className="fixed inset-0 z-[95] flex items-center justify-center bg-slate-950/75 px-4 py-6 backdrop-blur-sm"
             initial={{ opacity: 0 }}
