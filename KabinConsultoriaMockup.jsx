@@ -268,7 +268,6 @@ const badgesEn = ["Responsibility", "Honesty", "Empathy", "Teamwork"];
 
 const navLinksEs = [
   { href: "#inicio", label: "Inicio" },
-  { href: "#nosotros", label: "Nosotros" },
   { href: "#seguros", label: "Seguros" },
   { href: "#ecommerce", label: "Ecommerce" },
   { href: "#servicios", label: "Servicios" },
@@ -278,7 +277,6 @@ const navLinksEs = [
 
 const navLinksEn = [
   { href: "#inicio", label: "Home" },
-  { href: "#nosotros", label: "About" },
   { href: "#seguros", label: "Insurance" },
   { href: "#ecommerce", label: "Ecommerce" },
   { href: "#servicios", label: "Services" },
@@ -517,7 +515,7 @@ export default function KabinConsultoriaMockup() {
   const getPageFromHash = () => {
     const page = window.location.hash.replace("#", "") || "inicio";
     if (page === "blog") return "noticias";
-    return ["inicio", "nosotros", "seguros", "ecommerce", "servicios", "noticias", "contacto"].includes(page)
+    return ["inicio", "seguros", "ecommerce", "servicios", "noticias", "contacto"].includes(page)
       ? page
       : "inicio";
   };
@@ -986,9 +984,6 @@ export default function KabinConsultoriaMockup() {
                 <h2 className="mt-6 text-4xl font-black leading-[1.02] tracking-tight sm:text-5xl">{t.pillars}</h2>
                 <p className="mt-6 text-xl font-semibold leading-9">{t.concept}</p>
                 <p className="mt-5 max-w-2xl text-base leading-8 text-slate-200">{t.aboutText}</p>
-                <a href="#nosotros" className="mt-7 inline-flex items-center gap-2 rounded-full bg-[#d9ad58] px-6 py-3 text-sm font-black text-slate-950 transition hover:-translate-y-0.5">
-                  {t.readMore} <ArrowRight size={16} />
-                </a>
               </div>
               <div className="relative">
                 <div className="absolute -inset-4 rounded-[2rem] border border-[#d9ad58]/35" />
@@ -1051,89 +1046,6 @@ export default function KabinConsultoriaMockup() {
           </div>
         </section>
         </>
-        )}
-
-        {activePage === "nosotros" && (
-        <section id="nosotros" className="min-h-screen bg-[#0d2340] pb-16 pt-40 text-white lg:pb-24 lg:pt-44">
-          <div className="mx-auto max-w-7xl px-5 lg:px-8">
-            <div className="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-              <div>
-                <p className="border-l-4 border-[#d9ad58] pl-5 text-sm font-black uppercase tracking-[0.24em] text-[#d9ad58]">
-                  {t.about}
-                </p>
-                <h2 className="mt-6 max-w-4xl text-4xl font-black leading-[1.02] tracking-tight sm:text-5xl md:text-6xl">
-                  {t.pillars}
-                </h2>
-                <p className="mt-6 text-xl font-semibold leading-9 text-white sm:text-2xl">
-                  {t.concept}
-                </p>
-                <p className="mt-5 max-w-2xl text-base leading-8 text-slate-200 sm:text-lg">
-                  {t.aboutText}
-                </p>
-              </div>
-
-              <div className="relative">
-                <div className="absolute -inset-4 rounded-[2rem] border border-[#d9ad58]/35" />
-                <img
-                  src="/kabin.png"
-                  alt="Equipo de consultoría trabajando en una mesa de oficina"
-                  className="relative aspect-[4/3] w-full rounded-[1.6rem] object-cover shadow-2xl shadow-black/35"
-                />
-              </div>
-            </div>
-
-            <div className="mt-14 grid gap-5 lg:grid-cols-2">
-              <article className="rounded-[1.4rem] border border-[#d9ad58]/30 bg-white/5 p-7 md:p-9">
-                <p className="text-sm font-black uppercase tracking-[0.18em] text-[#d9ad58]">{t.mission}</p>
-                <h3 className="mt-4 text-2xl font-black text-[#d9ad58]">{t.missionTitle}</h3>
-                <p className="mt-4 text-base leading-8 text-slate-200">
-                  {t.missionText}
-                </p>
-              </article>
-
-              <article className="rounded-[1.4rem] border border-[#d9ad58]/30 bg-white/5 p-7 md:p-9">
-                <p className="text-sm font-black uppercase tracking-[0.18em] text-[#d9ad58]">{t.vision}</p>
-                <h3 className="mt-4 text-2xl font-black text-[#d9ad58]">{t.visionTitle}</h3>
-                <p className="mt-4 text-base leading-8 text-slate-200">
-                  {t.visionText}
-                </p>
-              </article>
-            </div>
-
-            <div className="mt-14">
-              <p className="border-l-4 border-[#d9ad58] pl-5 text-sm font-black uppercase tracking-[0.24em] text-[#d9ad58]">
-                {t.valuesTitle}
-              </p>
-              <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-                {t.values.map((value) => {
-                  const Icon = value.icon;
-                  return (
-                    <article key={value.title} className="rounded-[1.2rem] bg-white/[0.07] p-6 text-center shadow-sm">
-                      <Icon className="mx-auto text-[#d9ad58]" size={42} />
-                      <h3 className="mt-6 text-xl font-black text-white">{value.title}</h3>
-                      <p className="mt-3 text-sm leading-7 text-slate-200">{value.text}</p>
-                    </article>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div className="mt-14">
-              <p className="border-l-4 border-[#d9ad58] pl-5 text-sm font-black uppercase tracking-[0.24em] text-[#d9ad58]">
-                {t.path}
-              </p>
-              <div className="mt-8 grid gap-4 border-t border-[#d9ad58] pt-6 md:grid-cols-4">
-                {t.journey.map((item) => (
-                  <div key={item.year} className="relative">
-                    <span className="absolute -top-[34px] left-0 h-4 w-4 rounded-full border-4 border-white bg-[#d9ad58]" />
-                    <p className="text-lg font-black text-[#d9ad58]">{item.year}</p>
-                    <p className="mt-2 text-sm font-semibold leading-6 text-slate-200">{item.title}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
         )}
 
         {activePage === "seguros" && (
