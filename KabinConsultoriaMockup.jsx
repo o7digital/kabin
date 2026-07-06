@@ -286,19 +286,19 @@ function OfflineOliviaChat() {
 }
 
 const navLinksEs = [
-  { href: "#inicio", label: "Inicio" },
-  { href: "#seguros", label: "Seguros" },
-  { href: "#ecommerce", label: "Ecommerce" },
-  { href: "#noticias", label: "Eventos y Noticias" },
-  { href: "#contacto", label: "Contacto" },
+  { href: "/", label: "Inicio" },
+  { href: "/seguros/", label: "Seguros" },
+  { href: "/ecommerce/", label: "Ecommerce" },
+  { href: "/eventos-noticias/", label: "Eventos y Noticias" },
+  { href: "/contacto/", label: "Contacto" },
 ];
 
 const navLinksEn = [
-  { href: "#inicio", label: "Home" },
-  { href: "#seguros", label: "Insurance" },
-  { href: "#ecommerce", label: "Ecommerce" },
-  { href: "#noticias", label: "Events & News" },
-  { href: "#contacto", label: "Contact" },
+  { href: "/en/", label: "Home" },
+  { href: "/en/insurance/", label: "Insurance" },
+  { href: "/en/ecommerce/", label: "Ecommerce" },
+  { href: "/en/events-news/", label: "Events & News" },
+  { href: "/en/contact/", label: "Contact" },
 ];
 
 const valuesEs = [
@@ -454,9 +454,9 @@ const blogEventsEs = [
 ];
 
 const blogPostsEs = [
-  { category: "Fiscal", date: "18 Jun 2026", read: "4 min", image: "/carlos-muza-hpjSkU2UYSU-unsplash.webp", title: "Que revisar antes de cerrar el mes fiscal", text: "Una guia practica para ordenar facturas, pagos, deducciones y pendientes antes de presentar informacion contable." },
-  { category: "Finanzas", date: "05 Jun 2026", read: "3 min", image: "/blake-wisz-GFrBMipOd_E-unsplash.webp", title: "Indicadores simples para entender la salud de tu empresa", text: "Margen, flujo, obligaciones y reservas: cuatro lecturas que ayudan a tomar mejores decisiones." },
-  { category: "Patrimonio", date: "22 May 2026", read: "5 min", image: "/jakub-zerdzicki-LNnmSumlwO4-unsplash.webp", title: "Retiro, seguros y patrimonio: por donde empezar", text: "Como integrar proteccion financiera y ahorro sin perder de vista el impacto fiscal." },
+  { slug: "cierre-mes-fiscal", category: "Fiscal", date: "18 Jun 2026", read: "4 min", image: "/carlos-muza-hpjSkU2UYSU-unsplash.webp", title: "Que revisar antes de cerrar el mes fiscal", text: "Una guia practica para ordenar facturas, pagos, deducciones y pendientes antes de presentar informacion contable." },
+  { slug: "indicadores-salud-empresa", category: "Finanzas", date: "05 Jun 2026", read: "3 min", image: "/blake-wisz-GFrBMipOd_E-unsplash.webp", title: "Indicadores simples para entender la salud de tu empresa", text: "Margen, flujo, obligaciones y reservas: cuatro lecturas que ayudan a tomar mejores decisiones." },
+  { slug: "retiro-seguros-patrimonio", category: "Patrimonio", date: "22 May 2026", read: "5 min", image: "/jakub-zerdzicki-LNnmSumlwO4-unsplash.webp", title: "Retiro, seguros y patrimonio: por donde empezar", text: "Como integrar proteccion financiera y ahorro sin perder de vista el impacto fiscal." },
 ];
 
 const blogEventsEn = [
@@ -467,9 +467,9 @@ const blogEventsEn = [
 ];
 
 const blogPostsEn = [
-  { category: "Tax", date: "Jun 18, 2026", read: "4 min", image: "/carlos-muza-hpjSkU2UYSU-unsplash.webp", title: "What to review before monthly tax closing", text: "A practical guide to organize invoices, payments, deductions, and accounting pending items." },
-  { category: "Finance", date: "Jun 5, 2026", read: "3 min", image: "/blake-wisz-GFrBMipOd_E-unsplash.webp", title: "Simple indicators to understand business health", text: "Margin, cash flow, obligations, and reserves: four readings that support better decisions." },
-  { category: "Wealth", date: "May 22, 2026", read: "5 min", image: "/jakub-zerdzicki-LNnmSumlwO4-unsplash.webp", title: "Retirement, insurance, and wealth: where to start", text: "How to integrate financial protection and savings while keeping tax impact in view." },
+  { slug: "monthly-tax-closing", category: "Tax", date: "Jun 18, 2026", read: "4 min", image: "/carlos-muza-hpjSkU2UYSU-unsplash.webp", title: "What to review before monthly tax closing", text: "A practical guide to organize invoices, payments, deductions, and accounting pending items." },
+  { slug: "business-health-indicators", category: "Finance", date: "Jun 5, 2026", read: "3 min", image: "/blake-wisz-GFrBMipOd_E-unsplash.webp", title: "Simple indicators to understand business health", text: "Margin, cash flow, obligations, and reserves: four readings that support better decisions." },
+  { slug: "retirement-insurance-wealth", category: "Wealth", date: "May 22, 2026", read: "5 min", image: "/jakub-zerdzicki-LNnmSumlwO4-unsplash.webp", title: "Retirement, insurance, and wealth: where to start", text: "How to integrate financial protection and savings while keeping tax impact in view." },
 ];
 
 const isrBrackets2024 = [
@@ -529,14 +529,16 @@ const defaultInsuranceInputs = {
 
 export default function KabinConsultoriaMockup() {
   const isEnglishPath = typeof window !== "undefined" && window.location.pathname.startsWith("/en");
-  const getPageFromHash = () => {
-    const page = window.location.hash.replace("#", "") || "inicio";
-    if (page === "blog") return "noticias";
-    return ["inicio", "seguros", "ecommerce", "noticias", "article", "contacto"].includes(page)
-      ? page
-      : "inicio";
+  const getPageFromPath = () => {
+    const path = window.location.pathname.replace(/\/+$/, "") || "/";
+    if (/^\/(en\/)?(seguros|insurance)$/.test(path)) return "seguros";
+    if (/^\/(en\/)?ecommerce$/.test(path)) return "ecommerce";
+    if (/^\/(eventos-noticias|en\/events-news)$/.test(path)) return "noticias";
+    if (/^\/(contacto|en\/contact)$/.test(path)) return "contacto";
+    if (/^\/(eventos-noticias|en\/events-news)\/.+/.test(path)) return "article";
+    return "inicio";
   };
-  const [activePage, setActivePage] = useState(getPageFromHash);
+  const [activePage, setActivePage] = useState(getPageFromPath);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [lang, setLang] = useState(isEnglishPath ? "en" : "es");
   const [parallaxOffset, setParallaxOffset] = useState(0);
@@ -550,7 +552,10 @@ export default function KabinConsultoriaMockup() {
   const [calculatedInsuranceInputs, setCalculatedInsuranceInputs] = useState(defaultInsuranceInputs);
   const [hasCalculatedInsurance, setHasCalculatedInsurance] = useState(true);
   const [selectedEventIndex, setSelectedEventIndex] = useState(0);
-  const [selectedPost, setSelectedPost] = useState(null);
+  const [selectedPost, setSelectedPost] = useState(() => {
+    const slug = window.location.pathname.split("/").filter(Boolean).at(-1);
+    return [...blogPostsEs, ...blogPostsEn].find((post) => post.slug === slug) || null;
+  });
 
   const t = lang === "es"
     ? {
@@ -603,14 +608,24 @@ export default function KabinConsultoriaMockup() {
       };
 
   useEffect(() => {
-    const onHashChange = () => {
-      setActivePage(getPageFromHash());
+    const legacyRoutes = {
+      "#inicio": isEnglishPath ? "/en/" : "/",
+      "#seguros": isEnglishPath ? "/en/insurance/" : "/seguros/",
+      "#ecommerce": isEnglishPath ? "/en/ecommerce/" : "/ecommerce/",
+      "#blog": isEnglishPath ? "/en/events-news/" : "/eventos-noticias/",
+      "#noticias": isEnglishPath ? "/en/events-news/" : "/eventos-noticias/",
+      "#contacto": isEnglishPath ? "/en/contact/" : "/contacto/",
+    };
+    if (legacyRoutes[window.location.hash]) window.location.replace(legacyRoutes[window.location.hash]);
+
+    const onPopState = () => {
+      setActivePage(getPageFromPath());
       setIsMenuOpen(false);
       window.scrollTo({ top: 0, behavior: "auto" });
     };
 
-    window.addEventListener("hashchange", onHashChange);
-    return () => window.removeEventListener("hashchange", onHashChange);
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
   }, []);
 
   useEffect(() => {
@@ -638,15 +653,34 @@ export default function KabinConsultoriaMockup() {
   useEffect(() => {
     const isEn = lang === "en";
     const base = "https://www.kabinconsultores.com";
-    const esUrl = `${base}/`;
-    const enUrl = `${base}/en/`;
-    const title = isEn
-      ? "Kabin | Tax, Accounting and Financial Consulting"
-      : "Kabin | Consultoría Fiscal, Contable y Financiera";
-    const description = isEn
-      ? "Accounting, tax, financial and wealth consulting in Mexico for individuals and businesses."
-      : "Consultoría contable, fiscal, financiera y patrimonial en México para personas y empresas. Asesoría profesional, humana y personalizada.";
-    const pageUrl = isEn ? enUrl : esUrl;
+    const routeSeo = {
+      es: {
+        inicio: ["Kabin | Consultoría Fiscal, Contable y Financiera", "Consultoría contable, fiscal, financiera y patrimonial en México para personas y empresas.", "/", "/en/"],
+        seguros: ["Seguros y protección patrimonial | Kabin", "Seguros de vida, gastos médicos, retiro, protección empresarial y patrimonial con acompañamiento profesional.", "/seguros/", "/en/insurance/"],
+        ecommerce: ["Servicios fiscales y contables para cotizar | Kabin", "Cotiza servicios fiscales, contables y empresariales con alcance y precios claros.", "/ecommerce/", "/en/ecommerce/"],
+        noticias: ["Eventos y noticias fiscales y financieras | Kabin", "Noticias, eventos y contenidos sobre impuestos, finanzas, seguros y patrimonio en México.", "/eventos-noticias/", "/en/events-news/"],
+        contacto: ["Contacto y asesoría profesional | Kabin", "Contacta a Kabin para recibir asesoría fiscal, contable, financiera, patrimonial o de seguros.", "/contacto/", "/en/contact/"],
+      },
+      en: {
+        inicio: ["Kabin | Tax, Accounting and Financial Consulting", "Accounting, tax, financial and wealth consulting in Mexico for individuals and businesses.", "/en/", "/"],
+        seguros: ["Insurance and Wealth Protection | Kabin", "Life, medical, retirement, business, and wealth protection solutions with professional support.", "/en/insurance/", "/seguros/"],
+        ecommerce: ["Tax and Accounting Services to Quote | Kabin", "Quote clearly scoped tax, accounting, and business services in Mexico.", "/en/ecommerce/", "/ecommerce/"],
+        noticias: ["Tax and Financial Events & News | Kabin", "News, events, and insights about tax, finance, insurance, and wealth in Mexico.", "/en/events-news/", "/eventos-noticias/"],
+        contacto: ["Contact and Professional Advice | Kabin", "Contact Kabin for tax, accounting, financial, wealth, or insurance advice in Mexico.", "/en/contact/", "/contacto/"],
+      },
+    };
+    const article = selectedPost || t.blogPosts[0];
+    const fallback = routeSeo[lang][activePage] || routeSeo[lang].inicio;
+    const articlePath = isEn ? `/en/events-news/${article.slug}/` : `/eventos-noticias/${article.slug}/`;
+    const counterpartArticle = isEn
+      ? `/eventos-noticias/${blogPostsEs[t.blogPosts.indexOf(article)]?.slug || blogPostsEs[0].slug}/`
+      : `/en/events-news/${blogPostsEn[t.blogPosts.indexOf(article)]?.slug || blogPostsEn[0].slug}/`;
+    const [title, description, routePath, counterpartPath] = activePage === "article"
+      ? [`${article.title} | Kabin`, article.text, articlePath, counterpartArticle]
+      : fallback;
+    const pageUrl = `${base}${routePath}`;
+    const esUrl = `${base}${isEn ? counterpartPath : routePath}`;
+    const enUrl = `${base}${isEn ? routePath : counterpartPath}`;
 
     document.documentElement.lang = isEn ? "en" : "es";
     document.title = title;
@@ -678,17 +712,31 @@ export default function KabinConsultoriaMockup() {
     setLink("alternate", esUrl, "x-default");
     setMeta("meta[name='description']", "content", description);
     setMeta("meta[property='og:locale']", "content", isEn ? "en_US" : "es_MX");
+    setMeta("meta[property='og:type']", "content", activePage === "article" ? "article" : "website");
     setMeta("meta[property='og:title']", "content", title);
     setMeta("meta[property='og:description']", "content", description);
     setMeta("meta[property='og:url']", "content", pageUrl);
+    setMeta("meta[property='og:image']", "content", activePage === "article" ? `${base}${article.image}` : `${base}/kabin.png`);
     setMeta("meta[name='twitter:title']", "content", title);
     setMeta("meta[name='twitter:description']", "content", description);
-  }, [lang]);
+    setMeta("meta[name='twitter:image']", "content", activePage === "article" ? `${base}${article.image}` : `${base}/kabin.png`);
+  }, [activePage, lang, selectedPost]);
 
   const switchLanguage = (nextLang) => {
-    setLang(nextLang);
-    const target = nextLang === "en" ? "/en/" : "/";
-    if (window.location.pathname !== target) window.history.replaceState({}, "", target);
+    const routePairs = {
+      inicio: ["/", "/en/"],
+      seguros: ["/seguros/", "/en/insurance/"],
+      ecommerce: ["/ecommerce/", "/en/ecommerce/"],
+      noticias: ["/eventos-noticias/", "/en/events-news/"],
+      contacto: ["/contacto/", "/en/contact/"],
+    };
+    if (activePage === "article") {
+      const index = t.blogPosts.findIndex((post) => post.slug === (selectedPost || t.blogPosts[0]).slug);
+      const targetPost = (nextLang === "en" ? blogPostsEn : blogPostsEs)[Math.max(index, 0)];
+      window.location.href = nextLang === "en" ? `/en/events-news/${targetPost.slug}/` : `/eventos-noticias/${targetPost.slug}/`;
+      return;
+    }
+    window.location.href = routePairs[activePage]?.[nextLang === "en" ? 1 : 0] || (nextLang === "en" ? "/en/" : "/");
   };
 
   const nextSlide = () => {
@@ -809,7 +857,7 @@ export default function KabinConsultoriaMockup() {
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
-          <a href="#inicio" className="flex items-center gap-3">
+          <a href={lang === "es" ? "/" : "/en/"} className="flex items-center gap-3">
             <img
               src="/KABIN LOGO OFICIAL BLANCO-01.png"
               alt="Kabin Consultoría"
@@ -1068,9 +1116,9 @@ export default function KabinConsultoriaMockup() {
             {activePage === "seguros" && (
             <div className="w-full">
               <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-900">{t.insuranceTitle}</p>
-              <h2 className="mt-4 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl md:text-5xl">
+              <h1 className="mt-4 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl md:text-5xl">
                 {t.insuranceHeading}
-              </h2>
+              </h1>
               <p className="mt-5 text-base leading-8 text-slate-600 sm:text-lg">
                 {t.insuranceText}
               </p>
@@ -1125,7 +1173,7 @@ export default function KabinConsultoriaMockup() {
                     </div>
                   ))}
                 </div>
-                <a href="#contacto" className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#d9ad58] px-6 py-3 text-sm font-black text-slate-950">
+                <a href={lang === "es" ? "/contacto/" : "/en/contact/"} className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#d9ad58] px-6 py-3 text-sm font-black text-slate-950">
                   Solicitar análisis de protección <ArrowRight size={16} />
                 </a>
               </div>
@@ -1135,7 +1183,7 @@ export default function KabinConsultoriaMockup() {
                   <ShieldCheck className="text-[#d9ad58]" size={34} />
                   <h2 className="mt-5 text-3xl font-black tracking-tight">{t.insuranceHeading}</h2>
                   <p className="mt-4 leading-7 text-white/75">{t.insuranceText}</p>
-                  <a href="#contacto" className="mt-6 inline-flex items-center gap-2 font-black text-[#d9ad58]">
+                  <a href={lang === "es" ? "/contacto/" : "/en/contact/"} className="mt-6 inline-flex items-center gap-2 font-black text-[#d9ad58]">
                     {lang === "es" ? "Solicitar análisis" : "Request an assessment"} <ArrowRight size={16} />
                   </a>
                 </div>
@@ -1143,7 +1191,7 @@ export default function KabinConsultoriaMockup() {
                   <MessageCircle className="text-[#d9ad58]" size={34} />
                   <h2 className="mt-5 text-3xl font-black tracking-tight">{t.contactTitle}</h2>
                   <p className="mt-4 leading-7 text-white/75">{t.contactText}</p>
-                  <a href="#contacto" className="mt-6 inline-flex items-center gap-2 font-black text-[#d9ad58]">
+                  <a href={lang === "es" ? "/contacto/" : "/en/contact/"} className="mt-6 inline-flex items-center gap-2 font-black text-[#d9ad58]">
                     {t.request} <ArrowRight size={16} />
                   </a>
                 </div>
@@ -1336,9 +1384,9 @@ export default function KabinConsultoriaMockup() {
             <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
               <div>
                 <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-900">{t.ecommerceTitle}</p>
-                <h2 className="mt-4 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl md:text-5xl">
+                <h1 className="mt-4 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl md:text-5xl">
                   {t.ecommerceHeading}
-                </h2>
+                </h1>
                 <p className="mt-5 text-base leading-8 text-slate-600 sm:text-lg">
                   {t.ecommerceText}
                 </p>
@@ -1459,7 +1507,7 @@ export default function KabinConsultoriaMockup() {
             <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
               <div>
                 <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-900">{t.blogTitle}</p>
-                <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl md:text-5xl">{t.blogHeading}</h2>
+                <h1 className="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl md:text-5xl">{t.blogHeading}</h1>
                 <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600">{t.blogText}</p>
               </div>
               <div className="rounded-2xl bg-slate-950 p-5 text-white shadow-2xl shadow-slate-900/20">
@@ -1511,9 +1559,9 @@ export default function KabinConsultoriaMockup() {
                     <div className="flex min-h-[250px] flex-col p-6">
                       <h3 className="text-2xl font-black leading-tight tracking-tight text-slate-950">{post.title}</h3>
                       <p className="mt-4 text-sm leading-7 text-slate-600">{post.text}</p>
-                      <button type="button" onClick={() => { setSelectedPost(post); window.location.hash = "article"; }} className="mt-auto inline-flex w-fit items-center gap-2 pt-6 text-sm font-black text-emerald-900 transition group-hover:gap-3">
+                      <a href={`${lang === "es" ? "/eventos-noticias" : "/en/events-news"}/${post.slug}/`} className="mt-auto inline-flex w-fit items-center gap-2 pt-6 text-sm font-black text-emerald-900 transition group-hover:gap-3">
                         {lang === "es" ? "Leer artículo" : "Read article"} <ArrowRight size={16} />
-                      </button>
+                      </a>
                     </div>
                   </article>
                 ))}
@@ -1528,7 +1576,7 @@ export default function KabinConsultoriaMockup() {
           return (
             <article className="min-h-screen bg-[#f4efe7] pb-20 pt-36 lg:pt-40">
               <div className="mx-auto max-w-5xl px-5 lg:px-8">
-                <a href="#noticias" className="mb-7 inline-flex items-center gap-2 text-sm font-black text-emerald-900"><ArrowLeft size={16} /> {lang === "es" ? "Volver a Eventos y Noticias" : "Back to Events & News"}</a>
+                <a href={lang === "es" ? "/eventos-noticias/" : "/en/events-news/"} className="mb-7 inline-flex items-center gap-2 text-sm font-black text-emerald-900"><ArrowLeft size={16} /> {lang === "es" ? "Volver a Eventos y Noticias" : "Back to Events & News"}</a>
                 <div className="overflow-hidden rounded-[2rem] bg-white shadow-2xl shadow-slate-900/10">
                   <div className="relative h-72 overflow-hidden sm:h-[430px]">
                     <img src={post.image} alt="" className="h-full w-full object-cover" />
@@ -1545,7 +1593,7 @@ export default function KabinConsultoriaMockup() {
                       <p>{lang === "es" ? "Tomar decisiones financieras y fiscales con anticipación permite reducir errores, ordenar prioridades y mantener una lectura clara de la situación actual." : "Making financial and tax decisions in advance helps reduce errors, organize priorities, and maintain a clear view of the current situation."}</p>
                       <p>{lang === "es" ? "En Kabin revisamos cada caso de forma integral: documentación, obligaciones, flujo, riesgos y objetivos. El resultado es una ruta práctica, entendible y alineada con las necesidades reales de cada persona o empresa." : "At Kabin, we review each case comprehensively: documentation, obligations, cash flow, risks, and goals. The result is a practical, understandable path aligned with each person or company's actual needs."}</p>
                     </div>
-                    <a href="#contacto" className="mt-10 inline-flex items-center gap-2 rounded-full bg-emerald-950 px-7 py-3.5 text-sm font-black text-white">{t.request} <ArrowRight size={16} /></a>
+                    <a href={lang === "es" ? "/contacto/" : "/en/contact/"} className="mt-10 inline-flex items-center gap-2 rounded-full bg-emerald-950 px-7 py-3.5 text-sm font-black text-white">{t.request} <ArrowRight size={16} /></a>
                   </div>
                 </div>
               </div>
@@ -1556,9 +1604,11 @@ export default function KabinConsultoriaMockup() {
         {(activePage === "contacto" || activePage === "inicio") && (
         <section id="contacto" className={`mx-auto min-h-screen max-w-7xl px-5 pb-20 lg:px-8 ${activePage === "inicio" ? "pt-16 lg:pt-24" : "pt-40 lg:pt-44"}`}>
           <div className="rounded-[2.2rem] bg-slate-950 p-8 text-white shadow-2xl md:p-12">
-            <h2 className="max-w-3xl text-3xl font-black tracking-tight sm:text-4xl md:text-5xl">
-              {t.contactTitle}
-            </h2>
+            {activePage === "contacto" ? (
+              <h1 className="max-w-3xl text-3xl font-black tracking-tight sm:text-4xl md:text-5xl">{t.contactTitle}</h1>
+            ) : (
+              <h2 className="max-w-3xl text-3xl font-black tracking-tight sm:text-4xl md:text-5xl">{t.contactTitle}</h2>
+            )}
             <p className="mt-4 max-w-2xl text-sm leading-7 text-white/75 sm:text-base">
               {t.contactText}
             </p>
@@ -1719,7 +1769,7 @@ export default function KabinConsultoriaMockup() {
                   <p>{lang === "es" ? "Tomar decisiones financieras y fiscales con anticipación permite reducir errores, ordenar prioridades y mantener una lectura clara de la situación actual." : "Making financial and tax decisions in advance helps reduce errors, organize priorities, and maintain a clear view of the current situation."}</p>
                   <p>{lang === "es" ? "En Kabin revisamos cada caso de forma integral: documentación, obligaciones, flujo, riesgos y objetivos. El resultado es una ruta práctica, entendible y alineada con las necesidades reales de cada persona o empresa." : "At Kabin, we review each case comprehensively: documentation, obligations, cash flow, risks, and goals. The result is a practical, understandable path aligned with each person or company's actual needs."}</p>
                 </div>
-                <a href="#contacto" onClick={() => setSelectedPost(null)} className="mt-8 inline-flex items-center gap-2 rounded-full bg-emerald-950 px-6 py-3 text-sm font-black text-white">
+                <a href={lang === "es" ? "/contacto/" : "/en/contact/"} onClick={() => setSelectedPost(null)} className="mt-8 inline-flex items-center gap-2 rounded-full bg-emerald-950 px-6 py-3 text-sm font-black text-white">
                   {t.request} <ArrowRight size={16} />
                 </a>
               </div>
@@ -1906,7 +1956,7 @@ export default function KabinConsultoriaMockup() {
               </div>
               <p className="mt-5 text-base leading-8 text-slate-600">{selectedService.details}</p>
               <a
-                href="#contacto"
+                href={lang === "es" ? "/contacto/" : "/en/contact/"}
                 onClick={() => setSelectedService(null)}
                 className="mt-7 inline-flex items-center justify-center rounded-full bg-emerald-950 px-6 py-3 text-sm font-black text-white transition hover:-translate-y-0.5"
               >
@@ -2006,7 +2056,7 @@ export default function KabinConsultoriaMockup() {
               <a href="/aviso-privacidad.html" className="transition hover:text-white">
                 {t.privacy}
               </a>
-              <a href="#contacto" className="transition hover:text-white">
+              <a href={lang === "es" ? "/contacto/" : "/en/contact/"} className="transition hover:text-white">
                 {t.terms}
               </a>
             </div>

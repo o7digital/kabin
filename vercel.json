@@ -14,8 +14,22 @@
     }
   ],
   "rewrites": [
-    { "source": "/en", "destination": "/" },
-    { "source": "/en/:path*", "destination": "/" },
-    { "source": "/((?!api|assets|.*\\..*).*)", "destination": "/" }
+    { "source": "/en", "destination": "/en/index.html" },
+    { "source": "/seguros/:path*", "destination": "/seguros/index.html" },
+    { "source": "/ecommerce/:path*", "destination": "/ecommerce/index.html" },
+    { "source": "/contacto/:path*", "destination": "/contacto/index.html" },
+    { "source": "/eventos-noticias/cierre-mes-fiscal/:path*", "destination": "/eventos-noticias/cierre-mes-fiscal/index.html" },
+    { "source": "/eventos-noticias/indicadores-salud-empresa/:path*", "destination": "/eventos-noticias/indicadores-salud-empresa/index.html" },
+    { "source": "/eventos-noticias/retiro-seguros-patrimonio/:path*", "destination": "/eventos-noticias/retiro-seguros-patrimonio/index.html" },
+    { "source": "/eventos-noticias/:path*", "destination": "/eventos-noticias/index.html" },
+    { "source": "/en/insurance/:path*", "destination": "/en/insurance/index.html" },
+    { "source": "/en/ecommerce/:path*", "destination": "/en/ecommerce/index.html" },
+    { "source": "/en/contact/:path*", "destination": "/en/contact/index.html" },
+    { "source": "/en/events-news/monthly-tax-closing/:path*", "destination": "/en/events-news/monthly-tax-closing/index.html" },
+    { "source": "/en/events-news/business-health-indicators/:path*", "destination": "/en/events-news/business-health-indicators/index.html" },
+    { "source": "/en/events-news/retirement-insurance-wealth/:path*", "destination": "/en/events-news/retirement-insurance-wealth/index.html" },
+    { "source": "/en/events-news/:path*", "destination": "/en/events-news/index.html" },
+    { "source": "/en/:path*", "destination": "/en/index.html" },
+    { "source": "/((?!api|assets|.*\\..*).*)", "destination": "/index.html" }
   ]
 }
