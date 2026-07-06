@@ -272,7 +272,7 @@ const navLinksEs = [
   { href: "#seguros", label: "Seguros" },
   { href: "#ecommerce", label: "Ecommerce" },
   { href: "#servicios", label: "Servicios" },
-  { href: "#blog", label: "Blog" },
+  { href: "#noticias", label: "Noticias" },
   { href: "#contacto", label: "Contacto" },
 ];
 
@@ -282,7 +282,7 @@ const navLinksEn = [
   { href: "#seguros", label: "Insurance" },
   { href: "#ecommerce", label: "Ecommerce" },
   { href: "#servicios", label: "Services" },
-  { href: "#blog", label: "Blog" },
+  { href: "#noticias", label: "News" },
   { href: "#contacto", label: "Contact" },
 ];
 
@@ -514,6 +514,14 @@ const defaultInsuranceInputs = {
 
 export default function KabinConsultoriaMockup() {
   const isEnglishPath = typeof window !== "undefined" && window.location.pathname.startsWith("/en");
+  const getPageFromHash = () => {
+    const page = window.location.hash.replace("#", "") || "inicio";
+    if (page === "blog") return "noticias";
+    return ["inicio", "nosotros", "seguros", "ecommerce", "servicios", "noticias", "contacto"].includes(page)
+      ? page
+      : "inicio";
+  };
+  const [activePage, setActivePage] = useState(getPageFromHash);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [lang, setLang] = useState(isEnglishPath ? "en" : "es");
   const [parallaxOffset, setParallaxOffset] = useState(0);
@@ -577,6 +585,17 @@ export default function KabinConsultoriaMockup() {
         privacy: "Privacy Notice", footerNav: "Navigation", footerContact: "Contact", mexico: "Service in Mexico", social: "Social media",
         rights: "© 2026 Kabin Tax and Financial Consulting. All rights reserved.", terms: "Terms", serviceDetail: "Service details", request: "Request consultation",
       };
+
+  useEffect(() => {
+    const onHashChange = () => {
+      setActivePage(getPageFromHash());
+      setIsMenuOpen(false);
+      window.scrollTo({ top: 0, behavior: "auto" });
+    };
+
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -874,6 +893,7 @@ export default function KabinConsultoriaMockup() {
       </header>
 
       <main>
+        {activePage === "inicio" && (
         <section id="inicio" className="relative min-h-screen overflow-hidden text-white">
           <AnimatePresence mode="wait">
             <motion.div
@@ -957,8 +977,10 @@ export default function KabinConsultoriaMockup() {
             ))}
           </div>
         </section>
+        )}
 
-        <section id="nosotros" className="bg-[#0d2340] py-16 text-white lg:py-24">
+        {activePage === "nosotros" && (
+        <section id="nosotros" className="min-h-screen bg-[#0d2340] pb-16 pt-40 text-white lg:pb-24 lg:pt-44">
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
             <div className="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
               <div>
@@ -1038,8 +1060,10 @@ export default function KabinConsultoriaMockup() {
             </div>
           </div>
         </section>
+        )}
 
-        <section id="seguros" className="bg-[#f9f6ef] py-16 lg:py-24">
+        {activePage === "seguros" && (
+        <section id="seguros" className="min-h-screen bg-[#f9f6ef] pb-16 pt-40 lg:pb-24 lg:pt-44">
           <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
             <div>
               <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-900">{t.insuranceTitle}</p>
@@ -1243,8 +1267,10 @@ export default function KabinConsultoriaMockup() {
             </div>
           </div>
         </section>
+        )}
 
-        <section id="ecommerce" className="bg-white py-16 lg:py-24">
+        {activePage === "ecommerce" && (
+        <section id="ecommerce" className="min-h-screen bg-white pb-16 pt-40 lg:pb-24 lg:pt-44">
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
             <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
               <div>
@@ -1364,8 +1390,10 @@ export default function KabinConsultoriaMockup() {
             </div>
           </div>
         </section>
+        )}
 
-        <section id="servicios" className="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
+        {activePage === "servicios" && (
+        <section id="servicios" className="mx-auto min-h-screen max-w-7xl px-5 pb-16 pt-40 lg:px-8 lg:pb-20 lg:pt-44">
           <div className="mb-10 max-w-3xl">
             <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-900">{t.servicesTitle}</p>
             <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl md:text-5xl">
@@ -1398,8 +1426,10 @@ export default function KabinConsultoriaMockup() {
             })}
           </div>
         </section>
+        )}
 
-        <section id="blog" className="bg-[#f4efe7] px-5 py-16 lg:px-8 lg:py-24">
+        {activePage === "noticias" && (
+        <section id="noticias" className="min-h-screen bg-[#f4efe7] px-5 pb-16 pt-40 lg:px-8 lg:pb-24 lg:pt-44">
           <div className="mx-auto max-w-7xl">
             <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
               <div>
@@ -1458,8 +1488,10 @@ export default function KabinConsultoriaMockup() {
             </div>
           </div>
         </section>
+        )}
 
-        <section id="contacto" className="mx-auto max-w-7xl px-5 pb-20 lg:px-8">
+        {activePage === "contacto" && (
+        <section id="contacto" className="mx-auto min-h-screen max-w-7xl px-5 pb-20 pt-40 lg:px-8 lg:pt-44">
           <div className="rounded-[2.2rem] bg-slate-950 p-8 text-white shadow-2xl md:p-12">
             <h2 className="max-w-3xl text-3xl font-black tracking-tight sm:text-4xl md:text-5xl">
               {t.contactTitle}
@@ -1567,6 +1599,7 @@ export default function KabinConsultoriaMockup() {
             </div>
           </div>
         </section>
+        )}
 
       </main>
 
