@@ -270,7 +270,6 @@ const navLinksEs = [
   { href: "#inicio", label: "Inicio" },
   { href: "#seguros", label: "Seguros" },
   { href: "#ecommerce", label: "Ecommerce" },
-  { href: "#servicios", label: "Servicios" },
   { href: "#noticias", label: "Noticias" },
   { href: "#contacto", label: "Contacto" },
 ];
@@ -279,7 +278,6 @@ const navLinksEn = [
   { href: "#inicio", label: "Home" },
   { href: "#seguros", label: "Insurance" },
   { href: "#ecommerce", label: "Ecommerce" },
-  { href: "#servicios", label: "Services" },
   { href: "#noticias", label: "News" },
   { href: "#contacto", label: "Contact" },
 ];
@@ -515,7 +513,7 @@ export default function KabinConsultoriaMockup() {
   const getPageFromHash = () => {
     const page = window.location.hash.replace("#", "") || "inicio";
     if (page === "blog") return "noticias";
-    return ["inicio", "seguros", "ecommerce", "servicios", "noticias", "contacto"].includes(page)
+    return ["inicio", "seguros", "ecommerce", "noticias", "contacto"].includes(page)
       ? page
       : "inicio";
   };
@@ -1007,22 +1005,24 @@ export default function KabinConsultoriaMockup() {
 
         <section className="bg-[#f4efe7] py-16 lg:py-24">
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
-            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-3xl">
               <div className="max-w-3xl">
                 <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-900">{t.servicesTitle}</p>
                 <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl md:text-5xl">{t.servicesHeading}</h2>
               </div>
-              <a href="#servicios" className="inline-flex shrink-0 items-center gap-2 text-sm font-black text-emerald-900">{t.readMore} <ArrowRight size={16} /></a>
             </div>
             <div className="mt-10 grid gap-5 md:grid-cols-3">
-              {t.services.slice(0, 3).map((service) => {
+              {t.services.map((service) => {
                 const Icon = service.icon;
                 return (
-                  <a key={service.title} href="#servicios" className="rounded-[1.6rem] border border-emerald-900/10 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+                  <article key={service.title} className="flex flex-col rounded-[1.6rem] border border-emerald-900/10 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
                     <span className="inline-flex rounded-2xl bg-emerald-50 p-3.5 text-emerald-950"><Icon size={24} /></span>
                     <h3 className="mt-5 text-xl font-black text-slate-950">{service.title}</h3>
                     <p className="mt-3 text-sm leading-7 text-slate-600">{service.text}</p>
-                  </a>
+                    <button type="button" onClick={() => setSelectedService(service)} className="mt-auto inline-flex w-fit items-center gap-2 pt-5 text-left text-sm font-bold text-emerald-900">
+                      {t.readMore} <ArrowRight size={15} />
+                    </button>
+                  </article>
                 );
               })}
             </div>
@@ -1374,42 +1374,6 @@ export default function KabinConsultoriaMockup() {
                 </div>
               </aside>
             </div>
-          </div>
-        </section>
-        )}
-
-        {activePage === "servicios" && (
-        <section id="servicios" className="mx-auto min-h-screen max-w-7xl px-5 pb-16 pt-40 lg:px-8 lg:pb-20 lg:pt-44">
-          <div className="mb-10 max-w-3xl">
-            <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-900">{t.servicesTitle}</p>
-            <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl md:text-5xl">
-              {t.servicesHeading}
-            </h2>
-          </div>
-
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {t.services.map((service) => {
-              const Icon = service.icon;
-              return (
-                <article
-                  key={service.title}
-                  className="group flex h-full flex-col rounded-[1.8rem] border border-emerald-900/10 bg-white p-6 shadow-sm transition hover:-translate-y-1.5 hover:shadow-xl"
-                >
-                  <div className="mb-5 inline-flex rounded-2xl bg-emerald-50 p-3.5 text-emerald-950 transition group-hover:bg-emerald-950 group-hover:text-white">
-                    <Icon size={24} />
-                  </div>
-                  <h3 className="text-xl font-black text-slate-900">{service.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-slate-600">{service.text}</p>
-                  <button
-                    type="button"
-                    onClick={() => setSelectedService(service)}
-                    className="mt-auto inline-flex w-fit items-center gap-2 pt-5 text-left text-sm font-bold text-emerald-900"
-                  >
-                    {t.readMore} <ArrowRight size={15} />
-                  </button>
-                </article>
-              );
-            })}
           </div>
         </section>
         )}
