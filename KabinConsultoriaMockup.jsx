@@ -1490,8 +1490,8 @@ export default function KabinConsultoriaMockup() {
         </section>
         )}
 
-        {activePage === "contacto" && (
-        <section id="contacto" className="mx-auto min-h-screen max-w-7xl px-5 pb-20 pt-40 lg:px-8 lg:pt-44">
+        {(activePage === "contacto" || activePage === "inicio") && (
+        <section id="contacto" className={`mx-auto min-h-screen max-w-7xl px-5 pb-20 lg:px-8 ${activePage === "inicio" ? "pt-16 lg:pt-24" : "pt-40 lg:pt-44"}`}>
           <div className="rounded-[2.2rem] bg-slate-950 p-8 text-white shadow-2xl md:p-12">
             <h2 className="max-w-3xl text-3xl font-black tracking-tight sm:text-4xl md:text-5xl">
               {t.contactTitle}
