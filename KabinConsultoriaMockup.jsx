@@ -1100,6 +1100,25 @@ export default function KabinConsultoriaMockup() {
                   Solicitar análisis de protección <ArrowRight size={16} />
                 </a>
               </div>
+
+              <div className="mt-12 grid gap-6 lg:grid-cols-2">
+                <div className="rounded-[1.8rem] bg-emerald-950 p-8 text-white md:p-10">
+                  <ShieldCheck className="text-[#d9ad58]" size={34} />
+                  <h2 className="mt-5 text-3xl font-black tracking-tight">{t.insuranceHeading}</h2>
+                  <p className="mt-4 leading-7 text-white/75">{t.insuranceText}</p>
+                  <a href="#contacto" className="mt-6 inline-flex items-center gap-2 font-black text-[#d9ad58]">
+                    {lang === "es" ? "Solicitar análisis" : "Request an assessment"} <ArrowRight size={16} />
+                  </a>
+                </div>
+                <div className="rounded-[1.8rem] bg-slate-950 p-8 text-white md:p-10">
+                  <MessageCircle className="text-[#d9ad58]" size={34} />
+                  <h2 className="mt-5 text-3xl font-black tracking-tight">{t.contactTitle}</h2>
+                  <p className="mt-4 leading-7 text-white/75">{t.contactText}</p>
+                  <a href="#contacto" className="mt-6 inline-flex items-center gap-2 font-black text-[#d9ad58]">
+                    {t.request} <ArrowRight size={16} />
+                  </a>
+                </div>
+              </div>
             </div>
             )}
 
