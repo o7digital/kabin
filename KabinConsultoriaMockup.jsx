@@ -436,7 +436,7 @@ const blogEventsEs = [
 
 const blogPostsEs = [
   { category: "Fiscal", date: "18 Jun 2026", read: "4 min", image: "/carlos-muza-hpjSkU2UYSU-unsplash.webp", title: "Que revisar antes de cerrar el mes fiscal", text: "Una guia practica para ordenar facturas, pagos, deducciones y pendientes antes de presentar informacion contable." },
-  { category: "Finanzas", date: "05 Jun 2026", read: "3 min", image: "/kabin-equipo.webp", title: "Indicadores simples para entender la salud de tu empresa", text: "Margen, flujo, obligaciones y reservas: cuatro lecturas que ayudan a tomar mejores decisiones." },
+  { category: "Finanzas", date: "05 Jun 2026", read: "3 min", image: "/blake-wisz-GFrBMipOd_E-unsplash.webp", title: "Indicadores simples para entender la salud de tu empresa", text: "Margen, flujo, obligaciones y reservas: cuatro lecturas que ayudan a tomar mejores decisiones." },
   { category: "Patrimonio", date: "22 May 2026", read: "5 min", image: "/jakub-zerdzicki-LNnmSumlwO4-unsplash.webp", title: "Retiro, seguros y patrimonio: por donde empezar", text: "Como integrar proteccion financiera y ahorro sin perder de vista el impacto fiscal." },
 ];
 
@@ -449,7 +449,7 @@ const blogEventsEn = [
 
 const blogPostsEn = [
   { category: "Tax", date: "Jun 18, 2026", read: "4 min", image: "/carlos-muza-hpjSkU2UYSU-unsplash.webp", title: "What to review before monthly tax closing", text: "A practical guide to organize invoices, payments, deductions, and accounting pending items." },
-  { category: "Finance", date: "Jun 5, 2026", read: "3 min", image: "/kabin-equipo.webp", title: "Simple indicators to understand business health", text: "Margin, cash flow, obligations, and reserves: four readings that support better decisions." },
+  { category: "Finance", date: "Jun 5, 2026", read: "3 min", image: "/blake-wisz-GFrBMipOd_E-unsplash.webp", title: "Simple indicators to understand business health", text: "Margin, cash flow, obligations, and reserves: four readings that support better decisions." },
   { category: "Wealth", date: "May 22, 2026", read: "5 min", image: "/jakub-zerdzicki-LNnmSumlwO4-unsplash.webp", title: "Retirement, insurance, and wealth: where to start", text: "How to integrate financial protection and savings while keeping tax impact in view." },
 ];
 
