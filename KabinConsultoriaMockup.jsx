@@ -266,6 +266,25 @@ const badgesEs = [
 
 const badgesEn = ["Responsibility", "Honesty", "Empathy", "Teamwork"];
 
+function OfflineOliviaChat() {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="fixed bottom-5 right-5 z-[9999] font-sans">
+      {open && (
+        <section className="mb-3 w-[min(390px,calc(100vw-28px))] overflow-hidden rounded-2xl border border-amber-300/60 bg-emerald-950 text-white shadow-2xl">
+          <header className="flex items-center justify-between px-5 py-4">
+            <div><strong className="block text-xl text-amber-200">Olivia AI</strong><small className="font-bold text-red-300">Offline</small></div>
+            <button type="button" onClick={() => setOpen(false)} className="text-3xl">×</button>
+          </header>
+          <div className="min-h-48 space-y-3 bg-emerald-50 p-5 text-emerald-950"><p className="w-fit rounded-xl bg-white px-4 py-3 shadow">Offline</p></div>
+          <div className="flex gap-2 p-3"><input disabled placeholder="Offline" className="min-w-0 flex-1 rounded-xl bg-white px-4 py-3 text-emerald-950 opacity-60"/><button disabled className="rounded-xl bg-amber-200 px-4 font-black text-emerald-950 opacity-60">Send</button></div>
+        </section>
+      )}
+      <button type="button" onClick={() => setOpen(true)} className="ml-auto flex items-center gap-2 rounded-full border border-amber-300/60 bg-emerald-950 px-4 py-3 text-white shadow-xl"><b className="grid h-8 w-8 place-items-center rounded-full bg-amber-200 text-emerald-950">O</b>Offline</button>
+    </div>
+  );
+}
+
 const navLinksEs = [
   { href: "#inicio", label: "Inicio" },
   { href: "#seguros", label: "Seguros" },
@@ -794,6 +813,8 @@ export default function KabinConsultoriaMockup() {
             <img
               src="/KABIN LOGO OFICIAL BLANCO-01.png"
               alt="Kabin Consultoría"
+              width="2360"
+              height="2488"
               className="h-24 w-24 object-contain"
             />
             <div>
@@ -986,7 +1007,15 @@ export default function KabinConsultoriaMockup() {
               </div>
               <div className="relative">
                 <div className="absolute -inset-4 rounded-[2rem] border border-[#d9ad58]/35" />
-                <img src="/kabin.png" alt="Equipo de consultoría Kabin" className="relative aspect-[4/3] w-full rounded-[1.6rem] object-cover shadow-2xl shadow-black/35" />
+                <img
+                  src="/kabin-equipo.webp"
+                  alt="Equipo de consultoría trabajando en una mesa de oficina"
+                  width="641"
+                  height="721"
+                  loading="lazy"
+                  decoding="async"
+                  className="relative aspect-[4/3] w-full rounded-[1.6rem] object-cover shadow-2xl shadow-black/35"
+                />
               </div>
             </div>
             <div className="mt-14 grid gap-5 lg:grid-cols-2">
@@ -1888,6 +1917,7 @@ export default function KabinConsultoriaMockup() {
         )}
       </AnimatePresence>
 
+      <OfflineOliviaChat />
       <footer className="border-t border-emerald-950/10 bg-slate-950 text-white">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 md:grid-cols-[1.4fr_0.9fr_1fr] lg:px-8">
           <div>
@@ -1895,6 +1925,10 @@ export default function KabinConsultoriaMockup() {
               <img
                 src="/KABIN LOGO OFICIAL BLANCO-01.png"
                 alt="Kabin Consultoría"
+                width="2360"
+                height="2488"
+                loading="lazy"
+                decoding="async"
                 className="h-24 w-24 object-contain"
               />
               <div>
