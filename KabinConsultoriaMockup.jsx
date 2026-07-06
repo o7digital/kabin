@@ -411,6 +411,36 @@ const ecommercePackagesEs = [
     includes: ["Contabilidad mensual", "Calendario fiscal", "Reporte directivo", "Sesión mensual"],
     delivery: "Inicio en 2 días hábiles",
   },
+  {
+    icon: Scale,
+    title: "Auditoría y control interno",
+    price: 8900,
+    cadence: "desde",
+    tag: "Control",
+    description: "Revisión focalizada de procesos, soportes y controles para detectar riesgos y áreas de mejora.",
+    includes: ["Mapa de riesgos", "Muestra documental", "Hallazgos prioritarios", "Plan de corrección"],
+    delivery: "Entrega estimada: 7 días hábiles",
+  },
+  {
+    icon: PiggyBank,
+    title: "Plan patrimonial y retiro",
+    price: 7500,
+    cadence: "por estrategia",
+    tag: "Patrimonio",
+    description: "Diagnóstico y ruta de ahorro, protección y retiro alineada con tus metas personales.",
+    includes: ["Perfil financiero", "Proyección de retiro", "Escenarios de ahorro", "Sesión de estrategia"],
+    delivery: "Entrega estimada: 5 días hábiles",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Gobierno corporativo esencial",
+    price: 9800,
+    cadence: "desde",
+    tag: "Empresa",
+    description: "Estructura inicial para ordenar decisiones, responsabilidades y acuerdos entre socios.",
+    includes: ["Diagnóstico societario", "Matriz de roles", "Protocolo de acuerdos", "Ruta de implementación"],
+    delivery: "Entrega estimada: 8 días hábiles",
+  },
 ];
 
 const ecommercePackagesEn = [
@@ -443,6 +473,36 @@ const ecommercePackagesEn = [
     description: "Recurring support for accounting, compliance, reporting, and operating follow-up.",
     includes: ["Monthly accounting", "Tax calendar", "Management report", "Monthly session"],
     delivery: "Start in 2 business days",
+  },
+  {
+    icon: Scale,
+    title: "Audit and internal control",
+    price: 8900,
+    cadence: "from",
+    tag: "Control",
+    description: "Focused review of processes, supporting documents, and controls to identify risks and improvements.",
+    includes: ["Risk map", "Document sample", "Priority findings", "Correction plan"],
+    delivery: "Estimated delivery: 7 business days",
+  },
+  {
+    icon: PiggyBank,
+    title: "Wealth and retirement plan",
+    price: 7500,
+    cadence: "per strategy",
+    tag: "Wealth",
+    description: "Savings, protection, and retirement roadmap aligned with your personal goals.",
+    includes: ["Financial profile", "Retirement projection", "Savings scenarios", "Strategy session"],
+    delivery: "Estimated delivery: 5 business days",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Essential corporate governance",
+    price: 9800,
+    cadence: "from",
+    tag: "Business",
+    description: "Initial structure to organize decisions, responsibilities, and agreements among partners.",
+    includes: ["Corporate assessment", "Role matrix", "Agreement protocol", "Implementation roadmap"],
+    delivery: "Estimated delivery: 8 business days",
   },
 ];
 
@@ -1404,8 +1464,8 @@ export default function KabinConsultoriaMockup() {
               </div>
             </div>
 
-            <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_360px]">
-              <div className="grid gap-5 md:grid-cols-2">
+            <div className="mt-10 space-y-8">
+              <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
                 {t.ecommercePackages.map((item, index) => {
                   const Icon = item.icon;
                   const isSelected = index === selectedPackageIndex;
@@ -1455,7 +1515,7 @@ export default function KabinConsultoriaMockup() {
                 })}
               </div>
 
-              <aside className="h-fit rounded-2xl border border-slate-200 bg-slate-950 p-6 text-white shadow-2xl shadow-slate-900/20 lg:sticky lg:top-28">
+              <aside className="grid h-fit gap-6 rounded-2xl border border-slate-200 bg-slate-950 p-6 text-white shadow-2xl shadow-slate-900/20 lg:grid-cols-[auto_1.2fr_1fr_auto] lg:items-center">
                 <div className="flex items-center gap-3">
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-emerald-950">
                     <CreditCard size={22} />
@@ -1466,12 +1526,12 @@ export default function KabinConsultoriaMockup() {
                   </div>
                 </div>
 
-                <div className="mt-6 rounded-xl border border-white/10 bg-white/5 p-4">
+                <div className="rounded-xl border border-white/10 bg-white/5 p-4">
                   <p className="text-lg font-black">{selectedPackage.title}</p>
                   <p className="mt-2 text-sm leading-6 text-white/65">{selectedPackage.description}</p>
                 </div>
 
-                <div className="mt-6 grid gap-3 text-sm">
+                <div className="grid gap-3 text-sm">
                   <div className="flex items-center justify-between border-b border-white/10 pb-3">
                     <span className="text-white/65">{t.subtotal}</span>
                     <span className="font-black">{formatMxn(packageSubtotal)}</span>
@@ -1486,7 +1546,7 @@ export default function KabinConsultoriaMockup() {
                   </div>
                 </div>
 
-                <div className="mt-6 grid gap-3">
+                <div className="grid gap-3">
                   <button
                     type="button"
                     onClick={() => quotePackage(selectedPackageIndex)}
