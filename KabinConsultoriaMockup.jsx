@@ -215,6 +215,108 @@ const seoKeywordsEn = [
   "corporate governance Mexico Queretaro",
 ];
 
+const seoContentEs = {
+  seguros: [
+    {
+      title: "Protección financiera con criterio fiscal",
+      text: "La contratación de seguros no debería decidirse solo por precio o suma asegurada. En Kabin revisamos responsabilidades familiares, ingresos, deudas, etapa de vida, obligaciones empresariales y posibles beneficios fiscales para proponer una estructura de protección coherente.",
+    },
+    {
+      title: "Seguros para personas, socios y empresas",
+      text: "Acompañamos la revisión de seguros de vida, gastos médicos mayores, planes de retiro, protección para socios clave, continuidad empresarial y coberturas patrimoniales. La intención es reducir riesgos que puedan afectar liquidez, patrimonio o continuidad operativa.",
+    },
+    {
+      title: "Acompañamiento antes y después de contratar",
+      text: "Explicamos alcances, exclusiones, deducibles y condiciones relevantes para que la decisión sea clara. También damos seguimiento cuando cambia la situación familiar, fiscal o empresarial, porque una póliza útil debe mantenerse alineada con la realidad del cliente.",
+    },
+  ],
+  ecommerce: [
+    {
+      title: "Servicios contables y fiscales con alcance definido",
+      text: "Los paquetes están pensados para personas físicas, profesionistas independientes, emprendedores y PyMEs que necesitan resolver temas concretos sin iniciar un proceso largo. Cada servicio indica entregables, tiempos estimados y el tipo de información que se revisa.",
+    },
+    {
+      title: "De la cotización al expediente del cliente",
+      text: "El flujo permite levantar una solicitud con contexto suficiente para entender el caso: actividad, régimen, documentos disponibles, urgencia y objetivo. Esto facilita una primera conversación más precisa y evita propuestas genéricas.",
+    },
+    {
+      title: "Diagnóstico antes de prometer resultados",
+      text: "La asesoría fiscal, contable y patrimonial requiere revisar datos reales. Por eso los paquetes funcionan como punto de entrada ordenado: ayudan a detectar riesgos, oportunidades y siguientes pasos antes de comprometer una estrategia mayor.",
+    },
+  ],
+  noticias: [
+    {
+      title: "Contenido para tomar mejores decisiones",
+      text: "La sección reúne guías breves sobre cierres contables, obligaciones fiscales, indicadores financieros, ahorro, seguros y patrimonio. El enfoque es práctico: explicar qué revisar, por qué importa y cuándo conviene pedir asesoría.",
+    },
+    {
+      title: "Temas fiscales y financieros en México",
+      text: "Los artículos están orientados a personas y empresas que necesitan entender sus números con más claridad. Cubren situaciones frecuentes como declaraciones, flujo de efectivo, deducciones, organización documental y planeación de largo plazo.",
+    },
+  ],
+  contacto: [
+    {
+      title: "Cómo inicia una asesoría con Kabin",
+      text: "El primer contacto busca entender la situación del cliente: tipo de actividad, obligaciones actuales, dudas principales, riesgos detectados y metas personales o empresariales. Con esa información se propone una ruta de trabajo realista.",
+    },
+    {
+      title: "Asesoría fiscal, contable, financiera y patrimonial",
+      text: "Atendemos consultas relacionadas con contabilidad, impuestos, auditorías, protección financiera, seguros, retiro, gestión patrimonial y gobierno corporativo. El objetivo es conectar las decisiones técnicas con el impacto que tienen en la vida y operación del cliente.",
+    },
+  ],
+};
+
+const seoContentEn = {
+  seguros: [
+    {
+      title: "Financial protection with tax-aware criteria",
+      text: "Insurance decisions should not be based only on price or coverage amount. Kabin reviews family responsibilities, income, debt, life stage, business obligations, and possible tax considerations to propose a coherent protection structure.",
+    },
+    {
+      title: "Insurance for individuals, partners, and companies",
+      text: "We support reviews of life insurance, major medical coverage, retirement plans, key-partner protection, business continuity, and wealth-related coverage. The goal is to reduce risks that could affect liquidity, assets, or operating continuity.",
+    },
+    {
+      title: "Support before and after contracting",
+      text: "We explain scope, exclusions, deductibles, and relevant conditions so each decision is clear. We also review coverage when family, tax, or business circumstances change.",
+    },
+  ],
+  ecommerce: [
+    {
+      title: "Accounting and tax services with defined scope",
+      text: "The packages are designed for individuals, independent professionals, entrepreneurs, and SMBs that need to solve specific matters without starting a long process. Each service explains deliverables, estimated timing, and the information reviewed.",
+    },
+    {
+      title: "From quote request to client file",
+      text: "The flow gathers enough context to understand the case: activity, tax regime, available documents, urgency, and objective. This supports a more precise first conversation and avoids generic proposals.",
+    },
+    {
+      title: "Diagnosis before promising outcomes",
+      text: "Tax, accounting, and wealth advice requires real data review. These packages work as an organized entry point to identify risks, opportunities, and next steps before committing to a broader strategy.",
+    },
+  ],
+  noticias: [
+    {
+      title: "Content for better decisions",
+      text: "This section gathers short guides on accounting closes, tax obligations, financial indicators, savings, insurance, and wealth. The approach is practical: what to review, why it matters, and when to request advice.",
+    },
+    {
+      title: "Tax and financial topics in Mexico",
+      text: "The articles are written for individuals and businesses that need clearer financial visibility. They cover common situations such as filings, cash flow, deductions, document organization, and long-term planning.",
+    },
+  ],
+  contacto: [
+    {
+      title: "How an advisory process starts",
+      text: "The first contact is used to understand the client's activity, current obligations, main questions, detected risks, and personal or business goals. From there, Kabin proposes a realistic work plan.",
+    },
+    {
+      title: "Tax, accounting, financial, and wealth advice",
+      text: "We handle questions related to accounting, taxes, audits, financial protection, insurance, retirement, wealth management, and corporate governance. The goal is to connect technical decisions with their real impact.",
+    },
+  ],
+};
+
 const heroSlidesEs = [
   {
     eyebrow: "Consultoría Estratégica",
@@ -665,9 +767,10 @@ export default function KabinConsultoriaMockup() {
         fullname: "First name", lastname: "Last name", email: "Email", phone: "Phone", industry: "Industry type", interest: "Service of interest", message: "Message", send: "Send request", sending: "Sending...", quoteSent: "Request sent. Kabin will receive the lead in its CRM and by email.", quoteError: "The request could not be sent. Please try again or contact us on WhatsApp.",
         privacy: "Privacy Notice", footerNav: "Navigation", footerContact: "Contact", mexico: "Service in Mexico", social: "Social media",
         rights: "© 2026 Kabin Tax and Financial Consulting. All rights reserved.", terms: "Terms", serviceDetail: "Service details", request: "Request consultation",
-      };
+	      };
 
-  useEffect(() => {
+	  const seoContent = lang === "es" ? seoContentEs : seoContentEn;
+	  useEffect(() => {
     const legacyRoutes = {
       "#inicio": isEnglishPath ? "/en/" : "/",
       "#seguros": isEnglishPath ? "/en/insurance/" : "/seguros/",
@@ -1238,7 +1341,7 @@ export default function KabinConsultoriaMockup() {
                 </a>
               </div>
 
-              <div className="mt-12 grid gap-6 lg:grid-cols-2">
+	              <div className="mt-12 grid gap-6 lg:grid-cols-2">
                 <div className="rounded-[1.8rem] bg-emerald-950 p-8 text-white md:p-10">
                   <ShieldCheck className="text-[#d9ad58]" size={34} />
                   <h2 className="mt-5 text-3xl font-black tracking-tight">{t.insuranceHeading}</h2>
@@ -1254,10 +1357,19 @@ export default function KabinConsultoriaMockup() {
                   <a href={lang === "es" ? "/contacto/" : "/en/contact/"} className="mt-6 inline-flex items-center gap-2 font-black text-[#d9ad58]">
                     {t.request} <ArrowRight size={16} />
                   </a>
-                </div>
-              </div>
-            </div>
-            )}
+	                </div>
+	              </div>
+
+	              <div className="mt-12 grid gap-6 lg:grid-cols-3">
+	                {seoContent.seguros.map((section) => (
+	                  <article key={section.title} className="rounded-2xl border border-emerald-950/10 bg-white p-6 shadow-sm">
+	                    <h2 className="text-xl font-black leading-tight text-slate-950">{section.title}</h2>
+	                    <p className="mt-4 text-sm leading-7 text-slate-600">{section.text}</p>
+	                  </article>
+	                ))}
+	              </div>
+	            </div>
+	            )}
 
             {activePage === "inicio" && (
             <div className="overflow-hidden rounded-[1.4rem] border border-slate-300 bg-white shadow-xl shadow-slate-900/10">
@@ -1515,7 +1627,7 @@ export default function KabinConsultoriaMockup() {
                 })}
               </div>
 
-              <aside className="grid h-fit gap-6 rounded-2xl border border-slate-200 bg-slate-950 p-6 text-white shadow-2xl shadow-slate-900/20 lg:grid-cols-[auto_1.2fr_1fr_auto] lg:items-center">
+	              <aside className="grid h-fit gap-6 rounded-2xl border border-slate-200 bg-slate-950 p-6 text-white shadow-2xl shadow-slate-900/20 lg:grid-cols-[auto_1.2fr_1fr_auto] lg:items-center">
                 <div className="flex items-center gap-3">
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-emerald-950">
                     <CreditCard size={22} />
@@ -1555,10 +1667,19 @@ export default function KabinConsultoriaMockup() {
                     <FileText size={17} /> {t.payNow}
                   </button>
                 </div>
-              </aside>
-            </div>
-          </div>
-        </section>
+	              </aside>
+
+	              <div className="grid gap-6 lg:grid-cols-3">
+	                {seoContent.ecommerce.map((section) => (
+	                  <article key={section.title} className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+	                    <h2 className="text-xl font-black leading-tight text-slate-950">{section.title}</h2>
+	                    <p className="mt-4 text-sm leading-7 text-slate-600">{section.text}</p>
+	                  </article>
+	                ))}
+	              </div>
+	            </div>
+	          </div>
+	        </section>
         )}
 
         {activePage === "noticias" && (
@@ -1602,7 +1723,7 @@ export default function KabinConsultoriaMockup() {
               <div className="mb-5 flex items-center gap-2 text-sm font-black uppercase tracking-[0.18em] text-emerald-900">
                 <Newspaper size={18} /> {t.newsTitle}
               </div>
-              <div className="grid gap-6 md:grid-cols-3">
+	              <div className="grid gap-6 md:grid-cols-3">
                 {t.blogPosts.map((post) => (
                   <article key={post.title} className="group overflow-hidden rounded-[1.5rem] border border-emerald-950/10 bg-white shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-emerald-950/15">
                     <div className="relative h-56 overflow-hidden">
@@ -1624,11 +1745,19 @@ export default function KabinConsultoriaMockup() {
                       </a>
                     </div>
                   </article>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
+	                ))}
+	              </div>
+	              <div className="mt-10 grid gap-6 lg:grid-cols-2">
+	                {seoContent.noticias.map((section) => (
+	                  <article key={section.title} className="rounded-2xl border border-emerald-950/10 bg-white p-6 shadow-sm">
+	                    <h2 className="text-xl font-black leading-tight text-slate-950">{section.title}</h2>
+	                    <p className="mt-4 text-sm leading-7 text-slate-600">{section.text}</p>
+	                  </article>
+	                ))}
+	              </div>
+	            </div>
+	          </div>
+	        </section>
         )}
 
         {activePage === "article" && (() => {
@@ -1668,10 +1797,20 @@ export default function KabinConsultoriaMockup() {
             ) : (
               <h2 className="max-w-3xl text-3xl font-black tracking-tight sm:text-4xl md:text-5xl">{t.contactTitle}</h2>
             )}
-            <p className="mt-4 max-w-2xl text-sm leading-7 text-white/75 sm:text-base">
-              {t.contactText}
-            </p>
-            <form
+	            <p className="mt-4 max-w-2xl text-sm leading-7 text-white/75 sm:text-base">
+	              {t.contactText}
+	            </p>
+	            {activePage === "contacto" && (
+	              <div className="mt-8 grid gap-5 md:grid-cols-2">
+	                {seoContent.contacto.map((section) => (
+	                  <article key={section.title} className="rounded-2xl border border-white/10 bg-white/5 p-5">
+	                    <h2 className="text-xl font-black leading-tight text-white">{section.title}</h2>
+	                    <p className="mt-3 text-sm leading-7 text-white/70">{section.text}</p>
+	                  </article>
+	                ))}
+	              </div>
+	            )}
+	            <form
               onSubmit={submitQuote}
               className="mt-8 grid gap-4 md:grid-cols-2"
             >
