@@ -1,0 +1,247 @@
+KABIN - Texto del sitio para validacion del cliente
+Fecha: 2026-05-21
+
+Nota: este documento resume el contenido visible actual del sitio en espanol e ingles.
+
+============================================================
+ESPANOL
+============================================================
+
+Navegacion:
+- Inicio
+- Servicios
+- Nosotros
+- Contacto
+
+Header:
+- Consultoria Fiscal y Financiera
+- ES / EN
+- Escribenos por WhatsApp
+
+Hero / Slides:
+
+Slide 1
+- Categoria: Consultoria Estrategica
+- Titulo: KABIN Consultoria Fiscal y Financiera
+- Texto: Servicios profesionales desde una perspectiva humana.
+
+Slide 2
+- Categoria: Trato humano
+- Titulo: Acompanamiento calido, responsable y profesional.
+- Texto: Brindamos asesorias personalizadas para cuidar el patrimonio de nuestros clientes y hacerlo crecer.
+
+Slide 3
+- Categoria: Consultoria Fiscal y Financiera
+- Titulo: Detras de cada numero hay una historia humana.
+- Texto: Integramos claridad contable, vision fiscal y apoyo genuino para personas y empresas.
+
+Valores destacados:
+- Responsabilidad
+- Honestidad
+- Empatia
+- Trabajo en equipo
+
+Servicios:
+
+1. Contabilidad
+Texto corto: Procesos contables claros y ordenados para mantener una operacion confiable.
+Detalle: Ordenamos y damos seguimiento a tus registros contables para que cada movimiento tenga respaldo, trazabilidad y sentido financiero. Incluye revision de informacion, apoyo en cierres, organizacion documental y reportes utiles para entender como se comporta tu operacion.
+
+2. Auditorias e informes financieros
+Texto corto: Revision e informacion financiera para tomar decisiones con datos solidos.
+Detalle: Analizamos estados financieros, movimientos clave y documentacion soporte para detectar inconsistencias, oportunidades de mejora y puntos de control. El objetivo es entregar informacion clara, explicada y accionable para socios, direccion o administracion.
+
+3. Claridad operativa
+Texto corto: Visibilidad sobre tus numeros y procesos para mejorar el control del negocio.
+Detalle: Convertimos informacion dispersa en una lectura ordenada de tu negocio: ingresos, costos, obligaciones, flujos y procesos internos. Esto ayuda a identificar cuellos de botella, decisiones pendientes y areas donde conviene mejorar el control.
+
+4. Fiscal / impuestos
+Texto corto: Acompanamiento fiscal responsable para cumplir obligaciones y cuidar tu patrimonio.
+Detalle: Te acompanamos en el cumplimiento de obligaciones fiscales, revision de declaraciones, seguimiento de criterios aplicables y organizacion de informacion para reducir errores. La intencion es cumplir correctamente sin perder de vista el impacto patrimonial.
+
+5. Estrategia y cumplimiento
+Texto corto: Planeacion fiscal y seguimiento normativo para operar con mayor certidumbre.
+Detalle: Disenamos una ruta fiscal alineada con tu actividad, tus objetivos y tu nivel de riesgo. Revisamos escenarios, obligaciones recurrentes, fechas clave y medidas preventivas para que la operacion avance con mayor certidumbre.
+
+6. Mitigacion de riesgos
+Texto corto: Identificacion y prevencion de riesgos fiscales, financieros y operativos.
+Detalle: Detectamos riesgos antes de que se vuelvan problemas: omisiones, documentacion incompleta, procesos fragiles, exposicion fiscal o decisiones financieras sin respaldo. Proponemos acciones concretas para disminuir contingencias y proteger la operacion.
+
+7. Gestion patrimonial
+Texto corto: Organizacion integral del patrimonio para proteger tus activos y objetivos.
+Detalle: Acompanamos la organizacion de activos, obligaciones, estructuras y objetivos familiares o empresariales. Buscamos que el patrimonio tenga orden, lectura clara y una estrategia coherente con el presente y el futuro.
+
+8. Proteccion y crecimiento de activos
+Texto corto: Estrategias para resguardar recursos y orientar su crecimiento sostenible.
+Detalle: Revisamos la composicion de tus recursos, su exposicion y las oportunidades para fortalecerlos. La asesoria combina proteccion, liquidez, planeacion y crecimiento sostenible segun el perfil y las metas del cliente.
+
+9. Seguridad del legado
+Texto corto: Planeacion patrimonial para cuidar lo construido y dar continuidad al futuro.
+Detalle: Trabajamos en la continuidad de lo construido mediante orden patrimonial, prevencion de conflictos y claridad sobre objetivos de largo plazo. Es un acompanamiento pensado para proteger decisiones familiares, empresariales y sucesorias.
+
+10. Legal / corporativo
+Texto corto: Estructura legal y corporativa para dar solidez a personas y empresas.
+Detalle: Apoyamos en la revision y organizacion de estructuras societarias, documentos corporativos, acuerdos y obligaciones formales. El objetivo es que la empresa tenga una base legal congruente con su operacion y etapa de crecimiento.
+
+11. Gobierno corporativo
+Texto corto: Orden, reglas y procesos para fortalecer la toma de decisiones empresariales.
+Detalle: Definimos practicas de gobierno, roles, reglas de decision, documentacion de acuerdos y mecanismos de control. Esto permite que la empresa funcione con mayor transparencia, continuidad y responsabilidad entre socios o directivos.
+
+12. Integridad estructural
+Texto corto: Base corporativa solida para operar con transparencia, control y continuidad.
+Detalle: Revisamos si la estructura fiscal, financiera, operativa y corporativa esta alineada. Cuando hay piezas desconectadas, proponemos ajustes para que la empresa opere con mas coherencia, control interno y estabilidad.
+
+Nosotros:
+- Seccion: Nosotros
+- Titulo: Cimientos de nuestro exito.
+- Texto principal: KABIN Consultores nacio de un concepto claro: brindar servicios profesionales desde una perspectiva humana.
+- Texto secundario: Creemos que detras de cada numero hay una historia, una familia, una empresa y una decision importante. Por eso acompanamos a nuestros clientes con claridad contable, estrategia fiscal, vision financiera y una conversacion cercana que permite cuidar su patrimonio y hacerlo crecer.
+
+Mision:
+- Etiqueta: Nuestra mision
+- Titulo: Acompanamiento calido y responsable.
+- Texto: Brindar asesorias personalizadas y acompanamiento de una manera calida, humana, responsable y profesional, para que cada cliente entienda su situacion y pueda tomar decisiones con tranquilidad.
+
+Vision:
+- Etiqueta: Nuestra vision
+- Titulo: Proteger y hacer crecer su legado.
+- Texto: Ser uno de los consultores contables, fiscales y financieros de referencia para cuidar el patrimonio de nuestros clientes, fortalecer sus operaciones y acompanar su crecimiento con vision de largo plazo.
+
+Nuestros valores:
+- Responsabilidad: Cuidamos cada proceso con seguimiento, orden y compromiso profesional.
+- Honestidad: Trabajamos con transparencia para que cada decision tenga sustento claro.
+- Empatia: Escuchamos la historia detras de los numeros y adaptamos la asesoria a cada cliente.
+- Trabajo en equipo: Integramos vision contable, fiscal, financiera y patrimonial para avanzar con coherencia.
+
+Nuestro camino:
+- 2020: Fundacion y contabilidad core
+- 2022: Expansion a estrategia fiscal
+- 2024: Lanzamiento de gestion patrimonial
+- 2026: Transformacion digital e IA
+
+Contacto:
+- Titulo: Recibe acompanamiento profesional.
+- Texto: Completa el formulario y te contactaremos para entender tu situacion y proponerte una ruta de trabajo.
+- Campos:
+  - Nombre completo
+  - Correo electronico
+  - Telefono
+  - Servicio de interes
+  - Mensaje
+- Boton: Enviar solicitud
+- Texto adicional: Tambien puedes escribir a contacto@kabinconsultores.com
+
+Footer:
+- Servicios profesionales desde una perspectiva humana.
+- Navegacion
+- Contacto
+- Atencion en Mexico
+- WhatsApp
+- Redes sociales
+- Aviso de Privacidad
+- Terminos
+- © 2026 Kabin Consultoria Fiscal y Financiera. Todos los derechos reservados.
+
+============================================================
+ENGLISH
+============================================================
+
+Navigation:
+- Home
+- Services
+- About
+- Contact
+
+Header:
+- Tax and Financial Consulting
+- ES / EN
+- Escribenos por WhatsApp
+
+Hero / Slides:
+
+Slide 1
+- Category: Strategic Consulting
+- Title: KABIN Tax and Financial Consulting
+- Text: Professional services from a human perspective.
+
+Slide 2
+- Category: Human approach
+- Title: Warm, responsible, and professional support.
+- Text: We provide personalized guidance to protect and grow our clients' assets.
+
+Slide 3
+- Category: Tax and Financial Consulting
+- Title: Behind every number there is a human story.
+- Text: We integrate accounting clarity, tax vision, and genuine support for people and businesses.
+
+Highlighted values:
+- Responsibility
+- Honesty
+- Empathy
+- Teamwork
+
+Services:
+
+Important note: the current English version in the code includes only the following 3 service cards.
+
+1. Accounting
+Short text: Clear and organized accounting processes to keep your operation reliable.
+Detail: We organize and track your accounting records so every transaction has support, traceability, and financial logic. This includes data review, closing support, document organization, and useful reporting to understand your operation.
+
+2. Audits and financial reports
+Short text: Financial review and reporting for data-driven decisions.
+Detail: We analyze financial statements, key movements, and supporting documents to detect inconsistencies, improvement opportunities, and control points.
+
+3. Operational clarity
+Short text: Visibility over your numbers and processes to improve control.
+Detail: We turn scattered information into an ordered view of your business: income, costs, obligations, cash flow, and internal processes.
+
+About:
+- Section: About
+- Title: Foundations of our success.
+- Main text: KABIN Consultores was born from a clear concept: delivering professional services from a human perspective.
+- Secondary text: We believe that behind every number there is a story, a family, a company, and an important decision.
+
+Mission:
+- Label: Our mission
+- Title: Warm and responsible support.
+- Text: Provide personalized advisory and support in a warm, human, responsible, and professional way.
+
+Vision:
+- Label: Our vision
+- Title: Protect and grow your legacy.
+- Text: To become a leading accounting, tax, and financial consulting firm focused on protecting and growing client assets.
+
+Our values:
+- Responsibility: We manage every process with disciplined follow-up and professional commitment.
+- Honesty: We work transparently so every decision has clear support.
+- Empathy: We listen to the story behind the numbers and adapt to each client.
+- Teamwork: We integrate accounting, tax, financial, and asset perspectives.
+
+Our journey:
+- 2020: Foundation and core accounting
+- 2022: Expansion into tax strategy
+- 2024: Asset management launch
+- 2026: Digital transformation and AI
+
+Contact:
+- Title: Receive professional support.
+- Text: Complete the form and we will contact you to understand your needs and propose a work plan.
+- Fields:
+  - Full name
+  - Email
+  - Phone
+  - Service of interest
+  - Message
+- Button: Send request
+
+Footer:
+- Professional services from a human perspective.
+- Navigation
+- Contact
+- Service in Mexico
+- WhatsApp
+- Social media
+- Privacy Notice
+- Terms
+- © 2026 Kabin Tax and Financial Consulting. All rights reserved.

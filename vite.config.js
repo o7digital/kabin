@@ -4,17 +4,17 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 const seoPages = [
-  ["seguros", "es", "Seguros y protección patrimonial | Kabin", "Seguros de vida, gastos médicos, retiro, protección empresarial y patrimonial con acompañamiento profesional."],
-  ["ecommerce", "es", "Servicios fiscales y contables para cotizar | Kabin", "Cotiza servicios fiscales, contables y empresariales con alcance y precios claros."],
-  ["eventos-noticias", "es", "Eventos y noticias fiscales y financieras | Kabin", "Noticias, eventos y contenidos sobre impuestos, finanzas, seguros y patrimonio en México."],
-  ["contacto", "es", "Contacto y asesoría profesional | Kabin", "Contacta a Kabin para recibir asesoría fiscal, contable, financiera, patrimonial o de seguros."],
-  ["eventos-noticias/cierre-mes-fiscal", "es", "Que revisar antes de cerrar el mes fiscal | Kabin", "Guía práctica para ordenar facturas, pagos, deducciones y pendientes antes del cierre fiscal."],
-  ["eventos-noticias/indicadores-salud-empresa", "es", "Indicadores simples para entender la salud de tu empresa | Kabin", "Margen, flujo, obligaciones y reservas para tomar mejores decisiones financieras."],
+  ["seguros", "es", "Seguros y protección patrimonial en Querétaro | Kabin", "Asesoría en seguros de vida, gastos médicos, retiro y protección patrimonial para personas, socios y empresas en Querétaro y México."],
+  ["ecommerce", "es", "Servicios fiscales y contables en México | Kabin", "Cotiza diagnóstico fiscal, declaración anual, contabilidad, auditoría y gobierno corporativo con alcance claro para personas y PyMEs."],
+  ["eventos-noticias", "es", "Guías fiscales y financieras para empresas | Kabin", "Artículos prácticos sobre impuestos, contabilidad, flujo de efectivo, seguros, retiro y patrimonio para personas y empresas en México."],
+  ["contacto", "es", "Contacto para asesoría fiscal en Querétaro | Kabin", "Agenda asesoría fiscal, contable, financiera, patrimonial o de seguros para personas, emprendedores y empresas en Querétaro y México."],
+  ["eventos-noticias/cierre-mes-fiscal", "es", "Qué revisar antes del cierre fiscal mensual | Kabin", "Guía para ordenar facturas, pagos, deducciones, conciliaciones y pendientes antes del cierre contable y fiscal mensual."],
+  ["eventos-noticias/indicadores-salud-empresa", "es", "Indicadores financieros para PyMEs | Kabin", "Margen, flujo de efectivo, obligaciones, reservas y señales de riesgo para entender la salud financiera de tu empresa."],
   ["eventos-noticias/retiro-seguros-patrimonio", "es", "Retiro, seguros y patrimonio: por dónde empezar | Kabin", "Cómo integrar protección financiera, ahorro y patrimonio sin perder de vista el impacto fiscal."],
-  ["en/insurance", "en", "Insurance and Wealth Protection | Kabin", "Life, medical, retirement, business, and wealth protection solutions with professional support."],
-  ["en/ecommerce", "en", "Tax and Accounting Services to Quote | Kabin", "Quote clearly scoped tax, accounting, and business services in Mexico."],
-  ["en/events-news", "en", "Tax and Financial Events & News | Kabin", "News, events, and insights about tax, finance, insurance, and wealth in Mexico."],
-  ["en/contact", "en", "Contact and Professional Advice | Kabin", "Contact Kabin for tax, accounting, financial, wealth, or insurance advice in Mexico."],
+  ["en/insurance", "en", "Insurance and Wealth Protection in Queretaro | Kabin", "Advice on life, medical, retirement, business, and wealth protection for individuals, partners, and companies in Mexico."],
+  ["en/ecommerce", "en", "Tax and Accounting Services in Mexico | Kabin", "Quote tax diagnosis, annual filing, accounting, audit, and corporate governance services with clear scope for individuals and SMBs."],
+  ["en/events-news", "en", "Tax and Financial Guides for Businesses | Kabin", "Practical articles about taxes, accounting, cash flow, insurance, retirement, and wealth planning for people and companies in Mexico."],
+  ["en/contact", "en", "Contact for Tax Advice in Queretaro | Kabin", "Schedule tax, accounting, financial, wealth, or insurance advice for individuals, entrepreneurs, and companies in Queretaro and Mexico."],
   ["en/events-news/monthly-tax-closing", "en", "What to review before monthly tax closing | Kabin", "A practical guide to organize invoices, payments, deductions, and accounting pending items."],
   ["en/events-news/business-health-indicators", "en", "Simple indicators to understand business health | Kabin", "Margin, cash flow, obligations, and reserves to support better business decisions."],
   ["en/events-news/retirement-insurance-wealth", "en", "Retirement, insurance, and wealth: where to start | Kabin", "How to integrate financial protection and savings while keeping tax impact in view."],
@@ -30,10 +30,42 @@ const alternatePairs = {
   "eventos-noticias/retiro-seguros-patrimonio": "en/events-news/retirement-insurance-wealth",
 };
 
+const organizationSchema = {
+  "@type": "ProfessionalService",
+  "@id": "https://www.kabinconsultores.com/#organization",
+  name: "Kabin Consultoría Fiscal y Financiera",
+  url: "https://www.kabinconsultores.com/",
+  logo: "https://www.kabinconsultores.com/kabin.webp",
+  image: "https://www.kabinconsultores.com/kabin.webp",
+  email: "contacto@kabinconsultores.com",
+  telephone: "+52 1 442 237 1769",
+  priceRange: "$$",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Querétaro",
+    addressRegion: "Querétaro",
+    addressCountry: "MX",
+  },
+  areaServed: [
+    { "@type": "AdministrativeArea", name: "Querétaro" },
+    { "@type": "Country", name: "México" },
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+52 1 442 237 1769",
+    email: "contacto@kabinconsultores.com",
+    contactType: "customer service",
+    areaServed: "MX",
+    availableLanguage: ["Spanish", "English"],
+  },
+  knowsLanguage: ["es-MX", "en"],
+  sameAs: ["https://www.instagram.com/kabin_consultoria"],
+};
+
 const pageDetails = {
   seguros: {
-    heading: "Asesoría en seguros y protección patrimonial",
-    summary: "Acompañamiento para elegir seguros de vida, gastos médicos, retiro y protección empresarial con una visión fiscal y patrimonial integrada.",
+    heading: "Asesoría en seguros y protección patrimonial en Querétaro",
+    summary: "Acompañamiento para elegir seguros de vida, gastos médicos, retiro y protección empresarial con una visión fiscal y patrimonial integrada para personas, socios y empresas.",
     body: [
       "La contratación de seguros no debería decidirse solo por precio o suma asegurada. Kabin revisa responsabilidades familiares, ingresos, deudas, etapa de vida, obligaciones empresariales y posibles beneficios fiscales para proponer una estructura de protección coherente.",
       "Acompañamos la revisión de seguros de vida, gastos médicos mayores, planes de retiro, protección para socios clave, continuidad empresarial y coberturas patrimoniales.",
@@ -41,8 +73,8 @@ const pageDetails = {
     points: ["Protección financiera familiar", "Retiro con visión fiscal", "Continuidad patrimonial y empresarial"],
   },
   ecommerce: {
-    heading: "Servicios fiscales y contables para cotizar",
-    summary: "Paquetes claros para diagnóstico fiscal, declaración anual, contabilidad recurrente, auditoría, patrimonio y gobierno corporativo.",
+    heading: "Servicios fiscales y contables en México",
+    summary: "Paquetes claros para diagnóstico fiscal, declaración anual, contabilidad recurrente, auditoría, patrimonio y gobierno corporativo para personas físicas, emprendedores y PyMEs.",
     body: [
       "Los paquetes están pensados para personas físicas, profesionistas independientes, emprendedores y PyMEs que necesitan resolver temas concretos con alcance, entregables y tiempos estimados.",
       "El flujo permite levantar una solicitud con contexto suficiente para entender actividad, régimen, documentos disponibles, urgencia y objetivo antes de proponer una ruta de trabajo.",
@@ -50,8 +82,8 @@ const pageDetails = {
     points: ["Alcances y precios claros", "Soporte fiscal y contable", "Seguimiento profesional para personas y empresas"],
   },
   "eventos-noticias": {
-    heading: "Eventos y noticias fiscales y financieras",
-    summary: "Contenidos prácticos sobre impuestos, finanzas, seguros, patrimonio, cierres mensuales y decisiones empresariales en México.",
+    heading: "Guías fiscales y financieras para empresas",
+    summary: "Contenidos prácticos sobre impuestos, finanzas, seguros, patrimonio, cierres mensuales y decisiones empresariales para operar con más claridad en México.",
     body: [
       "La sección reúne guías breves sobre cierres contables, obligaciones fiscales, indicadores financieros, ahorro, seguros y patrimonio.",
       "Los artículos están orientados a personas y empresas que necesitan entender sus números con más claridad y saber cuándo conviene pedir asesoría.",
@@ -59,8 +91,8 @@ const pageDetails = {
     points: ["Guías fiscales", "Indicadores financieros", "Planeación patrimonial"],
   },
   contacto: {
-    heading: "Contacto para asesoría profesional",
-    summary: "Comunicación directa con Kabin para recibir acompañamiento fiscal, contable, financiero, patrimonial o de seguros.",
+    heading: "Contacto para asesoría fiscal, contable y financiera",
+    summary: "Comunicación directa con Kabin para recibir acompañamiento fiscal, contable, financiero, patrimonial o de seguros en Querétaro y México.",
     body: [
       "El primer contacto busca entender la situación del cliente: tipo de actividad, obligaciones actuales, dudas principales, riesgos detectados y metas personales o empresariales.",
       "Atendemos consultas relacionadas con contabilidad, impuestos, auditorías, protección financiera, seguros, retiro, gestión patrimonial y gobierno corporativo.",
@@ -172,10 +204,28 @@ function seoPagesPlugin() {
         const enRoute = lang === "en" ? route : alternatePairs[route];
         const esUrl = `https://www.kabinconsultores.com/${esRoute}/`;
         const enUrl = `https://www.kabinconsultores.com/${enRoute}/`;
+        const breadcrumbSchema = {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: lang === "es" ? "Inicio" : "Home",
+              item: lang === "es" ? "https://www.kabinconsultores.com/" : "https://www.kabinconsultores.com/en/",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: title.replace(/ \| Kabin$/, ""),
+              item: url,
+            },
+          ],
+        };
         const structuredData = article
-          ? { "@context": "https://schema.org", "@type": "Article", headline: title.replace(/ \| Kabin$/, ""), description, url, inLanguage: lang === "es" ? "es-MX" : "en", publisher: { "@type": "Organization", name: "Kabin Consultoría Fiscal y Financiera", url: "https://www.kabinconsultores.com/" } }
+          ? { "@context": "https://schema.org", "@type": "Article", headline: title.replace(/ \| Kabin$/, ""), description, url, inLanguage: lang === "es" ? "es-MX" : "en", publisher: { "@type": "Organization", name: "Kabin Consultoría Fiscal y Financiera", url: "https://www.kabinconsultores.com/" }, mainEntityOfPage: url }
           : service
-            ? { "@context": "https://schema.org", "@type": "Service", name: title.replace(/ \| Kabin$/, ""), description, url, areaServed: "México", provider: { "@type": "ProfessionalService", name: "Kabin Consultoría Fiscal y Financiera", url: "https://www.kabinconsultores.com/" } }
+            ? { "@context": "https://schema.org", "@type": "Service", name: title.replace(/ \| Kabin$/, ""), description, url, areaServed: ["Querétaro", "México"], provider: organizationSchema }
             : { "@context": "https://schema.org", "@type": "WebPage", name: title.replace(/ \| Kabin$/, ""), description, url, inLanguage: lang === "es" ? "es-MX" : "en" };
         const html = templates[lang]
           .replace(/<title>.*?<\/title>/, `<title>${title}</title>`)
@@ -190,7 +240,10 @@ function seoPagesPlugin() {
           .replace(/<meta\s+property="og:url"[\s\S]*?\/>/, `<meta property="og:url" content="${url}" />`)
           .replace(/<meta\s+name="twitter:title"[\s\S]*?\/>/, `<meta name="twitter:title" content="${escapeHtml(title)}" />`)
           .replace(/<meta\s+name="twitter:description"[\s\S]*?\/>/, `<meta name="twitter:description" content="${escapeHtml(description)}" />`)
-          .replace("</head>", `<script type="application/ld+json">${JSON.stringify(structuredData)}</script></head>`)
+          .replace(
+            "</head>",
+            () => `<script type="application/ld+json">${JSON.stringify(structuredData)}</script><script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script></head>`,
+          )
           .replace(/<div id="root">[\s\S]*?<\/div>/, renderSeoFallback(route, title, description));
         const outputDir = resolve(import.meta.dirname, "dist", route);
         await mkdir(outputDir, { recursive: true });

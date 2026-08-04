@@ -992,18 +992,18 @@ export default function KabinConsultoriaMockup() {
     const base = "https://www.kabinconsultores.com";
     const routeSeo = {
       es: {
-        inicio: ["Kabin | Consultoría Fiscal, Contable y Financiera", "Consultoría contable, fiscal, financiera y patrimonial en México para personas y empresas.", "/", "/en/"],
-        seguros: ["Seguros y protección patrimonial | Kabin", "Seguros de vida, gastos médicos, retiro, protección empresarial y patrimonial con acompañamiento profesional.", "/seguros/", "/en/insurance/"],
-        ecommerce: ["Servicios fiscales y contables para cotizar | Kabin", "Cotiza servicios fiscales, contables y empresariales con alcance y precios claros.", "/ecommerce/", "/en/ecommerce/"],
-        noticias: ["Eventos y noticias fiscales y financieras | Kabin", "Noticias, eventos y contenidos sobre impuestos, finanzas, seguros y patrimonio en México.", "/eventos-noticias/", "/en/events-news/"],
-        contacto: ["Contacto y asesoría profesional | Kabin", "Contacta a Kabin para recibir asesoría fiscal, contable, financiera, patrimonial o de seguros.", "/contacto/", "/en/contact/"],
+        inicio: ["Kabin | Consultoría Fiscal, Contable y Financiera", "Consultoría contable, fiscal, financiera y patrimonial en México para personas, emprendedores y empresas.", "/", "/en/"],
+        seguros: ["Seguros y protección patrimonial en Querétaro | Kabin", "Asesoría en seguros de vida, gastos médicos, retiro y protección patrimonial para personas, socios y empresas en Querétaro y México.", "/seguros/", "/en/insurance/"],
+        ecommerce: ["Servicios fiscales y contables en México | Kabin", "Cotiza diagnóstico fiscal, declaración anual, contabilidad, auditoría y gobierno corporativo con alcance claro para personas y PyMEs.", "/ecommerce/", "/en/ecommerce/"],
+        noticias: ["Guías fiscales y financieras para empresas | Kabin", "Artículos prácticos sobre impuestos, contabilidad, flujo de efectivo, seguros, retiro y patrimonio para personas y empresas en México.", "/eventos-noticias/", "/en/events-news/"],
+        contacto: ["Contacto para asesoría fiscal en Querétaro | Kabin", "Agenda asesoría fiscal, contable, financiera, patrimonial o de seguros para personas, emprendedores y empresas en Querétaro y México.", "/contacto/", "/en/contact/"],
       },
       en: {
-        inicio: ["Kabin | Tax, Accounting and Financial Consulting", "Accounting, tax, financial and wealth consulting in Mexico for individuals and businesses.", "/en/", "/"],
-        seguros: ["Insurance and Wealth Protection | Kabin", "Life, medical, retirement, business, and wealth protection solutions with professional support.", "/en/insurance/", "/seguros/"],
-        ecommerce: ["Tax and Accounting Services to Quote | Kabin", "Quote clearly scoped tax, accounting, and business services in Mexico.", "/en/ecommerce/", "/ecommerce/"],
-        noticias: ["Tax and Financial Events & News | Kabin", "News, events, and insights about tax, finance, insurance, and wealth in Mexico.", "/en/events-news/", "/eventos-noticias/"],
-        contacto: ["Contact and Professional Advice | Kabin", "Contact Kabin for tax, accounting, financial, wealth, or insurance advice in Mexico.", "/en/contact/", "/contacto/"],
+        inicio: ["Kabin | Tax, Accounting and Financial Consulting", "Accounting, tax, financial and wealth consulting in Mexico for individuals, entrepreneurs, and companies.", "/en/", "/"],
+        seguros: ["Insurance and Wealth Protection in Queretaro | Kabin", "Advice on life, medical, retirement, business, and wealth protection for individuals, partners, and companies in Mexico.", "/en/insurance/", "/seguros/"],
+        ecommerce: ["Tax and Accounting Services in Mexico | Kabin", "Quote tax diagnosis, annual filing, accounting, audit, and corporate governance services with clear scope for individuals and SMBs.", "/en/ecommerce/", "/ecommerce/"],
+        noticias: ["Tax and Financial Guides for Businesses | Kabin", "Practical articles about taxes, accounting, cash flow, insurance, retirement, and wealth planning for people and companies in Mexico.", "/en/events-news/", "/eventos-noticias/"],
+        contacto: ["Contact for Tax Advice in Queretaro | Kabin", "Schedule tax, accounting, financial, wealth, or insurance advice for individuals, entrepreneurs, and companies in Queretaro and Mexico.", "/en/contact/", "/contacto/"],
       },
     };
     const article = selectedPost || t.blogPosts[0];
@@ -1053,10 +1053,10 @@ export default function KabinConsultoriaMockup() {
     setMeta("meta[property='og:title']", "content", title);
     setMeta("meta[property='og:description']", "content", description);
     setMeta("meta[property='og:url']", "content", pageUrl);
-    setMeta("meta[property='og:image']", "content", activePage === "article" ? `${base}${article.image}` : `${base}/kabin.png`);
+    setMeta("meta[property='og:image']", "content", activePage === "article" ? `${base}${article.image}` : `${base}/kabin.webp`);
     setMeta("meta[name='twitter:title']", "content", title);
     setMeta("meta[name='twitter:description']", "content", description);
-    setMeta("meta[name='twitter:image']", "content", activePage === "article" ? `${base}${article.image}` : `${base}/kabin.png`);
+    setMeta("meta[name='twitter:image']", "content", activePage === "article" ? `${base}${article.image}` : `${base}/kabin.webp`);
   }, [activePage, lang, selectedPost]);
 
   const switchLanguage = (nextLang) => {
