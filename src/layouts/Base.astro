@@ -1,7 +1,56 @@
 ---
-const { title, description, lang = "es", path = "/" } = Astro.props;
-const ogUrl = lang === "en" ? `https://www.kabinconsultores.com/en${path}` : `https://www.kabinconsultores.com${path}`;
-const image = "https://www.kabinconsultores.com/kabin.webp";
+import '../index.css';
+
+const {
+  title,
+  description,
+  lang = "es",
+  path = "/",
+  alternatePath = lang === "en" ? "/" : "/en/",
+  image = "/kabin.webp",
+  type = "website",
+} = Astro.props;
+const site = Astro.site ?? new URL("https://www.kabinconsultores.com");
+const canonicalUrl = new URL(path, site).href;
+const alternateUrl = new URL(alternatePath, site).href;
+const imageUrl = new URL(image, site).href;
+const esUrl = lang === "es" ? canonicalUrl : alternateUrl;
+const enUrl = lang === "en" ? canonicalUrl : alternateUrl;
+const organizationName = lang === "en" ? "Kabin Tax and Financial Consulting" : "Kabin Consultoría Fiscal y Financiera";
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://www.kabinconsultores.com/#organization",
+      name: organizationName,
+      url: lang === "en" ? "https://www.kabinconsultores.com/en/" : "https://www.kabinconsultores.com/",
+      logo: "https://www.kabinconsultores.com/kabin.webp",
+      image: "https://www.kabinconsultores.com/kabin.webp",
+      email: "contacto@kabinconsultores.com",
+      telephone: "+52 1 442 237 1769",
+      priceRange: "$$",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Querétaro",
+        addressRegion: "Querétaro",
+        addressCountry: "MX",
+      },
+      areaServed: { "@type": "Country", name: "México" },
+      availableLanguage: ["Spanish", "English"],
+      sameAs: ["https://www.instagram.com/kabin_consultoria"],
+    },
+    ...(type === "article" ? [{
+      "@type": "Article",
+      headline: title,
+      description,
+      image: imageUrl,
+      inLanguage: lang === "en" ? "en" : "es-MX",
+      mainEntityOfPage: canonicalUrl,
+      publisher: { "@id": "https://www.kabinconsultores.com/#organization" },
+    }] : []),
+  ],
+};
 ---
 <!doctype html>
 <html lang={lang}>
@@ -9,19 +58,26 @@ const image = "https://www.kabinconsultores.com/kabin.webp";
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content={description} />
-  <meta name="robots" content="index, follow" />
+  <meta name="author" content={organizationName} />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="theme-color" content="#020a2c" />
-  <link rel="canonical" href={ogUrl} />
-  <link rel="alternate" hreflang="es-MX" href={`https://www.kabinconsultores.com${path === "/" ? "" : path.replace("/en/", "/").replace("/en", "")}`} />
-  <link rel="alternate" hreflang="en" href={`https://www.kabinconsultores.com/en${lang === "es" ? path : path.replace("/en/", "/").replace("/en", "")}`} />
+  <link rel="canonical" href={canonicalUrl} />
+  <link rel="alternate" hreflang="es-MX" href={esUrl} />
+  <link rel="alternate" hreflang="en" href={enUrl} />
+  <link rel="alternate" hreflang="x-default" href={esUrl} />
+  <meta property="og:type" content={type} />
+  <meta property="og:site_name" content="Kabin Consultoría" />
+  <meta property="og:locale" content={lang === "en" ? "en_US" : "es_MX"} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:url" content={ogUrl} />
-  <meta property="og:image" content={image} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:image" content={imageUrl} />
+  <meta property="og:image:alt" content={title} />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content={image} />
+  <meta name="twitter:image" content={imageUrl} />
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   <title>{title}</title>
   <link rel="icon" href="/kabin.webp" />
 </head>

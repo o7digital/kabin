@@ -4,10 +4,6 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://www.kabinconsultores.com',
+  trailingSlash: 'always',
   integrations: [react(), sitemap()],
-  vite: {
-    ssr: {
-      external: ['framer-motion']
-    }
-  }
 });

@@ -863,9 +863,21 @@ const defaultInsuranceInputs = {
   art185: "40000",
 };
 
-export default function KabinConsultoriaMockup() {
-  const isEnglishPath = typeof window !== "undefined" && window.location.pathname.startsWith("/en");
+export default function KabinConsultoriaMockup({ page, en = false }) {
+  const pageAliases = {
+    seguros: "seguros",
+    insurance: "seguros",
+    ecommerce: "ecommerce",
+    "eventos-noticias": "noticias",
+    "events-news": "noticias",
+    contacto: "contacto",
+    contact: "contacto",
+  };
+  const initialPost = [...blogPostsEs, ...blogPostsEn].find((post) => post.slug === page) || null;
+  const initialPage = pageAliases[page] || (initialPost ? "article" : "inicio");
+  const isEnglishPath = en;
   const getPageFromPath = () => {
+    if (typeof window === "undefined") return initialPage;
     const path = window.location.pathname.replace(/\/+$/, "") || "/";
     if (/^\/(en\/)?(seguros|insurance)$/.test(path)) return "seguros";
     if (/^\/(en\/)?ecommerce$/.test(path)) return "ecommerce";
@@ -874,9 +886,9 @@ export default function KabinConsultoriaMockup() {
     if (/^\/(eventos-noticias|en\/events-news)\/.+/.test(path)) return "article";
     return "inicio";
   };
-  const [activePage, setActivePage] = useState(getPageFromPath);
+  const [activePage, setActivePage] = useState(initialPage);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [lang, setLang] = useState(isEnglishPath ? "en" : "es");
+  const [lang, setLang] = useState(en ? "en" : "es");
   const [parallaxOffset, setParallaxOffset] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
@@ -888,10 +900,7 @@ export default function KabinConsultoriaMockup() {
   const [calculatedInsuranceInputs, setCalculatedInsuranceInputs] = useState(defaultInsuranceInputs);
   const [hasCalculatedInsurance, setHasCalculatedInsurance] = useState(true);
   const [selectedEventIndex, setSelectedEventIndex] = useState(0);
-  const [selectedPost, setSelectedPost] = useState(() => {
-    const slug = window.location.pathname.split("/").filter(Boolean).at(-1);
-    return [...blogPostsEs, ...blogPostsEn].find((post) => post.slug === slug) || null;
-  });
+  const [selectedPost, setSelectedPost] = useState(initialPost);
 
   const t = lang === "es"
     ? {
@@ -944,6 +953,42 @@ export default function KabinConsultoriaMockup() {
 	      };
 
 	  const seoContent = lang === "es" ? seoContentEs : seoContentEn;
+  const insuranceDetails = lang === "es"
+    ? [
+        ["Vida e invalidez", "Protección de ingresos y estabilidad familiar ante fallecimiento, incapacidad o invalidez."],
+        ["Gastos médicos mayores", "Cobertura hospitalaria y médica con análisis de red, deducible, coaseguro y suma asegurada."],
+        ["Auto y daños", "Protección para vehículos, hogar, oficinas, inventario, responsabilidad civil y activos esenciales."],
+        ["Socios y personas clave", "Soluciones para continuidad empresarial, compra de acciones y pérdida de talento estratégico."],
+        ["Ahorro y retiro", "Planes de largo plazo adaptados a metas, horizonte, liquidez y capacidad real de aportación."],
+        ["Beneficios colectivos", "Esquemas para colaboradores que fortalecen retención, bienestar y protección del equipo."],
+      ]
+    : [
+        ["Life and disability", "Income protection and family stability in the event of death, incapacity, or disability."],
+        ["Major medical expenses", "Hospital and medical coverage with a review of networks, deductibles, coinsurance, and coverage limits."],
+        ["Auto and property", "Protection for vehicles, homes, offices, inventory, liability, and essential assets."],
+        ["Partners and key people", "Solutions for business continuity, share purchases, and the loss of strategic talent."],
+        ["Savings and retirement", "Long-term plans tailored to goals, time horizon, liquidity, and sustainable contributions."],
+        ["Group benefits", "Employee programs that strengthen retention, well-being, and team protection."],
+      ];
+  const insuranceSteps = lang === "es"
+    ? [
+        ["01", "Diagnóstico", "Identificamos riesgos, prioridades, dependientes y coberturas actuales."],
+        ["02", "Comparación", "Revisamos condiciones, exclusiones, costos y alternativas de distintas soluciones."],
+        ["03", "Implementación", "Te ayudamos con solicitud, documentación, contratación y puesta en marcha."],
+        ["04", "Acompañamiento", "Damos seguimiento a renovaciones, cambios de vida y atención de siniestros."],
+      ]
+    : [
+        ["01", "Assessment", "We identify risks, priorities, dependents, and current coverage."],
+        ["02", "Comparison", "We review terms, exclusions, costs, and alternatives across different solutions."],
+        ["03", "Implementation", "We help with applications, documentation, enrollment, and activation."],
+        ["04", "Ongoing support", "We follow renewals, life changes, and claims support."],
+      ];
+  const industries = lang === "es"
+    ? ["Comercio", "Servicios profesionales", "Construcción / inmobiliario", "Restaurantes / alimentos", "Tecnología", "Salud", "Manufactura", "Otro"]
+    : ["Retail", "Professional services", "Construction / real estate", "Restaurants / food", "Technology", "Healthcare", "Manufacturing", "Other"];
+  const formCopy = lang === "es"
+    ? { firstName: "Tu nombre", lastName: "Tu apellido", email: "tu@correo.com", phone: "Tu teléfono", selectIndustry: "Selecciona una industria", message: "Cuéntanos brevemente tu necesidad.", emailAlternative: "También puedes escribir a", closeQuote: "Cerrar cotización" }
+    : { firstName: "Your first name", lastName: "Your last name", email: "you@example.com", phone: "Your phone number", selectIndustry: "Select an industry", message: "Briefly describe what you need.", emailAlternative: "You can also email", closeQuote: "Close quote" };
 	  useEffect(() => {
     const legacyRoutes = {
       "#inicio": isEnglishPath ? "/en/" : "/",
@@ -986,78 +1031,6 @@ export default function KabinConsultoriaMockup() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  useEffect(() => {
-    const isEn = lang === "en";
-    const base = "https://www.kabinconsultores.com";
-    const routeSeo = {
-      es: {
-        inicio: ["Kabin | Consultoría Fiscal, Contable y Financiera", "Consultoría contable, fiscal, financiera y patrimonial en México para personas, emprendedores y empresas.", "/", "/en/"],
-        seguros: ["Seguros y protección patrimonial en Querétaro | Kabin", "Asesoría en seguros de vida, gastos médicos, retiro y protección patrimonial para personas, socios y empresas en Querétaro y México.", "/seguros/", "/en/insurance/"],
-        ecommerce: ["Servicios fiscales y contables en México | Kabin", "Cotiza diagnóstico fiscal, declaración anual, contabilidad, auditoría y gobierno corporativo con alcance claro para personas y PyMEs.", "/ecommerce/", "/en/ecommerce/"],
-        noticias: ["Guías fiscales y financieras para empresas | Kabin", "Artículos prácticos sobre impuestos, contabilidad, flujo de efectivo, seguros, retiro y patrimonio para personas y empresas en México.", "/eventos-noticias/", "/en/events-news/"],
-        contacto: ["Contacto para asesoría fiscal en Querétaro | Kabin", "Agenda asesoría fiscal, contable, financiera, patrimonial o de seguros para personas, emprendedores y empresas en Querétaro y México.", "/contacto/", "/en/contact/"],
-      },
-      en: {
-        inicio: ["Kabin | Tax, Accounting and Financial Consulting", "Accounting, tax, financial and wealth consulting in Mexico for individuals, entrepreneurs, and companies.", "/en/", "/"],
-        seguros: ["Insurance and Wealth Protection in Queretaro | Kabin", "Advice on life, medical, retirement, business, and wealth protection for individuals, partners, and companies in Mexico.", "/en/insurance/", "/seguros/"],
-        ecommerce: ["Tax and Accounting Services in Mexico | Kabin", "Quote tax diagnosis, annual filing, accounting, audit, and corporate governance services with clear scope for individuals and SMBs.", "/en/ecommerce/", "/ecommerce/"],
-        noticias: ["Tax and Financial Guides for Businesses | Kabin", "Practical articles about taxes, accounting, cash flow, insurance, retirement, and wealth planning for people and companies in Mexico.", "/en/events-news/", "/eventos-noticias/"],
-        contacto: ["Contact for Tax Advice in Queretaro | Kabin", "Schedule tax, accounting, financial, wealth, or insurance advice for individuals, entrepreneurs, and companies in Queretaro and Mexico.", "/en/contact/", "/contacto/"],
-      },
-    };
-    const article = selectedPost || t.blogPosts[0];
-    const fallback = routeSeo[lang][activePage] || routeSeo[lang].inicio;
-    const articlePath = isEn ? `/en/events-news/${article.slug}/` : `/eventos-noticias/${article.slug}/`;
-    const counterpartArticle = isEn
-      ? `/eventos-noticias/${blogPostsEs[t.blogPosts.indexOf(article)]?.slug || blogPostsEs[0].slug}/`
-      : `/en/events-news/${blogPostsEn[t.blogPosts.indexOf(article)]?.slug || blogPostsEn[0].slug}/`;
-    const [title, description, routePath, counterpartPath] = activePage === "article"
-      ? [`${article.title} | Kabin`, article.text, articlePath, counterpartArticle]
-      : fallback;
-    const pageUrl = `${base}${routePath}`;
-    const esUrl = `${base}${isEn ? counterpartPath : routePath}`;
-    const enUrl = `${base}${isEn ? routePath : counterpartPath}`;
-
-    document.documentElement.lang = isEn ? "en" : "es";
-    document.title = title;
-
-    const setLink = (rel, href, hreflang) => {
-      const key = hreflang ? `${rel}-${hreflang}` : rel;
-      const selector = hreflang
-        ? `link[rel='${rel}'][hreflang='${hreflang}']`
-        : `link[rel='${rel}']:not([hreflang])`;
-      let el = document.head.querySelector(selector);
-      if (!el) {
-        el = document.createElement("link");
-        document.head.appendChild(el);
-      }
-      el.setAttribute("data-seo", key);
-      el.setAttribute("rel", rel);
-      el.setAttribute("href", href);
-      if (hreflang) el.setAttribute("hreflang", hreflang);
-    };
-
-    const setMeta = (selector, attribute, value) => {
-      const el = document.head.querySelector(selector);
-      if (el) el.setAttribute(attribute, value);
-    };
-
-    setLink("canonical", pageUrl);
-    setLink("alternate", esUrl, "es-MX");
-    setLink("alternate", enUrl, "en");
-    setLink("alternate", esUrl, "x-default");
-    setMeta("meta[name='description']", "content", description);
-    setMeta("meta[property='og:locale']", "content", isEn ? "en_US" : "es_MX");
-    setMeta("meta[property='og:type']", "content", activePage === "article" ? "article" : "website");
-    setMeta("meta[property='og:title']", "content", title);
-    setMeta("meta[property='og:description']", "content", description);
-    setMeta("meta[property='og:url']", "content", pageUrl);
-    setMeta("meta[property='og:image']", "content", activePage === "article" ? `${base}${article.image}` : `${base}/kabin.webp`);
-    setMeta("meta[name='twitter:title']", "content", title);
-    setMeta("meta[name='twitter:description']", "content", description);
-    setMeta("meta[name='twitter:image']", "content", activePage === "article" ? `${base}${article.image}` : `${base}/kabin.webp`);
-  }, [activePage, lang, selectedPost]);
 
   const switchLanguage = (nextLang) => {
     const routePairs = {
@@ -1478,14 +1451,7 @@ export default function KabinConsultoriaMockup() {
               </div>
 
               <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-                {[
-                  ["Vida e invalidez", "Protección de ingresos y estabilidad familiar ante fallecimiento, incapacidad o invalidez."],
-                  ["Gastos médicos mayores", "Cobertura hospitalaria y médica con análisis de red, deducible, coaseguro y suma asegurada."],
-                  ["Auto y daños", "Protección para vehículos, hogar, oficinas, inventario, responsabilidad civil y activos esenciales."],
-                  ["Socios y personas clave", "Soluciones para continuidad empresarial, compra de acciones y pérdida de talento estratégico."],
-                  ["Ahorro y retiro", "Planes de largo plazo adaptados a metas, horizonte, liquidez y capacidad real de aportación."],
-                  ["Beneficios colectivos", "Esquemas para colaboradores que fortalecen retención, bienestar y protección del equipo."],
-                ].map(([title, text]) => (
+                {insuranceDetails.map(([title, text]) => (
                   <article key={title} className="rounded-2xl border border-emerald-950/10 bg-white p-6 shadow-sm">
                     <CheckCircle2 className="text-emerald-800" size={22} />
                     <h3 className="mt-4 text-lg font-black text-slate-950">{title}</h3>
@@ -1495,14 +1461,9 @@ export default function KabinConsultoriaMockup() {
               </div>
 
               <div className="mt-12 rounded-[1.8rem] bg-[#0d2340] p-7 text-white md:p-10">
-                <p className="text-sm font-black uppercase tracking-[0.18em] text-[#d9ad58]">Cómo trabajamos</p>
+                <p className="text-sm font-black uppercase tracking-[0.18em] text-[#d9ad58]">{lang === "es" ? "Cómo trabajamos" : "How we work"}</p>
                 <div className="mt-7 grid gap-6 md:grid-cols-4">
-                  {[
-                    ["01", "Diagnóstico", "Identificamos riesgos, prioridades, dependientes y coberturas actuales."],
-                    ["02", "Comparación", "Revisamos condiciones, exclusiones, costos y alternativas de distintas soluciones."],
-                    ["03", "Implementación", "Te ayudamos con solicitud, documentación, contratación y puesta en marcha."],
-                    ["04", "Acompañamiento", "Damos seguimiento a renovaciones, cambios de vida y atención de siniestros."],
-                  ].map(([number, title, text]) => (
+                  {insuranceSteps.map(([number, title, text]) => (
                     <div key={number}>
                       <span className="text-3xl font-black text-[#d9ad58]">{number}</span>
                       <h3 className="mt-3 text-lg font-black">{title}</h3>
@@ -1511,7 +1472,7 @@ export default function KabinConsultoriaMockup() {
                   ))}
                 </div>
                 <a href={lang === "es" ? "/contacto/" : "/en/contact/"} className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#d9ad58] px-6 py-3 text-sm font-black text-slate-950">
-                  Solicitar análisis de protección <ArrowRight size={16} />
+                  {lang === "es" ? "Solicitar análisis de protección" : "Request a protection assessment"} <ArrowRight size={16} />
                 </a>
               </div>
 
@@ -1998,7 +1959,7 @@ export default function KabinConsultoriaMockup() {
                   name="nombre"
                   required
                   className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
-                  placeholder="Tu nombre"
+                  placeholder={formCopy.firstName}
                 />
               </label>
               <label className="grid gap-2">
@@ -2008,7 +1969,7 @@ export default function KabinConsultoriaMockup() {
                   name="apellido"
                   required
                   className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
-                  placeholder="Tu apellido"
+                  placeholder={formCopy.lastName}
                 />
               </label>
               <label className="grid gap-2">
@@ -2018,7 +1979,7 @@ export default function KabinConsultoriaMockup() {
                   name="email"
                   required
                   className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
-                  placeholder="tu@correo.com"
+                  placeholder={formCopy.email}
                 />
               </label>
               <label className="grid gap-2">
@@ -2028,7 +1989,7 @@ export default function KabinConsultoriaMockup() {
                   name="telefono"
                   required
                   className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
-                  placeholder="Tu teléfono"
+                  placeholder={formCopy.phone}
                 />
               </label>
               <label className="grid gap-2">
@@ -2039,15 +2000,8 @@ export default function KabinConsultoriaMockup() {
                   className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
                   defaultValue=""
                 >
-                  <option value="" disabled className="text-slate-950">Selecciona una industria</option>
-                  <option value="Comercio" className="text-slate-950">Comercio</option>
-                  <option value="Servicios profesionales" className="text-slate-950">Servicios profesionales</option>
-                  <option value="Construcción / inmobiliario" className="text-slate-950">Construcción / inmobiliario</option>
-                  <option value="Restaurantes / alimentos" className="text-slate-950">Restaurantes / alimentos</option>
-                  <option value="Tecnología" className="text-slate-950">Tecnología</option>
-                  <option value="Salud" className="text-slate-950">Salud</option>
-                  <option value="Manufactura" className="text-slate-950">Manufactura</option>
-                  <option value="Otro" className="text-slate-950">Otro</option>
+                  <option value="" disabled className="text-slate-950">{formCopy.selectIndustry}</option>
+                  {industries.map((industry) => <option key={industry} value={industry} className="text-slate-950">{industry}</option>)}
                 </select>
               </label>
               <label className="grid gap-2 md:col-span-2">
@@ -2057,7 +2011,7 @@ export default function KabinConsultoriaMockup() {
                   required
                   rows={5}
                   className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
-                  placeholder="Cuéntanos brevemente tu necesidad."
+                  placeholder={formCopy.message}
                 />
               </label>
               <div className="md:col-span-2">
@@ -2077,7 +2031,7 @@ export default function KabinConsultoriaMockup() {
               <p className="mt-4 text-sm font-semibold text-red-200">{t.quoteError}</p>
             )}
             <div className="mt-4 text-xs text-white/55">
-              También puedes escribir a{" "}
+              {formCopy.emailAlternative}{" "}
               <a href="mailto:contacto@kabinconsultores.com" className="font-semibold text-white/80 hover:text-white">
                 contacto@kabinconsultores.com
               </a>
@@ -2180,7 +2134,7 @@ export default function KabinConsultoriaMockup() {
                   type="button"
                   onClick={() => setIsQuoteModalOpen(false)}
                   className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white hover:text-slate-950"
-                  aria-label="Cerrar cotización"
+                  aria-label={formCopy.closeQuote}
                 >
                   <X size={20} />
                 </button>
@@ -2209,7 +2163,7 @@ export default function KabinConsultoriaMockup() {
                     name="nombre"
                     required
                     className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
-                    placeholder="Tu nombre"
+                    placeholder={formCopy.firstName}
                   />
                 </label>
                 <label className="grid gap-2">
@@ -2219,7 +2173,7 @@ export default function KabinConsultoriaMockup() {
                     name="apellido"
                     required
                     className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
-                    placeholder="Tu apellido"
+                    placeholder={formCopy.lastName}
                   />
                 </label>
                 <label className="grid gap-2">
@@ -2229,7 +2183,7 @@ export default function KabinConsultoriaMockup() {
                     name="email"
                     required
                     className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
-                    placeholder="tu@correo.com"
+                    placeholder={formCopy.email}
                   />
                 </label>
                 <label className="grid gap-2">
@@ -2239,7 +2193,7 @@ export default function KabinConsultoriaMockup() {
                     name="telefono"
                     required
                     className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
-                    placeholder="Tu teléfono"
+                    placeholder={formCopy.phone}
                   />
                 </label>
                 <label className="grid gap-2 md:col-span-2">
@@ -2250,15 +2204,8 @@ export default function KabinConsultoriaMockup() {
                     className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white focus:border-white/45 focus:outline-none"
                     defaultValue=""
                   >
-                    <option value="" disabled className="text-slate-950">Selecciona una industria</option>
-                    <option value="Comercio" className="text-slate-950">Comercio</option>
-                    <option value="Servicios profesionales" className="text-slate-950">Servicios profesionales</option>
-                    <option value="Construcción / inmobiliario" className="text-slate-950">Construcción / inmobiliario</option>
-                    <option value="Restaurantes / alimentos" className="text-slate-950">Restaurantes / alimentos</option>
-                    <option value="Tecnología" className="text-slate-950">Tecnología</option>
-                    <option value="Salud" className="text-slate-950">Salud</option>
-                    <option value="Manufactura" className="text-slate-950">Manufactura</option>
-                    <option value="Otro" className="text-slate-950">Otro</option>
+                    <option value="" disabled className="text-slate-950">{formCopy.selectIndustry}</option>
+                    {industries.map((industry) => <option key={industry} value={industry} className="text-slate-950">{industry}</option>)}
                   </select>
                 </label>
                 <label className="grid gap-2 md:col-span-2">
@@ -2268,7 +2215,7 @@ export default function KabinConsultoriaMockup() {
                     required
                     rows={4}
                     className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/45 focus:outline-none"
-                    placeholder="Cuéntanos brevemente tu necesidad."
+                    placeholder={formCopy.message}
                   />
                 </label>
                 <div className="flex flex-col gap-3 md:col-span-2 md:flex-row md:items-center">

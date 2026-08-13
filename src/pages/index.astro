@@ -1,44 +1,7 @@
 ---
+import Base from '../layouts/Base.astro';
 import KabinConsultoriaMockup from '../components/KabinConsultoriaMockup.jsx';
-
-const seoData = {
-  title: "Kabin | Consultoría Fiscal, Contable y Financiera",
-  description: "Consultoría contable, fiscal, financiera y patrimonial en México para personas, emprendedores y empresas.",
-  image: "https://www.kabinconsultores.com/kabin.webp",
-  url: "https://www.kabinconsultores.com/",
-  lang: "es"
-};
 ---
-
-<!doctype html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content={seoData.description} />
-  <meta name="robots" content="index, follow, max-image-preview:large" />
-  <meta name="theme-color" content="#020a2c" />
-  <link rel="canonical" href={seoData.url} />
-  <link rel="alternate" hreflang="es-MX" href="https://www.kabinconsultores.com/" />
-  <link rel="alternate" hreflang="en" href="https://www.kabinconsultores.com/en/" />
-  
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Kabin Consultoría" />
-  <meta property="og:title" content={seoData.title} />
-  <meta property="og:description" content={seoData.description} />
-  <meta property="og:url" content={seoData.url} />
-  <meta property="og:image" content={seoData.image} />
-  <meta property="og:locale" content="es_MX" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={seoData.title} />
-  <meta name="twitter:description" content={seoData.description} />
-  <meta name="twitter:image" content={seoData.image} />
-  
-  <title>{seoData.title}</title>
-  <link rel="icon" href="/kabin.webp" />
-</head>
-<body>
+<Base title="Kabin | Consultoría Fiscal, Contable y Financiera" description="Consultoría contable, fiscal, financiera y patrimonial en México para personas, emprendedores y empresas." lang="es" path="/" alternatePath="/en/">
   <KabinConsultoriaMockup client:load />
-</body>
-</html>
+</Base>
