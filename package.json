@@ -9,7 +9,6 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@astrojs/image": "^0.18.0",
     "@astrojs/react": "^6.0.2",
     "@astrojs/sitemap": "^3.7.3",
     "astro": "^7.2.1",
@@ -20,7 +19,6 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@astrojs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
