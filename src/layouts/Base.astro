@@ -1,0 +1,31 @@
+---
+const { title, description, lang = "es", path = "/" } = Astro.props;
+const ogUrl = lang === "en" ? `https://www.kabinconsultores.com/en${path}` : `https://www.kabinconsultores.com${path}`;
+const image = "https://www.kabinconsultores.com/kabin.webp";
+---
+<!doctype html>
+<html lang={lang}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#020a2c" />
+  <link rel="canonical" href={ogUrl} />
+  <link rel="alternate" hreflang="es-MX" href={`https://www.kabinconsultores.com${path === "/" ? "" : path.replace("/en/", "/").replace("/en", "")}`} />
+  <link rel="alternate" hreflang="en" href={`https://www.kabinconsultores.com/en${lang === "es" ? path : path.replace("/en/", "/").replace("/en", "")}`} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={ogUrl} />
+  <meta property="og:image" content={image} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={image} />
+  <title>{title}</title>
+  <link rel="icon" href="/kabin.webp" />
+</head>
+<body>
+  <slot />
+</body>
+</html>
