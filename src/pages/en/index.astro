@@ -1,7 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
 import KabinConsultoriaMockup from '../../components/KabinConsultoriaMockup.jsx';
+import { faqItemsEn } from '../../content/faq.js';
 ---
-<Base title="Kabin | Tax, Accounting and Financial Consulting" description="Accounting, tax, financial and wealth consulting in Mexico for individuals, entrepreneurs, and companies." lang="en" path="/en/" alternatePath="/">
+<Base title="Kabin | Tax, Accounting and Financial Consulting" description="Accounting, tax, financial and wealth consulting in Mexico for individuals, entrepreneurs, and companies." lang="en" path="/en/" alternatePath="/" faqItems={faqItemsEn}>
   <KabinConsultoriaMockup client:load en={true} />
 </Base>

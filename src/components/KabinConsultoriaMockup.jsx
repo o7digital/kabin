@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { faqItemsEn, faqItemsEs } from "../content/faq.js";
 import {
   ArrowLeft,
   ArrowRight,
@@ -177,42 +178,6 @@ const servicesEn = [
     details:
       "We support inheritance planning with immediate cash flow, business continuity protocols, and asset planning so families and companies can preserve order, liquidity, and continuity in key scenarios.",
   },
-];
-
-const seoKeywordsEs = [
-  "consultoría fiscal México Querétaro",
-  "asesoría fiscal para empresas México Querétaro",
-  "consultoría contable México Querétaro",
-  "servicios contables para empresas México Querétaro",
-  "contador para PyME México Querétaro",
-  "estrategia fiscal para empresas México Querétaro",
-  "planeación fiscal México Querétaro",
-  "auditoría financiera México Querétaro",
-  "cumplimiento fiscal empresarial México Querétaro",
-  "consultoría financiera para empresas México Querétaro",
-  "gestión patrimonial México Querétaro",
-  "protección patrimonial México Querétaro",
-  "planeación financiera personal México Querétaro",
-  "plan privado de retiro PPR México Querétaro",
-  "gobierno corporativo México Querétaro",
-];
-
-const seoKeywordsEn = [
-  "tax consulting Mexico Queretaro",
-  "tax advisory for businesses Mexico Queretaro",
-  "accounting consulting Mexico Queretaro",
-  "accounting services for businesses Mexico Queretaro",
-  "accountant for small businesses Mexico Queretaro",
-  "corporate tax strategy Mexico Queretaro",
-  "tax planning Mexico Queretaro",
-  "financial audit Mexico Queretaro",
-  "corporate tax compliance Mexico Queretaro",
-  "financial consulting for businesses Mexico Queretaro",
-  "wealth management Mexico Queretaro",
-  "asset protection Mexico Queretaro",
-  "personal financial planning Mexico Queretaro",
-  "private retirement plan Mexico Queretaro",
-  "corporate governance Mexico Queretaro",
 ];
 
 const seoContentEs = {
@@ -953,6 +918,7 @@ export default function KabinConsultoriaMockup({ page, en = false }) {
 	      };
 
 	  const seoContent = lang === "es" ? seoContentEs : seoContentEn;
+  const faqItems = lang === "es" ? faqItemsEs : faqItemsEn;
   const insuranceDetails = lang === "es"
     ? [
         ["Vida e invalidez", "Protección de ingresos y estabilidad familiar ante fallecimiento, incapacidad o invalidez."],
@@ -1924,6 +1890,39 @@ export default function KabinConsultoriaMockup({ page, en = false }) {
           );
         })()}
 
+        {activePage === "inicio" && (
+          <section className="bg-white py-16 lg:py-24" aria-labelledby="faq-title">
+            <div className="mx-auto max-w-5xl px-5 lg:px-8">
+              <div className="max-w-3xl">
+                <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-900">
+                  {lang === "es" ? "Preguntas frecuentes" : "Frequently asked questions"}
+                </p>
+                <h2 id="faq-title" className="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl md:text-5xl">
+                  {lang === "es" ? "Respuestas claras antes de comenzar." : "Clear answers before getting started."}
+                </h2>
+                <p className="mt-5 text-base leading-8 text-slate-600">
+                  {lang === "es"
+                    ? "Conoce cómo trabajamos y qué puedes esperar de una primera conversación con Kabin."
+                    : "Learn how we work and what to expect from an initial conversation with Kabin."}
+                </p>
+              </div>
+              <div className="mt-10 grid gap-4">
+                {faqItems.map((item) => (
+                  <details key={item.question} className="group rounded-2xl border border-emerald-950/10 bg-[#f9f6ef] p-6 open:shadow-lg">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-lg font-black text-slate-950 marker:content-none">
+                      <span>{item.question}</span>
+                      <span aria-hidden="true" className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-emerald-950 text-white transition group-open:rotate-45">+</span>
+                    </summary>
+                    <p className="mt-4 max-w-4xl border-t border-emerald-950/10 pt-4 text-base leading-8 text-slate-600">
+                      {item.answer}
+                    </p>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
         {(activePage === "contacto" || activePage === "inicio") && (
         <section id="contacto" className={`mx-auto min-h-screen max-w-7xl px-5 pb-20 lg:px-8 ${activePage === "inicio" ? "pt-16 lg:pt-24" : "pt-40 lg:pt-44"}`}>
           <div className="rounded-[2.2rem] bg-slate-950 p-8 text-white shadow-2xl md:p-12">
@@ -2380,21 +2379,6 @@ export default function KabinConsultoriaMockup({ page, en = false }) {
               </a>
             </div>
           </div>
-          <p
-            className="mx-auto mt-6 max-w-7xl text-center text-sm font-semibold leading-7 text-white/70"
-            aria-label={
-              lang === "es"
-                ? "Servicios de Kabin en México y Querétaro"
-                : "Kabin services in Mexico and Queretaro"
-            }
-          >
-            {(lang === "es" ? seoKeywordsEs : seoKeywordsEn).map((keyword, index) => (
-              <React.Fragment key={keyword}>
-                {index > 0 && <span aria-hidden="true"> · </span>}
-                <span>{keyword}</span>
-              </React.Fragment>
-            ))}
-          </p>
         </div>
       </footer>
     </div>

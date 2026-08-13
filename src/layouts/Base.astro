@@ -9,6 +9,7 @@ const {
   alternatePath = lang === "en" ? "/" : "/en/",
   image = "/kabin.webp",
   type = "website",
+  faqItems = [],
 } = Astro.props;
 const site = Astro.site ?? new URL("https://www.kabinconsultores.com");
 const canonicalUrl = new URL(path, site).href;
@@ -48,6 +49,17 @@ const structuredData = {
       inLanguage: lang === "en" ? "en" : "es-MX",
       mainEntityOfPage: canonicalUrl,
       publisher: { "@id": "https://www.kabinconsultores.com/#organization" },
+    }] : []),
+    ...(faqItems.length ? [{
+      "@type": "FAQPage",
+      mainEntity: faqItems.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
+        },
+      })),
     }] : []),
   ],
 };

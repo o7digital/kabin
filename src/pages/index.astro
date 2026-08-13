@@ -1,7 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import KabinConsultoriaMockup from '../components/KabinConsultoriaMockup.jsx';
+import { faqItemsEs } from '../content/faq.js';
 ---
-<Base title="Kabin | Consultoría Fiscal, Contable y Financiera" description="Consultoría contable, fiscal, financiera y patrimonial en México para personas, emprendedores y empresas." lang="es" path="/" alternatePath="/en/">
+<Base title="Kabin | Consultoría Fiscal, Contable y Financiera" description="Consultoría contable, fiscal, financiera y patrimonial en México para personas, emprendedores y empresas." lang="es" path="/" alternatePath="/en/" faqItems={faqItemsEs}>
   <KabinConsultoriaMockup client:load />
 </Base>
