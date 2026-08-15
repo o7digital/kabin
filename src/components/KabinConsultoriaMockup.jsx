@@ -338,6 +338,7 @@ const OLIVIA_CHAT_ENDPOINT = "https://olivia-ai.o7digital.com/api/olivia/chat";
 const OLIVIA_CHANNEL_ENDPOINT = "https://olivia-ai.o7digital.com/api/widget/conversations";
 
 function OliviaChat({ lang = "es" }) {
+  useOliviaFloatingTheme();
   const [open, setOpen] = useState(false);
   const [leadSent, setLeadSent] = useState(false);
   const [isSending, setIsSending] = useState(false);
@@ -2383,4 +2384,14 @@ export default function KabinConsultoriaMockup({ page, en = false }) {
       </footer>
     </div>
   );
+}
+function useOliviaFloatingTheme() {
+  useEffect(() => {
+    if (document.querySelector('script[data-olivia-floating-theme]')) return;
+    const script = document.createElement('script');
+    script.src = 'https://olivia-ai.o7digital.com/olivia-floating-theme.js';
+    script.defer = true;
+    script.dataset.oliviaFloatingTheme = 'true';
+    document.head.appendChild(script);
+  }, []);
 }
