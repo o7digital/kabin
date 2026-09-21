@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { faqItemsEn, faqItemsEs } from "../content/faq.js";
 import {
@@ -332,200 +332,6 @@ const badgesEs = [
 ];
 
 const badgesEn = ["Responsibility", "Honesty", "Empathy", "Teamwork"];
-
-const OLIVIA_SITE_CODE = "kabin";
-const OLIVIA_CHAT_ENDPOINT = "https://olivia-ai.o7digital.com/api/olivia/chat";
-const OLIVIA_CHANNEL_ENDPOINT = "https://olivia-ai.o7digital.com/api/widget/conversations";
-
-function OliviaChat({ lang = "es" }) {
-  useOliviaFloatingTheme();
-  const [open, setOpen] = useState(false);
-  const [leadSent, setLeadSent] = useState(false);
-  const [isSending, setIsSending] = useState(false);
-  const [lead, setLead] = useState({ firstName: "", lastName: "", email: "", phone: "" });
-  const copy = lang === "en"
-    ? {
-        status: "Kabin assistant · Online",
-        welcome: "Hello, I am Olivia AI. How can I help with your tax, accounting, financial, insurance, or wealth consulting needs?",
-        leadIntro: "Leave your details so a Kabin advisor can follow up with you.",
-        firstName: "First name",
-        lastName: "Last name",
-        email: "Email",
-        phone: "Phone",
-        submit: "Send details",
-        thanks: "Thanks. Your details were sent. You can now ask Olivia AI your question.",
-        placeholder: "Write your question...",
-        error: "I could not send the message. Please try again or contact Kabin directly.",
-        teaser: "Need consulting?",
-        send: "Send",
-      }
-    : {
-        status: "Asistente Kabin · En línea",
-        welcome: "Hola, soy Olivia AI. ¿En qué puedo ayudarte con asesoría fiscal, contable, financiera, seguros o patrimonio?",
-        leadIntro: "Deja tus datos para que un asesor de Kabin pueda dar seguimiento.",
-        firstName: "Nombre",
-        lastName: "Apellido",
-        email: "Correo electrónico",
-        phone: "Teléfono",
-        submit: "Enviar datos",
-        thanks: "Gracias. Tus datos fueron enviados. Ahora puedes hacer tu pregunta a Olivia AI.",
-        placeholder: "Escribe tu pregunta...",
-        error: "No pude enviar el mensaje. Intenta de nuevo o contacta directamente a Kabin.",
-        teaser: "¿Necesitas asesoría?",
-        send: "Enviar",
-      };
-  const [input, setInput] = useState("");
-  const [messages, setMessages] = useState([{ role: "assistant", content: copy.welcome }]);
-  const visitorId = React.useMemo(() => {
-    if (typeof window === "undefined") return "";
-    const key = `oliviaVisitor:${OLIVIA_SITE_CODE}`;
-    const saved = window.localStorage.getItem(key);
-    const id = saved || window.crypto.randomUUID();
-    window.localStorage.setItem(key, id);
-    return id;
-  }, []);
-
-  useEffect(() => {
-    setMessages((current) => {
-      if (current.length !== 1 || current[0]?.role !== "assistant") return current;
-      return [{ role: "assistant", content: copy.welcome }];
-    });
-  }, [copy.welcome]);
-
-  const visitorName = `${lead.firstName.trim()} ${lead.lastName.trim()}`.trim();
-
-  const saveToChannel = async (content, metadata = {}) => {
-    await fetch(OLIVIA_CHANNEL_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        clientCode: OLIVIA_SITE_CODE,
-        visitorId,
-        content,
-        visitorName: visitorName || undefined,
-        email: lead.email.trim() || undefined,
-        phone: lead.phone.trim() || undefined,
-        source: "website-chat",
-        language: lang,
-        metadata: {
-          page: typeof window !== "undefined" ? window.location.href : "https://www.kabinconsultores.com/",
-          pageTitle: typeof document !== "undefined" ? document.title : "Kabin",
-          ...metadata,
-        },
-      }),
-    });
-  };
-
-  const submitLead = async (event) => {
-    event.preventDefault();
-    if (!lead.firstName.trim() || !lead.lastName.trim() || !lead.email.trim() || !lead.phone.trim() || isSending) return;
-    setIsSending(true);
-    try {
-      await saveToChannel(
-        `Lead: ${visitorName} · ${lead.email.trim()} · ${lead.phone.trim()}`,
-        { type: "lead", siteCode: OLIVIA_SITE_CODE },
-      );
-      setLeadSent(true);
-      setMessages((current) => [...current, { role: "assistant", content: copy.thanks }]);
-    } catch {
-      setMessages((current) => [...current, { role: "assistant", content: copy.error }]);
-    } finally {
-      setIsSending(false);
-    }
-  };
-
-  const sendMessage = async () => {
-    const message = input.trim();
-    if (!message || isSending || !leadSent) return;
-    setInput("");
-    setMessages((current) => [...current, { role: "user", content: message }]);
-    setIsSending(true);
-    try {
-      await saveToChannel(message, { type: "message", siteCode: OLIVIA_SITE_CODE });
-      const response = await fetch(OLIVIA_CHAT_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          message,
-          language: lang,
-          clientCode: OLIVIA_SITE_CODE,
-          visitorId,
-          metadata: {
-            page: typeof window !== "undefined" ? window.location.href : "https://www.kabinconsultores.com/",
-            lead: {
-              name: visitorName,
-              email: lead.email.trim(),
-              phone: lead.phone.trim(),
-            },
-          },
-        }),
-      });
-      if (!response.ok) throw new Error("Olivia response failed");
-      const data = await response.json();
-      const reply = data.reply || copy.error;
-      setMessages((current) => [...current, { role: "assistant", content: reply }]);
-      await fetch(OLIVIA_CHANNEL_ENDPOINT, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          clientCode: OLIVIA_SITE_CODE,
-          visitorId,
-          content: reply,
-          model: data.mode || "olivia-v2",
-        }),
-      });
-    } catch {
-      setMessages((current) => [...current, { role: "assistant", content: copy.error }]);
-    } finally {
-      setIsSending(false);
-    }
-  };
-
-  return (
-    <div className="fixed bottom-5 right-5 z-[9999] font-sans">
-      {open && (
-        <section className="mb-3 w-[min(390px,calc(100vw-28px))] overflow-hidden rounded-2xl border border-amber-300/60 bg-emerald-950 text-white shadow-2xl">
-          <header className="flex items-center justify-between px-5 py-4">
-            <div><strong className="block text-xl text-amber-200">Olivia AI</strong><small className="font-bold text-emerald-100">{copy.status}</small></div>
-            <button type="button" onClick={() => setOpen(false)} className="text-3xl">×</button>
-          </header>
-          <div className="max-h-80 min-h-48 space-y-3 overflow-y-auto bg-emerald-50 p-5 text-emerald-950">
-            {messages.map((message, index) => (
-              <p key={`${message.role}-${index}`} className={`w-fit max-w-[88%] rounded-xl px-4 py-3 shadow ${message.role === "user" ? "ml-auto bg-emerald-950 text-white" : "bg-white"}`}>
-                {message.content}
-              </p>
-            ))}
-            {isSending && <p className="w-fit rounded-xl bg-white px-4 py-3 shadow">...</p>}
-          </div>
-          {!leadSent && (
-            <form onSubmit={submitLead} className="grid gap-2 border-t border-emerald-800/40 bg-emerald-50 p-3 text-emerald-950">
-              <p className="text-sm font-semibold text-emerald-900">{copy.leadIntro}</p>
-              <div className="grid gap-2 sm:grid-cols-2">
-                <input required value={lead.firstName} onChange={(event) => setLead((current) => ({ ...current, firstName: event.target.value }))} placeholder={copy.firstName} className="min-w-0 rounded-xl bg-white px-4 py-3 text-emerald-950 shadow-sm" />
-                <input required value={lead.lastName} onChange={(event) => setLead((current) => ({ ...current, lastName: event.target.value }))} placeholder={copy.lastName} className="min-w-0 rounded-xl bg-white px-4 py-3 text-emerald-950 shadow-sm" />
-                <input required type="email" value={lead.email} onChange={(event) => setLead((current) => ({ ...current, email: event.target.value }))} placeholder={copy.email} className="min-w-0 rounded-xl bg-white px-4 py-3 text-emerald-950 shadow-sm" />
-                <input required type="tel" value={lead.phone} onChange={(event) => setLead((current) => ({ ...current, phone: event.target.value }))} placeholder={copy.phone} className="min-w-0 rounded-xl bg-white px-4 py-3 text-emerald-950 shadow-sm" />
-              </div>
-              <button type="submit" disabled={isSending} className="rounded-xl bg-amber-200 px-4 py-3 font-black text-emerald-950 disabled:opacity-60">{copy.submit}</button>
-            </form>
-          )}
-          <div className="flex gap-2 p-3">
-            <input
-              value={input}
-              onChange={(event) => setInput(event.target.value)}
-              onKeyDown={(event) => { if (event.key === "Enter") sendMessage(); }}
-              disabled={!leadSent || isSending}
-              placeholder={copy.placeholder}
-              className="min-w-0 flex-1 rounded-xl bg-white px-4 py-3 text-emerald-950 disabled:opacity-60"
-            />
-            <button type="button" onClick={sendMessage} disabled={!leadSent || isSending} className="rounded-xl bg-amber-200 px-4 font-black text-emerald-950 disabled:opacity-60">{copy.send}</button>
-          </div>
-        </section>
-      )}
-      <button type="button" onClick={() => setOpen(true)} className="ml-auto flex items-center gap-2 rounded-full border border-amber-300/60 bg-emerald-950 px-4 py-3 text-white shadow-xl"><b className="grid h-8 w-8 place-items-center rounded-full bg-amber-200 text-emerald-950">O</b>{copy.teaser}</button>
-    </div>
-  );
-}
 
 const navLinksEs = [
   { href: "/", label: "Inicio" },
@@ -2286,7 +2092,6 @@ export default function KabinConsultoriaMockup({ page, en = false }) {
         )}
       </AnimatePresence>
 
-      <OliviaChat lang={lang} />
       <footer className="border-t border-emerald-950/10 bg-slate-950 text-white">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 md:grid-cols-[1.4fr_0.9fr_1fr] lg:px-8">
           <div>
@@ -2384,14 +2189,4 @@ export default function KabinConsultoriaMockup({ page, en = false }) {
       </footer>
     </div>
   );
-}
-function useOliviaFloatingTheme() {
-  useEffect(() => {
-    if (document.querySelector('script[data-olivia-floating-theme]')) return;
-    const script = document.createElement('script');
-    script.src = 'https://olivia-ai.o7digital.com/olivia-floating-theme.js';
-    script.defer = true;
-    script.dataset.oliviaFloatingTheme = 'true';
-    document.head.appendChild(script);
-  }, []);
 }
